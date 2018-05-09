@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{38D6CC0E-2
 		..\appbuild.cake = ..\appbuild.cake
 		..\build.ps1 = ..\build.ps1
 		..\README.md = ..\README.md
+		SharpReact.Wpf\SharpReact.Wpf.nuspec = SharpReact.Wpf\SharpReact.Wpf.nuspec
 	EndProjectSection
 EndProject
 Global
