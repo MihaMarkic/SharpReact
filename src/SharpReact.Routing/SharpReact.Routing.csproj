@@ -8,8 +8,31 @@
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageId>Righthand.SharpReact.Routing</PackageId>
+    <Authors>Miha Markic</Authors>
+    <Copyright>(c) 2018 Miha Markic</Copyright>
+    <Description>Routing for SharpReact.</Description>
+    <PackageProjectUrl>https://github.com/MihaMarkic/SharpReact</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/MihaMarkic/SharpReact/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>c# react routing router</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <files>
+      <file src="bin\Release\SharpReact.Routing.xml" target="lib/netstandard2.0" />
+    </files>
+    <Dependencies>
+      <dependency id="Righthand.SharpReact.Core" Version="$version$" />
+    </Dependencies>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\SharpReact.Routing.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\SharpReact.Core\SharpReact.Core.csproj" />
   </ItemGroup>
-
 </Project>

@@ -8,7 +8,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>https://github.com/MihaMarkic/SharpReact/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/MihaMarkic/SharpReact</projectUrl>
-    <description>Implementation of React principles to .NET.</description>
+    <description>WPF implementation of React principles to .NET.</description>
     <tags>c# react wpf</tags>
 	<dependencies>
     <dependency id="Righthand.SharpReact.Core" version ="$version$" />

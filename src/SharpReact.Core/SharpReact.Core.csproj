@@ -8,6 +8,27 @@
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageId>Righthand.SharpReact.Core</PackageId>
+    <Authors>Miha Markic</Authors>
+    <Copyright>(c) 2018 Miha Markic</Copyright>
+    <Description>React implemenation for .net.</Description>
+    <PackageProjectUrl>https://github.com/MihaMarkic/SharpReact</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/MihaMarkic/SharpReact/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>c# react</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <files>
+      <file src="bin\Release\SharpReact.Core.xml" target="lib/netstandard2.0" />
+    </files>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\SharpReact.Core.xml</DocumentationFile>
+    <NoWarn>1701;1702;1705;1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="System.ValueTuple" Version="4.4.0" />
   </ItemGroup>
