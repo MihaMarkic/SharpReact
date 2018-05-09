@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Righthand.SharpReact.Wpf</id>
+    <version>$version$</version>
+    <authors>Miha Markic</authors>
+    <copyright>(c) 2018 Miha Markic</copyright>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/MihaMarkic/SharpReact/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/MihaMarkic/SharpReact</projectUrl>
+    <description>Implementation of React principles to .NET.</description>
+    <tags>c# react wpf</tags>
+	<dependencies>
+    <dependency id="Righthand.SharpReact.Core" version ="$version$" />
+	</dependencies>
+  </metadata>
+  <files>
+    <file src="./bin/release/SharpReact.Wpf.dll" target="lib/net461" />
+  </files>
+</package>
