@@ -55,12 +55,13 @@ namespace SharpReact.Sample.Redux
         private SharpProp CreateTree()
         {
             var firstPage = new FirstPage { Number = state.FirstPage.Number };
+            var secondPage = new SecondPage { Text = state.SecondPage.Text };
             return new Router
             {
                 Children = {
                     new HomeRoute { Content = firstPage},
                     new TypeRoute<FirstPageNavigationArgs> { Content = firstPage },
-                    new TypeRoute<SecondPageNavigationArgs>{ Content = new SecondPage() }
+                    new TypeRoute<SecondPageNavigationArgs>{ Content = secondPage }
                 }
             };
             //return new FirstPage();

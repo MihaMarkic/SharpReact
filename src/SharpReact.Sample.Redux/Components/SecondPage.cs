@@ -1,8 +1,8 @@
 ﻿using SharpReact.Core;
 using SharpReact.Core.Properties;
+using SharpReact.Sample.Redux.Actions;
 using SharpReact.Sample.Redux.States;
 using SharpReact.Wpf.Props;
-using System;
 using System.Windows;
 
 namespace SharpReact.Sample.Redux.Components
@@ -21,7 +21,7 @@ namespace SharpReact.Sample.Redux.Components
                     new TextBox
                     {
                         FontSize = 40,
-                        Text = State.Text,
+                        Text = Props.Text,
                         TextChanged = TextChanged
                     }
                 },
@@ -30,11 +30,8 @@ namespace SharpReact.Sample.Redux.Components
 
         private void TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            //var textBox = (System.Windows.Controls.TextBox)sender;
-            //if (textBox.Text.Length < 51)
-            //{
-            //    SetState(new SecondPageState { Text = textBox.Text.Substring(0, Math.Min(51, textBox.Text.Length)) });
-            //}
+            var textBox = (System.Windows.Controls.TextBox)sender;
+            MainWindow.Dispatcher.Dispatch(new ChangeSecondPageEntryTextAction(textBox.Text));
         }
     }
 }

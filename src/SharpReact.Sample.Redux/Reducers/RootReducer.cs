@@ -16,6 +16,9 @@ namespace SharpReact.Sample.Redux.Reducers
                 case IncreaseFirstPageNumberAction increaseFirstPageNumber:
                     result = state.Clone(firstPage: state.FirstPage.Clone(state.FirstPage.Number + increaseFirstPageNumber.Diff));
                     break;
+                case ChangeSecondPageEntryTextAction changeSecondPageEntryText:
+                    result = state.Clone(secondPage: state.SecondPage.Clone(text: changeSecondPageEntryText.Text));
+                    break;
                 default:
                     return Task.FromResult(state);
             }
