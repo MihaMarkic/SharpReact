@@ -1,0 +1,8 @@
+﻿outputDirectory:	..\..\..\SharpReact.Wpf
+rootAssemblyPath:	C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.1
+assemblies:
+    - path: PresentationFramework
+    - path: PresentationCore
+rootType:
+    assemblyPath:	PresentationCore
+    name:			System.Windows.UIElement
