@@ -59,7 +59,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bindings\TextBox.cs" />
     <Compile Include="Components\ButtonBase.cs" />
     <Compile Include="Components\ContentControl.cs" />
     <Compile Include="Components\Control.cs" />
