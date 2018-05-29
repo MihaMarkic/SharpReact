@@ -1,53 +1,65 @@
-﻿using System.Windows.Controls;
-using Props = SharpReact.Wpf.Props;
 
 namespace SharpReact.Wpf.Components
 {
-    public class TextBox<TProps, TElement> : TextBoxBase<TProps, TElement>
-        where TProps : Props.TextBox
-        where TElement : TextBox, new()
-    {
-        private bool isUpdating;
-        private int lastCaretIndex;
-        private string oldText = "";
-
-        public override void AssignProperties(TProps nextProps)
-        {
-            base.AssignProperties(nextProps);
-            if (!ReferenceEquals(Props?.TextChanged, null) && ReferenceEquals(nextProps.TextChanged, null))
-            {
-                Element.TextChanged -= Element_TextChanged;
-            }
-            if (ReferenceEquals(Props?.TextChanged, null) && !ReferenceEquals(nextProps.TextChanged, null))
-            {
-                Element.TextChanged += Element_TextChanged;
-            }
-            UpdateValue(nextProps.Text);
-        }
-
-        private void Element_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (!isUpdating)
-            {
-                isUpdating = true;
-                //string text = Element.Text;
-                var newLastCaretIndex = Element.CaretIndex;
-                //Element.Text = "";
-                Props.TextChanged.Invoke(sender, e);
-                Element.Text = oldText;
-                Element.CaretIndex = lastCaretIndex;
-                lastCaretIndex = newLastCaretIndex;
-                isUpdating = false;
-            }
-        }
-
-        public void UpdateValue(string value)
-        {
-            isUpdating = true;
-            Element.Text = value;
-            Element.CaretIndex = lastCaretIndex;
-            oldText = value;
-            isUpdating = false;
-        }
-    }
+	public  class TextBox<TProps, TElement>: TextBoxBase<TProps, TElement>
+		where TProps : Props.TextBox
+		where TElement : System.Windows.Controls.TextBox
+	{
+		protected override void CreateElement()
+		{
+			Element = (TElement)new System.Windows.Controls.TextBox();
+		}
+		public override void AssignProperties(TProps nextProps)
+		{
+			base.AssignProperties(nextProps);
+			if (nextProps.TextWrapping.HasValue)
+			{
+				Element.TextWrapping = nextProps.TextWrapping.Value.Value;
+			}
+			if (nextProps.MinLines.HasValue)
+			{
+				Element.MinLines = nextProps.MinLines.Value.Value;
+			}
+			if (nextProps.MaxLines.HasValue)
+			{
+				Element.MaxLines = nextProps.MaxLines.Value.Value;
+			}
+			if (nextProps.Text.HasValue)
+			{
+				Element.Text = nextProps.Text.Value.Value;
+			}
+			if (nextProps.CharacterCasing.HasValue)
+			{
+				Element.CharacterCasing = nextProps.CharacterCasing.Value.Value;
+			}
+			if (nextProps.MaxLength.HasValue)
+			{
+				Element.MaxLength = nextProps.MaxLength.Value.Value;
+			}
+			if (nextProps.TextAlignment.HasValue)
+			{
+				Element.TextAlignment = nextProps.TextAlignment.Value.Value;
+			}
+			if (nextProps.SelectedText.HasValue)
+			{
+				Element.SelectedText = nextProps.SelectedText.Value.Value;
+			}
+			if (nextProps.SelectionLength.HasValue)
+			{
+				Element.SelectionLength = nextProps.SelectionLength.Value.Value;
+			}
+			if (nextProps.SelectionStart.HasValue)
+			{
+				Element.SelectionStart = nextProps.SelectionStart.Value.Value;
+			}
+			if (nextProps.CaretIndex.HasValue)
+			{
+				Element.CaretIndex = nextProps.CaretIndex.Value.Value;
+			}
+			if (nextProps.TextDecorations.HasValue)
+			{
+				Element.TextDecorations = nextProps.TextDecorations.Value.Value;
+			}
+		}
+	}
 }
