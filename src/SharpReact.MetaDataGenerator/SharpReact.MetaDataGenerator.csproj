@@ -47,11 +47,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Settings\ComponentSettings.cs" />
+    <Compile Include="Settings\PropsSettings.cs" />
     <Compile Include="Settings\RootTypeSettings.cs" />
     <Compile Include="Settings\AssemblySettings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\AppSettings.cs" />
+    <Compile Include="Settings\SectionSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -12,7 +12,7 @@ namespace SharpReact.Sample
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : System.Windows.Window
     {
         private WpfTreeRenderer renderer;
         public MainWindow()
@@ -60,5 +60,12 @@ namespace SharpReact.Sample
             //    Content = new TextBlock { Text = buttonText }
             //};
         }
+        //int clickCount = 0;
+        //string buttonText => $"Clicked {clickCount}";
+        //void Clicked(object sender, RoutedEventArgs e)
+        //{
+        //    clickCount++;
+        //    renderer.Redraw();
+        //}
     }
 }

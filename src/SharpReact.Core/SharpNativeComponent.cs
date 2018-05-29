@@ -2,7 +2,7 @@
 
 namespace SharpReact.Core
 {
-    public class SharpNativeComponent<TProps, TState, TElement> : SharpStatefulComponent<TProps, TState>, ISharpNativeComponent
+    public abstract class SharpNativeComponent<TProps, TState, TElement> : SharpStatefulComponent<TProps, TState>, ISharpNativeComponent
         where TProps : SharpNativeProp
     {
         public new TElement Element { get; protected set; }

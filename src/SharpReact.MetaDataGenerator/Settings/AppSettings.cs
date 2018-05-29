@@ -7,7 +7,9 @@ namespace SharpReact.MetaDataGenerator.Settings
         public string OutputDirectory { get; set; }
         public string RootAssemblyPath { get; set; }
         public List<AssemblySettings> Assemblies { get; set; }
-        public List<string> Namespaces { get; set; }
+        public PropsSettings Properties { get; set; } = new PropsSettings();
+        public ComponentSettings Components { get; set; } = new ComponentSettings();
         public RootTypeSettings RootType { get; set; }
+        public string Namespace { get; set; }
     }
 }
