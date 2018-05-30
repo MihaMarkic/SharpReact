@@ -118,12 +118,16 @@ namespace SharpReact.MetaDataGenerator
             var properties = from p in type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
                              where IsListProperty(p.PropertyType)
                                 || p.SetMethod != null && p.SetMethod.IsPublic && p.GetMethod != null
+                             where !p.GetCustomAttributesData().Any(a => a.AttributeType == typeof(ObsoleteAttribute))
                              select p;
             return properties.ToArray();
         }
         static System.Reflection.EventInfo[] GetTypeEvents(Type type)
         {
-            return type.GetEvents(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly);
+            var events = from e in type.GetEvents(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+                         where !e.GetCustomAttributesData().Any(a => a.AttributeType == typeof(ObsoleteAttribute))
+                         select e;
+            return events.ToArray();
         }
         static bool HasChildrenContainerProperty(string childrenContainerName, in PropertyInfo[] properties)
         {
