@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class SelectiveScrollingGrid<TProps, TElement>: Grid<TProps, TElement>
 		where TProps : Props.SelectiveScrollingGrid
-		where TElement : System.Windows.Controls.Primitives.SelectiveScrollingGrid
+		where TElement : System.Windows.Controls.Primitives.SelectiveScrollingGrid, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Primitives.SelectiveScrollingGrid();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 		}
 	}
 }

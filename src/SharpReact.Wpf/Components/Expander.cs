@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class Expander<TProps, TElement>: HeaderedContentControl<TProps, TElement>
 		where TProps : Props.Expander
-		where TElement : System.Windows.Controls.Expander
+		where TElement : System.Windows.Controls.Expander, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Expander();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.ExpandDirection.HasValue)
 			{
 				Element.ExpandDirection = nextProps.ExpandDirection.Value.Value;

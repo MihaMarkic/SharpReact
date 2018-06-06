@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class Label<TProps, TElement>: ContentControl<TProps, TElement>
 		where TProps : Props.Label
-		where TElement : System.Windows.Controls.Label
+		where TElement : System.Windows.Controls.Label, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Label();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Target.HasValue)
 			{
 				Element.Target = nextProps.Target.Value.Value;

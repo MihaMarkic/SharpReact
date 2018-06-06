@@ -6,9 +6,5 @@ namespace SharpReact.Wpf.Props
 {
 	public abstract class MultiSelector: Selector
 	{
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class GridViewHeaderRowPresenter<TProps, TElement>: GridViewRowPresenterBase<TProps, TElement>
 		where TProps : Props.GridViewHeaderRowPresenter
-		where TElement : System.Windows.Controls.GridViewHeaderRowPresenter
+		where TElement : System.Windows.Controls.GridViewHeaderRowPresenter, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.GridViewHeaderRowPresenter();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.ColumnHeaderContainerStyle.HasValue)
 			{
 				Element.ColumnHeaderContainerStyle = nextProps.ColumnHeaderContainerStyle.Value.Value;

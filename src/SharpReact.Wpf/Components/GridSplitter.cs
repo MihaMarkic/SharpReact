@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class GridSplitter<TProps, TElement>: Thumb<TProps, TElement>
 		where TProps : Props.GridSplitter
-		where TElement : System.Windows.Controls.GridSplitter
+		where TElement : System.Windows.Controls.GridSplitter, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.GridSplitter();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.ResizeDirection.HasValue)
 			{
 				Element.ResizeDirection = nextProps.ResizeDirection.Value.Value;

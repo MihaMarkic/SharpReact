@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class UniformGrid<TProps, TElement>: Panel<TProps, TElement>
 		where TProps : Props.UniformGrid
-		where TElement : System.Windows.Controls.Primitives.UniformGrid
+		where TElement : System.Windows.Controls.Primitives.UniformGrid, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Primitives.UniformGrid();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.FirstColumn.HasValue)
 			{
 				Element.FirstColumn = nextProps.FirstColumn.Value.Value;

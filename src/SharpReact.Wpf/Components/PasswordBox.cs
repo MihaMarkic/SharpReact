@@ -1,16 +1,13 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class PasswordBox<TProps>: Control<TProps, System.Windows.Controls.PasswordBox>
 		where TProps : Props.PasswordBox
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = new System.Windows.Controls.PasswordBox();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Password.HasValue)
 			{
 				Element.Password = nextProps.Password.Value.Value;

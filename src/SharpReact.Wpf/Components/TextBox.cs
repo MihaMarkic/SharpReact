@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class TextBox<TProps, TElement>: TextBoxBase<TProps, TElement>
 		where TProps : Props.TextBox
-		where TElement : System.Windows.Controls.TextBox
+		where TElement : System.Windows.Controls.TextBox, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.TextBox();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.TextWrapping.HasValue)
 			{
 				Element.TextWrapping = nextProps.TextWrapping.Value.Value;

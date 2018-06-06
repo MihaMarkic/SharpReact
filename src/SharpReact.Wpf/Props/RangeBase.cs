@@ -12,9 +12,5 @@ namespace SharpReact.Wpf.Props
 		public ReactParam<System.Double>? LargeChange { get; set; }
 		public ReactParam<System.Double>? SmallChange { get; set; }
 		public System.Windows.RoutedPropertyChangedEventHandler<System.Double> ValueChanged { get; set; }
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

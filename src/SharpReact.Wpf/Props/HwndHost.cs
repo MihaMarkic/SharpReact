@@ -8,9 +8,5 @@ namespace SharpReact.Wpf.Props
 	{
 		public System.Windows.Interop.HwndSourceHook MessageHook { get; set; }
 		public System.Windows.DpiChangedEventHandler DpiChanged { get; set; }
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

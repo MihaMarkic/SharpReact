@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class HeaderedContentControl<TProps, TElement>: ContentControl<TProps, TElement>
 		where TProps : Props.HeaderedContentControl
-		where TElement : System.Windows.Controls.HeaderedContentControl
+		where TElement : System.Windows.Controls.HeaderedContentControl, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.HeaderedContentControl();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Header.HasValue)
 			{
 				Element.Header = nextProps.Header.Value.Value;

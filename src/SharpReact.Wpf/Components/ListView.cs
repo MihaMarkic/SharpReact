@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class ListView<TProps, TElement>: ListBox<TProps, TElement>
 		where TProps : Props.ListView
-		where TElement : System.Windows.Controls.ListView
+		where TElement : System.Windows.Controls.ListView, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.ListView();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.View.HasValue)
 			{
 				Element.View = nextProps.View.Value.Value;

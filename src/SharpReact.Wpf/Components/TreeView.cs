@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class TreeView<TProps, TElement>: ItemsControl<TProps, TElement>
 		where TProps : Props.TreeView
-		where TElement : System.Windows.Controls.TreeView
+		where TElement : System.Windows.Controls.TreeView, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.TreeView();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.SelectedValuePath.HasValue)
 			{
 				Element.SelectedValuePath = nextProps.SelectedValuePath.Value.Value;

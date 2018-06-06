@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Wpf.Props
 {
-	public class Page: FrameworkElement, IContainer
+	public class Page: FrameworkElement
 	{
 		public ISharpProp Content { get; set; }
 		public ReactParam<System.String>? WindowTitle { get; set; }
@@ -21,6 +21,11 @@ namespace SharpReact.Wpf.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.Page<Page, System.Windows.Controls.Page>();
+		}
+		protected override void UnmountComponent()
+		{
+			UnmountComponent(Content);
+			base.UnmountComponent();
 		}
 	}
 }

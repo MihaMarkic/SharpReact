@@ -21,9 +21,5 @@ namespace SharpReact.Wpf.Props
 		public ReactParam<System.Boolean>? IsInactiveSelectionHighlightEnabled { get; set; }
 		public System.Windows.Controls.TextChangedEventHandler TextChanged { get; set; }
 		public System.Windows.RoutedEventHandler SelectionChanged { get; set; }
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

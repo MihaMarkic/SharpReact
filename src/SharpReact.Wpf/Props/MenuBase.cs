@@ -8,9 +8,5 @@ namespace SharpReact.Wpf.Props
 	{
 		public ReactParam<System.Windows.Controls.ItemContainerTemplateSelector>? ItemContainerTemplateSelector { get; set; }
 		public ReactParam<System.Boolean>? UsesItemContainerTemplate { get; set; }
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class NavigationWindow<TProps, TElement>: Window<TProps, TElement>
 		where TProps : Props.NavigationWindow
-		where TElement : System.Windows.Navigation.NavigationWindow
+		where TElement : System.Windows.Navigation.NavigationWindow, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Navigation.NavigationWindow();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.SandboxExternalContent.HasValue)
 			{
 				Element.SandboxExternalContent = nextProps.SandboxExternalContent.Value.Value;

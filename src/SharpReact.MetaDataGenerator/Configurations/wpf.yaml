@@ -3,11 +3,18 @@ rootAssemblyPath:	C:\Program Files (x86)\Reference Assemblies\Microsoft\Framewor
 namespace:			SharpReact.Wpf
 assemblies:
     - path: PresentationFramework
+      ignoredTypes:
+         - System.Windows.Controls.StickyNoteControl
+
     - path: PresentationCore
+
 rootType:
     assemblyPath:	PresentationCore
     name:			System.Windows.UIElement
 components:
+    elementsRequiresConstructor: true
+    namespaces:
+        - SharpReact.Core
     fixedFiles:
         - SharpWpfComponent.cs
 properties:

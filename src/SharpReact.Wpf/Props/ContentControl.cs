@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Wpf.Props
 {
-	public class ContentControl: Control, IContainer
+	public class ContentControl: Control
 	{
 		public ISharpProp Content { get; set; }
 		public ReactParam<System.Windows.DataTemplate>? ContentTemplate { get; set; }
@@ -13,6 +13,11 @@ namespace SharpReact.Wpf.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.ContentControl<ContentControl, System.Windows.Controls.ContentControl>();
+		}
+		protected override void UnmountComponent()
+		{
+			UnmountComponent(Content);
+			base.UnmountComponent();
 		}
 	}
 }

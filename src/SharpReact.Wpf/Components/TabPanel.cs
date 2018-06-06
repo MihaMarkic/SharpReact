@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class TabPanel<TProps, TElement>: Panel<TProps, TElement>
 		where TProps : Props.TabPanel
-		where TElement : System.Windows.Controls.Primitives.TabPanel
+		where TElement : System.Windows.Controls.Primitives.TabPanel, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Primitives.TabPanel();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 		}
 	}
 }

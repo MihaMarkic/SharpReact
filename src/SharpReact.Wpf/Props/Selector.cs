@@ -12,9 +12,5 @@ namespace SharpReact.Wpf.Props
 		public ReactParam<System.Object>? SelectedValue { get; set; }
 		public ReactParam<System.String>? SelectedValuePath { get; set; }
 		public System.Windows.Controls.SelectionChangedEventHandler SelectionChanged { get; set; }
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

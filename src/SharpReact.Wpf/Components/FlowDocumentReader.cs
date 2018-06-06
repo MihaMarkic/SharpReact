@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class FlowDocumentReader<TProps, TElement>: Control<TProps, TElement>
 		where TProps : Props.FlowDocumentReader
-		where TElement : System.Windows.Controls.FlowDocumentReader
+		where TElement : System.Windows.Controls.FlowDocumentReader, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.FlowDocumentReader();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.ViewingMode.HasValue)
 			{
 				Element.ViewingMode = nextProps.ViewingMode.Value.Value;

@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class ItemsControl<TProps, TElement>: Control<TProps, TElement>
 		where TProps : Props.ItemsControl
-		where TElement : System.Windows.Controls.ItemsControl
+		where TElement : System.Windows.Controls.ItemsControl, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.ItemsControl();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.ItemsSource.HasValue)
 			{
 				Element.ItemsSource = nextProps.ItemsSource.Value.Value;

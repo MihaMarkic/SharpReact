@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class TickBar<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.TickBar
-		where TElement : System.Windows.Controls.Primitives.TickBar
+		where TElement : System.Windows.Controls.Primitives.TickBar, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Primitives.TickBar();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Fill.HasValue)
 			{
 				Element.Fill = nextProps.Fill.Value.Value;

@@ -17,9 +17,5 @@ namespace SharpReact.Wpf.Props
 		public ReactParam<System.Double>? StrokeMiterLimit { get; set; }
 		public ReactParam<System.Double>? StrokeDashOffset { get; set; }
 		public ReactParam<System.Windows.Media.DoubleCollection>? StrokeDashArray { get; set; }
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class ToolBarTray<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.ToolBarTray
-		where TElement : System.Windows.Controls.ToolBarTray
+		where TElement : System.Windows.Controls.ToolBarTray, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.ToolBarTray();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Background.HasValue)
 			{
 				Element.Background = nextProps.Background.Value.Value;

@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class Viewport3D<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.Viewport3D
-		where TElement : System.Windows.Controls.Viewport3D
+		where TElement : System.Windows.Controls.Viewport3D, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Viewport3D();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Camera.HasValue)
 			{
 				Element.Camera = nextProps.Camera.Value.Value;

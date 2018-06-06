@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class Window<TProps, TElement>: ContentControl<TProps, TElement>
 		where TProps : Props.Window
-		where TElement : System.Windows.Window
+		where TElement : System.Windows.Window, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Window();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.TaskbarItemInfo.HasValue)
 			{
 				Element.TaskbarItemInfo = nextProps.TaskbarItemInfo.Value.Value;

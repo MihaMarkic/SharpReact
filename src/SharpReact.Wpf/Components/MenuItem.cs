@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class MenuItem<TProps, TElement>: HeaderedItemsControl<TProps, TElement>
 		where TProps : Props.MenuItem
-		where TElement : System.Windows.Controls.MenuItem
+		where TElement : System.Windows.Controls.MenuItem, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.MenuItem();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Command.HasValue)
 			{
 				Element.Command = nextProps.Command.Value.Value;

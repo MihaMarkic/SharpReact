@@ -6,9 +6,5 @@ namespace SharpReact.Wpf.Props
 {
 	public abstract class VirtualizingPanel: Panel
 	{
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

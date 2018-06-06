@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class TabControl<TProps, TElement>: Selector<TProps, TElement>
 		where TProps : Props.TabControl
-		where TElement : System.Windows.Controls.TabControl
+		where TElement : System.Windows.Controls.TabControl, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.TabControl();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.TabStripPlacement.HasValue)
 			{
 				Element.TabStripPlacement = nextProps.TabStripPlacement.Value.Value;

@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class DatePicker<TProps, TElement>: Control<TProps, TElement>
 		where TProps : Props.DatePicker
-		where TElement : System.Windows.Controls.DatePicker
+		where TElement : System.Windows.Controls.DatePicker, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.DatePicker();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.CalendarStyle.HasValue)
 			{
 				Element.CalendarStyle = nextProps.CalendarStyle.Value.Value;

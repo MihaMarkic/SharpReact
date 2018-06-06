@@ -8,9 +8,5 @@ namespace SharpReact.Wpf.Props
 	{
 		public ReactParam<System.Windows.Documents.IDocumentPaginatorSource>? Document { get; set; }
 		public System.EventHandler PageViewsChanged { get; set; }
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

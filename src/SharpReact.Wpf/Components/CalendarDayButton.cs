@@ -1,16 +1,13 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class CalendarDayButton<TProps>: Button<TProps, System.Windows.Controls.Primitives.CalendarDayButton>
 		where TProps : Props.CalendarDayButton
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = new System.Windows.Controls.Primitives.CalendarDayButton();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 		}
 	}
 }

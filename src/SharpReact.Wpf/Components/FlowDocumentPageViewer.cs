@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class FlowDocumentPageViewer<TProps, TElement>: DocumentViewerBase<TProps, TElement>
 		where TProps : Props.FlowDocumentPageViewer
-		where TElement : System.Windows.Controls.FlowDocumentPageViewer
+		where TElement : System.Windows.Controls.FlowDocumentPageViewer, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.FlowDocumentPageViewer();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Zoom.HasValue)
 			{
 				Element.Zoom = nextProps.Zoom.Value.Value;

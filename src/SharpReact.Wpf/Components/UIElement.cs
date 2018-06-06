@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class UIElement<TProps, TElement>: SharpWpfComponent<TProps, object, TElement>
 		where TProps : Props.UIElement
-		where TElement : System.Windows.UIElement
+		where TElement : System.Windows.UIElement, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.UIElement();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.AllowDrop.HasValue)
 			{
 				Element.AllowDrop = nextProps.AllowDrop.Value.Value;

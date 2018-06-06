@@ -4,12 +4,11 @@ using System.Collections.Generic;
 
 namespace SharpReact.Wpf.Props
 {
-	public class InkCanvas: FrameworkElement, IChildrenContainer
+	public class InkCanvas: FrameworkElement
 	{
 		public ReactParam<System.Windows.Media.Brush>? Background { get; set; }
 		public ReactParam<System.Windows.Ink.StrokeCollection>? Strokes { get; set; }
 		public List<ISharpProp> Children { get; set; } = new List<ISharpProp>();
-		IList<ISharpProp> IChildrenContainer.Children => Children;
 		public ReactParam<System.Windows.Ink.DrawingAttributes>? DefaultDrawingAttributes { get; set; }
 		public ReactParam<System.Windows.Ink.StylusShape>? EraserShape { get; set; }
 		public ReactParam<System.Windows.Controls.InkCanvasEditingMode>? EditingMode { get; set; }
@@ -37,6 +36,11 @@ namespace SharpReact.Wpf.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.InkCanvas<InkCanvas, System.Windows.Controls.InkCanvas>();
+		}
+		protected override void UnmountComponent()
+		{
+			UnmountComponents(Children);
+			base.UnmountComponent();
 		}
 	}
 }

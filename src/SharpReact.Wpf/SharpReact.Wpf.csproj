@@ -166,7 +166,6 @@
     <Compile Include="Components\StackPanel.cs" />
     <Compile Include="Components\StatusBar.cs" />
     <Compile Include="Components\StatusBarItem.cs" />
-    <Compile Include="Components\StickyNoteControl.cs" />
     <Compile Include="Components\TabControl.cs" />
     <Compile Include="Components\TabItem.cs" />
     <Compile Include="Components\TabPanel.cs" />
@@ -312,7 +311,6 @@
     <Compile Include="Props\StackPanel.cs" />
     <Compile Include="Props\StatusBar.cs" />
     <Compile Include="Props\StatusBarItem.cs" />
-    <Compile Include="Props\StickyNoteControl.cs" />
     <Compile Include="Props\TabControl.cs" />
     <Compile Include="Props\TabItem.cs" />
     <Compile Include="Props\TabPanel.cs" />

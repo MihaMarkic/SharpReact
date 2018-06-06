@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class FlowDocumentScrollViewer<TProps, TElement>: Control<TProps, TElement>
 		where TProps : Props.FlowDocumentScrollViewer
-		where TElement : System.Windows.Controls.FlowDocumentScrollViewer
+		where TElement : System.Windows.Controls.FlowDocumentScrollViewer, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.FlowDocumentScrollViewer();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Document.HasValue)
 			{
 				Element.Document = nextProps.Document.Value.Value;

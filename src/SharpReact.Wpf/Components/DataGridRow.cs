@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class DataGridRow<TProps, TElement>: Control<TProps, TElement>
 		where TProps : Props.DataGridRow
-		where TElement : System.Windows.Controls.DataGridRow
+		where TElement : System.Windows.Controls.DataGridRow, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.DataGridRow();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Item.HasValue)
 			{
 				Element.Item = nextProps.Item.Value.Value;

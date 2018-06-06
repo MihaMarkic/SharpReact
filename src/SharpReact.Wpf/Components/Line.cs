@@ -1,16 +1,13 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class Line<TProps>: Shape<TProps, System.Windows.Shapes.Line>
 		where TProps : Props.Line
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = new System.Windows.Shapes.Line();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.X1.HasValue)
 			{
 				Element.X1 = nextProps.X1.Value.Value;

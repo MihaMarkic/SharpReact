@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class ScrollViewer<TProps, TElement>: ContentControl<TProps, TElement>
 		where TProps : Props.ScrollViewer
-		where TElement : System.Windows.Controls.ScrollViewer
+		where TElement : System.Windows.Controls.ScrollViewer, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.ScrollViewer();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.CanContentScroll.HasValue)
 			{
 				Element.CanContentScroll = nextProps.CanContentScroll.Value.Value;

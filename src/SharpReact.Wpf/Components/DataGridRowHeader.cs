@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class DataGridRowHeader<TProps, TElement>: ButtonBase<TProps, TElement>
 		where TProps : Props.DataGridRowHeader
-		where TElement : System.Windows.Controls.Primitives.DataGridRowHeader
+		where TElement : System.Windows.Controls.Primitives.DataGridRowHeader, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Primitives.DataGridRowHeader();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.SeparatorBrush.HasValue)
 			{
 				Element.SeparatorBrush = nextProps.SeparatorBrush.Value.Value;

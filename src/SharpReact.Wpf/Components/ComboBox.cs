@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class ComboBox<TProps, TElement>: Selector<TProps, TElement>
 		where TProps : Props.ComboBox
-		where TElement : System.Windows.Controls.ComboBox
+		where TElement : System.Windows.Controls.ComboBox, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.ComboBox();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.MaxDropDownHeight.HasValue)
 			{
 				Element.MaxDropDownHeight = nextProps.MaxDropDownHeight.Value.Value;

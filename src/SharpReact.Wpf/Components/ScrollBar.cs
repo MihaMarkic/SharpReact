@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class ScrollBar<TProps, TElement>: RangeBase<TProps, TElement>
 		where TProps : Props.ScrollBar
-		where TElement : System.Windows.Controls.Primitives.ScrollBar
+		where TElement : System.Windows.Controls.Primitives.ScrollBar, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Primitives.ScrollBar();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Orientation.HasValue)
 			{
 				Element.Orientation = nextProps.Orientation.Value.Value;

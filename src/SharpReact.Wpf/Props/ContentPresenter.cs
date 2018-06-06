@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Wpf.Props
 {
-	public class ContentPresenter: FrameworkElement, IContainer
+	public class ContentPresenter: FrameworkElement
 	{
 		public ReactParam<System.Boolean>? RecognizesAccessKey { get; set; }
 		public ISharpProp Content { get; set; }
@@ -15,6 +15,11 @@ namespace SharpReact.Wpf.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.ContentPresenter<ContentPresenter, System.Windows.Controls.ContentPresenter>();
+		}
+		protected override void UnmountComponent()
+		{
+			UnmountComponent(Content);
+			base.UnmountComponent();
 		}
 	}
 }

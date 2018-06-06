@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class Thumb<TProps, TElement>: Control<TProps, TElement>
 		where TProps : Props.Thumb
-		where TElement : System.Windows.Controls.Primitives.Thumb
+		where TElement : System.Windows.Controls.Primitives.Thumb, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Primitives.Thumb();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (!ReferenceEquals(Props?.DragStarted, null) && ReferenceEquals(nextProps.DragStarted, null))
 			{
 				Element.DragStarted -= nextProps.DragStarted;

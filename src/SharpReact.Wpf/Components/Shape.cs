@@ -1,13 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public abstract class Shape<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.Shape
-		where TElement : System.Windows.Shapes.Shape
+		where TElement : System.Windows.Shapes.Shape, new()
 	{
-		public override void AssignProperties(TProps nextProps)
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Stretch.HasValue)
 			{
 				Element.Stretch = nextProps.Stretch.Value.Value;

@@ -7,9 +7,5 @@ namespace SharpReact.Wpf.Props
 	public abstract class Adorner: FrameworkElement
 	{
 		public ReactParam<System.Boolean>? IsClipEnabled { get; set; }
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

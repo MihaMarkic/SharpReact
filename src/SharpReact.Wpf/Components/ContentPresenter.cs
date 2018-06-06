@@ -1,20 +1,21 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class ContentPresenter<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.ContentPresenter
-		where TElement : System.Windows.Controls.ContentPresenter
+		where TElement : System.Windows.Controls.ContentPresenter, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.ContentPresenter();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.RecognizesAccessKey.HasValue)
 			{
 				Element.RecognizesAccessKey = nextProps.RecognizesAccessKey.Value.Value;
+			}
+			if (nextProps.Content != null)
+			{
+				Element.Content = renderer.ProcessPair(level + 1, newState, previous?.Content, nextProps.Content);
 			}
 			if (nextProps.ContentTemplate.HasValue)
 			{

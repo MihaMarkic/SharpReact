@@ -1,13 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public abstract class ButtonBase<TProps, TElement>: ContentControl<TProps, TElement>
 		where TProps : Props.ButtonBase
-		where TElement : System.Windows.Controls.Primitives.ButtonBase
+		where TElement : System.Windows.Controls.Primitives.ButtonBase, new()
 	{
-		public override void AssignProperties(TProps nextProps)
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Command.HasValue)
 			{
 				Element.Command = nextProps.Command.Value.Value;

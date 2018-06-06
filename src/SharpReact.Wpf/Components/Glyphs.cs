@@ -1,16 +1,13 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class Glyphs<TProps>: FrameworkElement<TProps, System.Windows.Documents.Glyphs>
 		where TProps : Props.Glyphs
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = new System.Windows.Documents.Glyphs();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Fill.HasValue)
 			{
 				Element.Fill = nextProps.Fill.Value.Value;

@@ -1,13 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public abstract class RangeBase<TProps, TElement>: Control<TProps, TElement>
 		where TProps : Props.RangeBase
-		where TElement : System.Windows.Controls.Primitives.RangeBase
+		where TElement : System.Windows.Controls.Primitives.RangeBase, new()
 	{
-		public override void AssignProperties(TProps nextProps)
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Minimum.HasValue)
 			{
 				Element.Minimum = nextProps.Minimum.Value.Value;

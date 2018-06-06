@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class DocumentViewer<TProps, TElement>: DocumentViewerBase<TProps, TElement>
 		where TProps : Props.DocumentViewer
-		where TElement : System.Windows.Controls.DocumentViewer
+		where TElement : System.Windows.Controls.DocumentViewer, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.DocumentViewer();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.HorizontalOffset.HasValue)
 			{
 				Element.HorizontalOffset = nextProps.HorizontalOffset.Value.Value;

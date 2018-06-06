@@ -11,9 +11,5 @@ namespace SharpReact.Wpf.Props
 		public ReactParam<System.Windows.IInputElement>? CommandTarget { get; set; }
 		public ReactParam<System.Windows.Controls.ClickMode>? ClickMode { get; set; }
 		public System.Windows.RoutedEventHandler Click { get; set; }
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

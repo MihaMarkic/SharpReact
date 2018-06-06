@@ -1,6 +1,5 @@
 ﻿using SharpReact.MetaDataGenerator.Settings;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -49,7 +48,7 @@ namespace SharpReact.MetaDataGenerator
             DeleteFiles(config.Properties, config.OutputDirectory);
             DeleteFiles(config.Components, config.OutputDirectory);
             CreateProperties(rootType, isRoot: true, config.OutputDirectory, config.Namespace, config.Properties);
-            CreateComponents(rootType, isRoot: true, config.OutputDirectory, config.Namespace, config.Components, config.Properties);
+            CreateComponents(rootType, isRoot: true, config.OutputDirectory, config);
             foreach (var assemblySettings in config.Assemblies)
             {
                 WriteLine($"{assemblySettings.Path}");
@@ -72,10 +71,11 @@ namespace SharpReact.MetaDataGenerator
 
         static void ProcessAssembly(AppSettings config, Type rootType, AssemblySettings settings)
         {
+            var ignoredTypes = new HashSet<string>(settings.IgnoredTypes ?? new string[0]);
             string assemblyPath = GetAssemblyPath(config.RootAssemblyPath, settings.Path);
             var assembly = LoadAssembly(assemblyPath);
             var types = from t in assembly.GetTypes()
-                        where t.IsPublic && t.IsSubclassOf(rootType)
+                        where t.IsPublic && t.IsSubclassOf(rootType) && !ignoredTypes.Contains(t.FullName)
                         select t;
             foreach (var type in types)
             {
@@ -87,7 +87,7 @@ namespace SharpReact.MetaDataGenerator
         {
             WriteLine($"\t{type.Name}");
             CreateProperties(type, isRoot: false, config.OutputDirectory, config.Namespace, config.Properties);
-            CreateComponents(type, isRoot: false, config.OutputDirectory, config.Namespace, config.Components, config.Properties);
+            CreateComponents(type, isRoot: false, config.OutputDirectory, config);
         }
         static string GetTypeName(Type type)
         {
@@ -129,13 +129,13 @@ namespace SharpReact.MetaDataGenerator
                          select e;
             return events.ToArray();
         }
-        static bool HasChildrenContainerProperty(string childrenContainerName, in PropertyInfo[] properties)
+        static bool IsContentProperty(PropertyInfo pi, PropsSettings settings)
         {
-            return properties.Any(p => string.Equals(p.Name, childrenContainerName));
+            return string.Equals(pi.Name, settings.ContainerPropertyName, StringComparison.Ordinal);
         }
-        static bool HasContainerProperty(string containerName, in PropertyInfo[] properties)
+        static bool IsContainerProperty(PropertyInfo pi, PropsSettings settings)
         {
-            return properties.Any(p => string.Equals(p.Name, containerName));
+            return string.Equals(pi.Name, settings.ChildrenContainerPropertyName, StringComparison.Ordinal);
         }
         static void CreateProperties(Type type, bool isRoot, string outputDirectory, string rootNamespace, PropsSettings settings)
         { 
@@ -150,17 +150,8 @@ namespace SharpReact.MetaDataGenerator
             var lastProperty = properties.LastOrDefault();
             var sb = new StringBuilder();
             string abstractType = IsTypeCreatable(type) ? "": " abstract";
-            bool isContainer = HasContainerProperty(settings.ContainerPropertyName, properties);
-            bool isChildrenContainer = HasChildrenContainerProperty(settings.ChildrenContainerPropertyName, properties);
             string implementedInterfaces = "";
-            if (isContainer)
-            {
-                implementedInterfaces += ", IContainer";
-            }
-            if (isChildrenContainer)
-            {
-                implementedInterfaces += ", IChildrenContainer";
-            }
+            
             if (settings.Namespaces != null)
             {
                 foreach (string ns in settings.Namespaces)
@@ -173,20 +164,19 @@ namespace SharpReact.MetaDataGenerator
             sb.AppendLine("{");
             sb.AppendLine($"\tpublic{abstractType} class {GetTypeName(type)}: {superClass}{implementedInterfaces}");
             sb.AppendLine("\t{");
+            var contentProperties = new List<PropertyInfo>();
+            var containerProperties = new List<PropertyInfo>();
             foreach (var p in properties)
             {
-                if (string.Equals(p.Name, settings.ContainerPropertyName, StringComparison.Ordinal))
+                if (IsContentProperty(p, settings))
                 {
+                    contentProperties.Add(p);
                     sb.AppendLine($"\t\tpublic ISharpProp {p.Name} {{ get; set; }}");
-                    if (!string.Equals(p.Name, "Content", StringComparison.Ordinal))
-                    {
-                        sb.AppendLine($"\t\tISharpProp IContent.Content => {p.Name}");
-                    }
                 }
-                else if (string.Equals(p.Name, settings.ChildrenContainerPropertyName, StringComparison.Ordinal))
+                else if (IsContainerProperty(p, settings))
                 {
+                    containerProperties.Add(p);
                     sb.AppendLine($"\t\tpublic List<ISharpProp> {p.Name} {{ get; set; }} = new List<ISharpProp>();");
-                    sb.AppendLine($"\t\tIList<ISharpProp> IChildrenContainer.Children => {p.Name};");
                 }
                 else if (IsListProperty(p.PropertyType))
                 {
@@ -201,19 +191,34 @@ namespace SharpReact.MetaDataGenerator
             {
                 sb.AppendLine($"\t\tpublic {GetEventTypeFullName(e.EventHandlerType)} {e.Name} {{ get; set; }}");
             }
-            sb.AppendLine("\t\tprotected override ISharpStatefulComponent CreateComponent()");
-            sb.AppendLine("\t\t{");
             if (IsTypeCreatable(type))
             {
+                sb.AppendLine("\t\tprotected override ISharpStatefulComponent CreateComponent()");
+                sb.AppendLine("\t\t{");
                 string tElement = type.IsSealed ? "" : ", " + GetTypeFullName(type);
                 string additionalTypeParameters = type.IsGenericType ? string.Join(",", type.GetTypeInfo().GenericTypeParameters.Select(a => a.Name)) + ", " : "";
                 sb.AppendLine($"\t\t\treturn new Components.{GetPureName(type.Name)}<{additionalTypeParameters}{GetTypeName(type)}{tElement}>();");
+                //else
+                //{
+                //    sb.AppendLine("\t\t\tthrow new System.NotImplementedException();");
+                //}
+                sb.AppendLine("\t\t}");
             }
-            else
+            if (contentProperties.Count + containerProperties.Count > 0)
             {
-                sb.AppendLine("\t\t\tthrow new System.NotImplementedException();");
+                sb.AppendLine("\t\tprotected override void UnmountComponent()");
+                sb.AppendLine("\t\t{");
+                foreach (var p in contentProperties)
+                {
+                    sb.AppendLine($"\t\t\tUnmountComponent({p.Name});");
+                }
+                foreach (var p in containerProperties)
+                {
+                    sb.AppendLine($"\t\t\tUnmountComponents({p.Name});");
+                }
+                sb.AppendLine("\t\t\tbase.UnmountComponent();");
+                sb.AppendLine("\t\t}");
             }
-            sb.AppendLine("\t\t}");
             sb.AppendLine("\t}");
             sb.AppendLine("}");
             File.WriteAllText(path, sb.ToString());
@@ -266,9 +271,9 @@ namespace SharpReact.MetaDataGenerator
                 return genericName;
             }
         }
-        static void CreateComponents(Type type, bool isRoot, string outputDirectory, string rootNamespace, ComponentSettings settings, PropsSettings propSettings)
+        static void CreateComponents(Type type, bool isRoot, string outputDirectory, AppSettings settings)
         {
-            string path = Path.Combine(outputDirectory, settings.Path, $"{type.Name}.cs");
+            string path = Path.Combine(outputDirectory, settings.Components.Path, $"{type.Name}.cs");
             if (File.Exists(path))
             {
                 File.Delete(path);
@@ -283,43 +288,47 @@ namespace SharpReact.MetaDataGenerator
             bool hasConstructor = type.GetConstructor(Type.EmptyTypes) != null;
             string additionalGenericParameters = $"{string.Join(", ", genericTypeParameters.Select(p => p.Name))}{(genericTypeParameters.Length > 0 ? ", " : "")}";
             var sb = new StringBuilder();
-            if (settings.Namespaces != null)
+            if (settings.Components.Namespaces != null)
             {
-                foreach (string ns in settings.Namespaces)
+                foreach (string ns in settings.Components.Namespaces)
                 {
                     sb.AppendLine($"using {ns};");
                 }
             }
             sb.AppendLine();
-            sb.AppendLine($"namespace {rootNamespace}.Components");
+            sb.AppendLine($"namespace {settings.Namespace}.Components");
             sb.AppendLine("{");
             sb.AppendLine($"\tpublic {(hasConstructor ? "": "abstract")} class {GetPureName(type.Name)}<{additionalGenericParameters}TProps{(type.IsSealed ? "": ", TElement")}>: {superClass}");
             sb.AppendLine($"\t\twhere TProps : Props.{GetTypeName(type)}");
             if (!type.IsSealed)
             {
-                sb.AppendLine($"\t\twhere TElement : {GetTypeFullName(type)}");
+                string newConstraint = settings.Components.ElementsRequiresConstructor ? ", new()" : "";
+                sb.AppendLine($"\t\twhere TElement : {GetTypeFullName(type)}{newConstraint}");
             }
             sb.AppendLine("\t{");
-            if (hasConstructor)
-            {
-                string cast = type.IsSealed ? "" : "(TElement)";
-                sb.AppendLine("\t\tprotected override void CreateElement()");
-                sb.AppendLine("\t\t{");
-                sb.AppendLine($"\t\t\tElement = {cast}new {GetTypeFullName(type)}();");
-                sb.AppendLine("\t\t}");
-            }
-            sb.AppendLine("\t\tpublic override void AssignProperties(TProps nextProps)");
+            sb.AppendLine($"\t\tpublic override void AssignProperties(ISharpCreator<{settings.RootType.Name}> renderer, int level, NewState newState, TProps previous, TProps nextProps)");
             sb.AppendLine("\t\t{");
-            sb.AppendLine($"\t\t\tbase.AssignProperties(nextProps);");
-            foreach (var p in properties.Where(p => 
-                !IsListProperty(p.PropertyType) 
-                && !string.Equals(p.Name, propSettings.ContainerPropertyName, StringComparison.Ordinal)
-                && !string.Equals(p.Name, propSettings.ChildrenContainerPropertyName, StringComparison.Ordinal)))
+            sb.AppendLine($"\t\t\tbase.AssignProperties(renderer, level, newState, previous, nextProps);");
+            foreach (var p in properties)
             {
-                sb.AppendLine($"\t\t\tif (nextProps.{p.Name}.HasValue)");
-                sb.AppendLine("\t\t\t{");
-                sb.AppendLine($"\t\t\t\tElement.{p.Name} = nextProps.{p.Name}.Value.Value;");
-                sb.AppendLine("\t\t\t}");
+                if (IsContentProperty(p, settings.Properties))
+                {
+                    sb.AppendLine($"\t\t\tif (nextProps.{p.Name} != null)");
+                    sb.AppendLine("\t\t\t{");
+                    sb.AppendLine($"\t\t\t\tElement.{p.Name} = renderer.ProcessPair(level + 1, newState, previous?.{p.Name}, nextProps.{p.Name});");
+                    sb.AppendLine("\t\t\t}");
+                }
+                else if (IsContainerProperty(p, settings.Properties))
+                {
+                    sb.AppendLine($"\t\t\trenderer.VisitAllCollection(level, newState, previous?.{p.Name}, nextProps.{p.Name}, Element.{p.Name}, nameof(Element.{p.Name}), nameof({settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}));");
+                }
+                else
+                {
+                    sb.AppendLine($"\t\t\tif (nextProps.{p.Name}.HasValue)");
+                    sb.AppendLine("\t\t\t{");
+                    sb.AppendLine($"\t\t\t\tElement.{p.Name} = nextProps.{p.Name}.Value.Value;");
+                    sb.AppendLine("\t\t\t}");
+                }
             }
             foreach (var e in events)
             {

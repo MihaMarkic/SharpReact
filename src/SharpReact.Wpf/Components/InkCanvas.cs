@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class InkCanvas<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.InkCanvas
-		where TElement : System.Windows.Controls.InkCanvas
+		where TElement : System.Windows.Controls.InkCanvas, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.InkCanvas();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Background.HasValue)
 			{
 				Element.Background = nextProps.Background.Value.Value;
@@ -20,6 +17,7 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.Strokes = nextProps.Strokes.Value.Value;
 			}
+			renderer.VisitAllCollection(level, newState, previous?.Children, nextProps.Children, Element.Children, nameof(Element.Children), nameof(SharpReact.Wpf.Props.InkCanvas));
 			if (nextProps.DefaultDrawingAttributes.HasValue)
 			{
 				Element.DefaultDrawingAttributes = nextProps.DefaultDrawingAttributes.Value.Value;

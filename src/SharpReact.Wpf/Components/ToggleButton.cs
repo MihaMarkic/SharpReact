@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class ToggleButton<TProps, TElement>: ButtonBase<TProps, TElement>
 		where TProps : Props.ToggleButton
-		where TElement : System.Windows.Controls.Primitives.ToggleButton
+		where TElement : System.Windows.Controls.Primitives.ToggleButton, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.Primitives.ToggleButton();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.IsChecked.HasValue)
 			{
 				Element.IsChecked = nextProps.IsChecked.Value.Value;

@@ -1,6 +1,7 @@
 ﻿using SharpReact.Core.Exceptions;
 using SharpReact.Core.Properties;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace SharpReact.Core
     {
         TElement ProcessPair(int level, NewState newState, ISharpProp previous, ISharpProp current);
         void VisitAllCollection(int level, NewState newState, IList<ISharpProp> previous, IList<ISharpProp> next,
-            IList<TElement> elements, string sourceProperty, string sourceType);
+            IList elements, string sourceProperty, string sourceType);
     }
     public abstract class SharpRenderer<TRootElement, TElement>: ISharpRenderer, ISharpCreator<TElement>
         where TRootElement: TElement
@@ -47,9 +48,9 @@ namespace SharpReact.Core
                     Render(newState);
                     isInvalidated = false;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    Debug.WriteLine($"Ooops {ex.Message}");
+                    throw;
                 }
             }
         }
@@ -185,7 +186,7 @@ namespace SharpReact.Core
         /// <param name="sourceProperty"></param>
         /// <param name="sourceType"></param>
         public void VisitAllCollection(int level, NewState newState, IList<ISharpProp> previous, IList<ISharpProp> next,
-            IList<TElement> elements, string sourceProperty, string sourceType)
+            IList elements, string sourceProperty, string sourceType)
         {
             CheckPropertyListKeys(next, sourceProperty, sourceType);
             int prevCount = previous?.Count ?? 0;

@@ -7,9 +7,5 @@ namespace SharpReact.Wpf.Props
 	public abstract class PageFunctionBase: Page
 	{
 		public ReactParam<System.Boolean>? RemoveFromJournal { get; set; }
-		protected override ISharpStatefulComponent CreateComponent()
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

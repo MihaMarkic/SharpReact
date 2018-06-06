@@ -1,17 +1,14 @@
+using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
 	public  class TextBlock<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.TextBlock
-		where TElement : System.Windows.Controls.TextBlock
+		where TElement : System.Windows.Controls.TextBlock, new()
 	{
-		protected override void CreateElement()
+		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
-			Element = (TElement)new System.Windows.Controls.TextBlock();
-		}
-		public override void AssignProperties(TProps nextProps)
-		{
-			base.AssignProperties(nextProps);
+			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.BaselineOffset.HasValue)
 			{
 				Element.BaselineOffset = nextProps.BaselineOffset.Value.Value;
