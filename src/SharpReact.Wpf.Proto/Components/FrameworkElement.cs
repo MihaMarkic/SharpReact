@@ -1,12 +1,15 @@
-﻿namespace SharpReact.Wpf.Components
+﻿using System.Windows;
+using SharpReact.Core;
+
+namespace SharpReact.Wpf.Components
 {
     public class FrameworkElement<TProps, TElement> : UIElement<TProps, TElement>
         where TProps : Props.FrameworkElement
         where TElement : System.Windows.FrameworkElement, new()
     {
-        public override void AssignProperties(TProps nextProps)
+        public override void AssignProperties(ISharpCreator<UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
-            base.AssignProperties(nextProps);
+            base.AssignProperties(renderer, level, newState, previous, nextProps);
             if (nextProps.HorizontalAlignment.HasValue)
             {
                 Element.HorizontalAlignment = nextProps.HorizontalAlignment.Value;

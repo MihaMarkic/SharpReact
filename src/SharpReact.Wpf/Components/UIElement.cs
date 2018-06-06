@@ -36,17 +36,9 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.OpacityMask = nextProps.OpacityMask.Value.Value;
 			}
-			if (nextProps.BitmapEffect.HasValue)
-			{
-				Element.BitmapEffect = nextProps.BitmapEffect.Value.Value;
-			}
 			if (nextProps.Effect.HasValue)
 			{
 				Element.Effect = nextProps.Effect.Value.Value;
-			}
-			if (nextProps.BitmapEffectInput.HasValue)
-			{
-				Element.BitmapEffectInput = nextProps.BitmapEffectInput.Value.Value;
 			}
 			if (nextProps.CacheMode.HasValue)
 			{

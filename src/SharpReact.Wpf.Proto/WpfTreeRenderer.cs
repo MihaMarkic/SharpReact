@@ -1,39 +1,16 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
-using SharpReact.Core;
+﻿using SharpReact.Core;
 using SharpReact.Core.Properties;
+using System;
+using System.Windows;
 
 namespace SharpReact.Wpf
 {
-    public class WpfTreeRenderer: SharpRenderer<UIElement>
+    public class WpfTreeRenderer<TRootElement>: SharpRenderer<TRootElement, UIElement>
+        where TRootElement: UIElement
     {
-        public WpfTreeRenderer(Func<SharpProp> createTree, UIElement parent): base(createTree, parent)
+        public WpfTreeRenderer(Func<SharpProp> createTree, TRootElement parent, 
+            Action<TRootElement, UIElement> attachChildToRoot, Action<TRootElement, UIElement> detachChildFromRoot): base(createTree, parent, attachChildToRoot, detachChildFromRoot)
         {
-        }
-
-        protected override void Attach(UIElement parent, UIElement child)
-        {
-            if (parent is Panel panel)
-            {
-                panel.Children.Add(child);
-            }
-            else if (parent is ContentControl contentControl)
-            {
-                contentControl.Content = child;
-            }
-        }
-
-        protected override void Detach(UIElement parent, UIElement child)
-        {
-            if (parent is Panel panel)
-            {
-                panel.Children.Remove(child);
-            }
-            else if (parent is ContentControl contentControl)
-            {
-                contentControl.Content = null;
-            }
         }
     }
 }

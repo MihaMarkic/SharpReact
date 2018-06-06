@@ -14,24 +14,24 @@ namespace SharpReact.Sample
     /// </summary>
     public partial class MainWindow : System.Windows.Window
     {
-        private WpfTreeRenderer renderer;
+        readonly WpfTreeRenderer<MainWindow> renderer;
         public MainWindow()
         {
             InitializeComponent();
-            renderer = new WpfTreeRenderer(CreateTree, this);
+            renderer = new WpfTreeRenderer<MainWindow>(CreateTree, this, (r, c) => r.Content = c, (r, c) => r.Content = null);
             renderer.Render(NewState.Empty);
         }
 
         private SharpProp CreateTree()
         {
-            return new Router
-            {
-                Children = {
-                    new HomeRoute { Content = new FirstPage() },
-                    new TypeRoute<FirstPageNavigationArgs> { Content = new FirstPage() },
-                    new TypeRoute<SecondPageNavigationArgs>{ Content = new SecondPage() }
-                }
-            };
+            //return new Router
+            //{
+            //    Children = {
+            //        new HomeRoute { Content = new FirstPage() },
+            //        new TypeRoute<FirstPageNavigationArgs> { Content = new FirstPage() },
+            //        new TypeRoute<SecondPageNavigationArgs>{ Content = new SecondPage() }
+            //    }
+            //};
             //return new FirstPage();
             //return new StackPanel
             //{
@@ -59,6 +59,14 @@ namespace SharpReact.Sample
             //    FontSize = 30,
             //    Content = new TextBlock { Text = buttonText }
             //};
+            return new ContentControl
+            {
+                Content = new Button
+                {
+                    FontSize = 30,
+                    Content = new TextBlock { Text = "Yolo" }
+                }
+            };
         }
         //int clickCount = 0;
         //string buttonText => $"Clicked {clickCount}";

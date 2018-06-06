@@ -14,7 +14,6 @@ namespace SharpReact.Core
         bool ShouldUpdate(object nextProps, object nextState);
         void WillUpdate();
         void DidUpdate(object nextProps, object nextState);
-        void AssignProperties(object nextProps);
         void WillUnmount();
         /// <summary>
         /// Returns a tree when composite, otherwise returns null.

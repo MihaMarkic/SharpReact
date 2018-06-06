@@ -11,8 +11,7 @@ namespace SharpReact.Core
         public TState State { get; private set; }
         public TProps Props { get; private set; }
         public SharpStatefulComponent()
-        {
-        }
+        {}
         public virtual void WillMount()
         { }
         public virtual void DidMount()
@@ -31,11 +30,6 @@ namespace SharpReact.Core
         {
             Props = nextProps;
             State = nextState;
-        }
-
-        public virtual void AssignProperties(TProps nextProps)
-        {
-
         }
         public virtual void WillUnmount()
         { }
@@ -68,11 +62,6 @@ namespace SharpReact.Core
         void ISharpStatefulComponent.DidUpdate(object nextProps, object nextState)
         {
             DidUpdate((TProps)nextProps, ReferenceEquals(nextState, null) ? default: (TState)nextState);
-        }
-
-        void ISharpStatefulComponent.AssignProperties(object nextProps)
-        {
-            AssignProperties((TProps)nextProps);
         }
         object ISharpStatefulComponent.State => State;
         object ISharpStatefulComponent.Props => Props;

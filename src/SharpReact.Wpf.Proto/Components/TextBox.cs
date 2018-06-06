@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+using SharpReact.Core;
 using Props = SharpReact.Wpf.Props;
 
 namespace SharpReact.Wpf.Components
@@ -11,9 +13,9 @@ namespace SharpReact.Wpf.Components
         private int lastCaretIndex;
         private string oldText = "";
 
-        public override void AssignProperties(TProps nextProps)
+        public override void AssignProperties(ISharpCreator<UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
-            base.AssignProperties(nextProps);
+            base.AssignProperties(renderer, level, newState, previous, nextProps);
             if (!ReferenceEquals(Props?.TextChanged, null) && ReferenceEquals(nextProps.TextChanged, null))
             {
                 Element.TextChanged -= Element_TextChanged;

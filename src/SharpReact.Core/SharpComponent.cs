@@ -9,5 +9,11 @@ namespace SharpReact.Core
         {
             Element = element;
         }
+        void ISharpComponent.AssignProperties(object nextProps)
+        {
+            AssignProperties((TProps)nextProps);
+        }
+        protected virtual void AssignProperties(TProps props)
+        { }
     }
 }

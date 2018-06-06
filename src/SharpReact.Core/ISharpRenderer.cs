@@ -1,4 +1,7 @@
-﻿namespace SharpReact.Core
+﻿using SharpReact.Core.Properties;
+using System.Collections.Generic;
+
+namespace SharpReact.Core
 {
     public interface ISharpRenderer
     {

@@ -1,10 +1,9 @@
 ﻿namespace SharpReact.Core.Properties
 {
-    public interface ISharpProp
+    public interface ISharpProp: IKeyedItem
     {
         void Init();
         void Transfer(ISharpStatefulComponent previous);
         ISharpStatefulComponent Component { get; }
-        object Key { get; set; }
     }
 }

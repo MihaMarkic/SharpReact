@@ -12,9 +12,7 @@ namespace SharpReact.Wpf.Props
 		public ReactParam<System.Windows.Point>? RenderTransformOrigin { get; set; }
 		public ReactParam<System.Double>? Opacity { get; set; }
 		public ReactParam<System.Windows.Media.Brush>? OpacityMask { get; set; }
-		public ReactParam<System.Windows.Media.Effects.BitmapEffect>? BitmapEffect { get; set; }
 		public ReactParam<System.Windows.Media.Effects.Effect>? Effect { get; set; }
-		public ReactParam<System.Windows.Media.Effects.BitmapEffectInput>? BitmapEffectInput { get; set; }
 		public ReactParam<System.Windows.Media.CacheMode>? CacheMode { get; set; }
 		public ReactParam<System.String>? Uid { get; set; }
 		public ReactParam<System.Windows.Visibility>? Visibility { get; set; }
