@@ -19,7 +19,7 @@ namespace SharpReact.Sample.Redux
     /// </summary>
     public partial class MainWindow : Window
     {
-        WpfTreeRenderer renderer;
+        WpfTreeRenderer<MainWindow> renderer;
         public static new AppDispatcher Dispatcher { get; private set; }
         static RootState state;
         public MainWindow()
@@ -36,7 +36,7 @@ namespace SharpReact.Sample.Redux
                 reducer: new RootReducer(),
                 notificationScheduler: TaskScheduler.FromCurrentSynchronizationContext()
             );
-            renderer = new WpfTreeRenderer(CreateTree, this);
+            renderer = new WpfTreeRenderer<MainWindow>(CreateTree, this, (r, c) => r.Content = c, (r, c) => r.Content = null);
             renderer.Render(NewState.Empty);
             Dispatcher.StateChanged += Dispatcher_StateChanged;
             Dispatcher.Start();

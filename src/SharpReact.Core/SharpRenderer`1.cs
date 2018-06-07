@@ -157,9 +157,9 @@ namespace SharpReact.Core
                 compositeCurrentProp.Generated = statefulComponent.Render();
                 // process the recursively
                 var compositePreviousProp = currentPrevious as ISharpCompositeProp;
-                VisitAll(level+1, newState, compositePreviousProp?.Generated, compositeCurrentProp.Generated);
+                var element = VisitAll(level+1, newState, compositePreviousProp?.Generated, compositeCurrentProp.Generated);
                 // sooner or later a native element will be returned
-                return default;
+                return element;
             }
         }
 
@@ -229,17 +229,19 @@ namespace SharpReact.Core
         /// <threadsafety>Thread safe.</threadsafety>
         public static void CheckPropertyListKeys(IList<ISharpProp> props, string sourceProperty, string sourceType)
         {
-            if (props?.Count > 0)
-            {
-                var set = new HashSet<object>();
-                foreach (var p in props)
-                {
-                    if (!set.Add(p.Key))
-                    {
-                        throw new DuplicateKeyException(p, sourceProperty, sourceType);
-                    }
-                }
-            }
+            // TODO keys uniqueness check disabled for the time being
+            // Perhaps not required at all
+            //if (props?.Count > 0)
+            //{
+            //    var set = new HashSet<object>();
+            //    foreach (var p in props)
+            //    {
+            //        if (!set.Add(p.Key))
+            //        {
+            //            throw new DuplicateKeyException(p, sourceProperty, sourceType);
+            //        }
+            //    }
+            //}
         }
         public void StateChanged(NewState newState)
         {

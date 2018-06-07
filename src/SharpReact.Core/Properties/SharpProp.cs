@@ -35,7 +35,7 @@ namespace SharpReact.Core.Properties
         /// Un-mounts a list of components.
         /// </summary>
         /// <param name="props"></param>
-        protected static void UnmountComponents(IList<ISharpProp> props)
+        protected static void UnmountComponents(IEnumerable<ISharpProp> props)
         {
             foreach (var prop in props)
             {

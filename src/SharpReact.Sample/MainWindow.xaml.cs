@@ -6,6 +6,7 @@ using SharpReact.Wpf;
 using SharpReact.Routing.Props;
 using SharpReact.Sample.Navigation;
 using SharpReact.Wpf.Props;
+using System.Threading.Tasks;
 
 namespace SharpReact.Sample
 {
@@ -18,20 +19,23 @@ namespace SharpReact.Sample
         public MainWindow()
         {
             InitializeComponent();
-            renderer = new WpfTreeRenderer<MainWindow>(CreateTree, this, (r, c) => r.Content = c, (r, c) => r.Content = null);
+            renderer = new WpfTreeRenderer<MainWindow>(CreateTree, this, 
+                (r, c) => r.Content = c, 
+                (r, c) => r.Content = null, 
+                TaskScheduler.FromCurrentSynchronizationContext());
             renderer.Render(NewState.Empty);
         }
 
         private SharpProp CreateTree()
         {
-            //return new Router
-            //{
-            //    Children = {
-            //        new HomeRoute { Content = new FirstPage() },
-            //        new TypeRoute<FirstPageNavigationArgs> { Content = new FirstPage() },
-            //        new TypeRoute<SecondPageNavigationArgs>{ Content = new SecondPage() }
-            //    }
-            //};
+            return new Router
+            {
+                Children = {
+                    new HomeRoute { Key = 0, Content = new FirstPage() },
+                    new TypeRoute<FirstPageNavigationArgs> { Key = 1, Content = new FirstPage() },
+                    new TypeRoute<SecondPageNavigationArgs>{ Key = 2, Content = new SecondPage() }
+                }
+            };
             //return new FirstPage();
             //return new StackPanel
             //{
@@ -59,14 +63,14 @@ namespace SharpReact.Sample
             //    FontSize = 30,
             //    Content = new TextBlock { Text = buttonText }
             //};
-            return new ContentControl
-            {
-                Content = new Button
-                {
-                    FontSize = 30,
-                    Content = new TextBlock { Text = "Yolo" }
-                }
-            };
+            //return new ContentControl
+            //{
+            //    Content = new Button
+            //    {
+            //        FontSize = 30,
+            //        Content = new TextBlock { Text = "Yolo" }
+            //    }
+            //};
         }
         //int clickCount = 0;
         //string buttonText => $"Clicked {clickCount}";

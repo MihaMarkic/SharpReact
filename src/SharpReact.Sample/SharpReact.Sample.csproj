@@ -118,9 +118,9 @@
       <Project>{a660dca4-7d7b-47ac-b3b7-2f41a7007d7b}</Project>
       <Name>SharpReact.Routing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SharpReact.Wpf.Proto\SharpReact.Wpf.Proto.csproj">
-      <Project>{a90f0406-0740-4727-b6e6-3ce093e86d97}</Project>
-      <Name>SharpReact.Wpf.Proto</Name>
+    <ProjectReference Include="..\SharpReact.Wpf\SharpReact.Wpf.csproj">
+      <Project>{2dcf5856-1c1d-4009-84b7-9a62ce1c9968}</Project>
+      <Name>SharpReact.Wpf</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
