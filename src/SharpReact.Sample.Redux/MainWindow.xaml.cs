@@ -36,7 +36,7 @@ namespace SharpReact.Sample.Redux
                 reducer: new RootReducer(),
                 notificationScheduler: TaskScheduler.FromCurrentSynchronizationContext()
             );
-            renderer = new WpfTreeRenderer<MainWindow>(CreateTree, this, (r, c) => r.Content = c, (r, c) => r.Content = null);
+            renderer = new WpfTreeRenderer<MainWindow>(CreateTree, this, (r, c) => r.Content = c, (r, c) => r.Content = null, TaskScheduler.FromCurrentSynchronizationContext());
             renderer.Render(NewState.Empty);
             Dispatcher.StateChanged += Dispatcher_StateChanged;
             Dispatcher.Start();

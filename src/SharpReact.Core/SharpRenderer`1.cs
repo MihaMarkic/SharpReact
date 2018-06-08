@@ -119,7 +119,6 @@ namespace SharpReact.Core
                 typeMatch = false;
                 UnmountComponents(currentPrevious);
                 //Detach(nativeRoot, (TElement)currentPrevious.Component.Element);
-                currentPrevious = null;
                 (statefulComponent, nativeCurrent) = CreateNewComponent(next);
             }
             else
@@ -189,7 +188,8 @@ namespace SharpReact.Core
                 var element = ProcessPair(level + 1, newState, p, n);
                 if (!ReferenceEquals(elements[i], element))
                 {
-                    elements[i] = element;
+                    elements.RemoveAt(i);
+                    elements.Insert(i, element);
                 }
             }
             // adds excessive new properties

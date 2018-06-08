@@ -12,11 +12,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SharpReact.Core\SharpReact.Core.csproj" />
+    <ProjectReference Include="..\..\SharpReact.Routing\SharpReact.Routing.csproj" />
+    <ProjectReference Include="..\SharpReact.Core.MockUI.Routing.Test\SharpReact.Core.MockUI.Routing.Test.csproj" />
     <ProjectReference Include="..\SharpReact.Core.MockUI.Test\SharpReact.Core.MockUI.Test.csproj" />
+    <ProjectReference Include="..\SharpReact.Core.Test\SharpReact.Core.Test.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
   </ItemGroup>
-
 </Project>

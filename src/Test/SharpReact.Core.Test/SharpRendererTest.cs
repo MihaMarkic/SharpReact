@@ -480,13 +480,22 @@ namespace SharpReact.Core.Test
                     Assert.That(props.Component, Is.Not.Null);
                 }
                 [Test]
-                public void WhenRender_NestedComponentIsCreated()
+                public void WhenRender_GeneratedIsAssignedRenderedProperty()
                 {
-                    renderer = CreateRenderer(() => new Props.NestedComposite());
+                    var props = new Props.NestedComposite();
+                    renderer = CreateRenderer(() => props);
                     renderer.Render(NewState.Empty);
 
-                    renderer.
-                    Assert.That(props..Component, Is.Not.Null);
+                    Assert.That(props.Generated, Is.TypeOf<Props.SimpleComposite>());
+                }
+                [Test]
+                public void WhenRender_NestedComponentIsCreated()
+                {
+                    var props = new Props.NestedComposite();
+                    renderer = CreateRenderer(() => props);
+                    renderer.Render(NewState.Empty);
+
+                    Assert.That(props.Generated.Component, Is.Not.Null);
                 }
             }
         }
