@@ -4,13 +4,13 @@ namespace SharpReact.Core.MockUI.Test.Components
 {
     public class TextBox<TProps, TElement> : TextBoxBase<TProps, TElement>
         where TProps : Props.TextBox
-        where TElement : Core.MockUI.Test.Elements.TextBox, new()
+        where TElement : Elements.TextBox, new()
     {
-        private bool isUpdating;
-        private int lastCaretIndex;
-        private string oldText = "";
+        //bool isUpdating;
+        //int lastCaretIndex;
+        //string oldText = "";
 
-        public override void AssignProperties(ISharpCreator<Core.MockUI.Test.Elements.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+        public override void AssignProperties(ISharpCreator<Elements.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
             base.AssignProperties(renderer, level, newState, previous, nextProps);
             //if (!ReferenceEquals(Props?.TextChanged, null) && ReferenceEquals(nextProps.TextChanged, null))

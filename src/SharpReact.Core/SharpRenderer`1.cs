@@ -170,11 +170,11 @@ namespace SharpReact.Core
         /// </summary>
         /// <param name="level"></param>
         /// <param name="newState"></param>
-        /// <param name="nativeRoot"></param>
         /// <param name="previous">Previous list of properties to compare against.</param>
         /// <param name="next">Properties being applied.</param>
         /// <param name="sourceProperty"></param>
         /// <param name="sourceType"></param>
+        /// <param name="elements">Native list of elements.</param>
         public void VisitAllCollection(int level, NewState newState, IList<ISharpProp> previous, IList<ISharpProp> next,
             IList elements, string sourceProperty, string sourceType)
         {

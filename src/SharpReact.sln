@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{38D6CC0E-2
 		..\build.ps1 = ..\build.ps1
 		..\README.md = ..\README.md
 		SharpReact.Wpf\SharpReact.Wpf.nuspec = SharpReact.Wpf\SharpReact.Wpf.nuspec
+		..\version.xml = ..\version.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpReact.Wpf.Proto", "SharpReact.Wpf.Proto\SharpReact.Wpf.Proto.csproj", "{A90F0406-0740-4727-B6E6-3CE093E86D97}"
@@ -123,7 +124,6 @@ Global
 		{A90F0406-0740-4727-B6E6-3CE093E86D97}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A90F0406-0740-4727-B6E6-3CE093E86D97}.Debug|x86.Build.0 = Debug|Any CPU
 		{A90F0406-0740-4727-B6E6-3CE093E86D97}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A90F0406-0740-4727-B6E6-3CE093E86D97}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A90F0406-0740-4727-B6E6-3CE093E86D97}.Release|x64.ActiveCfg = Release|Any CPU
 		{A90F0406-0740-4727-B6E6-3CE093E86D97}.Release|x64.Build.0 = Release|Any CPU
 		{A90F0406-0740-4727-B6E6-3CE093E86D97}.Release|x86.ActiveCfg = Release|Any CPU

@@ -45,7 +45,7 @@ namespace SharpReact.Core.Properties
         /// <summary>
         /// Un-mounts a single component.
         /// </summary>
-        /// <param name="props"></param>
+        /// <param name="prop"></param>
         protected static void UnmountComponent(ISharpProp prop)
         {
             ((ISharpInternal)prop)?.UnmountComponent();

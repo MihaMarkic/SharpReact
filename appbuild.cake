@@ -14,6 +14,7 @@ var WpfNuSpec = Wpf + File("SharpReact.Wpf.nuspec");
 
 var Test = Src + Directory("./test/");
 var CoreTest = Test + File("SharpReact.Core.Test/SharpReact.Core.Test.csproj");
+var RouterTest = Test + File("SharpReact.Routing.Test/SharpReact.Routing.Test.csproj");
 
 var solution = Src + File("SharpReact.sln");
 var version = File("./version.xml");
@@ -43,10 +44,13 @@ Task("UnitTest")
 	.IsDependentOn("Build")
 	.Does(() =>
 	{
-		DotNetCoreTest(CoreTest, new DotNetCoreTestSettings {
-			Configuration = configuration,
-			NoBuild = true
-		});
+		foreach (var project in new []{ CoreTest, RouterTest })
+		{
+			DotNetCoreTest(project, new DotNetCoreTestSettings {
+				Configuration = configuration,
+				NoBuild = true
+			});
+		}
 	});
 
 Task("ReadVersion")
