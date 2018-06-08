@@ -1,38 +1,29 @@
-﻿using SharpReact.Core.Exceptions;
-using SharpReact.Core.Properties;
+﻿using SharpReact.Core.Properties;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SharpReact.Core
 {
-    public interface ISharpCreator<TElement>
-    {
-        TElement ProcessPair(int level, NewState newState, ISharpProp previous, ISharpProp current);
-        void VisitAllCollection(int level, NewState newState, IList<ISharpProp> previous, IList<ISharpProp> next,
-            IList elements, string sourceProperty, string sourceType);
-    }
     public abstract class SharpRenderer<TRootElement, TElement>: ISharpRenderer, ISharpCreator<TElement>
         where TRootElement: TElement
     {
-        SharpProp previous;
-        TElement previousElement;
-        public TRootElement Parent { get;  }
+        SharpProp currentProps;
+        TElement currentElement;
         readonly Func<SharpProp> createTree;
-        bool isInvalidated;
-        TaskScheduler uiScheduler;
+        readonly TaskFactory taskFactory;
         readonly Action<TRootElement, TElement> attachChildToRoot;
         readonly Action<TRootElement, TElement> detachChildFromRoot;
+        bool isInvalidated;
+        public TRootElement Parent { get;  }
 
         public SharpRenderer(Func<SharpProp> createTree, TRootElement parent, 
             Action<TRootElement, TElement> attachChildToRoot, Action<TRootElement, TElement> detachChildFromRoot,
             TaskScheduler uiScheduler)
         {
-            this.uiScheduler = uiScheduler;
+            taskFactory = new TaskFactory(uiScheduler);
             this.createTree = createTree;
             Parent = parent;
             this.attachChildToRoot = attachChildToRoot;
@@ -57,15 +48,15 @@ namespace SharpReact.Core
         public void Render(NewState newState)
         {
             var root = createTree();
-            var current = UpdateTree(newState, root);
-            if (!ReferenceEquals(previousElement, null) && !ReferenceEquals(current, previousElement))
+            var next = UpdateTree(newState, root);
+            if (!ReferenceEquals(currentElement, null) && !ReferenceEquals(next, currentElement))
             {
-                UnmountComponents(previous);
-                detachChildFromRoot(Parent, previousElement);
+                UnmountComponents(currentProps);
+                detachChildFromRoot(Parent, currentElement);
             }
-            attachChildToRoot(Parent, current);
-            previous = root;
-            previousElement = current;
+            attachChildToRoot(Parent, next);
+            currentProps = root;
+            currentElement = next;
         }
         static void UnmountComponents(ISharpProp prop)
         {
@@ -75,42 +66,42 @@ namespace SharpReact.Core
         {
             Render(NewState.Empty);
         }
-        public TElement UpdateTree(NewState newState, SharpProp current)
+        public TElement UpdateTree(NewState newState, SharpProp next)
         {
-            return VisitAll(0, newState, previous, current);
+            return VisitAll(0, newState, currentProps, next);
         }
-        public (ISharpStatefulComponent Stateful, ISharpNativeComponent Native) CreateNewComponent(ISharpProp current)
+        public (ISharpStatefulComponent Stateful, ISharpNativeComponent Native) CreateNewComponent(ISharpProp next)
         {
-            current.Init();
-            var statefulComponent = current.Component;
+            next.Init();
+            var statefulComponent = next.Component;
             statefulComponent.Renderer = this;
             statefulComponent.WillMount();
             var nativeCurrent = statefulComponent as ISharpNativeComponent;
             statefulComponent.DidMount();
             return (statefulComponent, nativeCurrent);
         }
-        public void UpdateComponent(int level, NewState newState, ISharpProp previous, ISharpProp current, ISharpStatefulComponent statefulComponent, object newComponentState)
+        public void UpdateComponent(int level, NewState newState, ISharpProp previous, ISharpProp next, ISharpStatefulComponent statefulComponent, object newComponentState)
         {
-            statefulComponent.WillReceiveProps(current);
+            statefulComponent.WillReceiveProps(next);
             // assign properties to one or the another, perhaps an if should do better
             if (statefulComponent is ISharpNativeComponent nativeComponent)
             {
-                nativeComponent.AssignProperties(this, level, newState, previous, current);
+                nativeComponent.AssignProperties(this, level, newState, previous, next);
             }
             else if (statefulComponent is ISharpComponent component)
             {
-                component.AssignProperties(current);
+                component.AssignProperties(next);
             }
             else
             {
                 throw new NotImplementedException("Unknown component type or null");
             }
-            statefulComponent.DidUpdate(current, newComponentState);
+            statefulComponent.DidUpdate(next, newComponentState);
         }
 
-        public TElement ProcessPair(int level, NewState newState, ISharpProp previous, ISharpProp current)
+        public TElement ProcessPair(int level, NewState newState, ISharpProp previous, ISharpProp next)
         {
-            if (ReferenceEquals(current, null))
+            if (ReferenceEquals(next, null))
             {
                 return default;
             }
@@ -121,27 +112,27 @@ namespace SharpReact.Core
             bool typeMatch = true;
             if (ReferenceEquals(currentPrevious, null))
             {
-                (statefulComponent, nativeCurrent) = CreateNewComponent(current);
+                (statefulComponent, nativeCurrent) = CreateNewComponent(next);
             }
-            else if (currentPrevious.GetType() != current.GetType())
+            else if (currentPrevious.GetType() != next.GetType())
             {
                 typeMatch = false;
                 UnmountComponents(currentPrevious);
                 //Detach(nativeRoot, (TElement)currentPrevious.Component.Element);
                 currentPrevious = null;
-                (statefulComponent, nativeCurrent) = CreateNewComponent(current);
+                (statefulComponent, nativeCurrent) = CreateNewComponent(next);
             }
             else
             {
                 statefulComponent = currentPrevious.Component;
-                current.Transfer(statefulComponent);
+                next.Transfer(statefulComponent);
                 nativeCurrent = statefulComponent as ISharpNativeComponent;
             }
             // new state is assigned if matching
             object newComponentState = newState.Props == currentPrevious ? newState.State : statefulComponent.State;
-            if (statefulComponent.ShouldUpdate(current, newComponentState))
+            if (statefulComponent.ShouldUpdate(next, newComponentState))
             {
-                UpdateComponent(level, newState, typeMatch ? previous: null, current, statefulComponent, newComponentState);
+                UpdateComponent(level, newState, typeMatch ? previous: null, next, statefulComponent, newComponentState);
             }
             if (nativeCurrent != null)
             {
@@ -152,7 +143,7 @@ namespace SharpReact.Core
             {
                 // non-native components will render a tree (of non and native props)
                 var component = (ISharpComponent)statefulComponent;
-                var compositeCurrentProp = (ISharpCompositeProp)current;
+                var compositeCurrentProp = (ISharpCompositeProp)next;
                 // generate nested props
                 compositeCurrentProp.Generated = statefulComponent.Render();
                 // process the recursively
@@ -245,7 +236,7 @@ namespace SharpReact.Core
         }
         public void StateChanged(NewState newState)
         {
-            Task.Factory.StartNew(() => Invalidate(newState), CancellationToken.None, TaskCreationOptions.None, uiScheduler);
+            taskFactory.StartNew(() => Invalidate(newState), CancellationToken.None);
         }
     }
 }

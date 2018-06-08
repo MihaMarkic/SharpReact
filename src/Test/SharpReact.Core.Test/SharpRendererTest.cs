@@ -447,6 +447,15 @@ namespace SharpReact.Core.Test
 
                     Assert.That(actual, Is.TypeOf<Elements.TextBlock>());
                 }
+                [Test]
+                public void WhenRender_ComponentIsCreated()
+                {
+                    var props = new Props.SimpleComposite();
+                    renderer = CreateRenderer(() => props);
+                    renderer.Render(NewState.Empty);
+
+                    Assert.That(props.Component, Is.Not.Null);
+                }
             }
             [TestFixture]
             public class NestedComposite : Render
@@ -460,6 +469,24 @@ namespace SharpReact.Core.Test
                     var actual = root.Content;
 
                     Assert.That(actual, Is.TypeOf<Elements.TextBlock>());
+                }
+                [Test]
+                public void WhenRender_RootComponentIsCreated()
+                {
+                    var props = new Props.NestedComposite();
+                    renderer = CreateRenderer(() => props);
+                    renderer.Render(NewState.Empty);
+
+                    Assert.That(props.Component, Is.Not.Null);
+                }
+                [Test]
+                public void WhenRender_NestedComponentIsCreated()
+                {
+                    renderer = CreateRenderer(() => new Props.NestedComposite());
+                    renderer.Render(NewState.Empty);
+
+                    renderer.
+                    Assert.That(props..Component, Is.Not.Null);
                 }
             }
         }
