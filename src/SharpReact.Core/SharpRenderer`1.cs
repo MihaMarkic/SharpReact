@@ -143,12 +143,12 @@ namespace SharpReact.Core
             {
                 // non-native components will render a tree (of non and native props)
                 var component = (ISharpComponent)statefulComponent;
-                var compositeCurrentProp = (ISharpCompositeProp)next;
+                var compositeNextProp = (ISharpCompositeProp)next;
                 // generate nested props
-                compositeCurrentProp.Generated = statefulComponent.Render();
+                compositeNextProp.Generated = statefulComponent.Render();
                 // process the recursively
                 var compositePreviousProp = currentPrevious as ISharpCompositeProp;
-                var element = VisitAll(level+1, newState, compositePreviousProp?.Generated, compositeCurrentProp.Generated);
+                var element = VisitAll(level+1, newState, compositePreviousProp?.Generated, compositeNextProp.Generated);
                 // sooner or later a native element will be returned
                 return element;
             }
