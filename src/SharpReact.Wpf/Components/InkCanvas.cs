@@ -17,7 +17,10 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.Strokes = nextProps.Strokes.Value.Value;
 			}
-			renderer.VisitAllCollection(level, newState, previous?.Children, nextProps.Children, Element.Children, nameof(Element.Children), nameof(SharpReact.Wpf.Props.InkCanvas));
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Children, nextProps.Children, nameof(Element.Children), nameof(SharpReact.Wpf.Props.InkCanvas));
+				ElementSynchronizer.SyncElements(Element.Children, elements);
+			}
 			if (nextProps.DefaultDrawingAttributes.HasValue)
 			{
 				Element.DefaultDrawingAttributes = nextProps.DefaultDrawingAttributes.Value.Value;

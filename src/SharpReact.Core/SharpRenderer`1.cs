@@ -175,22 +175,19 @@ namespace SharpReact.Core
         /// <param name="sourceProperty"></param>
         /// <param name="sourceType"></param>
         /// <param name="elements">Native list of elements.</param>
-        public void VisitAllCollection(int level, NewState newState, IList<ISharpProp> previous, IList<ISharpProp> next,
-            IList elements, string sourceProperty, string sourceType)
+        public TElement[] VisitAllCollection(int level, NewState newState, IList<ISharpProp> previous, IList<ISharpProp> next,
+            string sourceProperty, string sourceType)
         {
             CheckPropertyListKeys(next, sourceProperty, sourceType);
             int prevCount = previous?.Count ?? 0;
             int nextCount = next?.Count ?? 0;
+            var elements = new TElement[nextCount];
             for (int i = 0; i < Math.Min(prevCount, nextCount); i++)
             {
                 var n = next[i];
                 var p = previous[i];
                 var element = ProcessPair(level + 1, newState, p, n);
-                if (!ReferenceEquals(elements[i], element))
-                {
-                    elements.RemoveAt(i);
-                    elements.Insert(i, element);
-                }
+                elements[i] = element;
             }
             // adds excessive new properties
             if (nextCount > prevCount)
@@ -199,17 +196,10 @@ namespace SharpReact.Core
                 {
                     var n = next[i];
                     var element = ProcessPair(level + 1, newState, null, n);
-                    elements.Add(element);
+                    elements[i] = element;
                 }
             }
-            // removes excessive old elements
-            else if (nextCount < prevCount)
-            {
-                for (int i=0; i < (prevCount - nextCount); i++)
-                {
-                    elements.RemoveAt(elements.Count - 1);
-                }
-            }
+            return elements;
         }
         /// <summary>
         /// Verifies that property list keys are unique.

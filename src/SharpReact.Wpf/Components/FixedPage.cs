@@ -8,7 +8,10 @@ namespace SharpReact.Wpf.Components
 		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
-			renderer.VisitAllCollection(level, newState, previous?.Children, nextProps.Children, Element.Children, nameof(Element.Children), nameof(SharpReact.Wpf.Props.FixedPage));
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Children, nextProps.Children, nameof(Element.Children), nameof(SharpReact.Wpf.Props.FixedPage));
+				ElementSynchronizer.SyncElements(Element.Children, elements);
+			}
 			if (nextProps.PrintTicket.HasValue)
 			{
 				Element.PrintTicket = nextProps.PrintTicket.Value.Value;

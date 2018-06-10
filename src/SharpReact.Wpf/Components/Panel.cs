@@ -13,7 +13,10 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.Background = nextProps.Background.Value.Value;
 			}
-			renderer.VisitAllCollection(level, newState, previous?.Children, nextProps.Children, Element.Children, nameof(Element.Children), nameof(SharpReact.Wpf.Props.Panel));
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Children, nextProps.Children, nameof(Element.Children), nameof(SharpReact.Wpf.Props.Panel));
+				ElementSynchronizer.SyncElements(Element.Children, elements);
+			}
 			if (nextProps.IsItemsHost.HasValue)
 			{
 				Element.IsItemsHost = nextProps.IsItemsHost.Value.Value;

@@ -320,7 +320,10 @@ namespace SharpReact.MetaDataGenerator
                 }
                 else if (IsContainerProperty(p, settings.Properties))
                 {
-                    sb.AppendLine($"\t\t\trenderer.VisitAllCollection(level, newState, previous?.{p.Name}, nextProps.{p.Name}, Element.{p.Name}, nameof(Element.{p.Name}), nameof({settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}));");
+                    sb.AppendLine("\t\t\t{");
+                    sb.AppendLine($"\t\t\t\tvar elements = renderer.VisitAllCollection(level, newState, previous?.{p.Name}, nextProps.{p.Name}, nameof(Element.{p.Name}), nameof({settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}));");
+                    sb.AppendLine($"\t\t\t\t{settings.Components.ElementsSynchronization}");
+                    sb.AppendLine("\t\t\t}");
                 }
                 else
                 {

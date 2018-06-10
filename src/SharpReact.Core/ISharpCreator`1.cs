@@ -8,7 +8,7 @@ namespace SharpReact.Core
     public interface ISharpCreator<TElement>
     {
         TElement ProcessPair(int level, NewState newState, ISharpProp previous, ISharpProp next);
-        void VisitAllCollection(int level, NewState newState, IList<ISharpProp> previous, IList<ISharpProp> next,
-            IList elements, string sourceProperty, string sourceType);
+        TElement[] VisitAllCollection(int level, NewState newState, IList<ISharpProp> previous, IList<ISharpProp> next,
+            string sourceProperty, string sourceType);
     }
 }

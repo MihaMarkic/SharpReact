@@ -540,37 +540,33 @@ namespace SharpReact.Core.Test
             [Test]
             public void WhenPreviousIsNullAndNextIsNull_ElementsListIsEmpty()
             {
-                var elements = new List<Elements.UIElement>();
-                renderer.VisitAllCollection(0, new NewState(), previous: null, next: null, elements, "sourceProperty", "sourceType");
+                var actual = renderer.VisitAllCollection(0, new NewState(), previous: null, next: null, "sourceProperty", "sourceType");
 
-                Assert.That(elements.Count, Is.Zero);
+                Assert.That(actual.Length, Is.Zero);
             }
             [Test]
             public void WhenNullPreviousAndSingleNext_OneElementIsInList()
             {
-                var elements = new List<Elements.UIElement>();
-                renderer.VisitAllCollection(0, new NewState(), previous: null, next: new List<ISharpProp> { new Props.TextBlock() }, elements, 
+                var actual = renderer.VisitAllCollection(0, new NewState(), previous: null, next: new List<ISharpProp> { new Props.TextBlock() }, 
                     "sourceProperty", "sourceType");
 
-                Assert.That(elements.Count, Is.EqualTo(1));
+                Assert.That(actual.Length, Is.EqualTo(1));
             }
             [Test]
             public void WhenNullPreviousAndSingleTextBlock_ElementIsTextBlock()
             {
-                var elements = new List<Elements.UIElement>();
-                renderer.VisitAllCollection(0, new NewState(), previous: null, next: new List<ISharpProp> { new Props.TextBlock() }, elements,
+                var actual = renderer.VisitAllCollection(0, new NewState(), previous: null, next: new List<ISharpProp> { new Props.TextBlock() }, 
                     "sourceProperty", "sourceType");
 
-                Assert.That(elements[0], Is.TypeOf<Elements.TextBlock>());
+                Assert.That(actual[0], Is.TypeOf<Elements.TextBlock>());
             }
             [Test]
             public void WhenTextBlockPreviousAndNullNext_NoElementsInList()
             {
-                var elements = new List<Elements.UIElement> { new Elements.TextBlock() };
-                renderer.VisitAllCollection(0, new NewState(), previous: new List<ISharpProp> { new Props.TextBlock() }, next: null, elements,
+                var actual = renderer.VisitAllCollection(0, new NewState(), previous: new List<ISharpProp> { new Props.TextBlock() }, next: null,
                     "sourceProperty", "sourceType");
 
-                Assert.That(elements.Count, Is.Zero);
+                Assert.That(actual.Length, Is.Zero);
             }
             [Test]
             public void WhenTextBlockPreviousAndNextIsButton_OneElementInList()
@@ -581,14 +577,13 @@ namespace SharpReact.Core.Test
                 textBlockProp.Component.WillMount();
                 var element = (Elements.UIElement)textBlockProp.Component.Element;
 
-                var elements = new List<Elements.UIElement> { element };
-                renderer.VisitAllCollection(0, new NewState(), 
+                //var elements = new List<Elements.UIElement> { element };
+                var actual = renderer.VisitAllCollection(0, new NewState(), 
                     previous: new List<ISharpProp> { textBlockProp }, 
                     next: new List<ISharpProp> { new Props.Button() }, 
-                    elements,
                     "sourceProperty", "sourceType");
 
-                Assert.That(elements.Count, Is.EqualTo(1));
+                Assert.That(actual.Length, Is.EqualTo(1));
             }
         }
     }

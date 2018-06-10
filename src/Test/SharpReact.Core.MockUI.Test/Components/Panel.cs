@@ -8,7 +8,10 @@ namespace SharpReact.Core.MockUI.Test.Components
         public override void AssignProperties(ISharpCreator<Elements.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
             base.AssignProperties(renderer, level, newState, previous, nextProps);
-            renderer.VisitAllCollection(level, newState, previous?.Children, nextProps.Children, Element.Children, nameof(Element.Children), nameof(Elements.Panel));
+            {
+                var elements = renderer.VisitAllCollection(level, newState, previous?.Children, nextProps.Children, nameof(Element.Children), nameof(Elements.Panel));
+                ElementSynchronizer.SyncElements(Element.Children, elements);
+            }
         }
     }
 }

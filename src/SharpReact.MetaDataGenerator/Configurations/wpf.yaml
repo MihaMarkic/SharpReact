@@ -13,6 +13,7 @@ rootType:
     name:			System.Windows.UIElement
 components:
     elementsRequiresConstructor: true
+    elementsSynchronization: "ElementSynchronizer.SyncElements(Element.Children, elements);"
     namespaces:
         - SharpReact.Core
     fixedFiles:
