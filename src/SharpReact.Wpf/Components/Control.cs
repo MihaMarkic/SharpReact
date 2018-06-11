@@ -69,19 +69,19 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.Template = nextProps.Template.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.PreviewMouseDoubleClick, null) && ReferenceEquals(nextProps.PreviewMouseDoubleClick, null))
+			if (!ReferenceEquals(previous?.PreviewMouseDoubleClick, null) && ReferenceEquals(nextProps.PreviewMouseDoubleClick, null))
 			{
 				Element.PreviewMouseDoubleClick -= nextProps.PreviewMouseDoubleClick;
 			}
-			if (ReferenceEquals(Props?.PreviewMouseDoubleClick, null) && !ReferenceEquals(nextProps.PreviewMouseDoubleClick, null))
+			if (ReferenceEquals(previous?.PreviewMouseDoubleClick, null) && !ReferenceEquals(nextProps.PreviewMouseDoubleClick, null))
 			{
 				Element.PreviewMouseDoubleClick += nextProps.PreviewMouseDoubleClick;
 			}
-			if (!ReferenceEquals(Props?.MouseDoubleClick, null) && ReferenceEquals(nextProps.MouseDoubleClick, null))
+			if (!ReferenceEquals(previous?.MouseDoubleClick, null) && ReferenceEquals(nextProps.MouseDoubleClick, null))
 			{
 				Element.MouseDoubleClick -= nextProps.MouseDoubleClick;
 			}
-			if (ReferenceEquals(Props?.MouseDoubleClick, null) && !ReferenceEquals(nextProps.MouseDoubleClick, null))
+			if (ReferenceEquals(previous?.MouseDoubleClick, null) && !ReferenceEquals(nextProps.MouseDoubleClick, null))
 			{
 				Element.MouseDoubleClick += nextProps.MouseDoubleClick;
 			}

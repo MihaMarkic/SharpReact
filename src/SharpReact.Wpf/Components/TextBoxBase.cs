@@ -61,19 +61,19 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.IsInactiveSelectionHighlightEnabled = nextProps.IsInactiveSelectionHighlightEnabled.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.TextChanged, null) && ReferenceEquals(nextProps.TextChanged, null))
+			if (!ReferenceEquals(previous?.TextChanged, null) && ReferenceEquals(nextProps.TextChanged, null))
 			{
 				Element.TextChanged -= nextProps.TextChanged;
 			}
-			if (ReferenceEquals(Props?.TextChanged, null) && !ReferenceEquals(nextProps.TextChanged, null))
+			if (ReferenceEquals(previous?.TextChanged, null) && !ReferenceEquals(nextProps.TextChanged, null))
 			{
 				Element.TextChanged += nextProps.TextChanged;
 			}
-			if (!ReferenceEquals(Props?.SelectionChanged, null) && ReferenceEquals(nextProps.SelectionChanged, null))
+			if (!ReferenceEquals(previous?.SelectionChanged, null) && ReferenceEquals(nextProps.SelectionChanged, null))
 			{
 				Element.SelectionChanged -= nextProps.SelectionChanged;
 			}
-			if (ReferenceEquals(Props?.SelectionChanged, null) && !ReferenceEquals(nextProps.SelectionChanged, null))
+			if (ReferenceEquals(previous?.SelectionChanged, null) && !ReferenceEquals(nextProps.SelectionChanged, null))
 			{
 				Element.SelectionChanged += nextProps.SelectionChanged;
 			}

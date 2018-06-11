@@ -37,11 +37,11 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.PanningRatio = nextProps.PanningRatio.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.ScrollChanged, null) && ReferenceEquals(nextProps.ScrollChanged, null))
+			if (!ReferenceEquals(previous?.ScrollChanged, null) && ReferenceEquals(nextProps.ScrollChanged, null))
 			{
 				Element.ScrollChanged -= nextProps.ScrollChanged;
 			}
-			if (ReferenceEquals(Props?.ScrollChanged, null) && !ReferenceEquals(nextProps.ScrollChanged, null))
+			if (ReferenceEquals(previous?.ScrollChanged, null) && !ReferenceEquals(nextProps.ScrollChanged, null))
 			{
 				Element.ScrollChanged += nextProps.ScrollChanged;
 			}

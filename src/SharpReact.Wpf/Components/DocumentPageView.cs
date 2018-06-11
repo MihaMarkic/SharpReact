@@ -25,19 +25,19 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.StretchDirection = nextProps.StretchDirection.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.PageConnected, null) && ReferenceEquals(nextProps.PageConnected, null))
+			if (!ReferenceEquals(previous?.PageConnected, null) && ReferenceEquals(nextProps.PageConnected, null))
 			{
 				Element.PageConnected -= nextProps.PageConnected;
 			}
-			if (ReferenceEquals(Props?.PageConnected, null) && !ReferenceEquals(nextProps.PageConnected, null))
+			if (ReferenceEquals(previous?.PageConnected, null) && !ReferenceEquals(nextProps.PageConnected, null))
 			{
 				Element.PageConnected += nextProps.PageConnected;
 			}
-			if (!ReferenceEquals(Props?.PageDisconnected, null) && ReferenceEquals(nextProps.PageDisconnected, null))
+			if (!ReferenceEquals(previous?.PageDisconnected, null) && ReferenceEquals(nextProps.PageDisconnected, null))
 			{
 				Element.PageDisconnected -= nextProps.PageDisconnected;
 			}
-			if (ReferenceEquals(Props?.PageDisconnected, null) && !ReferenceEquals(nextProps.PageDisconnected, null))
+			if (ReferenceEquals(previous?.PageDisconnected, null) && !ReferenceEquals(nextProps.PageDisconnected, null))
 			{
 				Element.PageDisconnected += nextProps.PageDisconnected;
 			}

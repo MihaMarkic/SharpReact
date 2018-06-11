@@ -21,19 +21,19 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.StretchDirection = nextProps.StretchDirection.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.ImageFailed, null) && ReferenceEquals(nextProps.ImageFailed, null))
+			if (!ReferenceEquals(previous?.ImageFailed, null) && ReferenceEquals(nextProps.ImageFailed, null))
 			{
 				Element.ImageFailed -= nextProps.ImageFailed;
 			}
-			if (ReferenceEquals(Props?.ImageFailed, null) && !ReferenceEquals(nextProps.ImageFailed, null))
+			if (ReferenceEquals(previous?.ImageFailed, null) && !ReferenceEquals(nextProps.ImageFailed, null))
 			{
 				Element.ImageFailed += nextProps.ImageFailed;
 			}
-			if (!ReferenceEquals(Props?.DpiChanged, null) && ReferenceEquals(nextProps.DpiChanged, null))
+			if (!ReferenceEquals(previous?.DpiChanged, null) && ReferenceEquals(nextProps.DpiChanged, null))
 			{
 				Element.DpiChanged -= nextProps.DpiChanged;
 			}
-			if (ReferenceEquals(Props?.DpiChanged, null) && !ReferenceEquals(nextProps.DpiChanged, null))
+			if (ReferenceEquals(previous?.DpiChanged, null) && !ReferenceEquals(nextProps.DpiChanged, null))
 			{
 				Element.DpiChanged += nextProps.DpiChanged;
 			}

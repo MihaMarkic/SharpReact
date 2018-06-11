@@ -53,43 +53,43 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.UsesItemContainerTemplate = nextProps.UsesItemContainerTemplate.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.Click, null) && ReferenceEquals(nextProps.Click, null))
+			if (!ReferenceEquals(previous?.Click, null) && ReferenceEquals(nextProps.Click, null))
 			{
 				Element.Click -= nextProps.Click;
 			}
-			if (ReferenceEquals(Props?.Click, null) && !ReferenceEquals(nextProps.Click, null))
+			if (ReferenceEquals(previous?.Click, null) && !ReferenceEquals(nextProps.Click, null))
 			{
 				Element.Click += nextProps.Click;
 			}
-			if (!ReferenceEquals(Props?.Checked, null) && ReferenceEquals(nextProps.Checked, null))
+			if (!ReferenceEquals(previous?.Checked, null) && ReferenceEquals(nextProps.Checked, null))
 			{
 				Element.Checked -= nextProps.Checked;
 			}
-			if (ReferenceEquals(Props?.Checked, null) && !ReferenceEquals(nextProps.Checked, null))
+			if (ReferenceEquals(previous?.Checked, null) && !ReferenceEquals(nextProps.Checked, null))
 			{
 				Element.Checked += nextProps.Checked;
 			}
-			if (!ReferenceEquals(Props?.Unchecked, null) && ReferenceEquals(nextProps.Unchecked, null))
+			if (!ReferenceEquals(previous?.Unchecked, null) && ReferenceEquals(nextProps.Unchecked, null))
 			{
 				Element.Unchecked -= nextProps.Unchecked;
 			}
-			if (ReferenceEquals(Props?.Unchecked, null) && !ReferenceEquals(nextProps.Unchecked, null))
+			if (ReferenceEquals(previous?.Unchecked, null) && !ReferenceEquals(nextProps.Unchecked, null))
 			{
 				Element.Unchecked += nextProps.Unchecked;
 			}
-			if (!ReferenceEquals(Props?.SubmenuOpened, null) && ReferenceEquals(nextProps.SubmenuOpened, null))
+			if (!ReferenceEquals(previous?.SubmenuOpened, null) && ReferenceEquals(nextProps.SubmenuOpened, null))
 			{
 				Element.SubmenuOpened -= nextProps.SubmenuOpened;
 			}
-			if (ReferenceEquals(Props?.SubmenuOpened, null) && !ReferenceEquals(nextProps.SubmenuOpened, null))
+			if (ReferenceEquals(previous?.SubmenuOpened, null) && !ReferenceEquals(nextProps.SubmenuOpened, null))
 			{
 				Element.SubmenuOpened += nextProps.SubmenuOpened;
 			}
-			if (!ReferenceEquals(Props?.SubmenuClosed, null) && ReferenceEquals(nextProps.SubmenuClosed, null))
+			if (!ReferenceEquals(previous?.SubmenuClosed, null) && ReferenceEquals(nextProps.SubmenuClosed, null))
 			{
 				Element.SubmenuClosed -= nextProps.SubmenuClosed;
 			}
-			if (ReferenceEquals(Props?.SubmenuClosed, null) && !ReferenceEquals(nextProps.SubmenuClosed, null))
+			if (ReferenceEquals(previous?.SubmenuClosed, null) && !ReferenceEquals(nextProps.SubmenuClosed, null))
 			{
 				Element.SubmenuClosed += nextProps.SubmenuClosed;
 			}

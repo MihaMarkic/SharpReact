@@ -25,11 +25,11 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.ClickMode = nextProps.ClickMode.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.Click, null) && ReferenceEquals(nextProps.Click, null))
+			if (!ReferenceEquals(previous?.Click, null) && ReferenceEquals(nextProps.Click, null))
 			{
 				Element.Click -= nextProps.Click;
 			}
-			if (ReferenceEquals(Props?.Click, null) && !ReferenceEquals(nextProps.Click, null))
+			if (ReferenceEquals(previous?.Click, null) && !ReferenceEquals(nextProps.Click, null))
 			{
 				Element.Click += nextProps.Click;
 			}

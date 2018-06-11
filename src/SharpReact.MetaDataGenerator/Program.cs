@@ -335,11 +335,11 @@ namespace SharpReact.MetaDataGenerator
             }
             foreach (var e in events)
             {
-                sb.AppendLine($"\t\t\tif (!ReferenceEquals(Props?.{e.Name}, null) && ReferenceEquals(nextProps.{e.Name}, null))");
+                sb.AppendLine($"\t\t\tif (!ReferenceEquals(previous?.{e.Name}, null) && ReferenceEquals(nextProps.{e.Name}, null))");
                 sb.AppendLine("\t\t\t{");
                 sb.AppendLine($"\t\t\t\tElement.{e.Name} -= nextProps.{e.Name};");
                 sb.AppendLine("\t\t\t}");
-                sb.AppendLine($"\t\t\tif (ReferenceEquals(Props?.{e.Name}, null) && !ReferenceEquals(nextProps.{e.Name}, null))");
+                sb.AppendLine($"\t\t\tif (ReferenceEquals(previous?.{e.Name}, null) && !ReferenceEquals(nextProps.{e.Name}, null))");
                 sb.AppendLine("\t\t\t{");
                 sb.AppendLine($"\t\t\t\tElement.{e.Name} += nextProps.{e.Name};");
                 sb.AppendLine("\t\t\t}");

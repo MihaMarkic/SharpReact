@@ -53,19 +53,19 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.IsSelected = nextProps.IsSelected.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.Selected, null) && ReferenceEquals(nextProps.Selected, null))
+			if (!ReferenceEquals(previous?.Selected, null) && ReferenceEquals(nextProps.Selected, null))
 			{
 				Element.Selected -= nextProps.Selected;
 			}
-			if (ReferenceEquals(Props?.Selected, null) && !ReferenceEquals(nextProps.Selected, null))
+			if (ReferenceEquals(previous?.Selected, null) && !ReferenceEquals(nextProps.Selected, null))
 			{
 				Element.Selected += nextProps.Selected;
 			}
-			if (!ReferenceEquals(Props?.Unselected, null) && ReferenceEquals(nextProps.Unselected, null))
+			if (!ReferenceEquals(previous?.Unselected, null) && ReferenceEquals(nextProps.Unselected, null))
 			{
 				Element.Unselected -= nextProps.Unselected;
 			}
-			if (ReferenceEquals(Props?.Unselected, null) && !ReferenceEquals(nextProps.Unselected, null))
+			if (ReferenceEquals(previous?.Unselected, null) && !ReferenceEquals(nextProps.Unselected, null))
 			{
 				Element.Unselected += nextProps.Unselected;
 			}

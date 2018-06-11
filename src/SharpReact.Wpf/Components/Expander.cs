@@ -17,19 +17,19 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.IsExpanded = nextProps.IsExpanded.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.Expanded, null) && ReferenceEquals(nextProps.Expanded, null))
+			if (!ReferenceEquals(previous?.Expanded, null) && ReferenceEquals(nextProps.Expanded, null))
 			{
 				Element.Expanded -= nextProps.Expanded;
 			}
-			if (ReferenceEquals(Props?.Expanded, null) && !ReferenceEquals(nextProps.Expanded, null))
+			if (ReferenceEquals(previous?.Expanded, null) && !ReferenceEquals(nextProps.Expanded, null))
 			{
 				Element.Expanded += nextProps.Expanded;
 			}
-			if (!ReferenceEquals(Props?.Collapsed, null) && ReferenceEquals(nextProps.Collapsed, null))
+			if (!ReferenceEquals(previous?.Collapsed, null) && ReferenceEquals(nextProps.Collapsed, null))
 			{
 				Element.Collapsed -= nextProps.Collapsed;
 			}
-			if (ReferenceEquals(Props?.Collapsed, null) && !ReferenceEquals(nextProps.Collapsed, null))
+			if (ReferenceEquals(previous?.Collapsed, null) && !ReferenceEquals(nextProps.Collapsed, null))
 			{
 				Element.Collapsed += nextProps.Collapsed;
 			}

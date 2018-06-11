@@ -17,11 +17,11 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.ViewportSize = nextProps.ViewportSize.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.Scroll, null) && ReferenceEquals(nextProps.Scroll, null))
+			if (!ReferenceEquals(previous?.Scroll, null) && ReferenceEquals(nextProps.Scroll, null))
 			{
 				Element.Scroll -= nextProps.Scroll;
 			}
-			if (ReferenceEquals(Props?.Scroll, null) && !ReferenceEquals(nextProps.Scroll, null))
+			if (ReferenceEquals(previous?.Scroll, null) && !ReferenceEquals(nextProps.Scroll, null))
 			{
 				Element.Scroll += nextProps.Scroll;
 			}

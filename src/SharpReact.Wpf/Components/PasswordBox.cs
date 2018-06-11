@@ -36,11 +36,11 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.IsInactiveSelectionHighlightEnabled = nextProps.IsInactiveSelectionHighlightEnabled.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.PasswordChanged, null) && ReferenceEquals(nextProps.PasswordChanged, null))
+			if (!ReferenceEquals(previous?.PasswordChanged, null) && ReferenceEquals(nextProps.PasswordChanged, null))
 			{
 				Element.PasswordChanged -= nextProps.PasswordChanged;
 			}
-			if (ReferenceEquals(Props?.PasswordChanged, null) && !ReferenceEquals(nextProps.PasswordChanged, null))
+			if (ReferenceEquals(previous?.PasswordChanged, null) && !ReferenceEquals(nextProps.PasswordChanged, null))
 			{
 				Element.PasswordChanged += nextProps.PasswordChanged;
 			}

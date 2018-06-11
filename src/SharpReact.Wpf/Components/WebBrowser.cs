@@ -16,27 +16,27 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.ObjectForScripting = nextProps.ObjectForScripting.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.Navigating, null) && ReferenceEquals(nextProps.Navigating, null))
+			if (!ReferenceEquals(previous?.Navigating, null) && ReferenceEquals(nextProps.Navigating, null))
 			{
 				Element.Navigating -= nextProps.Navigating;
 			}
-			if (ReferenceEquals(Props?.Navigating, null) && !ReferenceEquals(nextProps.Navigating, null))
+			if (ReferenceEquals(previous?.Navigating, null) && !ReferenceEquals(nextProps.Navigating, null))
 			{
 				Element.Navigating += nextProps.Navigating;
 			}
-			if (!ReferenceEquals(Props?.Navigated, null) && ReferenceEquals(nextProps.Navigated, null))
+			if (!ReferenceEquals(previous?.Navigated, null) && ReferenceEquals(nextProps.Navigated, null))
 			{
 				Element.Navigated -= nextProps.Navigated;
 			}
-			if (ReferenceEquals(Props?.Navigated, null) && !ReferenceEquals(nextProps.Navigated, null))
+			if (ReferenceEquals(previous?.Navigated, null) && !ReferenceEquals(nextProps.Navigated, null))
 			{
 				Element.Navigated += nextProps.Navigated;
 			}
-			if (!ReferenceEquals(Props?.LoadCompleted, null) && ReferenceEquals(nextProps.LoadCompleted, null))
+			if (!ReferenceEquals(previous?.LoadCompleted, null) && ReferenceEquals(nextProps.LoadCompleted, null))
 			{
 				Element.LoadCompleted -= nextProps.LoadCompleted;
 			}
-			if (ReferenceEquals(Props?.LoadCompleted, null) && !ReferenceEquals(nextProps.LoadCompleted, null))
+			if (ReferenceEquals(previous?.LoadCompleted, null) && !ReferenceEquals(nextProps.LoadCompleted, null))
 			{
 				Element.LoadCompleted += nextProps.LoadCompleted;
 			}

@@ -193,187 +193,187 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.ClipboardCopyMode = nextProps.ClipboardCopyMode.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.ColumnDisplayIndexChanged, null) && ReferenceEquals(nextProps.ColumnDisplayIndexChanged, null))
+			if (!ReferenceEquals(previous?.ColumnDisplayIndexChanged, null) && ReferenceEquals(nextProps.ColumnDisplayIndexChanged, null))
 			{
 				Element.ColumnDisplayIndexChanged -= nextProps.ColumnDisplayIndexChanged;
 			}
-			if (ReferenceEquals(Props?.ColumnDisplayIndexChanged, null) && !ReferenceEquals(nextProps.ColumnDisplayIndexChanged, null))
+			if (ReferenceEquals(previous?.ColumnDisplayIndexChanged, null) && !ReferenceEquals(nextProps.ColumnDisplayIndexChanged, null))
 			{
 				Element.ColumnDisplayIndexChanged += nextProps.ColumnDisplayIndexChanged;
 			}
-			if (!ReferenceEquals(Props?.LoadingRow, null) && ReferenceEquals(nextProps.LoadingRow, null))
+			if (!ReferenceEquals(previous?.LoadingRow, null) && ReferenceEquals(nextProps.LoadingRow, null))
 			{
 				Element.LoadingRow -= nextProps.LoadingRow;
 			}
-			if (ReferenceEquals(Props?.LoadingRow, null) && !ReferenceEquals(nextProps.LoadingRow, null))
+			if (ReferenceEquals(previous?.LoadingRow, null) && !ReferenceEquals(nextProps.LoadingRow, null))
 			{
 				Element.LoadingRow += nextProps.LoadingRow;
 			}
-			if (!ReferenceEquals(Props?.UnloadingRow, null) && ReferenceEquals(nextProps.UnloadingRow, null))
+			if (!ReferenceEquals(previous?.UnloadingRow, null) && ReferenceEquals(nextProps.UnloadingRow, null))
 			{
 				Element.UnloadingRow -= nextProps.UnloadingRow;
 			}
-			if (ReferenceEquals(Props?.UnloadingRow, null) && !ReferenceEquals(nextProps.UnloadingRow, null))
+			if (ReferenceEquals(previous?.UnloadingRow, null) && !ReferenceEquals(nextProps.UnloadingRow, null))
 			{
 				Element.UnloadingRow += nextProps.UnloadingRow;
 			}
-			if (!ReferenceEquals(Props?.RowEditEnding, null) && ReferenceEquals(nextProps.RowEditEnding, null))
+			if (!ReferenceEquals(previous?.RowEditEnding, null) && ReferenceEquals(nextProps.RowEditEnding, null))
 			{
 				Element.RowEditEnding -= nextProps.RowEditEnding;
 			}
-			if (ReferenceEquals(Props?.RowEditEnding, null) && !ReferenceEquals(nextProps.RowEditEnding, null))
+			if (ReferenceEquals(previous?.RowEditEnding, null) && !ReferenceEquals(nextProps.RowEditEnding, null))
 			{
 				Element.RowEditEnding += nextProps.RowEditEnding;
 			}
-			if (!ReferenceEquals(Props?.CellEditEnding, null) && ReferenceEquals(nextProps.CellEditEnding, null))
+			if (!ReferenceEquals(previous?.CellEditEnding, null) && ReferenceEquals(nextProps.CellEditEnding, null))
 			{
 				Element.CellEditEnding -= nextProps.CellEditEnding;
 			}
-			if (ReferenceEquals(Props?.CellEditEnding, null) && !ReferenceEquals(nextProps.CellEditEnding, null))
+			if (ReferenceEquals(previous?.CellEditEnding, null) && !ReferenceEquals(nextProps.CellEditEnding, null))
 			{
 				Element.CellEditEnding += nextProps.CellEditEnding;
 			}
-			if (!ReferenceEquals(Props?.CurrentCellChanged, null) && ReferenceEquals(nextProps.CurrentCellChanged, null))
+			if (!ReferenceEquals(previous?.CurrentCellChanged, null) && ReferenceEquals(nextProps.CurrentCellChanged, null))
 			{
 				Element.CurrentCellChanged -= nextProps.CurrentCellChanged;
 			}
-			if (ReferenceEquals(Props?.CurrentCellChanged, null) && !ReferenceEquals(nextProps.CurrentCellChanged, null))
+			if (ReferenceEquals(previous?.CurrentCellChanged, null) && !ReferenceEquals(nextProps.CurrentCellChanged, null))
 			{
 				Element.CurrentCellChanged += nextProps.CurrentCellChanged;
 			}
-			if (!ReferenceEquals(Props?.BeginningEdit, null) && ReferenceEquals(nextProps.BeginningEdit, null))
+			if (!ReferenceEquals(previous?.BeginningEdit, null) && ReferenceEquals(nextProps.BeginningEdit, null))
 			{
 				Element.BeginningEdit -= nextProps.BeginningEdit;
 			}
-			if (ReferenceEquals(Props?.BeginningEdit, null) && !ReferenceEquals(nextProps.BeginningEdit, null))
+			if (ReferenceEquals(previous?.BeginningEdit, null) && !ReferenceEquals(nextProps.BeginningEdit, null))
 			{
 				Element.BeginningEdit += nextProps.BeginningEdit;
 			}
-			if (!ReferenceEquals(Props?.PreparingCellForEdit, null) && ReferenceEquals(nextProps.PreparingCellForEdit, null))
+			if (!ReferenceEquals(previous?.PreparingCellForEdit, null) && ReferenceEquals(nextProps.PreparingCellForEdit, null))
 			{
 				Element.PreparingCellForEdit -= nextProps.PreparingCellForEdit;
 			}
-			if (ReferenceEquals(Props?.PreparingCellForEdit, null) && !ReferenceEquals(nextProps.PreparingCellForEdit, null))
+			if (ReferenceEquals(previous?.PreparingCellForEdit, null) && !ReferenceEquals(nextProps.PreparingCellForEdit, null))
 			{
 				Element.PreparingCellForEdit += nextProps.PreparingCellForEdit;
 			}
-			if (!ReferenceEquals(Props?.AddingNewItem, null) && ReferenceEquals(nextProps.AddingNewItem, null))
+			if (!ReferenceEquals(previous?.AddingNewItem, null) && ReferenceEquals(nextProps.AddingNewItem, null))
 			{
 				Element.AddingNewItem -= nextProps.AddingNewItem;
 			}
-			if (ReferenceEquals(Props?.AddingNewItem, null) && !ReferenceEquals(nextProps.AddingNewItem, null))
+			if (ReferenceEquals(previous?.AddingNewItem, null) && !ReferenceEquals(nextProps.AddingNewItem, null))
 			{
 				Element.AddingNewItem += nextProps.AddingNewItem;
 			}
-			if (!ReferenceEquals(Props?.InitializingNewItem, null) && ReferenceEquals(nextProps.InitializingNewItem, null))
+			if (!ReferenceEquals(previous?.InitializingNewItem, null) && ReferenceEquals(nextProps.InitializingNewItem, null))
 			{
 				Element.InitializingNewItem -= nextProps.InitializingNewItem;
 			}
-			if (ReferenceEquals(Props?.InitializingNewItem, null) && !ReferenceEquals(nextProps.InitializingNewItem, null))
+			if (ReferenceEquals(previous?.InitializingNewItem, null) && !ReferenceEquals(nextProps.InitializingNewItem, null))
 			{
 				Element.InitializingNewItem += nextProps.InitializingNewItem;
 			}
-			if (!ReferenceEquals(Props?.LoadingRowDetails, null) && ReferenceEquals(nextProps.LoadingRowDetails, null))
+			if (!ReferenceEquals(previous?.LoadingRowDetails, null) && ReferenceEquals(nextProps.LoadingRowDetails, null))
 			{
 				Element.LoadingRowDetails -= nextProps.LoadingRowDetails;
 			}
-			if (ReferenceEquals(Props?.LoadingRowDetails, null) && !ReferenceEquals(nextProps.LoadingRowDetails, null))
+			if (ReferenceEquals(previous?.LoadingRowDetails, null) && !ReferenceEquals(nextProps.LoadingRowDetails, null))
 			{
 				Element.LoadingRowDetails += nextProps.LoadingRowDetails;
 			}
-			if (!ReferenceEquals(Props?.UnloadingRowDetails, null) && ReferenceEquals(nextProps.UnloadingRowDetails, null))
+			if (!ReferenceEquals(previous?.UnloadingRowDetails, null) && ReferenceEquals(nextProps.UnloadingRowDetails, null))
 			{
 				Element.UnloadingRowDetails -= nextProps.UnloadingRowDetails;
 			}
-			if (ReferenceEquals(Props?.UnloadingRowDetails, null) && !ReferenceEquals(nextProps.UnloadingRowDetails, null))
+			if (ReferenceEquals(previous?.UnloadingRowDetails, null) && !ReferenceEquals(nextProps.UnloadingRowDetails, null))
 			{
 				Element.UnloadingRowDetails += nextProps.UnloadingRowDetails;
 			}
-			if (!ReferenceEquals(Props?.RowDetailsVisibilityChanged, null) && ReferenceEquals(nextProps.RowDetailsVisibilityChanged, null))
+			if (!ReferenceEquals(previous?.RowDetailsVisibilityChanged, null) && ReferenceEquals(nextProps.RowDetailsVisibilityChanged, null))
 			{
 				Element.RowDetailsVisibilityChanged -= nextProps.RowDetailsVisibilityChanged;
 			}
-			if (ReferenceEquals(Props?.RowDetailsVisibilityChanged, null) && !ReferenceEquals(nextProps.RowDetailsVisibilityChanged, null))
+			if (ReferenceEquals(previous?.RowDetailsVisibilityChanged, null) && !ReferenceEquals(nextProps.RowDetailsVisibilityChanged, null))
 			{
 				Element.RowDetailsVisibilityChanged += nextProps.RowDetailsVisibilityChanged;
 			}
-			if (!ReferenceEquals(Props?.SelectedCellsChanged, null) && ReferenceEquals(nextProps.SelectedCellsChanged, null))
+			if (!ReferenceEquals(previous?.SelectedCellsChanged, null) && ReferenceEquals(nextProps.SelectedCellsChanged, null))
 			{
 				Element.SelectedCellsChanged -= nextProps.SelectedCellsChanged;
 			}
-			if (ReferenceEquals(Props?.SelectedCellsChanged, null) && !ReferenceEquals(nextProps.SelectedCellsChanged, null))
+			if (ReferenceEquals(previous?.SelectedCellsChanged, null) && !ReferenceEquals(nextProps.SelectedCellsChanged, null))
 			{
 				Element.SelectedCellsChanged += nextProps.SelectedCellsChanged;
 			}
-			if (!ReferenceEquals(Props?.Sorting, null) && ReferenceEquals(nextProps.Sorting, null))
+			if (!ReferenceEquals(previous?.Sorting, null) && ReferenceEquals(nextProps.Sorting, null))
 			{
 				Element.Sorting -= nextProps.Sorting;
 			}
-			if (ReferenceEquals(Props?.Sorting, null) && !ReferenceEquals(nextProps.Sorting, null))
+			if (ReferenceEquals(previous?.Sorting, null) && !ReferenceEquals(nextProps.Sorting, null))
 			{
 				Element.Sorting += nextProps.Sorting;
 			}
-			if (!ReferenceEquals(Props?.AutoGeneratedColumns, null) && ReferenceEquals(nextProps.AutoGeneratedColumns, null))
+			if (!ReferenceEquals(previous?.AutoGeneratedColumns, null) && ReferenceEquals(nextProps.AutoGeneratedColumns, null))
 			{
 				Element.AutoGeneratedColumns -= nextProps.AutoGeneratedColumns;
 			}
-			if (ReferenceEquals(Props?.AutoGeneratedColumns, null) && !ReferenceEquals(nextProps.AutoGeneratedColumns, null))
+			if (ReferenceEquals(previous?.AutoGeneratedColumns, null) && !ReferenceEquals(nextProps.AutoGeneratedColumns, null))
 			{
 				Element.AutoGeneratedColumns += nextProps.AutoGeneratedColumns;
 			}
-			if (!ReferenceEquals(Props?.AutoGeneratingColumn, null) && ReferenceEquals(nextProps.AutoGeneratingColumn, null))
+			if (!ReferenceEquals(previous?.AutoGeneratingColumn, null) && ReferenceEquals(nextProps.AutoGeneratingColumn, null))
 			{
 				Element.AutoGeneratingColumn -= nextProps.AutoGeneratingColumn;
 			}
-			if (ReferenceEquals(Props?.AutoGeneratingColumn, null) && !ReferenceEquals(nextProps.AutoGeneratingColumn, null))
+			if (ReferenceEquals(previous?.AutoGeneratingColumn, null) && !ReferenceEquals(nextProps.AutoGeneratingColumn, null))
 			{
 				Element.AutoGeneratingColumn += nextProps.AutoGeneratingColumn;
 			}
-			if (!ReferenceEquals(Props?.ColumnReordering, null) && ReferenceEquals(nextProps.ColumnReordering, null))
+			if (!ReferenceEquals(previous?.ColumnReordering, null) && ReferenceEquals(nextProps.ColumnReordering, null))
 			{
 				Element.ColumnReordering -= nextProps.ColumnReordering;
 			}
-			if (ReferenceEquals(Props?.ColumnReordering, null) && !ReferenceEquals(nextProps.ColumnReordering, null))
+			if (ReferenceEquals(previous?.ColumnReordering, null) && !ReferenceEquals(nextProps.ColumnReordering, null))
 			{
 				Element.ColumnReordering += nextProps.ColumnReordering;
 			}
-			if (!ReferenceEquals(Props?.ColumnHeaderDragStarted, null) && ReferenceEquals(nextProps.ColumnHeaderDragStarted, null))
+			if (!ReferenceEquals(previous?.ColumnHeaderDragStarted, null) && ReferenceEquals(nextProps.ColumnHeaderDragStarted, null))
 			{
 				Element.ColumnHeaderDragStarted -= nextProps.ColumnHeaderDragStarted;
 			}
-			if (ReferenceEquals(Props?.ColumnHeaderDragStarted, null) && !ReferenceEquals(nextProps.ColumnHeaderDragStarted, null))
+			if (ReferenceEquals(previous?.ColumnHeaderDragStarted, null) && !ReferenceEquals(nextProps.ColumnHeaderDragStarted, null))
 			{
 				Element.ColumnHeaderDragStarted += nextProps.ColumnHeaderDragStarted;
 			}
-			if (!ReferenceEquals(Props?.ColumnHeaderDragDelta, null) && ReferenceEquals(nextProps.ColumnHeaderDragDelta, null))
+			if (!ReferenceEquals(previous?.ColumnHeaderDragDelta, null) && ReferenceEquals(nextProps.ColumnHeaderDragDelta, null))
 			{
 				Element.ColumnHeaderDragDelta -= nextProps.ColumnHeaderDragDelta;
 			}
-			if (ReferenceEquals(Props?.ColumnHeaderDragDelta, null) && !ReferenceEquals(nextProps.ColumnHeaderDragDelta, null))
+			if (ReferenceEquals(previous?.ColumnHeaderDragDelta, null) && !ReferenceEquals(nextProps.ColumnHeaderDragDelta, null))
 			{
 				Element.ColumnHeaderDragDelta += nextProps.ColumnHeaderDragDelta;
 			}
-			if (!ReferenceEquals(Props?.ColumnHeaderDragCompleted, null) && ReferenceEquals(nextProps.ColumnHeaderDragCompleted, null))
+			if (!ReferenceEquals(previous?.ColumnHeaderDragCompleted, null) && ReferenceEquals(nextProps.ColumnHeaderDragCompleted, null))
 			{
 				Element.ColumnHeaderDragCompleted -= nextProps.ColumnHeaderDragCompleted;
 			}
-			if (ReferenceEquals(Props?.ColumnHeaderDragCompleted, null) && !ReferenceEquals(nextProps.ColumnHeaderDragCompleted, null))
+			if (ReferenceEquals(previous?.ColumnHeaderDragCompleted, null) && !ReferenceEquals(nextProps.ColumnHeaderDragCompleted, null))
 			{
 				Element.ColumnHeaderDragCompleted += nextProps.ColumnHeaderDragCompleted;
 			}
-			if (!ReferenceEquals(Props?.ColumnReordered, null) && ReferenceEquals(nextProps.ColumnReordered, null))
+			if (!ReferenceEquals(previous?.ColumnReordered, null) && ReferenceEquals(nextProps.ColumnReordered, null))
 			{
 				Element.ColumnReordered -= nextProps.ColumnReordered;
 			}
-			if (ReferenceEquals(Props?.ColumnReordered, null) && !ReferenceEquals(nextProps.ColumnReordered, null))
+			if (ReferenceEquals(previous?.ColumnReordered, null) && !ReferenceEquals(nextProps.ColumnReordered, null))
 			{
 				Element.ColumnReordered += nextProps.ColumnReordered;
 			}
-			if (!ReferenceEquals(Props?.CopyingRowClipboardContent, null) && ReferenceEquals(nextProps.CopyingRowClipboardContent, null))
+			if (!ReferenceEquals(previous?.CopyingRowClipboardContent, null) && ReferenceEquals(nextProps.CopyingRowClipboardContent, null))
 			{
 				Element.CopyingRowClipboardContent -= nextProps.CopyingRowClipboardContent;
 			}
-			if (ReferenceEquals(Props?.CopyingRowClipboardContent, null) && !ReferenceEquals(nextProps.CopyingRowClipboardContent, null))
+			if (ReferenceEquals(previous?.CopyingRowClipboardContent, null) && !ReferenceEquals(nextProps.CopyingRowClipboardContent, null))
 			{
 				Element.CopyingRowClipboardContent += nextProps.CopyingRowClipboardContent;
 			}

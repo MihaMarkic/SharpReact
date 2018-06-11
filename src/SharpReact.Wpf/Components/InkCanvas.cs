@@ -57,123 +57,123 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.PreferredPasteFormats = nextProps.PreferredPasteFormats.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.StrokeCollected, null) && ReferenceEquals(nextProps.StrokeCollected, null))
+			if (!ReferenceEquals(previous?.StrokeCollected, null) && ReferenceEquals(nextProps.StrokeCollected, null))
 			{
 				Element.StrokeCollected -= nextProps.StrokeCollected;
 			}
-			if (ReferenceEquals(Props?.StrokeCollected, null) && !ReferenceEquals(nextProps.StrokeCollected, null))
+			if (ReferenceEquals(previous?.StrokeCollected, null) && !ReferenceEquals(nextProps.StrokeCollected, null))
 			{
 				Element.StrokeCollected += nextProps.StrokeCollected;
 			}
-			if (!ReferenceEquals(Props?.Gesture, null) && ReferenceEquals(nextProps.Gesture, null))
+			if (!ReferenceEquals(previous?.Gesture, null) && ReferenceEquals(nextProps.Gesture, null))
 			{
 				Element.Gesture -= nextProps.Gesture;
 			}
-			if (ReferenceEquals(Props?.Gesture, null) && !ReferenceEquals(nextProps.Gesture, null))
+			if (ReferenceEquals(previous?.Gesture, null) && !ReferenceEquals(nextProps.Gesture, null))
 			{
 				Element.Gesture += nextProps.Gesture;
 			}
-			if (!ReferenceEquals(Props?.StrokesReplaced, null) && ReferenceEquals(nextProps.StrokesReplaced, null))
+			if (!ReferenceEquals(previous?.StrokesReplaced, null) && ReferenceEquals(nextProps.StrokesReplaced, null))
 			{
 				Element.StrokesReplaced -= nextProps.StrokesReplaced;
 			}
-			if (ReferenceEquals(Props?.StrokesReplaced, null) && !ReferenceEquals(nextProps.StrokesReplaced, null))
+			if (ReferenceEquals(previous?.StrokesReplaced, null) && !ReferenceEquals(nextProps.StrokesReplaced, null))
 			{
 				Element.StrokesReplaced += nextProps.StrokesReplaced;
 			}
-			if (!ReferenceEquals(Props?.DefaultDrawingAttributesReplaced, null) && ReferenceEquals(nextProps.DefaultDrawingAttributesReplaced, null))
+			if (!ReferenceEquals(previous?.DefaultDrawingAttributesReplaced, null) && ReferenceEquals(nextProps.DefaultDrawingAttributesReplaced, null))
 			{
 				Element.DefaultDrawingAttributesReplaced -= nextProps.DefaultDrawingAttributesReplaced;
 			}
-			if (ReferenceEquals(Props?.DefaultDrawingAttributesReplaced, null) && !ReferenceEquals(nextProps.DefaultDrawingAttributesReplaced, null))
+			if (ReferenceEquals(previous?.DefaultDrawingAttributesReplaced, null) && !ReferenceEquals(nextProps.DefaultDrawingAttributesReplaced, null))
 			{
 				Element.DefaultDrawingAttributesReplaced += nextProps.DefaultDrawingAttributesReplaced;
 			}
-			if (!ReferenceEquals(Props?.ActiveEditingModeChanged, null) && ReferenceEquals(nextProps.ActiveEditingModeChanged, null))
+			if (!ReferenceEquals(previous?.ActiveEditingModeChanged, null) && ReferenceEquals(nextProps.ActiveEditingModeChanged, null))
 			{
 				Element.ActiveEditingModeChanged -= nextProps.ActiveEditingModeChanged;
 			}
-			if (ReferenceEquals(Props?.ActiveEditingModeChanged, null) && !ReferenceEquals(nextProps.ActiveEditingModeChanged, null))
+			if (ReferenceEquals(previous?.ActiveEditingModeChanged, null) && !ReferenceEquals(nextProps.ActiveEditingModeChanged, null))
 			{
 				Element.ActiveEditingModeChanged += nextProps.ActiveEditingModeChanged;
 			}
-			if (!ReferenceEquals(Props?.EditingModeChanged, null) && ReferenceEquals(nextProps.EditingModeChanged, null))
+			if (!ReferenceEquals(previous?.EditingModeChanged, null) && ReferenceEquals(nextProps.EditingModeChanged, null))
 			{
 				Element.EditingModeChanged -= nextProps.EditingModeChanged;
 			}
-			if (ReferenceEquals(Props?.EditingModeChanged, null) && !ReferenceEquals(nextProps.EditingModeChanged, null))
+			if (ReferenceEquals(previous?.EditingModeChanged, null) && !ReferenceEquals(nextProps.EditingModeChanged, null))
 			{
 				Element.EditingModeChanged += nextProps.EditingModeChanged;
 			}
-			if (!ReferenceEquals(Props?.EditingModeInvertedChanged, null) && ReferenceEquals(nextProps.EditingModeInvertedChanged, null))
+			if (!ReferenceEquals(previous?.EditingModeInvertedChanged, null) && ReferenceEquals(nextProps.EditingModeInvertedChanged, null))
 			{
 				Element.EditingModeInvertedChanged -= nextProps.EditingModeInvertedChanged;
 			}
-			if (ReferenceEquals(Props?.EditingModeInvertedChanged, null) && !ReferenceEquals(nextProps.EditingModeInvertedChanged, null))
+			if (ReferenceEquals(previous?.EditingModeInvertedChanged, null) && !ReferenceEquals(nextProps.EditingModeInvertedChanged, null))
 			{
 				Element.EditingModeInvertedChanged += nextProps.EditingModeInvertedChanged;
 			}
-			if (!ReferenceEquals(Props?.SelectionMoving, null) && ReferenceEquals(nextProps.SelectionMoving, null))
+			if (!ReferenceEquals(previous?.SelectionMoving, null) && ReferenceEquals(nextProps.SelectionMoving, null))
 			{
 				Element.SelectionMoving -= nextProps.SelectionMoving;
 			}
-			if (ReferenceEquals(Props?.SelectionMoving, null) && !ReferenceEquals(nextProps.SelectionMoving, null))
+			if (ReferenceEquals(previous?.SelectionMoving, null) && !ReferenceEquals(nextProps.SelectionMoving, null))
 			{
 				Element.SelectionMoving += nextProps.SelectionMoving;
 			}
-			if (!ReferenceEquals(Props?.SelectionMoved, null) && ReferenceEquals(nextProps.SelectionMoved, null))
+			if (!ReferenceEquals(previous?.SelectionMoved, null) && ReferenceEquals(nextProps.SelectionMoved, null))
 			{
 				Element.SelectionMoved -= nextProps.SelectionMoved;
 			}
-			if (ReferenceEquals(Props?.SelectionMoved, null) && !ReferenceEquals(nextProps.SelectionMoved, null))
+			if (ReferenceEquals(previous?.SelectionMoved, null) && !ReferenceEquals(nextProps.SelectionMoved, null))
 			{
 				Element.SelectionMoved += nextProps.SelectionMoved;
 			}
-			if (!ReferenceEquals(Props?.StrokeErasing, null) && ReferenceEquals(nextProps.StrokeErasing, null))
+			if (!ReferenceEquals(previous?.StrokeErasing, null) && ReferenceEquals(nextProps.StrokeErasing, null))
 			{
 				Element.StrokeErasing -= nextProps.StrokeErasing;
 			}
-			if (ReferenceEquals(Props?.StrokeErasing, null) && !ReferenceEquals(nextProps.StrokeErasing, null))
+			if (ReferenceEquals(previous?.StrokeErasing, null) && !ReferenceEquals(nextProps.StrokeErasing, null))
 			{
 				Element.StrokeErasing += nextProps.StrokeErasing;
 			}
-			if (!ReferenceEquals(Props?.StrokeErased, null) && ReferenceEquals(nextProps.StrokeErased, null))
+			if (!ReferenceEquals(previous?.StrokeErased, null) && ReferenceEquals(nextProps.StrokeErased, null))
 			{
 				Element.StrokeErased -= nextProps.StrokeErased;
 			}
-			if (ReferenceEquals(Props?.StrokeErased, null) && !ReferenceEquals(nextProps.StrokeErased, null))
+			if (ReferenceEquals(previous?.StrokeErased, null) && !ReferenceEquals(nextProps.StrokeErased, null))
 			{
 				Element.StrokeErased += nextProps.StrokeErased;
 			}
-			if (!ReferenceEquals(Props?.SelectionResizing, null) && ReferenceEquals(nextProps.SelectionResizing, null))
+			if (!ReferenceEquals(previous?.SelectionResizing, null) && ReferenceEquals(nextProps.SelectionResizing, null))
 			{
 				Element.SelectionResizing -= nextProps.SelectionResizing;
 			}
-			if (ReferenceEquals(Props?.SelectionResizing, null) && !ReferenceEquals(nextProps.SelectionResizing, null))
+			if (ReferenceEquals(previous?.SelectionResizing, null) && !ReferenceEquals(nextProps.SelectionResizing, null))
 			{
 				Element.SelectionResizing += nextProps.SelectionResizing;
 			}
-			if (!ReferenceEquals(Props?.SelectionResized, null) && ReferenceEquals(nextProps.SelectionResized, null))
+			if (!ReferenceEquals(previous?.SelectionResized, null) && ReferenceEquals(nextProps.SelectionResized, null))
 			{
 				Element.SelectionResized -= nextProps.SelectionResized;
 			}
-			if (ReferenceEquals(Props?.SelectionResized, null) && !ReferenceEquals(nextProps.SelectionResized, null))
+			if (ReferenceEquals(previous?.SelectionResized, null) && !ReferenceEquals(nextProps.SelectionResized, null))
 			{
 				Element.SelectionResized += nextProps.SelectionResized;
 			}
-			if (!ReferenceEquals(Props?.SelectionChanging, null) && ReferenceEquals(nextProps.SelectionChanging, null))
+			if (!ReferenceEquals(previous?.SelectionChanging, null) && ReferenceEquals(nextProps.SelectionChanging, null))
 			{
 				Element.SelectionChanging -= nextProps.SelectionChanging;
 			}
-			if (ReferenceEquals(Props?.SelectionChanging, null) && !ReferenceEquals(nextProps.SelectionChanging, null))
+			if (ReferenceEquals(previous?.SelectionChanging, null) && !ReferenceEquals(nextProps.SelectionChanging, null))
 			{
 				Element.SelectionChanging += nextProps.SelectionChanging;
 			}
-			if (!ReferenceEquals(Props?.SelectionChanged, null) && ReferenceEquals(nextProps.SelectionChanged, null))
+			if (!ReferenceEquals(previous?.SelectionChanged, null) && ReferenceEquals(nextProps.SelectionChanged, null))
 			{
 				Element.SelectionChanged -= nextProps.SelectionChanged;
 			}
-			if (ReferenceEquals(Props?.SelectionChanged, null) && !ReferenceEquals(nextProps.SelectionChanged, null))
+			if (ReferenceEquals(previous?.SelectionChanged, null) && !ReferenceEquals(nextProps.SelectionChanged, null))
 			{
 				Element.SelectionChanged += nextProps.SelectionChanged;
 			}

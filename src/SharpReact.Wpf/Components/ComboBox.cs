@@ -37,19 +37,19 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.StaysOpenOnEdit = nextProps.StaysOpenOnEdit.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.DropDownOpened, null) && ReferenceEquals(nextProps.DropDownOpened, null))
+			if (!ReferenceEquals(previous?.DropDownOpened, null) && ReferenceEquals(nextProps.DropDownOpened, null))
 			{
 				Element.DropDownOpened -= nextProps.DropDownOpened;
 			}
-			if (ReferenceEquals(Props?.DropDownOpened, null) && !ReferenceEquals(nextProps.DropDownOpened, null))
+			if (ReferenceEquals(previous?.DropDownOpened, null) && !ReferenceEquals(nextProps.DropDownOpened, null))
 			{
 				Element.DropDownOpened += nextProps.DropDownOpened;
 			}
-			if (!ReferenceEquals(Props?.DropDownClosed, null) && ReferenceEquals(nextProps.DropDownClosed, null))
+			if (!ReferenceEquals(previous?.DropDownClosed, null) && ReferenceEquals(nextProps.DropDownClosed, null))
 			{
 				Element.DropDownClosed -= nextProps.DropDownClosed;
 			}
-			if (ReferenceEquals(Props?.DropDownClosed, null) && !ReferenceEquals(nextProps.DropDownClosed, null))
+			if (ReferenceEquals(previous?.DropDownClosed, null) && !ReferenceEquals(nextProps.DropDownClosed, null))
 			{
 				Element.DropDownClosed += nextProps.DropDownClosed;
 			}

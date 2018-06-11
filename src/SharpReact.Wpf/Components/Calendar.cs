@@ -53,35 +53,35 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.SelectionMode = nextProps.SelectionMode.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.SelectedDatesChanged, null) && ReferenceEquals(nextProps.SelectedDatesChanged, null))
+			if (!ReferenceEquals(previous?.SelectedDatesChanged, null) && ReferenceEquals(nextProps.SelectedDatesChanged, null))
 			{
 				Element.SelectedDatesChanged -= nextProps.SelectedDatesChanged;
 			}
-			if (ReferenceEquals(Props?.SelectedDatesChanged, null) && !ReferenceEquals(nextProps.SelectedDatesChanged, null))
+			if (ReferenceEquals(previous?.SelectedDatesChanged, null) && !ReferenceEquals(nextProps.SelectedDatesChanged, null))
 			{
 				Element.SelectedDatesChanged += nextProps.SelectedDatesChanged;
 			}
-			if (!ReferenceEquals(Props?.DisplayDateChanged, null) && ReferenceEquals(nextProps.DisplayDateChanged, null))
+			if (!ReferenceEquals(previous?.DisplayDateChanged, null) && ReferenceEquals(nextProps.DisplayDateChanged, null))
 			{
 				Element.DisplayDateChanged -= nextProps.DisplayDateChanged;
 			}
-			if (ReferenceEquals(Props?.DisplayDateChanged, null) && !ReferenceEquals(nextProps.DisplayDateChanged, null))
+			if (ReferenceEquals(previous?.DisplayDateChanged, null) && !ReferenceEquals(nextProps.DisplayDateChanged, null))
 			{
 				Element.DisplayDateChanged += nextProps.DisplayDateChanged;
 			}
-			if (!ReferenceEquals(Props?.DisplayModeChanged, null) && ReferenceEquals(nextProps.DisplayModeChanged, null))
+			if (!ReferenceEquals(previous?.DisplayModeChanged, null) && ReferenceEquals(nextProps.DisplayModeChanged, null))
 			{
 				Element.DisplayModeChanged -= nextProps.DisplayModeChanged;
 			}
-			if (ReferenceEquals(Props?.DisplayModeChanged, null) && !ReferenceEquals(nextProps.DisplayModeChanged, null))
+			if (ReferenceEquals(previous?.DisplayModeChanged, null) && !ReferenceEquals(nextProps.DisplayModeChanged, null))
 			{
 				Element.DisplayModeChanged += nextProps.DisplayModeChanged;
 			}
-			if (!ReferenceEquals(Props?.SelectionModeChanged, null) && ReferenceEquals(nextProps.SelectionModeChanged, null))
+			if (!ReferenceEquals(previous?.SelectionModeChanged, null) && ReferenceEquals(nextProps.SelectionModeChanged, null))
 			{
 				Element.SelectionModeChanged -= nextProps.SelectionModeChanged;
 			}
-			if (ReferenceEquals(Props?.SelectionModeChanged, null) && !ReferenceEquals(nextProps.SelectionModeChanged, null))
+			if (ReferenceEquals(previous?.SelectionModeChanged, null) && !ReferenceEquals(nextProps.SelectionModeChanged, null))
 			{
 				Element.SelectionModeChanged += nextProps.SelectionModeChanged;
 			}

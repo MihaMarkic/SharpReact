@@ -13,11 +13,11 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.SelectedValuePath = nextProps.SelectedValuePath.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.SelectedItemChanged, null) && ReferenceEquals(nextProps.SelectedItemChanged, null))
+			if (!ReferenceEquals(previous?.SelectedItemChanged, null) && ReferenceEquals(nextProps.SelectedItemChanged, null))
 			{
 				Element.SelectedItemChanged -= nextProps.SelectedItemChanged;
 			}
-			if (ReferenceEquals(Props?.SelectedItemChanged, null) && !ReferenceEquals(nextProps.SelectedItemChanged, null))
+			if (ReferenceEquals(previous?.SelectedItemChanged, null) && !ReferenceEquals(nextProps.SelectedItemChanged, null))
 			{
 				Element.SelectedItemChanged += nextProps.SelectedItemChanged;
 			}

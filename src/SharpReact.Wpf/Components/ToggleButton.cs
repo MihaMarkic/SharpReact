@@ -17,27 +17,27 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.IsThreeState = nextProps.IsThreeState.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.Checked, null) && ReferenceEquals(nextProps.Checked, null))
+			if (!ReferenceEquals(previous?.Checked, null) && ReferenceEquals(nextProps.Checked, null))
 			{
 				Element.Checked -= nextProps.Checked;
 			}
-			if (ReferenceEquals(Props?.Checked, null) && !ReferenceEquals(nextProps.Checked, null))
+			if (ReferenceEquals(previous?.Checked, null) && !ReferenceEquals(nextProps.Checked, null))
 			{
 				Element.Checked += nextProps.Checked;
 			}
-			if (!ReferenceEquals(Props?.Unchecked, null) && ReferenceEquals(nextProps.Unchecked, null))
+			if (!ReferenceEquals(previous?.Unchecked, null) && ReferenceEquals(nextProps.Unchecked, null))
 			{
 				Element.Unchecked -= nextProps.Unchecked;
 			}
-			if (ReferenceEquals(Props?.Unchecked, null) && !ReferenceEquals(nextProps.Unchecked, null))
+			if (ReferenceEquals(previous?.Unchecked, null) && !ReferenceEquals(nextProps.Unchecked, null))
 			{
 				Element.Unchecked += nextProps.Unchecked;
 			}
-			if (!ReferenceEquals(Props?.Indeterminate, null) && ReferenceEquals(nextProps.Indeterminate, null))
+			if (!ReferenceEquals(previous?.Indeterminate, null) && ReferenceEquals(nextProps.Indeterminate, null))
 			{
 				Element.Indeterminate -= nextProps.Indeterminate;
 			}
-			if (ReferenceEquals(Props?.Indeterminate, null) && !ReferenceEquals(nextProps.Indeterminate, null))
+			if (ReferenceEquals(previous?.Indeterminate, null) && !ReferenceEquals(nextProps.Indeterminate, null))
 			{
 				Element.Indeterminate += nextProps.Indeterminate;
 			}

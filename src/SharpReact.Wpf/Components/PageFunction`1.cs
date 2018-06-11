@@ -9,11 +9,11 @@ namespace SharpReact.Wpf.Components
 		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
-			if (!ReferenceEquals(Props?.Return, null) && ReferenceEquals(nextProps.Return, null))
+			if (!ReferenceEquals(previous?.Return, null) && ReferenceEquals(nextProps.Return, null))
 			{
 				Element.Return -= nextProps.Return;
 			}
-			if (ReferenceEquals(Props?.Return, null) && !ReferenceEquals(nextProps.Return, null))
+			if (ReferenceEquals(previous?.Return, null) && !ReferenceEquals(nextProps.Return, null))
 			{
 				Element.Return += nextProps.Return;
 			}

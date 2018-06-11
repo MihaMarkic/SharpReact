@@ -73,75 +73,75 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.ShowActivated = nextProps.ShowActivated.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.SourceInitialized, null) && ReferenceEquals(nextProps.SourceInitialized, null))
+			if (!ReferenceEquals(previous?.SourceInitialized, null) && ReferenceEquals(nextProps.SourceInitialized, null))
 			{
 				Element.SourceInitialized -= nextProps.SourceInitialized;
 			}
-			if (ReferenceEquals(Props?.SourceInitialized, null) && !ReferenceEquals(nextProps.SourceInitialized, null))
+			if (ReferenceEquals(previous?.SourceInitialized, null) && !ReferenceEquals(nextProps.SourceInitialized, null))
 			{
 				Element.SourceInitialized += nextProps.SourceInitialized;
 			}
-			if (!ReferenceEquals(Props?.DpiChanged, null) && ReferenceEquals(nextProps.DpiChanged, null))
+			if (!ReferenceEquals(previous?.DpiChanged, null) && ReferenceEquals(nextProps.DpiChanged, null))
 			{
 				Element.DpiChanged -= nextProps.DpiChanged;
 			}
-			if (ReferenceEquals(Props?.DpiChanged, null) && !ReferenceEquals(nextProps.DpiChanged, null))
+			if (ReferenceEquals(previous?.DpiChanged, null) && !ReferenceEquals(nextProps.DpiChanged, null))
 			{
 				Element.DpiChanged += nextProps.DpiChanged;
 			}
-			if (!ReferenceEquals(Props?.Activated, null) && ReferenceEquals(nextProps.Activated, null))
+			if (!ReferenceEquals(previous?.Activated, null) && ReferenceEquals(nextProps.Activated, null))
 			{
 				Element.Activated -= nextProps.Activated;
 			}
-			if (ReferenceEquals(Props?.Activated, null) && !ReferenceEquals(nextProps.Activated, null))
+			if (ReferenceEquals(previous?.Activated, null) && !ReferenceEquals(nextProps.Activated, null))
 			{
 				Element.Activated += nextProps.Activated;
 			}
-			if (!ReferenceEquals(Props?.Deactivated, null) && ReferenceEquals(nextProps.Deactivated, null))
+			if (!ReferenceEquals(previous?.Deactivated, null) && ReferenceEquals(nextProps.Deactivated, null))
 			{
 				Element.Deactivated -= nextProps.Deactivated;
 			}
-			if (ReferenceEquals(Props?.Deactivated, null) && !ReferenceEquals(nextProps.Deactivated, null))
+			if (ReferenceEquals(previous?.Deactivated, null) && !ReferenceEquals(nextProps.Deactivated, null))
 			{
 				Element.Deactivated += nextProps.Deactivated;
 			}
-			if (!ReferenceEquals(Props?.StateChanged, null) && ReferenceEquals(nextProps.StateChanged, null))
+			if (!ReferenceEquals(previous?.StateChanged, null) && ReferenceEquals(nextProps.StateChanged, null))
 			{
 				Element.StateChanged -= nextProps.StateChanged;
 			}
-			if (ReferenceEquals(Props?.StateChanged, null) && !ReferenceEquals(nextProps.StateChanged, null))
+			if (ReferenceEquals(previous?.StateChanged, null) && !ReferenceEquals(nextProps.StateChanged, null))
 			{
 				Element.StateChanged += nextProps.StateChanged;
 			}
-			if (!ReferenceEquals(Props?.LocationChanged, null) && ReferenceEquals(nextProps.LocationChanged, null))
+			if (!ReferenceEquals(previous?.LocationChanged, null) && ReferenceEquals(nextProps.LocationChanged, null))
 			{
 				Element.LocationChanged -= nextProps.LocationChanged;
 			}
-			if (ReferenceEquals(Props?.LocationChanged, null) && !ReferenceEquals(nextProps.LocationChanged, null))
+			if (ReferenceEquals(previous?.LocationChanged, null) && !ReferenceEquals(nextProps.LocationChanged, null))
 			{
 				Element.LocationChanged += nextProps.LocationChanged;
 			}
-			if (!ReferenceEquals(Props?.Closing, null) && ReferenceEquals(nextProps.Closing, null))
+			if (!ReferenceEquals(previous?.Closing, null) && ReferenceEquals(nextProps.Closing, null))
 			{
 				Element.Closing -= nextProps.Closing;
 			}
-			if (ReferenceEquals(Props?.Closing, null) && !ReferenceEquals(nextProps.Closing, null))
+			if (ReferenceEquals(previous?.Closing, null) && !ReferenceEquals(nextProps.Closing, null))
 			{
 				Element.Closing += nextProps.Closing;
 			}
-			if (!ReferenceEquals(Props?.Closed, null) && ReferenceEquals(nextProps.Closed, null))
+			if (!ReferenceEquals(previous?.Closed, null) && ReferenceEquals(nextProps.Closed, null))
 			{
 				Element.Closed -= nextProps.Closed;
 			}
-			if (ReferenceEquals(Props?.Closed, null) && !ReferenceEquals(nextProps.Closed, null))
+			if (ReferenceEquals(previous?.Closed, null) && !ReferenceEquals(nextProps.Closed, null))
 			{
 				Element.Closed += nextProps.Closed;
 			}
-			if (!ReferenceEquals(Props?.ContentRendered, null) && ReferenceEquals(nextProps.ContentRendered, null))
+			if (!ReferenceEquals(previous?.ContentRendered, null) && ReferenceEquals(nextProps.ContentRendered, null))
 			{
 				Element.ContentRendered -= nextProps.ContentRendered;
 			}
-			if (ReferenceEquals(Props?.ContentRendered, null) && !ReferenceEquals(nextProps.ContentRendered, null))
+			if (ReferenceEquals(previous?.ContentRendered, null) && !ReferenceEquals(nextProps.ContentRendered, null))
 			{
 				Element.ContentRendered += nextProps.ContentRendered;
 			}

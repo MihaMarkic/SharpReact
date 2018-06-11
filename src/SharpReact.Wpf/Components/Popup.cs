@@ -53,19 +53,19 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.AllowsTransparency = nextProps.AllowsTransparency.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.Opened, null) && ReferenceEquals(nextProps.Opened, null))
+			if (!ReferenceEquals(previous?.Opened, null) && ReferenceEquals(nextProps.Opened, null))
 			{
 				Element.Opened -= nextProps.Opened;
 			}
-			if (ReferenceEquals(Props?.Opened, null) && !ReferenceEquals(nextProps.Opened, null))
+			if (ReferenceEquals(previous?.Opened, null) && !ReferenceEquals(nextProps.Opened, null))
 			{
 				Element.Opened += nextProps.Opened;
 			}
-			if (!ReferenceEquals(Props?.Closed, null) && ReferenceEquals(nextProps.Closed, null))
+			if (!ReferenceEquals(previous?.Closed, null) && ReferenceEquals(nextProps.Closed, null))
 			{
 				Element.Closed -= nextProps.Closed;
 			}
-			if (ReferenceEquals(Props?.Closed, null) && !ReferenceEquals(nextProps.Closed, null))
+			if (ReferenceEquals(previous?.Closed, null) && !ReferenceEquals(nextProps.Closed, null))
 			{
 				Element.Closed += nextProps.Closed;
 			}

@@ -13,11 +13,11 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.Document = nextProps.Document.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.PageViewsChanged, null) && ReferenceEquals(nextProps.PageViewsChanged, null))
+			if (!ReferenceEquals(previous?.PageViewsChanged, null) && ReferenceEquals(nextProps.PageViewsChanged, null))
 			{
 				Element.PageViewsChanged -= nextProps.PageViewsChanged;
 			}
-			if (ReferenceEquals(Props?.PageViewsChanged, null) && !ReferenceEquals(nextProps.PageViewsChanged, null))
+			if (ReferenceEquals(previous?.PageViewsChanged, null) && !ReferenceEquals(nextProps.PageViewsChanged, null))
 			{
 				Element.PageViewsChanged += nextProps.PageViewsChanged;
 			}

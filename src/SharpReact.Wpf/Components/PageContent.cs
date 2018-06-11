@@ -16,11 +16,11 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.Child = nextProps.Child.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.GetPageRootCompleted, null) && ReferenceEquals(nextProps.GetPageRootCompleted, null))
+			if (!ReferenceEquals(previous?.GetPageRootCompleted, null) && ReferenceEquals(nextProps.GetPageRootCompleted, null))
 			{
 				Element.GetPageRootCompleted -= nextProps.GetPageRootCompleted;
 			}
-			if (ReferenceEquals(Props?.GetPageRootCompleted, null) && !ReferenceEquals(nextProps.GetPageRootCompleted, null))
+			if (ReferenceEquals(previous?.GetPageRootCompleted, null) && !ReferenceEquals(nextProps.GetPageRootCompleted, null))
 			{
 				Element.GetPageRootCompleted += nextProps.GetPageRootCompleted;
 			}

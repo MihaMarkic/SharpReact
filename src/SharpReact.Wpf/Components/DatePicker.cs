@@ -49,35 +49,35 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.Text = nextProps.Text.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.CalendarClosed, null) && ReferenceEquals(nextProps.CalendarClosed, null))
+			if (!ReferenceEquals(previous?.CalendarClosed, null) && ReferenceEquals(nextProps.CalendarClosed, null))
 			{
 				Element.CalendarClosed -= nextProps.CalendarClosed;
 			}
-			if (ReferenceEquals(Props?.CalendarClosed, null) && !ReferenceEquals(nextProps.CalendarClosed, null))
+			if (ReferenceEquals(previous?.CalendarClosed, null) && !ReferenceEquals(nextProps.CalendarClosed, null))
 			{
 				Element.CalendarClosed += nextProps.CalendarClosed;
 			}
-			if (!ReferenceEquals(Props?.CalendarOpened, null) && ReferenceEquals(nextProps.CalendarOpened, null))
+			if (!ReferenceEquals(previous?.CalendarOpened, null) && ReferenceEquals(nextProps.CalendarOpened, null))
 			{
 				Element.CalendarOpened -= nextProps.CalendarOpened;
 			}
-			if (ReferenceEquals(Props?.CalendarOpened, null) && !ReferenceEquals(nextProps.CalendarOpened, null))
+			if (ReferenceEquals(previous?.CalendarOpened, null) && !ReferenceEquals(nextProps.CalendarOpened, null))
 			{
 				Element.CalendarOpened += nextProps.CalendarOpened;
 			}
-			if (!ReferenceEquals(Props?.DateValidationError, null) && ReferenceEquals(nextProps.DateValidationError, null))
+			if (!ReferenceEquals(previous?.DateValidationError, null) && ReferenceEquals(nextProps.DateValidationError, null))
 			{
 				Element.DateValidationError -= nextProps.DateValidationError;
 			}
-			if (ReferenceEquals(Props?.DateValidationError, null) && !ReferenceEquals(nextProps.DateValidationError, null))
+			if (ReferenceEquals(previous?.DateValidationError, null) && !ReferenceEquals(nextProps.DateValidationError, null))
 			{
 				Element.DateValidationError += nextProps.DateValidationError;
 			}
-			if (!ReferenceEquals(Props?.SelectedDateChanged, null) && ReferenceEquals(nextProps.SelectedDateChanged, null))
+			if (!ReferenceEquals(previous?.SelectedDateChanged, null) && ReferenceEquals(nextProps.SelectedDateChanged, null))
 			{
 				Element.SelectedDateChanged -= nextProps.SelectedDateChanged;
 			}
-			if (ReferenceEquals(Props?.SelectedDateChanged, null) && !ReferenceEquals(nextProps.SelectedDateChanged, null))
+			if (ReferenceEquals(previous?.SelectedDateChanged, null) && !ReferenceEquals(nextProps.SelectedDateChanged, null))
 			{
 				Element.SelectedDateChanged += nextProps.SelectedDateChanged;
 			}

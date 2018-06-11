@@ -113,99 +113,99 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.ContextMenu = nextProps.ContextMenu.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.TargetUpdated, null) && ReferenceEquals(nextProps.TargetUpdated, null))
+			if (!ReferenceEquals(previous?.TargetUpdated, null) && ReferenceEquals(nextProps.TargetUpdated, null))
 			{
 				Element.TargetUpdated -= nextProps.TargetUpdated;
 			}
-			if (ReferenceEquals(Props?.TargetUpdated, null) && !ReferenceEquals(nextProps.TargetUpdated, null))
+			if (ReferenceEquals(previous?.TargetUpdated, null) && !ReferenceEquals(nextProps.TargetUpdated, null))
 			{
 				Element.TargetUpdated += nextProps.TargetUpdated;
 			}
-			if (!ReferenceEquals(Props?.SourceUpdated, null) && ReferenceEquals(nextProps.SourceUpdated, null))
+			if (!ReferenceEquals(previous?.SourceUpdated, null) && ReferenceEquals(nextProps.SourceUpdated, null))
 			{
 				Element.SourceUpdated -= nextProps.SourceUpdated;
 			}
-			if (ReferenceEquals(Props?.SourceUpdated, null) && !ReferenceEquals(nextProps.SourceUpdated, null))
+			if (ReferenceEquals(previous?.SourceUpdated, null) && !ReferenceEquals(nextProps.SourceUpdated, null))
 			{
 				Element.SourceUpdated += nextProps.SourceUpdated;
 			}
-			if (!ReferenceEquals(Props?.DataContextChanged, null) && ReferenceEquals(nextProps.DataContextChanged, null))
+			if (!ReferenceEquals(previous?.DataContextChanged, null) && ReferenceEquals(nextProps.DataContextChanged, null))
 			{
 				Element.DataContextChanged -= nextProps.DataContextChanged;
 			}
-			if (ReferenceEquals(Props?.DataContextChanged, null) && !ReferenceEquals(nextProps.DataContextChanged, null))
+			if (ReferenceEquals(previous?.DataContextChanged, null) && !ReferenceEquals(nextProps.DataContextChanged, null))
 			{
 				Element.DataContextChanged += nextProps.DataContextChanged;
 			}
-			if (!ReferenceEquals(Props?.RequestBringIntoView, null) && ReferenceEquals(nextProps.RequestBringIntoView, null))
+			if (!ReferenceEquals(previous?.RequestBringIntoView, null) && ReferenceEquals(nextProps.RequestBringIntoView, null))
 			{
 				Element.RequestBringIntoView -= nextProps.RequestBringIntoView;
 			}
-			if (ReferenceEquals(Props?.RequestBringIntoView, null) && !ReferenceEquals(nextProps.RequestBringIntoView, null))
+			if (ReferenceEquals(previous?.RequestBringIntoView, null) && !ReferenceEquals(nextProps.RequestBringIntoView, null))
 			{
 				Element.RequestBringIntoView += nextProps.RequestBringIntoView;
 			}
-			if (!ReferenceEquals(Props?.SizeChanged, null) && ReferenceEquals(nextProps.SizeChanged, null))
+			if (!ReferenceEquals(previous?.SizeChanged, null) && ReferenceEquals(nextProps.SizeChanged, null))
 			{
 				Element.SizeChanged -= nextProps.SizeChanged;
 			}
-			if (ReferenceEquals(Props?.SizeChanged, null) && !ReferenceEquals(nextProps.SizeChanged, null))
+			if (ReferenceEquals(previous?.SizeChanged, null) && !ReferenceEquals(nextProps.SizeChanged, null))
 			{
 				Element.SizeChanged += nextProps.SizeChanged;
 			}
-			if (!ReferenceEquals(Props?.Initialized, null) && ReferenceEquals(nextProps.Initialized, null))
+			if (!ReferenceEquals(previous?.Initialized, null) && ReferenceEquals(nextProps.Initialized, null))
 			{
 				Element.Initialized -= nextProps.Initialized;
 			}
-			if (ReferenceEquals(Props?.Initialized, null) && !ReferenceEquals(nextProps.Initialized, null))
+			if (ReferenceEquals(previous?.Initialized, null) && !ReferenceEquals(nextProps.Initialized, null))
 			{
 				Element.Initialized += nextProps.Initialized;
 			}
-			if (!ReferenceEquals(Props?.Loaded, null) && ReferenceEquals(nextProps.Loaded, null))
+			if (!ReferenceEquals(previous?.Loaded, null) && ReferenceEquals(nextProps.Loaded, null))
 			{
 				Element.Loaded -= nextProps.Loaded;
 			}
-			if (ReferenceEquals(Props?.Loaded, null) && !ReferenceEquals(nextProps.Loaded, null))
+			if (ReferenceEquals(previous?.Loaded, null) && !ReferenceEquals(nextProps.Loaded, null))
 			{
 				Element.Loaded += nextProps.Loaded;
 			}
-			if (!ReferenceEquals(Props?.Unloaded, null) && ReferenceEquals(nextProps.Unloaded, null))
+			if (!ReferenceEquals(previous?.Unloaded, null) && ReferenceEquals(nextProps.Unloaded, null))
 			{
 				Element.Unloaded -= nextProps.Unloaded;
 			}
-			if (ReferenceEquals(Props?.Unloaded, null) && !ReferenceEquals(nextProps.Unloaded, null))
+			if (ReferenceEquals(previous?.Unloaded, null) && !ReferenceEquals(nextProps.Unloaded, null))
 			{
 				Element.Unloaded += nextProps.Unloaded;
 			}
-			if (!ReferenceEquals(Props?.ToolTipOpening, null) && ReferenceEquals(nextProps.ToolTipOpening, null))
+			if (!ReferenceEquals(previous?.ToolTipOpening, null) && ReferenceEquals(nextProps.ToolTipOpening, null))
 			{
 				Element.ToolTipOpening -= nextProps.ToolTipOpening;
 			}
-			if (ReferenceEquals(Props?.ToolTipOpening, null) && !ReferenceEquals(nextProps.ToolTipOpening, null))
+			if (ReferenceEquals(previous?.ToolTipOpening, null) && !ReferenceEquals(nextProps.ToolTipOpening, null))
 			{
 				Element.ToolTipOpening += nextProps.ToolTipOpening;
 			}
-			if (!ReferenceEquals(Props?.ToolTipClosing, null) && ReferenceEquals(nextProps.ToolTipClosing, null))
+			if (!ReferenceEquals(previous?.ToolTipClosing, null) && ReferenceEquals(nextProps.ToolTipClosing, null))
 			{
 				Element.ToolTipClosing -= nextProps.ToolTipClosing;
 			}
-			if (ReferenceEquals(Props?.ToolTipClosing, null) && !ReferenceEquals(nextProps.ToolTipClosing, null))
+			if (ReferenceEquals(previous?.ToolTipClosing, null) && !ReferenceEquals(nextProps.ToolTipClosing, null))
 			{
 				Element.ToolTipClosing += nextProps.ToolTipClosing;
 			}
-			if (!ReferenceEquals(Props?.ContextMenuOpening, null) && ReferenceEquals(nextProps.ContextMenuOpening, null))
+			if (!ReferenceEquals(previous?.ContextMenuOpening, null) && ReferenceEquals(nextProps.ContextMenuOpening, null))
 			{
 				Element.ContextMenuOpening -= nextProps.ContextMenuOpening;
 			}
-			if (ReferenceEquals(Props?.ContextMenuOpening, null) && !ReferenceEquals(nextProps.ContextMenuOpening, null))
+			if (ReferenceEquals(previous?.ContextMenuOpening, null) && !ReferenceEquals(nextProps.ContextMenuOpening, null))
 			{
 				Element.ContextMenuOpening += nextProps.ContextMenuOpening;
 			}
-			if (!ReferenceEquals(Props?.ContextMenuClosing, null) && ReferenceEquals(nextProps.ContextMenuClosing, null))
+			if (!ReferenceEquals(previous?.ContextMenuClosing, null) && ReferenceEquals(nextProps.ContextMenuClosing, null))
 			{
 				Element.ContextMenuClosing -= nextProps.ContextMenuClosing;
 			}
-			if (ReferenceEquals(Props?.ContextMenuClosing, null) && !ReferenceEquals(nextProps.ContextMenuClosing, null))
+			if (ReferenceEquals(previous?.ContextMenuClosing, null) && !ReferenceEquals(nextProps.ContextMenuClosing, null))
 			{
 				Element.ContextMenuClosing += nextProps.ContextMenuClosing;
 			}

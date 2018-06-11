@@ -57,51 +57,51 @@ namespace SharpReact.Wpf.Components
 			{
 				Element.SpeedRatio = nextProps.SpeedRatio.Value.Value;
 			}
-			if (!ReferenceEquals(Props?.MediaFailed, null) && ReferenceEquals(nextProps.MediaFailed, null))
+			if (!ReferenceEquals(previous?.MediaFailed, null) && ReferenceEquals(nextProps.MediaFailed, null))
 			{
 				Element.MediaFailed -= nextProps.MediaFailed;
 			}
-			if (ReferenceEquals(Props?.MediaFailed, null) && !ReferenceEquals(nextProps.MediaFailed, null))
+			if (ReferenceEquals(previous?.MediaFailed, null) && !ReferenceEquals(nextProps.MediaFailed, null))
 			{
 				Element.MediaFailed += nextProps.MediaFailed;
 			}
-			if (!ReferenceEquals(Props?.MediaOpened, null) && ReferenceEquals(nextProps.MediaOpened, null))
+			if (!ReferenceEquals(previous?.MediaOpened, null) && ReferenceEquals(nextProps.MediaOpened, null))
 			{
 				Element.MediaOpened -= nextProps.MediaOpened;
 			}
-			if (ReferenceEquals(Props?.MediaOpened, null) && !ReferenceEquals(nextProps.MediaOpened, null))
+			if (ReferenceEquals(previous?.MediaOpened, null) && !ReferenceEquals(nextProps.MediaOpened, null))
 			{
 				Element.MediaOpened += nextProps.MediaOpened;
 			}
-			if (!ReferenceEquals(Props?.BufferingStarted, null) && ReferenceEquals(nextProps.BufferingStarted, null))
+			if (!ReferenceEquals(previous?.BufferingStarted, null) && ReferenceEquals(nextProps.BufferingStarted, null))
 			{
 				Element.BufferingStarted -= nextProps.BufferingStarted;
 			}
-			if (ReferenceEquals(Props?.BufferingStarted, null) && !ReferenceEquals(nextProps.BufferingStarted, null))
+			if (ReferenceEquals(previous?.BufferingStarted, null) && !ReferenceEquals(nextProps.BufferingStarted, null))
 			{
 				Element.BufferingStarted += nextProps.BufferingStarted;
 			}
-			if (!ReferenceEquals(Props?.BufferingEnded, null) && ReferenceEquals(nextProps.BufferingEnded, null))
+			if (!ReferenceEquals(previous?.BufferingEnded, null) && ReferenceEquals(nextProps.BufferingEnded, null))
 			{
 				Element.BufferingEnded -= nextProps.BufferingEnded;
 			}
-			if (ReferenceEquals(Props?.BufferingEnded, null) && !ReferenceEquals(nextProps.BufferingEnded, null))
+			if (ReferenceEquals(previous?.BufferingEnded, null) && !ReferenceEquals(nextProps.BufferingEnded, null))
 			{
 				Element.BufferingEnded += nextProps.BufferingEnded;
 			}
-			if (!ReferenceEquals(Props?.ScriptCommand, null) && ReferenceEquals(nextProps.ScriptCommand, null))
+			if (!ReferenceEquals(previous?.ScriptCommand, null) && ReferenceEquals(nextProps.ScriptCommand, null))
 			{
 				Element.ScriptCommand -= nextProps.ScriptCommand;
 			}
-			if (ReferenceEquals(Props?.ScriptCommand, null) && !ReferenceEquals(nextProps.ScriptCommand, null))
+			if (ReferenceEquals(previous?.ScriptCommand, null) && !ReferenceEquals(nextProps.ScriptCommand, null))
 			{
 				Element.ScriptCommand += nextProps.ScriptCommand;
 			}
-			if (!ReferenceEquals(Props?.MediaEnded, null) && ReferenceEquals(nextProps.MediaEnded, null))
+			if (!ReferenceEquals(previous?.MediaEnded, null) && ReferenceEquals(nextProps.MediaEnded, null))
 			{
 				Element.MediaEnded -= nextProps.MediaEnded;
 			}
-			if (ReferenceEquals(Props?.MediaEnded, null) && !ReferenceEquals(nextProps.MediaEnded, null))
+			if (ReferenceEquals(previous?.MediaEnded, null) && !ReferenceEquals(nextProps.MediaEnded, null))
 			{
 				Element.MediaEnded += nextProps.MediaEnded;
 			}
