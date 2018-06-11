@@ -7,11 +7,11 @@
         public override void AssignProperties(ISharpCreator<Elements.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
             base.AssignProperties(renderer, level, newState, previous, nextProps);
-            if (!ReferenceEquals(Props?.Click, null) && ReferenceEquals(nextProps.Click, null))
+            if (!ReferenceEquals(previous?.Click, null) && ReferenceEquals(nextProps.Click, null))
             {
                 Element.Click -= Props.Click;
             }
-            if (ReferenceEquals(Props?.Click, null) && !ReferenceEquals(nextProps.Click, null))
+            if (ReferenceEquals(previous?.Click, null) && !ReferenceEquals(nextProps.Click, null))
             {
                 Element.Click += nextProps.Click;
             }
