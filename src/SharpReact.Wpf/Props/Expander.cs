@@ -6,8 +6,8 @@ namespace SharpReact.Wpf.Props
 {
 	public class Expander: HeaderedContentControl
 	{
-		public ReactParam<System.Windows.Controls.ExpandDirection>? ExpandDirection { get; set; }
-		public ReactParam<System.Boolean>? IsExpanded { get; set; }
+		public ReactParam<global::System.Windows.Controls.ExpandDirection>? ExpandDirection { get; set; }
+		public ReactParam<global::System.Boolean>? IsExpanded { get; set; }
 		public System.Windows.RoutedEventHandler Expanded { get; set; }
 		public System.Windows.RoutedEventHandler Collapsed { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()

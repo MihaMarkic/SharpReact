@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public class RadioButton: ToggleButton
 	{
-		public ReactParam<System.String>? GroupName { get; set; }
+		public ReactParam<global::System.String>? GroupName { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.RadioButton<RadioButton, System.Windows.Controls.RadioButton>();

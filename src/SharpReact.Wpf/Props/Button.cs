@@ -6,8 +6,8 @@ namespace SharpReact.Wpf.Props
 {
 	public class Button: ButtonBase
 	{
-		public ReactParam<System.Boolean>? IsDefault { get; set; }
-		public ReactParam<System.Boolean>? IsCancel { get; set; }
+		public ReactParam<global::System.Boolean>? IsDefault { get; set; }
+		public ReactParam<global::System.Boolean>? IsCancel { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.Button<Button, System.Windows.Controls.Button>();

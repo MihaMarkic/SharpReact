@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public abstract class DocumentViewerBase: Control
 	{
-		public ReactParam<System.Windows.Documents.IDocumentPaginatorSource>? Document { get; set; }
+		public ReactParam<global::System.Windows.Documents.IDocumentPaginatorSource>? Document { get; set; }
 		public System.EventHandler PageViewsChanged { get; set; }
 	}
 }

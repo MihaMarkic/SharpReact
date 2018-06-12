@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public class ListView: ListBox
 	{
-		public ReactParam<System.Windows.Controls.ViewBase>? View { get; set; }
+		public ReactParam<global::System.Windows.Controls.ViewBase>? View { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.ListView<ListView, System.Windows.Controls.ListView>();

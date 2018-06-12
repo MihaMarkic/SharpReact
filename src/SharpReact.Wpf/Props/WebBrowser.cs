@@ -6,8 +6,8 @@ namespace SharpReact.Wpf.Props
 {
 	public class WebBrowser: ActiveXHost
 	{
-		public ReactParam<System.Uri>? Source { get; set; }
-		public ReactParam<System.Object>? ObjectForScripting { get; set; }
+		public ReactParam<global::System.Uri>? Source { get; set; }
+		public ReactParam<global::System.Object>? ObjectForScripting { get; set; }
 		public System.Windows.Navigation.NavigatingCancelEventHandler Navigating { get; set; }
 		public System.Windows.Navigation.NavigatedEventHandler Navigated { get; set; }
 		public System.Windows.Navigation.LoadCompletedEventHandler LoadCompleted { get; set; }

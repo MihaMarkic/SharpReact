@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public class AdornedElementPlaceholder: FrameworkElement
 	{
-		public ReactParam<System.Windows.UIElement>? Child { get; set; }
+		public ReactParam<global::System.Windows.UIElement>? Child { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.AdornedElementPlaceholder<AdornedElementPlaceholder, System.Windows.Controls.AdornedElementPlaceholder>();

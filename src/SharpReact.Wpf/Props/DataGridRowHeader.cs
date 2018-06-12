@@ -6,8 +6,8 @@ namespace SharpReact.Wpf.Props
 {
 	public class DataGridRowHeader: ButtonBase
 	{
-		public ReactParam<System.Windows.Media.Brush>? SeparatorBrush { get; set; }
-		public ReactParam<System.Windows.Visibility>? SeparatorVisibility { get; set; }
+		public ReactParam<global::System.Windows.Media.Brush>? SeparatorBrush { get; set; }
+		public ReactParam<global::System.Windows.Visibility>? SeparatorVisibility { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.DataGridRowHeader<DataGridRowHeader, System.Windows.Controls.Primitives.DataGridRowHeader>();

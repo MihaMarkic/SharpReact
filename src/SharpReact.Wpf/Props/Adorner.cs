@@ -6,6 +6,6 @@ namespace SharpReact.Wpf.Props
 {
 	public abstract class Adorner: FrameworkElement
 	{
-		public ReactParam<System.Boolean>? IsClipEnabled { get; set; }
+		public ReactParam<global::System.Boolean>? IsClipEnabled { get; set; }
 	}
 }

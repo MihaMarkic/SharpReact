@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public abstract class MenuBase: ItemsControl
 	{
-		public ReactParam<System.Windows.Controls.ItemContainerTemplateSelector>? ItemContainerTemplateSelector { get; set; }
-		public ReactParam<System.Boolean>? UsesItemContainerTemplate { get; set; }
+		public ReactParam<global::System.Windows.Controls.ItemContainerTemplateSelector>? ItemContainerTemplateSelector { get; set; }
+		public ReactParam<global::System.Boolean>? UsesItemContainerTemplate { get; set; }
 	}
 }

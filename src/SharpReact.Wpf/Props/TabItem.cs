@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public class TabItem: HeaderedContentControl
 	{
-		public ReactParam<System.Boolean>? IsSelected { get; set; }
+		public ReactParam<global::System.Boolean>? IsSelected { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.TabItem<TabItem, System.Windows.Controls.TabItem>();

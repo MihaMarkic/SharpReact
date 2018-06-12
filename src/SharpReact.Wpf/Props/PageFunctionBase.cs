@@ -6,6 +6,6 @@ namespace SharpReact.Wpf.Props
 {
 	public abstract class PageFunctionBase: Page
 	{
-		public ReactParam<System.Boolean>? RemoveFromJournal { get; set; }
+		public ReactParam<global::System.Boolean>? RemoveFromJournal { get; set; }
 	}
 }

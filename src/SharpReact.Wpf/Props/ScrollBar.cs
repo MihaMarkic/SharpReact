@@ -6,8 +6,8 @@ namespace SharpReact.Wpf.Props
 {
 	public class ScrollBar: RangeBase
 	{
-		public ReactParam<System.Windows.Controls.Orientation>? Orientation { get; set; }
-		public ReactParam<System.Double>? ViewportSize { get; set; }
+		public ReactParam<global::System.Windows.Controls.Orientation>? Orientation { get; set; }
+		public ReactParam<global::System.Double>? ViewportSize { get; set; }
 		public System.Windows.Controls.Primitives.ScrollEventHandler Scroll { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{

@@ -6,8 +6,8 @@ namespace SharpReact.Wpf.Props
 {
 	public class ToggleButton: ButtonBase
 	{
-		public ReactParam<System.Nullable<System.Boolean>>? IsChecked { get; set; }
-		public ReactParam<System.Boolean>? IsThreeState { get; set; }
+		public ReactParam<global::System.Nullable<System.Boolean>>? IsChecked { get; set; }
+		public ReactParam<global::System.Boolean>? IsThreeState { get; set; }
 		public System.Windows.RoutedEventHandler Checked { get; set; }
 		public System.Windows.RoutedEventHandler Unchecked { get; set; }
 		public System.Windows.RoutedEventHandler Indeterminate { get; set; }

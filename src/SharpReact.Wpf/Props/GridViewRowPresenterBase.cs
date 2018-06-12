@@ -6,6 +6,6 @@ namespace SharpReact.Wpf.Props
 {
 	public abstract class GridViewRowPresenterBase: FrameworkElement
 	{
-		public ReactParam<System.Windows.Controls.GridViewColumnCollection>? Columns { get; set; }
+		public ReactParam<global::System.Windows.Controls.GridViewColumnCollection>? Columns { get; set; }
 	}
 }

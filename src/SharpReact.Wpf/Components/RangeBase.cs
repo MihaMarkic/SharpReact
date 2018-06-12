@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public abstract class RangeBase<TProps, TElement>: Control<TProps, TElement>
 		where TProps : Props.RangeBase
-		where TElement : System.Windows.Controls.Primitives.RangeBase, new()
+		where TElement : global::System.Windows.Controls.Primitives.RangeBase, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Minimum.HasValue)

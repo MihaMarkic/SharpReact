@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class ListBoxItem<TProps, TElement>: ContentControl<TProps, TElement>
 		where TProps : Props.ListBoxItem
-		where TElement : System.Windows.Controls.ListBoxItem, new()
+		where TElement : global::System.Windows.Controls.ListBoxItem, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.IsSelected.HasValue)

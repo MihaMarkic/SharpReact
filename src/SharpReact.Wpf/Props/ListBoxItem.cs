@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public class ListBoxItem: ContentControl
 	{
-		public ReactParam<System.Boolean>? IsSelected { get; set; }
+		public ReactParam<global::System.Boolean>? IsSelected { get; set; }
 		public System.Windows.RoutedEventHandler Selected { get; set; }
 		public System.Windows.RoutedEventHandler Unselected { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()

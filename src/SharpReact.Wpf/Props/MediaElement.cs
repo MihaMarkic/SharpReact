@@ -6,23 +6,23 @@ namespace SharpReact.Wpf.Props
 {
 	public class MediaElement: FrameworkElement
 	{
-		public ReactParam<System.Uri>? Source { get; set; }
-		public ReactParam<System.Windows.Media.MediaClock>? Clock { get; set; }
-		public ReactParam<System.Windows.Media.Stretch>? Stretch { get; set; }
-		public ReactParam<System.Windows.Controls.StretchDirection>? StretchDirection { get; set; }
-		public ReactParam<System.Double>? Volume { get; set; }
-		public ReactParam<System.Double>? Balance { get; set; }
-		public ReactParam<System.Boolean>? IsMuted { get; set; }
-		public ReactParam<System.Boolean>? ScrubbingEnabled { get; set; }
-		public ReactParam<System.Windows.Controls.MediaState>? UnloadedBehavior { get; set; }
-		public ReactParam<System.Windows.Controls.MediaState>? LoadedBehavior { get; set; }
-		public ReactParam<System.TimeSpan>? Position { get; set; }
-		public ReactParam<System.Double>? SpeedRatio { get; set; }
-		public System.EventHandler<System.Windows.ExceptionRoutedEventArgs> MediaFailed { get; set; }
+		public ReactParam<global::System.Uri>? Source { get; set; }
+		public ReactParam<global::System.Windows.Media.MediaClock>? Clock { get; set; }
+		public ReactParam<global::System.Windows.Media.Stretch>? Stretch { get; set; }
+		public ReactParam<global::System.Windows.Controls.StretchDirection>? StretchDirection { get; set; }
+		public ReactParam<global::System.Double>? Volume { get; set; }
+		public ReactParam<global::System.Double>? Balance { get; set; }
+		public ReactParam<global::System.Boolean>? IsMuted { get; set; }
+		public ReactParam<global::System.Boolean>? ScrubbingEnabled { get; set; }
+		public ReactParam<global::System.Windows.Controls.MediaState>? UnloadedBehavior { get; set; }
+		public ReactParam<global::System.Windows.Controls.MediaState>? LoadedBehavior { get; set; }
+		public ReactParam<global::System.TimeSpan>? Position { get; set; }
+		public ReactParam<global::System.Double>? SpeedRatio { get; set; }
+		public System.EventHandler<global::System.Windows.ExceptionRoutedEventArgs> MediaFailed { get; set; }
 		public System.Windows.RoutedEventHandler MediaOpened { get; set; }
 		public System.Windows.RoutedEventHandler BufferingStarted { get; set; }
 		public System.Windows.RoutedEventHandler BufferingEnded { get; set; }
-		public System.EventHandler<System.Windows.MediaScriptCommandRoutedEventArgs> ScriptCommand { get; set; }
+		public System.EventHandler<global::System.Windows.MediaScriptCommandRoutedEventArgs> ScriptCommand { get; set; }
 		public System.Windows.RoutedEventHandler MediaEnded { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{

@@ -6,9 +6,9 @@ namespace SharpReact.Wpf.Props
 {
 	public abstract class Panel: FrameworkElement
 	{
-		public ReactParam<System.Windows.Media.Brush>? Background { get; set; }
+		public ReactParam<global::System.Windows.Media.Brush>? Background { get; set; }
 		public List<ISharpProp> Children { get; set; } = new List<ISharpProp>();
-		public ReactParam<System.Boolean>? IsItemsHost { get; set; }
+		public ReactParam<global::System.Boolean>? IsItemsHost { get; set; }
 		protected override void UnmountComponent()
 		{
 			UnmountComponents(Children);

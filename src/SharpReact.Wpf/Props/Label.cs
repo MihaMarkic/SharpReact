@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public class Label: ContentControl
 	{
-		public ReactParam<System.Windows.UIElement>? Target { get; set; }
+		public ReactParam<global::System.Windows.UIElement>? Target { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.Label<Label, System.Windows.Controls.Label>();

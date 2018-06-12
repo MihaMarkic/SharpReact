@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class Expander<TProps, TElement>: HeaderedContentControl<TProps, TElement>
 		where TProps : Props.Expander
-		where TElement : System.Windows.Controls.Expander, new()
+		where TElement : global::System.Windows.Controls.Expander, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.ExpandDirection.HasValue)

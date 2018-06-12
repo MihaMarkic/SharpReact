@@ -6,18 +6,18 @@ namespace SharpReact.Wpf.Props
 {
 	public class InkCanvas: FrameworkElement
 	{
-		public ReactParam<System.Windows.Media.Brush>? Background { get; set; }
-		public ReactParam<System.Windows.Ink.StrokeCollection>? Strokes { get; set; }
+		public ReactParam<global::System.Windows.Media.Brush>? Background { get; set; }
+		public ReactParam<global::System.Windows.Ink.StrokeCollection>? Strokes { get; set; }
 		public List<ISharpProp> Children { get; set; } = new List<ISharpProp>();
-		public ReactParam<System.Windows.Ink.DrawingAttributes>? DefaultDrawingAttributes { get; set; }
-		public ReactParam<System.Windows.Ink.StylusShape>? EraserShape { get; set; }
-		public ReactParam<System.Windows.Controls.InkCanvasEditingMode>? EditingMode { get; set; }
-		public ReactParam<System.Windows.Controls.InkCanvasEditingMode>? EditingModeInverted { get; set; }
-		public ReactParam<System.Boolean>? UseCustomCursor { get; set; }
-		public ReactParam<System.Boolean>? MoveEnabled { get; set; }
-		public ReactParam<System.Boolean>? ResizeEnabled { get; set; }
-		public ReactParam<System.Windows.Input.StylusPointDescription>? DefaultStylusPointDescription { get; set; }
-		public ReactParam<System.Collections.Generic.IEnumerable<System.Windows.Controls.InkCanvasClipboardFormat>>? PreferredPasteFormats { get; set; }
+		public ReactParam<global::System.Windows.Ink.DrawingAttributes>? DefaultDrawingAttributes { get; set; }
+		public ReactParam<global::System.Windows.Ink.StylusShape>? EraserShape { get; set; }
+		public ReactParam<global::System.Windows.Controls.InkCanvasEditingMode>? EditingMode { get; set; }
+		public ReactParam<global::System.Windows.Controls.InkCanvasEditingMode>? EditingModeInverted { get; set; }
+		public ReactParam<global::System.Boolean>? UseCustomCursor { get; set; }
+		public ReactParam<global::System.Boolean>? MoveEnabled { get; set; }
+		public ReactParam<global::System.Boolean>? ResizeEnabled { get; set; }
+		public ReactParam<global::System.Windows.Input.StylusPointDescription>? DefaultStylusPointDescription { get; set; }
+		public ReactParam<global::System.Collections.Generic.IEnumerable<System.Windows.Controls.InkCanvasClipboardFormat>>? PreferredPasteFormats { get; set; }
 		public System.Windows.Controls.InkCanvasStrokeCollectedEventHandler StrokeCollected { get; set; }
 		public System.Windows.Controls.InkCanvasGestureEventHandler Gesture { get; set; }
 		public System.Windows.Controls.InkCanvasStrokesReplacedEventHandler StrokesReplaced { get; set; }

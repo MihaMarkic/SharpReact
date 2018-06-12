@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class ToolBarTray<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.ToolBarTray
-		where TElement : System.Windows.Controls.ToolBarTray, new()
+		where TElement : global::System.Windows.Controls.ToolBarTray, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Background.HasValue)

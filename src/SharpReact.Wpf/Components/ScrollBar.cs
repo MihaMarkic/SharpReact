@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class ScrollBar<TProps, TElement>: RangeBase<TProps, TElement>
 		where TProps : Props.ScrollBar
-		where TElement : System.Windows.Controls.Primitives.ScrollBar, new()
+		where TElement : global::System.Windows.Controls.Primitives.ScrollBar, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Orientation.HasValue)

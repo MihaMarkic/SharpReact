@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public abstract class Shape<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.Shape
-		where TElement : System.Windows.Shapes.Shape, new()
+		where TElement : global::System.Windows.Shapes.Shape, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Stretch.HasValue)

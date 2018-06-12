@@ -2,10 +2,10 @@ using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
-	public  class PasswordBox<TProps>: Control<TProps, System.Windows.Controls.PasswordBox>
+	public  class PasswordBox<TProps>: Control<TProps, global::System.Windows.Controls.PasswordBox>
 		where TProps : Props.PasswordBox
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Password.HasValue)

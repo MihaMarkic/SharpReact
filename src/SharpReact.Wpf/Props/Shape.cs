@@ -6,16 +6,16 @@ namespace SharpReact.Wpf.Props
 {
 	public abstract class Shape: FrameworkElement
 	{
-		public ReactParam<System.Windows.Media.Stretch>? Stretch { get; set; }
-		public ReactParam<System.Windows.Media.Brush>? Fill { get; set; }
-		public ReactParam<System.Windows.Media.Brush>? Stroke { get; set; }
-		public ReactParam<System.Double>? StrokeThickness { get; set; }
-		public ReactParam<System.Windows.Media.PenLineCap>? StrokeStartLineCap { get; set; }
-		public ReactParam<System.Windows.Media.PenLineCap>? StrokeEndLineCap { get; set; }
-		public ReactParam<System.Windows.Media.PenLineCap>? StrokeDashCap { get; set; }
-		public ReactParam<System.Windows.Media.PenLineJoin>? StrokeLineJoin { get; set; }
-		public ReactParam<System.Double>? StrokeMiterLimit { get; set; }
-		public ReactParam<System.Double>? StrokeDashOffset { get; set; }
-		public ReactParam<System.Windows.Media.DoubleCollection>? StrokeDashArray { get; set; }
+		public ReactParam<global::System.Windows.Media.Stretch>? Stretch { get; set; }
+		public ReactParam<global::System.Windows.Media.Brush>? Fill { get; set; }
+		public ReactParam<global::System.Windows.Media.Brush>? Stroke { get; set; }
+		public ReactParam<global::System.Double>? StrokeThickness { get; set; }
+		public ReactParam<global::System.Windows.Media.PenLineCap>? StrokeStartLineCap { get; set; }
+		public ReactParam<global::System.Windows.Media.PenLineCap>? StrokeEndLineCap { get; set; }
+		public ReactParam<global::System.Windows.Media.PenLineCap>? StrokeDashCap { get; set; }
+		public ReactParam<global::System.Windows.Media.PenLineJoin>? StrokeLineJoin { get; set; }
+		public ReactParam<global::System.Double>? StrokeMiterLimit { get; set; }
+		public ReactParam<global::System.Double>? StrokeDashOffset { get; set; }
+		public ReactParam<global::System.Windows.Media.DoubleCollection>? StrokeDashArray { get; set; }
 	}
 }

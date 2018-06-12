@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class ListView<TProps, TElement>: ListBox<TProps, TElement>
 		where TProps : Props.ListView
-		where TElement : System.Windows.Controls.ListView, new()
+		where TElement : global::System.Windows.Controls.ListView, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.View.HasValue)

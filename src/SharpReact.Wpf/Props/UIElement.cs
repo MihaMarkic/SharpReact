@@ -6,23 +6,23 @@ namespace SharpReact.Wpf.Props
 {
 	public class UIElement: Core.Properties.SharpNativeProp
 	{
-		public ReactParam<System.Boolean>? AllowDrop { get; set; }
-		public ReactParam<System.Windows.Size>? RenderSize { get; set; }
-		public ReactParam<System.Windows.Media.Transform>? RenderTransform { get; set; }
-		public ReactParam<System.Windows.Point>? RenderTransformOrigin { get; set; }
-		public ReactParam<System.Double>? Opacity { get; set; }
-		public ReactParam<System.Windows.Media.Brush>? OpacityMask { get; set; }
-		public ReactParam<System.Windows.Media.Effects.Effect>? Effect { get; set; }
-		public ReactParam<System.Windows.Media.CacheMode>? CacheMode { get; set; }
-		public ReactParam<System.String>? Uid { get; set; }
-		public ReactParam<System.Windows.Visibility>? Visibility { get; set; }
-		public ReactParam<System.Boolean>? ClipToBounds { get; set; }
-		public ReactParam<System.Windows.Media.Geometry>? Clip { get; set; }
-		public ReactParam<System.Boolean>? SnapsToDevicePixels { get; set; }
-		public ReactParam<System.Boolean>? IsEnabled { get; set; }
-		public ReactParam<System.Boolean>? IsHitTestVisible { get; set; }
-		public ReactParam<System.Boolean>? Focusable { get; set; }
-		public ReactParam<System.Boolean>? IsManipulationEnabled { get; set; }
+		public ReactParam<global::System.Boolean>? AllowDrop { get; set; }
+		public ReactParam<global::System.Windows.Size>? RenderSize { get; set; }
+		public ReactParam<global::System.Windows.Media.Transform>? RenderTransform { get; set; }
+		public ReactParam<global::System.Windows.Point>? RenderTransformOrigin { get; set; }
+		public ReactParam<global::System.Double>? Opacity { get; set; }
+		public ReactParam<global::System.Windows.Media.Brush>? OpacityMask { get; set; }
+		public ReactParam<global::System.Windows.Media.Effects.Effect>? Effect { get; set; }
+		public ReactParam<global::System.Windows.Media.CacheMode>? CacheMode { get; set; }
+		public ReactParam<global::System.String>? Uid { get; set; }
+		public ReactParam<global::System.Windows.Visibility>? Visibility { get; set; }
+		public ReactParam<global::System.Boolean>? ClipToBounds { get; set; }
+		public ReactParam<global::System.Windows.Media.Geometry>? Clip { get; set; }
+		public ReactParam<global::System.Boolean>? SnapsToDevicePixels { get; set; }
+		public ReactParam<global::System.Boolean>? IsEnabled { get; set; }
+		public ReactParam<global::System.Boolean>? IsHitTestVisible { get; set; }
+		public ReactParam<global::System.Boolean>? Focusable { get; set; }
+		public ReactParam<global::System.Boolean>? IsManipulationEnabled { get; set; }
 		public System.Windows.Input.MouseButtonEventHandler PreviewMouseDown { get; set; }
 		public System.Windows.Input.MouseButtonEventHandler MouseDown { get; set; }
 		public System.Windows.Input.MouseButtonEventHandler PreviewMouseUp { get; set; }
@@ -88,16 +88,16 @@ namespace SharpReact.Wpf.Props
 		public System.Windows.DragEventHandler DragLeave { get; set; }
 		public System.Windows.DragEventHandler PreviewDrop { get; set; }
 		public System.Windows.DragEventHandler Drop { get; set; }
-		public System.EventHandler<System.Windows.Input.TouchEventArgs> PreviewTouchDown { get; set; }
-		public System.EventHandler<System.Windows.Input.TouchEventArgs> TouchDown { get; set; }
-		public System.EventHandler<System.Windows.Input.TouchEventArgs> PreviewTouchMove { get; set; }
-		public System.EventHandler<System.Windows.Input.TouchEventArgs> TouchMove { get; set; }
-		public System.EventHandler<System.Windows.Input.TouchEventArgs> PreviewTouchUp { get; set; }
-		public System.EventHandler<System.Windows.Input.TouchEventArgs> TouchUp { get; set; }
-		public System.EventHandler<System.Windows.Input.TouchEventArgs> GotTouchCapture { get; set; }
-		public System.EventHandler<System.Windows.Input.TouchEventArgs> LostTouchCapture { get; set; }
-		public System.EventHandler<System.Windows.Input.TouchEventArgs> TouchEnter { get; set; }
-		public System.EventHandler<System.Windows.Input.TouchEventArgs> TouchLeave { get; set; }
+		public System.EventHandler<global::System.Windows.Input.TouchEventArgs> PreviewTouchDown { get; set; }
+		public System.EventHandler<global::System.Windows.Input.TouchEventArgs> TouchDown { get; set; }
+		public System.EventHandler<global::System.Windows.Input.TouchEventArgs> PreviewTouchMove { get; set; }
+		public System.EventHandler<global::System.Windows.Input.TouchEventArgs> TouchMove { get; set; }
+		public System.EventHandler<global::System.Windows.Input.TouchEventArgs> PreviewTouchUp { get; set; }
+		public System.EventHandler<global::System.Windows.Input.TouchEventArgs> TouchUp { get; set; }
+		public System.EventHandler<global::System.Windows.Input.TouchEventArgs> GotTouchCapture { get; set; }
+		public System.EventHandler<global::System.Windows.Input.TouchEventArgs> LostTouchCapture { get; set; }
+		public System.EventHandler<global::System.Windows.Input.TouchEventArgs> TouchEnter { get; set; }
+		public System.EventHandler<global::System.Windows.Input.TouchEventArgs> TouchLeave { get; set; }
 		public System.Windows.DependencyPropertyChangedEventHandler IsMouseDirectlyOverChanged { get; set; }
 		public System.Windows.DependencyPropertyChangedEventHandler IsKeyboardFocusWithinChanged { get; set; }
 		public System.Windows.DependencyPropertyChangedEventHandler IsMouseCapturedChanged { get; set; }
@@ -113,12 +113,12 @@ namespace SharpReact.Wpf.Props
 		public System.Windows.DependencyPropertyChangedEventHandler IsHitTestVisibleChanged { get; set; }
 		public System.Windows.DependencyPropertyChangedEventHandler IsVisibleChanged { get; set; }
 		public System.Windows.DependencyPropertyChangedEventHandler FocusableChanged { get; set; }
-		public System.EventHandler<System.Windows.Input.ManipulationStartingEventArgs> ManipulationStarting { get; set; }
-		public System.EventHandler<System.Windows.Input.ManipulationStartedEventArgs> ManipulationStarted { get; set; }
-		public System.EventHandler<System.Windows.Input.ManipulationDeltaEventArgs> ManipulationDelta { get; set; }
-		public System.EventHandler<System.Windows.Input.ManipulationInertiaStartingEventArgs> ManipulationInertiaStarting { get; set; }
-		public System.EventHandler<System.Windows.Input.ManipulationBoundaryFeedbackEventArgs> ManipulationBoundaryFeedback { get; set; }
-		public System.EventHandler<System.Windows.Input.ManipulationCompletedEventArgs> ManipulationCompleted { get; set; }
+		public System.EventHandler<global::System.Windows.Input.ManipulationStartingEventArgs> ManipulationStarting { get; set; }
+		public System.EventHandler<global::System.Windows.Input.ManipulationStartedEventArgs> ManipulationStarted { get; set; }
+		public System.EventHandler<global::System.Windows.Input.ManipulationDeltaEventArgs> ManipulationDelta { get; set; }
+		public System.EventHandler<global::System.Windows.Input.ManipulationInertiaStartingEventArgs> ManipulationInertiaStarting { get; set; }
+		public System.EventHandler<global::System.Windows.Input.ManipulationBoundaryFeedbackEventArgs> ManipulationBoundaryFeedback { get; set; }
+		public System.EventHandler<global::System.Windows.Input.ManipulationCompletedEventArgs> ManipulationCompleted { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.UIElement<UIElement, System.Windows.UIElement>();

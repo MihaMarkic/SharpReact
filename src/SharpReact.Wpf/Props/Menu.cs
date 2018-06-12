@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public class Menu: MenuBase
 	{
-		public ReactParam<System.Boolean>? IsMainMenu { get; set; }
+		public ReactParam<global::System.Boolean>? IsMainMenu { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.Menu<Menu, System.Windows.Controls.Menu>();

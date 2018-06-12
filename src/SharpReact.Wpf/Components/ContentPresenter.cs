@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class ContentPresenter<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.ContentPresenter
-		where TElement : System.Windows.Controls.ContentPresenter, new()
+		where TElement : global::System.Windows.Controls.ContentPresenter, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.RecognizesAccessKey.HasValue)

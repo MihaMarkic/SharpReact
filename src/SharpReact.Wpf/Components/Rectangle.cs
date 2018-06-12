@@ -2,10 +2,10 @@ using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
-	public  class Rectangle<TProps>: Shape<TProps, System.Windows.Shapes.Rectangle>
+	public  class Rectangle<TProps>: Shape<TProps, global::System.Windows.Shapes.Rectangle>
 		where TProps : Props.Rectangle
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.RadiusX.HasValue)

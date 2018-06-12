@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public class DockPanel: Panel
 	{
-		public ReactParam<System.Boolean>? LastChildFill { get; set; }
+		public ReactParam<global::System.Boolean>? LastChildFill { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.DockPanel<DockPanel, System.Windows.Controls.DockPanel>();

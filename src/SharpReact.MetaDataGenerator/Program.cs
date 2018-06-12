@@ -21,8 +21,11 @@ namespace SharpReact.MetaDataGenerator
                 WriteLine($"Can't find config file {configFile}");
                 return -1;
             }
-            AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += CurrentDomain_ReflectionOnlyAssemblyResolve;
             var config = ReadSettings(configFile);
+            if (config.UseCustomAssemblyResolver)
+            {
+                AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += CurrentDomain_ReflectionOnlyAssemblyResolve;
+            }
             WriteLine($"Config file read, processing {config.Assemblies?.Count} assemblies");
             try
             {
@@ -94,7 +97,7 @@ namespace SharpReact.MetaDataGenerator
         {
             var ignoredTypes = new HashSet<string>(settings.IgnoredTypes ?? new string[0]);
             string assemblyPath = GetAssemblyPath(config.RootAssemblyPath, settings.Path);
-            var assembly = LoadAssembly(assemblyPath);
+            var assembly = LoadAssembly(assemblyPath, !config.UseCustomAssemblyResolver);
             var types = from t in assembly.GetTypes()
                         where t.IsPublic && t.IsSubclassOf(rootType) && !ignoredTypes.Contains(t.FullName)
                         select t;
@@ -322,7 +325,7 @@ namespace SharpReact.MetaDataGenerator
             string name;
             if (type.IsGenericType)
             {
-                name = $"{GetPureName(type.Name)}<global::{string.Join(",", type.GenericTypeArguments.Select(a => GetGenericEventTypeParameter(a)))}>";
+                name = $"{GetPureName(type.Name)}<{string.Join(",", type.GenericTypeArguments.Select(a => GetGenericEventTypeParameter(a)))}>";
             }
             else
             {
@@ -333,6 +336,10 @@ namespace SharpReact.MetaDataGenerator
         static string GetGenericEventTypeParameter(Type argument)
         {
             string name;
+            if (argument.IsGenericParameter)
+            {
+                return argument.Name;
+            }
             if (argument.IsNested)
             {
                 name = $"{argument.DeclaringType.Name}.{argument.Name}";
@@ -341,11 +348,7 @@ namespace SharpReact.MetaDataGenerator
             {
                 name = argument.Name;
             }
-            if (argument.IsGenericParameter)
-            {
-                return name;
-            }
-            return $"{argument.Namespace}.{name}";
+            return $"global::{argument.Namespace}.{name}";
         }
         static string GetPureName(string genericName)
         {
@@ -471,7 +474,7 @@ namespace SharpReact.MetaDataGenerator
         {
             RootTypeSettings rootTypeSettings = config.RootType;
             string assemblyPath = GetAssemblyPath(config.RootAssemblyPath, rootTypeSettings.AssemblyPath);
-            var assembly = LoadAssembly(assemblyPath);
+            var assembly = LoadAssembly(assemblyPath, !config.UseCustomAssemblyResolver);
             return assembly.GetType(rootTypeSettings.Name);
         }
 
@@ -480,13 +483,16 @@ namespace SharpReact.MetaDataGenerator
             return Path.Combine(root, $"{assemblyName}.dll"); ;
         }
 
-        static Assembly LoadAssembly(string path)
+        static Assembly LoadAssembly(string path, bool loadReferenced)
         {
             var assembly = Assembly.ReflectionOnlyLoadFrom(path);
-            //foreach (var assemblyName in assembly.GetReferencedAssemblies())
-            //{
-            //    Assembly.ReflectionOnlyLoad(assemblyName.FullName);
-            //}
+            if (loadReferenced)
+            {
+                foreach (var assemblyName in assembly.GetReferencedAssemblies())
+                {
+                    Assembly.ReflectionOnlyLoad(assemblyName.FullName);
+                }
+            }
             return assembly;
         }
 

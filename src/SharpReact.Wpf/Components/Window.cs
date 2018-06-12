@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class Window<TProps, TElement>: ContentControl<TProps, TElement>
 		where TProps : Props.Window
-		where TElement : System.Windows.Window, new()
+		where TElement : global::System.Windows.Window, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.TaskbarItemInfo.HasValue)

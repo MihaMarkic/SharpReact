@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class Track<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.Track
-		where TElement : System.Windows.Controls.Primitives.Track, new()
+		where TElement : global::System.Windows.Controls.Primitives.Track, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.DecreaseRepeatButton.HasValue)

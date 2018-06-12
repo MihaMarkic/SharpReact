@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class Page<TProps, TElement>: FrameworkElement<TProps, TElement>
 		where TProps : Props.Page
-		where TElement : System.Windows.Controls.Page, new()
+		where TElement : global::System.Windows.Controls.Page, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Content != null)

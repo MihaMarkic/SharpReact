@@ -6,10 +6,10 @@ namespace SharpReact.Wpf.Props
 {
 	public class Frame: ContentControl
 	{
-		public ReactParam<System.Uri>? Source { get; set; }
-		public ReactParam<System.Windows.Navigation.NavigationUIVisibility>? NavigationUIVisibility { get; set; }
-		public ReactParam<System.Boolean>? SandboxExternalContent { get; set; }
-		public ReactParam<System.Windows.Navigation.JournalOwnership>? JournalOwnership { get; set; }
+		public ReactParam<global::System.Uri>? Source { get; set; }
+		public ReactParam<global::System.Windows.Navigation.NavigationUIVisibility>? NavigationUIVisibility { get; set; }
+		public ReactParam<global::System.Boolean>? SandboxExternalContent { get; set; }
+		public ReactParam<global::System.Windows.Navigation.JournalOwnership>? JournalOwnership { get; set; }
 		public System.EventHandler ContentRendered { get; set; }
 		public System.Windows.Navigation.NavigatingCancelEventHandler Navigating { get; set; }
 		public System.Windows.Navigation.NavigationProgressEventHandler NavigationProgress { get; set; }

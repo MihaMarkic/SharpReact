@@ -7,9 +7,9 @@ namespace SharpReact.Wpf.Props
 	public class ContentControl: Control
 	{
 		public ISharpProp Content { get; set; }
-		public ReactParam<System.Windows.DataTemplate>? ContentTemplate { get; set; }
-		public ReactParam<System.Windows.Controls.DataTemplateSelector>? ContentTemplateSelector { get; set; }
-		public ReactParam<System.String>? ContentStringFormat { get; set; }
+		public ReactParam<global::System.Windows.DataTemplate>? ContentTemplate { get; set; }
+		public ReactParam<global::System.Windows.Controls.DataTemplateSelector>? ContentTemplateSelector { get; set; }
+		public ReactParam<global::System.String>? ContentStringFormat { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.ContentControl<ContentControl, System.Windows.Controls.ContentControl>();

@@ -6,9 +6,9 @@ namespace SharpReact.Wpf.Props
 {
 	public class NavigationWindow: Window
 	{
-		public ReactParam<System.Boolean>? SandboxExternalContent { get; set; }
-		public ReactParam<System.Boolean>? ShowsNavigationUI { get; set; }
-		public ReactParam<System.Uri>? Source { get; set; }
+		public ReactParam<global::System.Boolean>? SandboxExternalContent { get; set; }
+		public ReactParam<global::System.Boolean>? ShowsNavigationUI { get; set; }
+		public ReactParam<global::System.Uri>? Source { get; set; }
 		public System.Windows.Navigation.NavigatingCancelEventHandler Navigating { get; set; }
 		public System.Windows.Navigation.NavigationProgressEventHandler NavigationProgress { get; set; }
 		public System.Windows.Navigation.NavigationFailedEventHandler NavigationFailed { get; set; }

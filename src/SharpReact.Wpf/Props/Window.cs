@@ -6,22 +6,22 @@ namespace SharpReact.Wpf.Props
 {
 	public class Window: ContentControl
 	{
-		public ReactParam<System.Windows.Shell.TaskbarItemInfo>? TaskbarItemInfo { get; set; }
-		public ReactParam<System.Boolean>? AllowsTransparency { get; set; }
-		public ReactParam<System.String>? Title { get; set; }
-		public ReactParam<System.Windows.Media.ImageSource>? Icon { get; set; }
-		public ReactParam<System.Windows.SizeToContent>? SizeToContent { get; set; }
-		public ReactParam<System.Double>? Top { get; set; }
-		public ReactParam<System.Double>? Left { get; set; }
-		public ReactParam<System.Windows.WindowStartupLocation>? WindowStartupLocation { get; set; }
-		public ReactParam<System.Boolean>? ShowInTaskbar { get; set; }
-		public ReactParam<System.Windows.Window>? Owner { get; set; }
-		public ReactParam<System.Nullable<System.Boolean>>? DialogResult { get; set; }
-		public ReactParam<System.Windows.WindowStyle>? WindowStyle { get; set; }
-		public ReactParam<System.Windows.WindowState>? WindowState { get; set; }
-		public ReactParam<System.Windows.ResizeMode>? ResizeMode { get; set; }
-		public ReactParam<System.Boolean>? Topmost { get; set; }
-		public ReactParam<System.Boolean>? ShowActivated { get; set; }
+		public ReactParam<global::System.Windows.Shell.TaskbarItemInfo>? TaskbarItemInfo { get; set; }
+		public ReactParam<global::System.Boolean>? AllowsTransparency { get; set; }
+		public ReactParam<global::System.String>? Title { get; set; }
+		public ReactParam<global::System.Windows.Media.ImageSource>? Icon { get; set; }
+		public ReactParam<global::System.Windows.SizeToContent>? SizeToContent { get; set; }
+		public ReactParam<global::System.Double>? Top { get; set; }
+		public ReactParam<global::System.Double>? Left { get; set; }
+		public ReactParam<global::System.Windows.WindowStartupLocation>? WindowStartupLocation { get; set; }
+		public ReactParam<global::System.Boolean>? ShowInTaskbar { get; set; }
+		public ReactParam<global::System.Windows.Window>? Owner { get; set; }
+		public ReactParam<global::System.Nullable<System.Boolean>>? DialogResult { get; set; }
+		public ReactParam<global::System.Windows.WindowStyle>? WindowStyle { get; set; }
+		public ReactParam<global::System.Windows.WindowState>? WindowState { get; set; }
+		public ReactParam<global::System.Windows.ResizeMode>? ResizeMode { get; set; }
+		public ReactParam<global::System.Boolean>? Topmost { get; set; }
+		public ReactParam<global::System.Boolean>? ShowActivated { get; set; }
 		public System.EventHandler SourceInitialized { get; set; }
 		public System.Windows.DpiChangedEventHandler DpiChanged { get; set; }
 		public System.EventHandler Activated { get; set; }

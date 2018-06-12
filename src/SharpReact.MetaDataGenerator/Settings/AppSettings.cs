@@ -10,6 +10,8 @@ namespace SharpReact.MetaDataGenerator.Settings
         public PropsSettings Properties { get; set; } = new PropsSettings();
         public ComponentSettings Components { get; set; } = new ComponentSettings();
         public RootTypeSettings RootType { get; set; }
+        public bool UseCustomAssemblyResolver { get; set; }
+        public string[] CustomAssemblyPaths { get; set; }
         public string Namespace { get; set; }
         /// <summary>
         /// When container is derived from interface implementation

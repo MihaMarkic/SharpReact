@@ -2,10 +2,10 @@ using SharpReact.Core;
 
 namespace SharpReact.Wpf.Components
 {
-	public  class WebBrowser<TProps>: ActiveXHost<TProps, System.Windows.Controls.WebBrowser>
+	public  class WebBrowser<TProps>: ActiveXHost<TProps, global::System.Windows.Controls.WebBrowser>
 		where TProps : Props.WebBrowser
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Source.HasValue)

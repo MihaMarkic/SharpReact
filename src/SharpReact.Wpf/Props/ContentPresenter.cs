@@ -6,12 +6,12 @@ namespace SharpReact.Wpf.Props
 {
 	public class ContentPresenter: FrameworkElement
 	{
-		public ReactParam<System.Boolean>? RecognizesAccessKey { get; set; }
+		public ReactParam<global::System.Boolean>? RecognizesAccessKey { get; set; }
 		public ISharpProp Content { get; set; }
-		public ReactParam<System.Windows.DataTemplate>? ContentTemplate { get; set; }
-		public ReactParam<System.Windows.Controls.DataTemplateSelector>? ContentTemplateSelector { get; set; }
-		public ReactParam<System.String>? ContentStringFormat { get; set; }
-		public ReactParam<System.String>? ContentSource { get; set; }
+		public ReactParam<global::System.Windows.DataTemplate>? ContentTemplate { get; set; }
+		public ReactParam<global::System.Windows.Controls.DataTemplateSelector>? ContentTemplateSelector { get; set; }
+		public ReactParam<global::System.String>? ContentStringFormat { get; set; }
+		public ReactParam<global::System.String>? ContentSource { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.ContentPresenter<ContentPresenter, System.Windows.Controls.ContentPresenter>();

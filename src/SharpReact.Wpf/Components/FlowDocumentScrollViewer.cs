@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class FlowDocumentScrollViewer<TProps, TElement>: Control<TProps, TElement>
 		where TProps : Props.FlowDocumentScrollViewer
-		where TElement : System.Windows.Controls.FlowDocumentScrollViewer, new()
+		where TElement : global::System.Windows.Controls.FlowDocumentScrollViewer, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Document.HasValue)

@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Props
 {
 	public class DocumentReference: FrameworkElement
 	{
-		public ReactParam<System.Uri>? Source { get; set; }
+		public ReactParam<global::System.Uri>? Source { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.DocumentReference<DocumentReference>();

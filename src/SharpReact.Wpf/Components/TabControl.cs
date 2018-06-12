@@ -4,9 +4,9 @@ namespace SharpReact.Wpf.Components
 {
 	public  class TabControl<TProps, TElement>: Selector<TProps, TElement>
 		where TProps : Props.TabControl
-		where TElement : System.Windows.Controls.TabControl, new()
+		where TElement : global::System.Windows.Controls.TabControl, new()
 	{
-		public override void AssignProperties(ISharpCreator<System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.TabStripPlacement.HasValue)

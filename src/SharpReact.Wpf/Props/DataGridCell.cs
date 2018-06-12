@@ -6,8 +6,8 @@ namespace SharpReact.Wpf.Props
 {
 	public class DataGridCell: ContentControl
 	{
-		public ReactParam<System.Boolean>? IsEditing { get; set; }
-		public ReactParam<System.Boolean>? IsSelected { get; set; }
+		public ReactParam<global::System.Boolean>? IsEditing { get; set; }
+		public ReactParam<global::System.Boolean>? IsSelected { get; set; }
 		public System.Windows.RoutedEventHandler Selected { get; set; }
 		public System.Windows.RoutedEventHandler Unselected { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
