@@ -10,7 +10,7 @@
     <TemplateGuid>{9ef11e43-1701-4396-8835-8392d57abb70}</TemplateGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SharpReact.Android._8_1</RootNamespace>
+    <RootNamespace>SharpReact.Android</RootNamespace>
     <AssemblyName>SharpReact.Android.8_1</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
@@ -45,14 +45,182 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\AbsListView.cs" />
+    <Compile Include="Components\AbsoluteLayout.cs" />
+    <Compile Include="Components\AbsSeekBar.cs" />
+    <Compile Include="Components\AbsSpinner.cs" />
+    <Compile Include="Components\ActionMenuView.cs" />
+    <Compile Include="Components\AdapterView.cs" />
+    <Compile Include="Components\AdapterViewAnimator.cs" />
+    <Compile Include="Components\AdapterViewFlipper.cs" />
+    <Compile Include="Components\AdapterView`1.cs" />
+    <Compile Include="Components\AnalogClock.cs" />
+    <Compile Include="Components\AppWidgetHostView.cs" />
+    <Compile Include="Components\AutoCompleteTextView.cs" />
+    <Compile Include="Components\Button.cs" />
+    <Compile Include="Components\CalendarView.cs" />
+    <Compile Include="Components\CheckBox.cs" />
+    <Compile Include="Components\CheckedTextView.cs" />
+    <Compile Include="Components\Chronometer.cs" />
+    <Compile Include="Components\CompoundButton.cs" />
+    <Compile Include="Components\DatePicker.cs" />
+    <Compile Include="Components\DialerFilter.cs" />
+    <Compile Include="Components\DigitalClock.cs" />
+    <Compile Include="Components\EditText.cs" />
+    <Compile Include="Components\ExpandableListView.cs" />
+    <Compile Include="Components\ExtractEditText.cs" />
+    <Compile Include="Components\FragmentBreadCrumbs.cs" />
+    <Compile Include="Components\FrameLayout.cs" />
+    <Compile Include="Components\Gallery.cs" />
+    <Compile Include="Components\GestureOverlayView.cs" />
+    <Compile Include="Components\GLSurfaceView.cs" />
+    <Compile Include="Components\GridLayout.cs" />
+    <Compile Include="Components\GridView.cs" />
+    <Compile Include="Components\HorizontalScrollView.cs" />
+    <Compile Include="Components\ImageButton.cs" />
+    <Compile Include="Components\ImageSwitcher.cs" />
+    <Compile Include="Components\ImageView.cs" />
+    <Compile Include="Components\KeyboardView.cs" />
+    <Compile Include="Components\LinearLayout.cs" />
+    <Compile Include="Components\ListView.cs" />
+    <Compile Include="Components\MediaController.cs" />
+    <Compile Include="Components\MediaRouteButton.cs" />
+    <Compile Include="Components\MultiAutoCompleteTextView.cs" />
+    <Compile Include="Components\NumberPicker.cs" />
+    <Compile Include="Components\ProgressBar.cs" />
+    <Compile Include="Components\QuickContactBadge.cs" />
+    <Compile Include="Components\RadioButton.cs" />
+    <Compile Include="Components\RadioGroup.cs" />
+    <Compile Include="Components\RatingBar.cs" />
+    <Compile Include="Components\RelativeLayout.cs" />
+    <Compile Include="Components\RSSurfaceView.cs" />
+    <Compile Include="Components\RSTextureView.cs" />
+    <Compile Include="Components\ScrollView.cs" />
+    <Compile Include="Components\SearchView.cs" />
+    <Compile Include="Components\SeekBar.cs" />
+    <Compile Include="Components\SharpAndroidComponent.cs" />
+    <Compile Include="Components\SlidingDrawer.cs" />
+    <Compile Include="Components\Space.cs" />
+    <Compile Include="Components\Spinner.cs" />
+    <Compile Include="Components\StackView.cs" />
+    <Compile Include="Components\SurfaceView.cs" />
+    <Compile Include="Components\Switch.cs" />
+    <Compile Include="Components\TabHost.cs" />
+    <Compile Include="Components\TableLayout.cs" />
+    <Compile Include="Components\TableRow.cs" />
+    <Compile Include="Components\TabWidget.cs" />
+    <Compile Include="Components\TextClock.cs" />
+    <Compile Include="Components\TextSwitcher.cs" />
+    <Compile Include="Components\TextureView.cs" />
+    <Compile Include="Components\TextView.cs" />
+    <Compile Include="Components\TimePicker.cs" />
+    <Compile Include="Components\ToggleButton.cs" />
+    <Compile Include="Components\Toolbar.cs" />
+    <Compile Include="Components\TvView.cs" />
+    <Compile Include="Components\TwoLineListItem.cs" />
+    <Compile Include="Components\VideoView.cs" />
+    <Compile Include="Components\View.cs" />
+    <Compile Include="Components\ViewAnimator.cs" />
+    <Compile Include="Components\ViewFlipper.cs" />
+    <Compile Include="Components\ViewGroup.cs" />
+    <Compile Include="Components\ViewStub.cs" />
+    <Compile Include="Components\ViewSwitcher.cs" />
+    <Compile Include="Components\WebView.cs" />
+    <Compile Include="Components\ZoomButton.cs" />
+    <Compile Include="Components\ZoomControls.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Props\AbsListView.cs" />
+    <Compile Include="Props\AbsoluteLayout.cs" />
+    <Compile Include="Props\AbsSeekBar.cs" />
+    <Compile Include="Props\AbsSpinner.cs" />
+    <Compile Include="Props\ActionMenuView.cs" />
+    <Compile Include="Props\AdapterView.cs" />
+    <Compile Include="Props\AdapterViewAnimator.cs" />
+    <Compile Include="Props\AdapterViewFlipper.cs" />
+    <Compile Include="Props\AdapterView`1.cs" />
+    <Compile Include="Props\AnalogClock.cs" />
+    <Compile Include="Props\AppWidgetHostView.cs" />
+    <Compile Include="Props\AutoCompleteTextView.cs" />
+    <Compile Include="Props\Button.cs" />
+    <Compile Include="Props\CalendarView.cs" />
+    <Compile Include="Props\CheckBox.cs" />
+    <Compile Include="Props\CheckedTextView.cs" />
+    <Compile Include="Props\Chronometer.cs" />
+    <Compile Include="Props\CompoundButton.cs" />
+    <Compile Include="Props\DatePicker.cs" />
+    <Compile Include="Props\DialerFilter.cs" />
+    <Compile Include="Props\DigitalClock.cs" />
+    <Compile Include="Props\EditText.cs" />
+    <Compile Include="Props\ExpandableListView.cs" />
+    <Compile Include="Props\ExtractEditText.cs" />
+    <Compile Include="Props\FragmentBreadCrumbs.cs" />
+    <Compile Include="Props\FrameLayout.cs" />
+    <Compile Include="Props\Gallery.cs" />
+    <Compile Include="Props\GestureOverlayView.cs" />
+    <Compile Include="Props\GLSurfaceView.cs" />
+    <Compile Include="Props\GridLayout.cs" />
+    <Compile Include="Props\GridView.cs" />
+    <Compile Include="Props\HorizontalScrollView.cs" />
+    <Compile Include="Props\ImageButton.cs" />
+    <Compile Include="Props\ImageSwitcher.cs" />
+    <Compile Include="Props\ImageView.cs" />
+    <Compile Include="Props\KeyboardView.cs" />
+    <Compile Include="Props\LinearLayout.cs" />
+    <Compile Include="Props\ListView.cs" />
+    <Compile Include="Props\MediaController.cs" />
+    <Compile Include="Props\MediaRouteButton.cs" />
+    <Compile Include="Props\MultiAutoCompleteTextView.cs" />
+    <Compile Include="Props\NumberPicker.cs" />
+    <Compile Include="Props\ProgressBar.cs" />
+    <Compile Include="Props\QuickContactBadge.cs" />
+    <Compile Include="Props\RadioButton.cs" />
+    <Compile Include="Props\RadioGroup.cs" />
+    <Compile Include="Props\RatingBar.cs" />
+    <Compile Include="Props\RelativeLayout.cs" />
+    <Compile Include="Props\RSSurfaceView.cs" />
+    <Compile Include="Props\RSTextureView.cs" />
+    <Compile Include="Props\ScrollView.cs" />
+    <Compile Include="Props\SearchView.cs" />
+    <Compile Include="Props\SeekBar.cs" />
+    <Compile Include="Props\SlidingDrawer.cs" />
+    <Compile Include="Props\Space.cs" />
+    <Compile Include="Props\Spinner.cs" />
+    <Compile Include="Props\StackView.cs" />
+    <Compile Include="Props\SurfaceView.cs" />
+    <Compile Include="Props\Switch.cs" />
+    <Compile Include="Props\TabHost.cs" />
+    <Compile Include="Props\TableLayout.cs" />
+    <Compile Include="Props\TableRow.cs" />
+    <Compile Include="Props\TabWidget.cs" />
+    <Compile Include="Props\TextClock.cs" />
+    <Compile Include="Props\TextSwitcher.cs" />
+    <Compile Include="Props\TextureView.cs" />
+    <Compile Include="Props\TextView.cs" />
+    <Compile Include="Props\TimePicker.cs" />
+    <Compile Include="Props\ToggleButton.cs" />
+    <Compile Include="Props\Toolbar.cs" />
+    <Compile Include="Props\TvView.cs" />
+    <Compile Include="Props\TwoLineListItem.cs" />
+    <Compile Include="Props\VideoView.cs" />
+    <Compile Include="Props\View.cs" />
+    <Compile Include="Props\ViewAnimator.cs" />
+    <Compile Include="Props\ViewFlipper.cs" />
+    <Compile Include="Props\ViewGroup.cs" />
+    <Compile Include="Props\ViewStub.cs" />
+    <Compile Include="Props\ViewSwitcher.cs" />
+    <Compile Include="Props\WebView.cs" />
+    <Compile Include="Props\ZoomButton.cs" />
+    <Compile Include="Props\ZoomControls.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Components\" />
-    <Folder Include="Props\" />
+    <ProjectReference Include="..\..\..\SharpReact.Core\SharpReact.Core.csproj">
+      <Project>{d9454705-427f-494c-94c3-dc0225b14d2c}</Project>
+      <Name>SharpReact.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

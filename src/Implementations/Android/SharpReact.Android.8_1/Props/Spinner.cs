@@ -1,0 +1,15 @@
+using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
+
+namespace SharpReact.Android.Props
+{
+	public abstract class Spinner: AbsSpinner
+	{
+		public ReactParam<global::System.Int32>? DropDownHorizontalOffset { get; set; }
+		public ReactParam<global::System.Int32>? DropDownVerticalOffset { get; set; }
+		public ReactParam<global::System.Int32>? DropDownWidth { get; set; }
+		public ReactParam<global::Java.Lang.ICharSequence>? PromptFormatted { get; set; }
+		public ReactParam<global::System.String>? Prompt { get; set; }
+	}
+}
