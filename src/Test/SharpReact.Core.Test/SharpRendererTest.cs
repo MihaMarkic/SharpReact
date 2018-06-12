@@ -20,7 +20,7 @@ namespace SharpReact.Core.Test
         {
             root = new Elements.ContentControl();
             // need to reset counters per test, otherwise they will accumulate.
-            Components.SharpWpfComponentTestCounter.ResetCounter();
+            Components.SharpTestComponentTestCounter.ResetCounter();
         }
 
         protected SharpRenderer<Elements.ContentControl, Elements.UIElement> CreateRenderer(Func<SharpProp> createTree)

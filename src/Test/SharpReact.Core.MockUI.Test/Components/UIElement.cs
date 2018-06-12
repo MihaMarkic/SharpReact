@@ -3,7 +3,7 @@ using System;
 
 namespace SharpReact.Core.MockUI.Test.Components
 {
-    public class UIElement<TProps, TElement> : SharpWpfComponent<TProps, object, TElement>
+    public class UIElement<TProps, TElement> : SharpTestComponent<TProps, object, TElement>
         where TProps : Props.UIElement
         where TElement : Elements.UIElement, new()
     {

@@ -20,7 +20,7 @@ namespace SharpReact.Routing.Test
         {
             rootElement = new Elements.ContentControl();
             // need to reset counters per test, otherwise they will accumulate.
-            SharpReact.Core.MockUI.Test.Components.SharpWpfComponentTestCounter.ResetCounter();
+            SharpReact.Core.MockUI.Test.Components.SharpTestComponentTestCounter.ResetCounter();
         }
 
         protected SharpRenderer<Elements.ContentControl, Elements.UIElement> CreateRenderer(Func<SharpProp> createTree)
