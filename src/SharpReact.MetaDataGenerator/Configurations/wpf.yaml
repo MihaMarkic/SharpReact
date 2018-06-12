@@ -18,6 +18,7 @@ components:
         - SharpReact.Core
     fixedFiles:
         - SharpWpfComponent.cs
+	rootElement: SharpWpfComponent
 properties:
     namespaces:
         - SharpReact.Core

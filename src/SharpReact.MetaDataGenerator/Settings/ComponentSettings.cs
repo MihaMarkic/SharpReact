@@ -7,6 +7,10 @@
         /// </summary>
         public bool ElementsRequiresConstructor { get; set; }
         public string ElementsSynchronization { get; set; }
+        /// <summary>
+        /// All components derive from this guy
+        /// </summary>
+        public string RootElement { get; set; }
         public ComponentSettings()
         {
             Path = "Components";

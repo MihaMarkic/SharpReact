@@ -11,5 +11,13 @@ namespace SharpReact.MetaDataGenerator.Settings
         public ComponentSettings Components { get; set; } = new ComponentSettings();
         public RootTypeSettings RootType { get; set; }
         public string Namespace { get; set; }
+        /// <summary>
+        /// When container is derived from interface implementation
+        /// </summary>
+        public string[] ContainerInterfaces { get; set; }
+        /// <summary>
+        /// When container is derived from interface, then it needs a custom property for collection
+        /// </summary>
+        public string CustomContainerProperty { get; set; }
     }
 }

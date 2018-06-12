@@ -1,0 +1,30 @@
+﻿outputDirectory:	..\..\..\Implementations\Android\SharpReact.Android.8_1
+rootAssemblyPath:	C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1
+namespace:			SharpReact.Android
+assemblies:
+    - path: Mono.Android
+#      ignoredTypes:
+#         - System.Windows.Controls.StickyNoteControl
+
+#    - path: PresentationCore
+
+rootType:
+    assemblyPath:	Mono.Android
+    name:			Android.Views.View
+containerInterfaces:
+    - IViewManager
+customContainerProperty: Views
+components:
+    elementsRequiresConstructor: false
+    elementsSynchronization: "ElementSynchronizer.SyncElements(Element.Children, elements);"
+    namespaces:
+        - SharpReact.Core
+    fixedFiles:
+        - SharpAndroidComponent.cs
+    rootElement: SharpAndroidComponent
+properties:
+    namespaces:
+        - SharpReact.Core
+        - SharpReact.Core.Properties
+        - System.Collections.Generic
+    path: Props

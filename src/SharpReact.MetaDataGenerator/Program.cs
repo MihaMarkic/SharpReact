@@ -21,6 +21,7 @@ namespace SharpReact.MetaDataGenerator
                 WriteLine($"Can't find config file {configFile}");
                 return -1;
             }
+            AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += CurrentDomain_ReflectionOnlyAssemblyResolve;
             var config = ReadSettings(configFile);
             WriteLine($"Config file read, processing {config.Assemblies?.Count} assemblies");
             try
@@ -38,6 +39,26 @@ namespace SharpReact.MetaDataGenerator
             return 0;
         }
 
+        private static Assembly CurrentDomain_ReflectionOnlyAssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            string[] paths = 
+            {
+                "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\ReferenceAssemblies\\Microsoft\\Framework\\MonoAndroid\\v1.0",
+                "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\ReferenceAssemblies\\Microsoft\\Framework\\MonoAndroid\\v1.0\\Facades"
+            };
+            string name = args.Name.Split(',')[0].Trim();
+            string assemblyFileName = $"{name}.dll";
+            foreach (string path in paths)
+            {
+                string assemblyPath = Path.Combine(path, assemblyFileName);
+                if (File.Exists(assemblyPath))
+                {
+                    return Assembly.ReflectionOnlyLoadFrom(assemblyPath);
+                }
+            }
+            throw new Exception($"Can't find assembly {args.Name}");
+        }
+
         static void Process(AppSettings config)
         {
             var rootType = GetRootType(config);
@@ -47,7 +68,7 @@ namespace SharpReact.MetaDataGenerator
             }
             DeleteFiles(config.Properties, config.OutputDirectory);
             DeleteFiles(config.Components, config.OutputDirectory);
-            CreateProperties(rootType, isRoot: true, config.OutputDirectory, config.Namespace, config.Properties);
+            CreateProperties(rootType, isRoot: true, config.OutputDirectory, config.Namespace, config);
             CreateComponents(rootType, isRoot: true, config.OutputDirectory, config);
             foreach (var assemblySettings in config.Assemblies)
             {
@@ -86,7 +107,7 @@ namespace SharpReact.MetaDataGenerator
         static void ProcessType(AppSettings config, Type type)
         {
             WriteLine($"\t{type.Name}");
-            CreateProperties(type, isRoot: false, config.OutputDirectory, config.Namespace, config.Properties);
+            CreateProperties(type, isRoot: false, config.OutputDirectory, config.Namespace, config);
             CreateComponents(type, isRoot: false, config.OutputDirectory, config);
         }
         static string GetTypeName(Type type)
@@ -137,14 +158,45 @@ namespace SharpReact.MetaDataGenerator
         {
             return string.Equals(pi.Name, settings.ChildrenContainerPropertyName, StringComparison.Ordinal);
         }
-        static void CreateProperties(Type type, bool isRoot, string outputDirectory, string rootNamespace, PropsSettings settings)
-        { 
+        static bool IsContainerByInterface(Type type, string[] interfaces)
+        {
+            if (interfaces == null)
+            {
+                return false;
+            }
+            return type.GetInterfaces().Any(i => interfaces.Any(d => string.Equals(d, i.FullName, StringComparison.Ordinal)));
+        }
+        static string GetBaseClassForProperties(bool isRoot, Type baseType)
+        {
+            if (isRoot)
+            {
+                return "Core.Properties.SharpNativeProp";
+            }
+            string definition;
+            var genericArguments = baseType.GetTypeInfo().GetGenericArguments();
+            if (genericArguments.Length > 0)
+            {
+                var arguments = genericArguments
+                    .Select(a => $"global::{a.FullName}").ToArray();
+                definition = $"<{string.Join(", ", arguments)}>";
+            }
+            else
+            {
+                definition = "";
+            }
+
+            string superClass = $"{GetPureName(baseType.Name)}{definition}";
+            return superClass;
+        }
+        static void CreateProperties(Type type, bool isRoot, string outputDirectory, string rootNamespace, AppSettings appSettings)
+        {
+            var settings = appSettings.Properties;
             string path = Path.Combine(outputDirectory, settings.Path, $"{type.Name}.cs");
             if (File.Exists(path))
             {
                 File.Delete(path);
             }
-            string superClass = isRoot ? "Core.Properties.SharpNativeProp" : type.BaseType.Name;
+            string superClass = GetBaseClassForProperties(isRoot , type.BaseType);
             var properties = GetTypeProperties(type);
             var events = GetTypeEvents(type);
             var lastProperty = properties.LastOrDefault();
@@ -163,9 +215,18 @@ namespace SharpReact.MetaDataGenerator
             sb.AppendLine($"namespace {rootNamespace}.Props");
             sb.AppendLine("{");
             sb.AppendLine($"\tpublic{abstractType} class {GetTypeName(type)}: {superClass}{implementedInterfaces}");
+            foreach (var genericParameter in type.GetTypeInfo().GenericTypeParameters)
+            {
+                var constraints = genericParameter.GetGenericParameterConstraints();
+                if (constraints.Length > 0)
+                {
+                    sb.AppendLine($"\t\twhere {genericParameter.Name}: {string.Join(", ", constraints.Select(c => $"global::{c.FullName}"))} ");
+                }
+            }
             sb.AppendLine("\t{");
             var contentProperties = new List<PropertyInfo>();
             var containerProperties = new List<PropertyInfo>();
+            string typeName = type.Name;
             foreach (var p in properties)
             {
                 if (IsContentProperty(p, settings))
@@ -173,19 +234,20 @@ namespace SharpReact.MetaDataGenerator
                     contentProperties.Add(p);
                     sb.AppendLine($"\t\tpublic ISharpProp {p.Name} {{ get; set; }}");
                 }
-                else if (IsContainerProperty(p, settings))
+                else if (IsContainerProperty(p, settings) || IsListProperty(p.PropertyType))
                 {
                     containerProperties.Add(p);
                     sb.AppendLine($"\t\tpublic List<ISharpProp> {p.Name} {{ get; set; }} = new List<ISharpProp>();");
-                }
-                else if (IsListProperty(p.PropertyType))
-                {
-                    sb.AppendLine($"\t\tpublic System.Collections.Generic.List<ISharpProp> {p.Name} {{ get; set; }} = new System.Collections.Generic.List<ISharpProp>();");
                 }
                 else
                 {
                     sb.AppendLine($"\t\tpublic ReactParam<{GetPropertyType(p.PropertyType)}>? {p.Name} {{ get; set; }}");
                 }
+            }
+            bool hasContainerByProperty = IsContainerByInterface(type, appSettings.ContainerInterfaces);
+            if (hasContainerByProperty)
+            {
+                sb.AppendLine($"\t\tpublic List<ISharpProp> {appSettings.CustomContainerProperty} {{ get; set; }} = new List<ISharpProp>();");
             }
             foreach (var e in events)
             {
@@ -216,6 +278,10 @@ namespace SharpReact.MetaDataGenerator
                 {
                     sb.AppendLine($"\t\t\tUnmountComponents({p.Name});");
                 }
+                if (hasContainerByProperty)
+                {
+                    sb.AppendLine($"\t\t\tUnmountComponents({appSettings.CustomContainerProperty});");
+                }
                 sb.AppendLine("\t\t\tbase.UnmountComponent();");
                 sb.AppendLine("\t\t}");
             }
@@ -229,13 +295,26 @@ namespace SharpReact.MetaDataGenerator
         }
         static string GetPropertyType(Type type)
         {
-            if (type.IsGenericType)
+            string fullName;
+            if (type.IsGenericParameter)
             {
-                return $"{GetPureName(type.FullName)}<{type.GenericTypeArguments[0].FullName}>";
+                return type.Name;
+            }
+            if (type.IsNested)
+            {
+                fullName = $"{type.DeclaringType.FullName}.{type.Name}";
             }
             else
             {
-                return type.FullName;
+                fullName = type.FullName;
+            }
+            if (type.IsGenericType)
+            {
+                return $"global::{GetPureName(fullName)}<{type.GenericTypeArguments[0].FullName}>";
+            }
+            else
+            {
+                return $"global::{fullName}";
             }
         }
         static string GetEventTypeFullName(Type type)
@@ -243,7 +322,7 @@ namespace SharpReact.MetaDataGenerator
             string name;
             if (type.IsGenericType)
             {
-                name = $"{GetPureName(type.Name)}<{string.Join(",", type.GenericTypeArguments.Select(a => GetGenericEventTypeParameter(a)))}>";
+                name = $"{GetPureName(type.Name)}<global::{string.Join(",", type.GenericTypeArguments.Select(a => GetGenericEventTypeParameter(a)))}>";
             }
             else
             {
@@ -253,11 +332,20 @@ namespace SharpReact.MetaDataGenerator
         }
         static string GetGenericEventTypeParameter(Type argument)
         {
+            string name;
+            if (argument.IsNested)
+            {
+                name = $"{argument.DeclaringType.Name}.{argument.Name}";
+            }
+            else
+            {
+                name = argument.Name;
+            }
             if (argument.IsGenericParameter)
             {
-                return argument.Name;
+                return name;
             }
-            return $"{argument.Namespace}.{argument.Name}";
+            return $"{argument.Namespace}.{name}";
         }
         static string GetPureName(string genericName)
         {
@@ -271,17 +359,29 @@ namespace SharpReact.MetaDataGenerator
                 return genericName;
             }
         }
+        static string GetBaseClassForComponents(bool isRoot, Type baseType, string rootElement, string tElement)
+        {
+            if (isRoot)
+            {
+                return $"{rootElement}<TProps, object, TElement>";
+            }
+            var genericArguments = baseType.GetTypeInfo().GetGenericArguments()
+                .Select(a => $"global::{a.FullName}").ToArray();
+            var definition = string.Join(", ", genericArguments) + (genericArguments.Length > 0 ? ", " : "");
+
+            string superClass = $"{GetPureName(baseType.Name)}<{definition}TProps, {tElement}>";
+            return superClass;
+        }
         static void CreateComponents(Type type, bool isRoot, string outputDirectory, AppSettings settings)
         {
+            string typeName = type.Name;
             string path = Path.Combine(outputDirectory, settings.Components.Path, $"{type.Name}.cs");
             if (File.Exists(path))
             {
                 File.Delete(path);
             }
-            string tElement = type.IsSealed ? GetTypeFullName(type) : "TElement";
-            string superClass = isRoot 
-                ? "SharpWpfComponent<TProps, object, TElement>" 
-                : $"{type.BaseType.Name}<TProps, {tElement}>";
+            string tElement = type.IsSealed ? $"global::{GetTypeFullName(type)}" : "TElement";
+            string superClass = GetBaseClassForComponents(isRoot, type.BaseType, settings.Components.RootElement, tElement);
             var properties = GetTypeProperties(type);
             var events = GetTypeEvents(type);
             var genericTypeParameters = type.GetTypeInfo().GenericTypeParameters;
@@ -303,10 +403,18 @@ namespace SharpReact.MetaDataGenerator
             if (!type.IsSealed)
             {
                 string newConstraint = settings.Components.ElementsRequiresConstructor ? ", new()" : "";
-                sb.AppendLine($"\t\twhere TElement : {GetTypeFullName(type)}{newConstraint}");
+                sb.AppendLine($"\t\twhere TElement : global::{GetTypeFullName(type)}{newConstraint}");
+            }
+            foreach (var genericParameter in type.GetTypeInfo().GenericTypeParameters)
+            {
+                var constraints = genericParameter.GetGenericParameterConstraints();
+                if (constraints.Length > 0)
+                {
+                    sb.AppendLine($"\t\twhere {genericParameter.Name}: {string.Join(", ", constraints.Select(c => $"global::{c.FullName}"))} ");
+                }
             }
             sb.AppendLine("\t{");
-            sb.AppendLine($"\t\tpublic override void AssignProperties(ISharpCreator<{settings.RootType.Name}> renderer, int level, NewState newState, TProps previous, TProps nextProps)");
+            sb.AppendLine($"\t\tpublic override void AssignProperties(ISharpCreator<global::{settings.RootType.Name}> renderer, int level, NewState newState, TProps previous, TProps nextProps)");
             sb.AppendLine("\t\t{");
             sb.AppendLine($"\t\t\tbase.AssignProperties(renderer, level, newState, previous, nextProps);");
             foreach (var p in properties)
@@ -332,6 +440,14 @@ namespace SharpReact.MetaDataGenerator
                     sb.AppendLine($"\t\t\t\tElement.{p.Name} = nextProps.{p.Name}.Value.Value;");
                     sb.AppendLine("\t\t\t}");
                 }
+            }
+            if (IsContainerByInterface(type, settings.ContainerInterfaces))
+            {
+                string propName = settings.CustomContainerProperty;
+                sb.AppendLine("\t\t\t{");
+                sb.AppendLine($"\t\t\t\tvar elements = renderer.VisitAllCollection(level, newState, previous?.{propName}, nextProps.{propName}, nameof(Element.{propName}), nameof({settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}));");
+                sb.AppendLine($"\t\t\t\t{settings.Components.ElementsSynchronization}");
+                sb.AppendLine("\t\t\t}");
             }
             foreach (var e in events)
             {
@@ -367,10 +483,10 @@ namespace SharpReact.MetaDataGenerator
         static Assembly LoadAssembly(string path)
         {
             var assembly = Assembly.ReflectionOnlyLoadFrom(path);
-            foreach (var assemblyName in assembly.GetReferencedAssemblies())
-            {
-                Assembly.ReflectionOnlyLoad(assemblyName.FullName);
-            }
+            //foreach (var assemblyName in assembly.GetReferencedAssemblies())
+            //{
+            //    Assembly.ReflectionOnlyLoad(assemblyName.FullName);
+            //}
             return assembly;
         }
 
