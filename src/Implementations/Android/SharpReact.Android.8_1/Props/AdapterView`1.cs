@@ -8,5 +8,6 @@ namespace SharpReact.Android.Props
 		where T: global::Android.Widget.IAdapter 
 	{
 		public ReactParam<T>? Adapter { get; set; }
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 	}
 }

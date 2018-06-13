@@ -48,6 +48,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpReact.Sample.Redux", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpReact.Terminal.Gui.Sample", "Samples\SharpReact.Terminal.Gui.Sample\SharpReact.Terminal.Gui.Sample.csproj", "{4C01047E-9B1B-420E-A9CB-8B174E1C9F0C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpReact.Droid.Sample", "Samples\SharpReact.Droid.Sample\SharpReact.Droid.Sample.csproj", "{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -212,6 +214,24 @@ Global
 		{4C01047E-9B1B-420E-A9CB-8B174E1C9F0C}.Release|x64.Build.0 = Release|Any CPU
 		{4C01047E-9B1B-420E-A9CB-8B174E1C9F0C}.Release|x86.ActiveCfg = Release|Any CPU
 		{4C01047E-9B1B-420E-A9CB-8B174E1C9F0C}.Release|x86.Build.0 = Release|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Debug|x64.Build.0 = Debug|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Debug|x86.Build.0 = Debug|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|x64.ActiveCfg = Release|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|x64.Build.0 = Release|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|x64.Deploy.0 = Release|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|x86.ActiveCfg = Release|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|x86.Build.0 = Release|Any CPU
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -229,6 +249,7 @@ Global
 		{F2B408A8-7EDF-4AAD-BD79-CF951068B175} = {9A8F3868-0677-420B-8052-00DB9DB011B0}
 		{956D71D0-6206-4E5E-BE32-90938F03289F} = {9A8F3868-0677-420B-8052-00DB9DB011B0}
 		{4C01047E-9B1B-420E-A9CB-8B174E1C9F0C} = {9A8F3868-0677-420B-8052-00DB9DB011B0}
+		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23} = {9A8F3868-0677-420B-8052-00DB9DB011B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86319227-AE60-4DDB-9D15-20689B06C3B7}

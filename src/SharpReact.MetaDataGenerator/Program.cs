@@ -167,7 +167,7 @@ namespace SharpReact.MetaDataGenerator
             {
                 return false;
             }
-            return type.GetInterfaces().Any(i => interfaces.Any(d => string.Equals(d, i.FullName, StringComparison.Ordinal)));
+            return type.GetInterfaces().Any(i => interfaces.Any(d => string.Equals(d, i.Name, StringComparison.Ordinal)));
         }
         static string GetBaseClassForProperties(bool isRoot, Type baseType)
         {
@@ -204,7 +204,8 @@ namespace SharpReact.MetaDataGenerator
             var events = GetTypeEvents(type);
             var lastProperty = properties.LastOrDefault();
             var sb = new StringBuilder();
-            string abstractType = IsTypeCreatable(type) ? "": " abstract";
+            bool isAbstract = IsTypeAbstract(type, appSettings.Components.ElementsRequiresConstructor);
+            string abstractType = isAbstract ? " abstract": "";
             string implementedInterfaces = "";
             
             if (settings.Namespaces != null)
@@ -256,11 +257,11 @@ namespace SharpReact.MetaDataGenerator
             {
                 sb.AppendLine($"\t\tpublic {GetEventTypeFullName(e.EventHandlerType)} {e.Name} {{ get; set; }}");
             }
-            if (IsTypeCreatable(type))
+            if (!isAbstract)
             {
                 sb.AppendLine("\t\tprotected override ISharpStatefulComponent CreateComponent()");
                 sb.AppendLine("\t\t{");
-                string tElement = type.IsSealed ? "" : ", " + GetTypeFullName(type);
+                string tElement = type.IsSealed ? "" : $", global::{GetTypeFullName(type)}";
                 string additionalTypeParameters = type.IsGenericType ? string.Join(",", type.GetTypeInfo().GenericTypeParameters.Select(a => a.Name)) + ", " : "";
                 sb.AppendLine($"\t\t\treturn new Components.{GetPureName(type.Name)}<{additionalTypeParameters}{GetTypeName(type)}{tElement}>();");
                 //else
@@ -375,6 +376,12 @@ namespace SharpReact.MetaDataGenerator
             string superClass = $"{GetPureName(baseType.Name)}<{definition}TProps, {tElement}>";
             return superClass;
         }
+        static bool IsTypeAbstract(Type type, bool elementsRequiresConstructor)
+        {
+            bool hasConstructor = type.GetConstructor(Type.EmptyTypes) != null;
+            bool isAbstract = type.IsAbstract || elementsRequiresConstructor && !hasConstructor;
+            return isAbstract;
+        }
         static void CreateComponents(Type type, bool isRoot, string outputDirectory, AppSettings settings)
         {
             string typeName = type.Name;
@@ -388,8 +395,7 @@ namespace SharpReact.MetaDataGenerator
             var properties = GetTypeProperties(type);
             var events = GetTypeEvents(type);
             var genericTypeParameters = type.GetTypeInfo().GenericTypeParameters;
-            bool hasConstructor = type.GetConstructor(Type.EmptyTypes) != null;
-            bool isAbstract = type.IsAbstract || settings.Components.ElementsRequiresConstructor && !hasConstructor;
+            bool isAbstract = IsTypeAbstract(type, settings.Components.ElementsRequiresConstructor);
             string additionalGenericParameters = $"{string.Join(", ", genericTypeParameters.Select(p => p.Name))}{(genericTypeParameters.Length > 0 ? ", " : "")}";
             var sb = new StringBuilder();
             if (settings.Components.Namespaces != null)
@@ -460,8 +466,9 @@ namespace SharpReact.MetaDataGenerator
             if (IsContainerByInterface(type, settings.ContainerInterfaces))
             {
                 string propName = settings.CustomContainerProperty;
+                string sourceTypeName = $"{settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}";
                 sb.AppendLine("\t\t\t{");
-                sb.AppendLine($"\t\t\t\tvar elements = renderer.VisitAllCollection(level, newState, previous?.{propName}, nextProps.{propName}, nameof(Element.{propName}), nameof({settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}));");
+                sb.AppendLine($"\t\t\t\tvar elements = renderer.VisitAllCollection(level, newState, previous?.{propName}, nextProps.{propName}, nameof({sourceTypeName}.{propName}), nameof({sourceTypeName}));");
                 sb.AppendLine($"\t\t\t\t{settings.Components.ElementsSynchronization}");
                 sb.AppendLine("\t\t\t}");
             }

@@ -13,6 +13,10 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpCreator<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.MediaController.Views), nameof(SharpReact.Android.Props.MediaController));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.NextClick, null) && ReferenceEquals(nextProps.NextClick, null))
 			{
 				Element.NextClick -= nextProps.NextClick;

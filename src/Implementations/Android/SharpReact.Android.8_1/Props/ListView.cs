@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class ListView: AbsListView
+	public class ListView: AbsListView
 	{
 		public ReactParam<global::Android.Widget.IListAdapter>? Adapter { get; set; }
 		public ReactParam<global::Android.Widget.ChoiceMode>? ChoiceMode { get; set; }
@@ -13,5 +13,10 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::System.Boolean>? ItemsCanFocus { get; set; }
 		public ReactParam<global::Android.Graphics.Drawables.Drawable>? OverscrollFooter { get; set; }
 		public ReactParam<global::Android.Graphics.Drawables.Drawable>? OverscrollHeader { get; set; }
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.ListView<ListView, global::Android.Widget.ListView>();
+		}
 	}
 }

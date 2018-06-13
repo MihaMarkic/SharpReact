@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class GestureOverlayView: FrameLayout
+	public class GestureOverlayView: FrameLayout
 	{
 		public ReactParam<global::System.Boolean>? EventsInterceptionEnabled { get; set; }
 		public ReactParam<global::System.Boolean>? FadeEnabled { get; set; }
@@ -19,6 +19,7 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::System.Boolean>? GestureVisible { get; set; }
 		public ReactParam<global::Android.Gestures.GestureOrientation>? Orientation { get; set; }
 		public ReactParam<global::Android.Graphics.Color>? UncertainGestureColor { get; set; }
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.Gestures.GestureOverlayView.GestureEventArgs> GestureEvent { get; set; }
 		public System.EventHandler<global::Android.Gestures.GestureOverlayView.GestureCancelledEventArgs> GestureCancelled { get; set; }
 		public System.EventHandler<global::Android.Gestures.GestureOverlayView.GestureEndedEventArgs> GestureEnded { get; set; }
@@ -26,5 +27,9 @@ namespace SharpReact.Android.Props
 		public System.EventHandler<global::Android.Gestures.GestureOverlayView.GesturePerformedEventArgs> GesturePerformed { get; set; }
 		public System.EventHandler<global::Android.Gestures.GestureOverlayView.GesturingEndedEventArgs> GesturingEnded { get; set; }
 		public System.EventHandler<global::Android.Gestures.GestureOverlayView.GesturingStartedEventArgs> GesturingStarted { get; set; }
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.GestureOverlayView<GestureOverlayView, global::Android.Gestures.GestureOverlayView>();
+		}
 	}
 }

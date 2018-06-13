@@ -21,6 +21,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.TextClassifier = nextProps.TextClassifier.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.WebView.Views), nameof(SharpReact.Android.Props.WebView));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.Download, null) && ReferenceEquals(nextProps.Download, null))
 			{
 				Element.Download -= nextProps.Download;

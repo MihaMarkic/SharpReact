@@ -29,6 +29,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.SuggestionsAdapter = nextProps.SuggestionsAdapter.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.SearchView.Views), nameof(SharpReact.Android.Props.SearchView));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.Close, null) && ReferenceEquals(nextProps.Close, null))
 			{
 				Element.Close -= nextProps.Close;

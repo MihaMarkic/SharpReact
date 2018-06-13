@@ -15,6 +15,7 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::Android.Views.PersistentDrawingCaches>? PersistentDrawingCache { get; set; }
 		public ReactParam<global::System.Boolean>? TouchscreenBlocksFocus { get; set; }
 		public ReactParam<global::System.Boolean>? TransitionGroup { get; set; }
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.Views.ViewGroup.ChildViewAddedEventArgs> ChildViewAdded { get; set; }
 		public System.EventHandler<global::Android.Views.ViewGroup.ChildViewRemovedEventArgs> ChildViewRemoved { get; set; }
 		public System.EventHandler<global::Android.Views.Animations.Animation.AnimationEndEventArgs> AnimationEnd { get; set; }

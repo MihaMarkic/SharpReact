@@ -25,6 +25,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.OutAnimation = nextProps.OutAnimation.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.AdapterViewAnimator.Views), nameof(SharpReact.Android.Props.AdapterViewAnimator));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 		}
 	}
 }

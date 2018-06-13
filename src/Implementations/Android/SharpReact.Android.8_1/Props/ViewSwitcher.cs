@@ -4,7 +4,12 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class ViewSwitcher: ViewAnimator
+	public class ViewSwitcher: ViewAnimator
 	{
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.ViewSwitcher<ViewSwitcher, global::Android.Widget.ViewSwitcher>();
+		}
 	}
 }

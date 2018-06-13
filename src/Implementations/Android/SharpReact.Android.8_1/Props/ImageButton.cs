@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class ImageButton: ImageView
+	public class ImageButton: ImageView
 	{
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.ImageButton<ImageButton, global::Android.Widget.ImageButton>();
+		}
 	}
 }

@@ -37,6 +37,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.WeekDayTextAppearance = nextProps.WeekDayTextAppearance.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.CalendarView.Views), nameof(SharpReact.Android.Props.CalendarView));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.DateChange, null) && ReferenceEquals(nextProps.DateChange, null))
 			{
 				Element.DateChange -= nextProps.DateChange;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class Switch: CompoundButton
+	public class Switch: CompoundButton
 	{
 		public ReactParam<global::System.Boolean>? ShowText { get; set; }
 		public ReactParam<global::System.Boolean>? SplitTrack { get; set; }
@@ -21,5 +21,9 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::Android.Graphics.Drawables.Drawable>? TrackDrawable { get; set; }
 		public ReactParam<global::Android.Content.Res.ColorStateList>? TrackTintList { get; set; }
 		public ReactParam<global::Android.Graphics.PorterDuff.Mode>? TrackTintMode { get; set; }
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.Switch<Switch, global::Android.Widget.Switch>();
+		}
 	}
 }

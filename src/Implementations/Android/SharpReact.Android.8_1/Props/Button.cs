@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class Button: TextView
+	public class Button: TextView
 	{
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.Button<Button, global::Android.Widget.Button>();
+		}
 	}
 }

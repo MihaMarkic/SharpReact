@@ -1,6 +1,5 @@
 ﻿using SharpReact.Core.Properties;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,7 +7,6 @@ using System.Threading.Tasks;
 namespace SharpReact.Core
 {
     public abstract class SharpRenderer<TRootElement, TElement>: ISharpRenderer, ISharpCreator<TElement>
-        where TRootElement: TElement
     {
         SharpProp currentProps;
         TElement currentElement;

@@ -4,9 +4,14 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class MediaController: FrameLayout
+	public class MediaController: FrameLayout
 	{
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler NextClick { get; set; }
 		public System.EventHandler PreviousClick { get; set; }
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.MediaController<MediaController, global::Android.Widget.MediaController>();
+		}
 	}
 }

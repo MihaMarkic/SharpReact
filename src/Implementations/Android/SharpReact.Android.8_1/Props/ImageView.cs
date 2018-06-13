@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class ImageView: View
+	public class ImageView: View
 	{
 		public ReactParam<global::System.Boolean>? BaselineAlignBottom { get; set; }
 		public ReactParam<global::System.Boolean>? CropToPadding { get; set; }
@@ -12,5 +12,9 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::Android.Graphics.Matrix>? ImageMatrix { get; set; }
 		public ReactParam<global::Android.Content.Res.ColorStateList>? ImageTintList { get; set; }
 		public ReactParam<global::Android.Graphics.PorterDuff.Mode>? ImageTintMode { get; set; }
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.ImageView<ImageView, global::Android.Widget.ImageView>();
+		}
 	}
 }

@@ -29,6 +29,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.MeasureAllChildren = nextProps.MeasureAllChildren.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.FrameLayout.Views), nameof(SharpReact.Android.Props.FrameLayout));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 		}
 	}
 }

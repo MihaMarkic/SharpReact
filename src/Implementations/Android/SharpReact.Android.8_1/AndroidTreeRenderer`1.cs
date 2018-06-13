@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace SharpReact.Android
 {
     public class AndroidTreeRenderer<TRootElement> : SharpRenderer<TRootElement, View>
-        where TRootElement : View
     {
         readonly Context context;
         public AndroidTreeRenderer(Context context, Func<SharpProp> createTree, TRootElement parent, Action<TRootElement, View> attachChildToRoot, Action<TRootElement, View> detachChildFromRoot, 

@@ -21,6 +21,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.Minute = nextProps.Minute.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.TimePicker.Views), nameof(SharpReact.Android.Props.TimePicker));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.TimeChanged, null) && ReferenceEquals(nextProps.TimeChanged, null))
 			{
 				Element.TimeChanged -= nextProps.TimeChanged;

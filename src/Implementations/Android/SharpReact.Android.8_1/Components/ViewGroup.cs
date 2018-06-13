@@ -45,6 +45,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.TransitionGroup = nextProps.TransitionGroup.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.ViewGroup.Views), nameof(SharpReact.Android.Props.ViewGroup));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.ChildViewAdded, null) && ReferenceEquals(nextProps.ChildViewAdded, null))
 			{
 				Element.ChildViewAdded -= nextProps.ChildViewAdded;

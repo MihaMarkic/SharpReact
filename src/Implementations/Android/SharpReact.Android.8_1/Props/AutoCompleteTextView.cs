@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class AutoCompleteTextView: EditText
+	public class AutoCompleteTextView: EditText
 	{
 		public ReactParam<global::Android.Widget.IListAdapter>? Adapter { get; set; }
 		public ReactParam<global::System.Int32>? DropDownAnchor { get; set; }
@@ -21,5 +21,9 @@ namespace SharpReact.Android.Props
 		public System.EventHandler<global::Android.Widget.AdapterView.ItemClickEventArgs> ItemClick { get; set; }
 		public System.EventHandler<global::Android.Widget.AdapterView.ItemSelectedEventArgs> ItemSelected { get; set; }
 		public System.EventHandler<global::Android.Widget.AdapterView.NothingSelectedEventArgs> NothingSelected { get; set; }
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.AutoCompleteTextView<AutoCompleteTextView, global::Android.Widget.AutoCompleteTextView>();
+		}
 	}
 }

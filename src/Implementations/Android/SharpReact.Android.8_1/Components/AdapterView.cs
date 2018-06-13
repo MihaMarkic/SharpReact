@@ -25,6 +25,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.OnItemSelectedListener = nextProps.OnItemSelectedListener.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.AdapterView.Views), nameof(SharpReact.Android.Props.AdapterView));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.ItemClick, null) && ReferenceEquals(nextProps.ItemClick, null))
 			{
 				Element.ItemClick -= nextProps.ItemClick;

@@ -17,6 +17,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.CurrentTab = nextProps.CurrentTab.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.TabHost.Views), nameof(SharpReact.Android.Props.TabHost));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.TabChanged, null) && ReferenceEquals(nextProps.TabChanged, null))
 			{
 				Element.TabChanged -= nextProps.TabChanged;

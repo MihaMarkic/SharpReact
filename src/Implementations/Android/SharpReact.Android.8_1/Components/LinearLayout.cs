@@ -41,6 +41,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.WeightSum = nextProps.WeightSum.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.LinearLayout.Views), nameof(SharpReact.Android.Props.LinearLayout));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 		}
 	}
 }

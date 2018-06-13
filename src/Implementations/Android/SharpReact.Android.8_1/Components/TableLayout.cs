@@ -21,6 +21,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.StretchAllColumns = nextProps.StretchAllColumns.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.TableLayout.Views), nameof(SharpReact.Android.Props.TableLayout));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 		}
 	}
 }

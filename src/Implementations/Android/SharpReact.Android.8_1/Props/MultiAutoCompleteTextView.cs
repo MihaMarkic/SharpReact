@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class MultiAutoCompleteTextView: AutoCompleteTextView
+	public class MultiAutoCompleteTextView: AutoCompleteTextView
 	{
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.MultiAutoCompleteTextView<MultiAutoCompleteTextView, global::Android.Widget.MultiAutoCompleteTextView>();
+		}
 	}
 }

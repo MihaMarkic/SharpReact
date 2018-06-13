@@ -21,7 +21,7 @@ customAssemblyPaths:
     - C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v1.0\Facades
 components:
     elementsRequiresConstructor: false
-    elementsSynchronization: "ElementSynchronizer.SyncElements(Element.Children, elements);"
+    elementsSynchronization: "ElementSynchronizer.SyncElements(Element, elements);"
     namespaces:
         - SharpReact.Core
     fixedFiles:

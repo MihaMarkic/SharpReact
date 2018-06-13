@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class View: Core.Properties.SharpNativeProp
+	public class View: Core.Properties.SharpNativeProp
 	{
 		public ReactParam<global::Android.Views.AccessibilityLiveRegion>? AccessibilityLiveRegion { get; set; }
 		public ReactParam<global::System.Int32>? AccessibilityTraversalAfter { get; set; }
@@ -117,5 +117,9 @@ namespace SharpReact.Android.Props
 		public System.EventHandler<global::Android.Views.View.SystemUiVisibilityChangeEventArgs> SystemUiVisibilityChange { get; set; }
 		public System.EventHandler<global::Android.Views.View.TouchEventArgs> Touch { get; set; }
 		public System.EventHandler<global::Android.Views.View.FocusChangeEventArgs> FocusChange { get; set; }
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.View<View, global::Android.Views.View>();
+		}
 	}
 }

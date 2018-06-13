@@ -21,6 +21,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.SmoothScrollingEnabled = nextProps.SmoothScrollingEnabled.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.HorizontalScrollView.Views), nameof(SharpReact.Android.Props.HorizontalScrollView));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 		}
 	}
 }

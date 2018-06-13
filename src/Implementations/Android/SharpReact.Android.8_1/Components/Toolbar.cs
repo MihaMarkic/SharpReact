@@ -85,6 +85,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.TitleMarginTop = nextProps.TitleMarginTop.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.Toolbar.Views), nameof(SharpReact.Android.Props.Toolbar));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.NavigationOnClick, null) && ReferenceEquals(nextProps.NavigationOnClick, null))
 			{
 				Element.NavigationOnClick -= nextProps.NavigationOnClick;

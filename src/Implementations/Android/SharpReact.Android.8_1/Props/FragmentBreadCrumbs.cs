@@ -4,8 +4,13 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class FragmentBreadCrumbs: ViewGroup
+	public class FragmentBreadCrumbs: ViewGroup
 	{
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.App.FragmentBreadCrumbs.BreadCrumbClickEventArgs> BreadCrumbClick { get; set; }
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.FragmentBreadCrumbs<FragmentBreadCrumbs, global::Android.App.FragmentBreadCrumbs>();
+		}
 	}
 }

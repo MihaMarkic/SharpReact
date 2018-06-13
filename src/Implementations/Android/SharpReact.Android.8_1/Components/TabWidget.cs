@@ -17,6 +17,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.StripEnabled = nextProps.StripEnabled.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.TabWidget.Views), nameof(SharpReact.Android.Props.TabWidget));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 		}
 	}
 }

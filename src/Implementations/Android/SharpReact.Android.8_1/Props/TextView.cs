@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class TextView: View
+	public class TextView: View
 	{
 		public ReactParam<global::Android.Text.Util.MatchOptions>? AutoLinkMask { get; set; }
 		public ReactParam<global::Android.Text.BreakStrategy>? BreakStrategy { get; set; }
@@ -46,5 +46,9 @@ namespace SharpReact.Android.Props
 		public System.EventHandler<global::Android.Text.TextChangedEventArgs> BeforeTextChanged { get; set; }
 		public System.EventHandler<global::Android.Text.TextChangedEventArgs> TextChanged { get; set; }
 		public System.EventHandler<global::Android.Widget.TextView.EditorActionEventArgs> EditorAction { get; set; }
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.TextView<TextView, global::Android.Widget.TextView>();
+		}
 	}
 }

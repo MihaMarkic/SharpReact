@@ -17,6 +17,7 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::System.Boolean>? StackFromBottom { get; set; }
 		public ReactParam<global::System.Boolean>? TextFilterEnabled { get; set; }
 		public ReactParam<global::Android.Widget.TranscriptMode>? TranscriptMode { get; set; }
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.Widget.AbsListView.ScrollEventArgs> Scroll { get; set; }
 		public System.EventHandler<global::Android.Widget.AbsListView.ScrollStateChangedEventArgs> ScrollStateChanged { get; set; }
 		public System.EventHandler<global::Android.Widget.AbsListView.RecyclerEventArgs> Recycler { get; set; }

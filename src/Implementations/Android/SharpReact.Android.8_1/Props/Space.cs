@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class Space: View
+	public class Space: View
 	{
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.Space<Space>();
+		}
 	}
 }

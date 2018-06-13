@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class ExtractEditText: EditText
+	public class ExtractEditText: EditText
 	{
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.ExtractEditText<ExtractEditText, global::Android.InputMethodServices.ExtractEditText>();
+		}
 	}
 }

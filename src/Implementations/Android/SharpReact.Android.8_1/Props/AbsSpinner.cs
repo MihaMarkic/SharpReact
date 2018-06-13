@@ -7,5 +7,6 @@ namespace SharpReact.Android.Props
 	public abstract class AbsSpinner: AdapterView<global::Android.Widget.ISpinnerAdapter>
 	{
 		public ReactParam<global::Android.Widget.ISpinnerAdapter>? Adapter { get; set; }
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 	}
 }

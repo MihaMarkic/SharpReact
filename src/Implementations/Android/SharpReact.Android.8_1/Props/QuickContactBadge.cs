@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class QuickContactBadge: ImageView
+	public class QuickContactBadge: ImageView
 	{
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.QuickContactBadge<QuickContactBadge, global::Android.Widget.QuickContactBadge>();
+		}
 	}
 }

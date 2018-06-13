@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class AnalogClock: View
+	public class AnalogClock: View
 	{
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.AnalogClock<AnalogClock, global::Android.Widget.AnalogClock>();
+		}
 	}
 }

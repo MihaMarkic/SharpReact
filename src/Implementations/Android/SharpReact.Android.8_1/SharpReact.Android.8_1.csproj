@@ -126,6 +126,7 @@
     <Compile Include="Components\WebView.cs" />
     <Compile Include="Components\ZoomButton.cs" />
     <Compile Include="Components\ZoomControls.cs" />
+    <Compile Include="ElementSynchronizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Props\AbsListView.cs" />
     <Compile Include="Props\AbsoluteLayout.cs" />

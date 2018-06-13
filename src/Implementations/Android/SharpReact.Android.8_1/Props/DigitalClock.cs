@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class DigitalClock: TextView
+	public class DigitalClock: TextView
 	{
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.DigitalClock<DigitalClock, global::Android.Widget.DigitalClock>();
+		}
 	}
 }

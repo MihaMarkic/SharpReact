@@ -17,6 +17,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.Mode = nextProps.Mode.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.DialerFilter.Views), nameof(SharpReact.Android.Props.DialerFilter));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 		}
 	}
 }

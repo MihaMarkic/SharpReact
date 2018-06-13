@@ -10,5 +10,6 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::System.Int32>? DisplayedChild { get; set; }
 		public ReactParam<global::Android.Animation.ObjectAnimator>? InAnimation { get; set; }
 		public ReactParam<global::Android.Animation.ObjectAnimator>? OutAnimation { get; set; }
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 	}
 }

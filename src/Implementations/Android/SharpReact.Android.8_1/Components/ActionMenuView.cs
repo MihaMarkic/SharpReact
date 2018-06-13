@@ -21,6 +21,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.PopupTheme = nextProps.PopupTheme.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.ActionMenuView.Views), nameof(SharpReact.Android.Props.ActionMenuView));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.MenuItemClick, null) && ReferenceEquals(nextProps.MenuItemClick, null))
 			{
 				Element.MenuItemClick -= nextProps.MenuItemClick;

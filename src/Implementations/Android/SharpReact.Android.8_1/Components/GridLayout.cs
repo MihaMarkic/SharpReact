@@ -41,6 +41,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.UseDefaultMargins = nextProps.UseDefaultMargins.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.GridLayout.Views), nameof(SharpReact.Android.Props.GridLayout));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 		}
 	}
 }

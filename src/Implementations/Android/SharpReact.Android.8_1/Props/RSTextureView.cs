@@ -4,7 +4,11 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class RSTextureView: TextureView
+	public class RSTextureView: TextureView
 	{
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.RSTextureView<RSTextureView, global::Android.Renderscripts.RSTextureView>();
+		}
 	}
 }

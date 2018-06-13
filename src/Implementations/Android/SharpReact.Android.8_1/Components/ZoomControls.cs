@@ -13,6 +13,10 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpCreator<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.ZoomControls.Views), nameof(SharpReact.Android.Props.ZoomControls));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 			if (!ReferenceEquals(previous?.ZoomInClick, null) && ReferenceEquals(nextProps.ZoomInClick, null))
 			{
 				Element.ZoomInClick -= nextProps.ZoomInClick;

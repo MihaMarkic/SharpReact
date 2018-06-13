@@ -25,6 +25,10 @@ namespace SharpReact.Android.Components
 			{
 				Element.StretchMode = nextProps.StretchMode.Value.Value;
 			}
+			{
+				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.GridView.Views), nameof(SharpReact.Android.Props.GridView));
+				ElementSynchronizer.SyncElements(Element, elements);
+			}
 		}
 	}
 }

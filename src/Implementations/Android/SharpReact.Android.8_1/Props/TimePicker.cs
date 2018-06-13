@@ -4,10 +4,15 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class TimePicker: FrameLayout
+	public class TimePicker: FrameLayout
 	{
 		public ReactParam<global::System.Int32>? Hour { get; set; }
 		public ReactParam<global::System.Int32>? Minute { get; set; }
+		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.Widget.TimePicker.TimeChangedEventArgs> TimeChanged { get; set; }
+		protected override ISharpStatefulComponent CreateComponent()
+		{
+			return new Components.TimePicker<TimePicker, global::Android.Widget.TimePicker>();
+		}
 	}
 }
