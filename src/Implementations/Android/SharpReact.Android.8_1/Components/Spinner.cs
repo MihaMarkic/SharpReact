@@ -33,10 +33,6 @@ namespace SharpReact.Android.Components
 			{
 				Element.Prompt = nextProps.Prompt.Value.Value;
 			}
-			{
-				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.Spinner.Views), nameof(SharpReact.Android.Props.Spinner));
-				ElementSynchronizer.SyncElements(Element, elements);
-			}
 		}
 	}
 }

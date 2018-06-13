@@ -8,7 +8,6 @@ namespace SharpReact.Android.Props
 	{
 		public ReactParam<global::System.Boolean>? FillViewport { get; set; }
 		public ReactParam<global::System.Boolean>? SmoothScrollingEnabled { get; set; }
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.ScrollView<ScrollView, global::Android.Widget.ScrollView>();

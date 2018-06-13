@@ -17,10 +17,6 @@ namespace SharpReact.Android.Components
 			{
 				Element.AutoStart = nextProps.AutoStart.Value.Value;
 			}
-			{
-				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.ViewFlipper.Views), nameof(SharpReact.Android.Props.ViewFlipper));
-				ElementSynchronizer.SyncElements(Element, elements);
-			}
 		}
 	}
 }

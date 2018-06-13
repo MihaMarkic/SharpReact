@@ -53,10 +53,6 @@ namespace SharpReact.Android.Components
 			{
 				Element.TranscriptMode = nextProps.TranscriptMode.Value.Value;
 			}
-			{
-				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.AbsListView.Views), nameof(SharpReact.Android.Props.AbsListView));
-				ElementSynchronizer.SyncElements(Element, elements);
-			}
 			if (!ReferenceEquals(previous?.Scroll, null) && ReferenceEquals(nextProps.Scroll, null))
 			{
 				Element.Scroll -= nextProps.Scroll;

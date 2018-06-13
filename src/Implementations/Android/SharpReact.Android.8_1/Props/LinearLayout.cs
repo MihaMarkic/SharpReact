@@ -13,7 +13,6 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::Android.Widget.Orientation>? Orientation { get; set; }
 		public ReactParam<global::Android.Widget.ShowDividers>? ShowDividers { get; set; }
 		public ReactParam<global::System.Single>? WeightSum { get; set; }
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.LinearLayout<LinearLayout, global::Android.Widget.LinearLayout>();

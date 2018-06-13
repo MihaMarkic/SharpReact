@@ -29,10 +29,6 @@ namespace SharpReact.Android.Components
 			{
 				Element.MinDate = nextProps.MinDate.Value.Value;
 			}
-			{
-				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.DatePicker.Views), nameof(SharpReact.Android.Props.DatePicker));
-				ElementSynchronizer.SyncElements(Element, elements);
-			}
 			if (!ReferenceEquals(previous?.DateChanged, null) && ReferenceEquals(nextProps.DateChanged, null))
 			{
 				Element.DateChanged -= nextProps.DateChanged;

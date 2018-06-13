@@ -2,12 +2,14 @@
 using Android.OS;
 using Android.Support.V7.App;
 using SharpReact.Android;
-using SharpReact.Android.Props;
+using Props = SharpReact.Android.Props;
 using SharpReact.Core;
 using SharpReact.Core.Properties;
 using System.Threading.Tasks;
-using Widget = Android.Widget;
-using Views = Android.Views;
+using Android.Views;
+using Android.Widget;
+using Android.Graphics.Drawables;
+using Android.Graphics;
 
 namespace SharpReact.Droid.Sample
 {
@@ -15,6 +17,7 @@ namespace SharpReact.Droid.Sample
     public class MainActivity : AppCompatActivity
     {
         AndroidTreeRenderer<MainActivity> renderer;
+        int clicked = 0;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -32,14 +35,59 @@ namespace SharpReact.Droid.Sample
 
         SharpProp CreateTree()
         {
-            return new TextView
+            return new Props.LinearLayout
             {
-                LayoutParameters = new Widget.LinearLayout.LayoutParams(
-                    Views.ViewGroup.LayoutParams.MatchParent, 
-                    Views.ViewGroup.LayoutParams.MatchParent),
-                TextAlignment = Views.TextAlignment.Center,
-                Text = "Sharp React!"
+                LayoutParameters = new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MatchParent,
+                            ViewGroup.LayoutParams.MatchParent),
+                Orientation = Orientation.Vertical,
+                Views =
+                {
+                    new Props.TextView
+                    {
+                        LayoutParameters = new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MatchParent,
+                            ViewGroup.LayoutParams.WrapContent),
+                        TextAlignment = TextAlignment.Center,
+                        Text = "Sharp React!",
+                    },
+                    new Props.TextView
+                    {
+                        LayoutParameters = new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MatchParent,
+                            ViewGroup.LayoutParams.WrapContent)
+                        {
+                            TopMargin = 29
+                        },
+                        TextAlignment = TextAlignment.Center,
+                        Text = $"Clicked {clicked}"
+                    },
+                    new Props.Button
+                    {
+                        LayoutParameters = new LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.WrapContent,
+                            ViewGroup.LayoutParams.WrapContent)
+                        {
+                            TopMargin = 29,
+                            Gravity = GravityFlags.Center
+                        },
+                        Text = "Click me",
+                        Click = (s, e) =>
+                        {
+                            clicked++;
+                            renderer.Render(NewState.Empty);
+                        }
+                    }
+                }
             };
+            //return new Props.TextView
+            //{
+            //    LayoutParameters = new LinearLayout.LayoutParams(
+            //        ViewGroup.LayoutParams.MatchParent, 
+            //        ViewGroup.LayoutParams.MatchParent),
+            //    TextAlignment = TextAlignment.Center,
+            //    Text = "Sharp React!"
+            //};
         }
     }
 }

@@ -167,7 +167,16 @@ namespace SharpReact.MetaDataGenerator
             {
                 return false;
             }
-            return type.GetInterfaces().Any(i => interfaces.Any(d => string.Equals(d, i.Name, StringComparison.Ordinal)));
+            var allInterfaces = type.GetInterfaces();
+            List<Type> baseTypes = new List<Type>();
+            var current = type.BaseType;
+            while (current != null)
+            {
+                baseTypes.Add(current);
+                current = current.BaseType;
+            }
+            var implemented = allInterfaces.Except(baseTypes.SelectMany(t => t.GetInterfaces()));
+            return implemented.Any(i => interfaces.Any(d => string.Equals(d, i.Name, StringComparison.Ordinal)));
         }
         static string GetBaseClassForProperties(bool isRoot, Type baseType)
         {

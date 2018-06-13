@@ -14,10 +14,6 @@ namespace SharpReact.Android.Components
 			{
 				Element.Adapter = nextProps.Adapter.Value.Value;
 			}
-			{
-				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.AdapterView.Views), nameof(SharpReact.Android.Props.AdapterView));
-				ElementSynchronizer.SyncElements(Element, elements);
-			}
 		}
 	}
 }

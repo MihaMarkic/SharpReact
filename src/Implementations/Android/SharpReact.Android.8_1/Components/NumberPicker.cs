@@ -29,10 +29,6 @@ namespace SharpReact.Android.Components
 			{
 				Element.WrapSelectorWheel = nextProps.WrapSelectorWheel.Value.Value;
 			}
-			{
-				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.NumberPicker.Views), nameof(SharpReact.Android.Props.NumberPicker));
-				ElementSynchronizer.SyncElements(Element, elements);
-			}
 			if (!ReferenceEquals(previous?.Scroll, null) && ReferenceEquals(nextProps.Scroll, null))
 			{
 				Element.Scroll -= nextProps.Scroll;

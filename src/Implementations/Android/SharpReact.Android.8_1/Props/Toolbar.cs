@@ -24,7 +24,6 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::System.Int32>? TitleMarginEnd { get; set; }
 		public ReactParam<global::System.Int32>? TitleMarginStart { get; set; }
 		public ReactParam<global::System.Int32>? TitleMarginTop { get; set; }
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler NavigationOnClick { get; set; }
 		public System.EventHandler<global::Android.Widget.Toolbar.MenuItemClickEventArgs> MenuItemClick { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()

@@ -6,7 +6,6 @@ namespace SharpReact.Android.Props
 {
 	public class FragmentBreadCrumbs: ViewGroup
 	{
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.App.FragmentBreadCrumbs.BreadCrumbClickEventArgs> BreadCrumbClick { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{

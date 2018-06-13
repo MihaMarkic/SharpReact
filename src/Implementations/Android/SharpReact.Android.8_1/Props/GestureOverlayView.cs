@@ -19,7 +19,6 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::System.Boolean>? GestureVisible { get; set; }
 		public ReactParam<global::Android.Gestures.GestureOrientation>? Orientation { get; set; }
 		public ReactParam<global::Android.Graphics.Color>? UncertainGestureColor { get; set; }
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.Gestures.GestureOverlayView.GestureEventArgs> GestureEvent { get; set; }
 		public System.EventHandler<global::Android.Gestures.GestureOverlayView.GestureCancelledEventArgs> GestureCancelled { get; set; }
 		public System.EventHandler<global::Android.Gestures.GestureOverlayView.GestureEndedEventArgs> GestureEnded { get; set; }

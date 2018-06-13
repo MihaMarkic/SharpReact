@@ -6,7 +6,6 @@ namespace SharpReact.Android.Props
 {
 	public class TvView: ViewGroup
 	{
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.Media.TV.TvView.UnhandledInputEventEventArgs> UnhandledInputEvent { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{

@@ -12,7 +12,6 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::System.Int64>? MaxDate { get; set; }
 		public ReactParam<global::System.Int64>? MinDate { get; set; }
 		public ReactParam<global::System.Int32>? WeekDayTextAppearance { get; set; }
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.Widget.CalendarView.DateChangeEventArgs> DateChange { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{

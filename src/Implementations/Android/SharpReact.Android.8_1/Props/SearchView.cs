@@ -10,7 +10,6 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::System.Boolean>? QueryRefinementEnabled { get; set; }
 		public ReactParam<global::System.Boolean>? SubmitButtonEnabled { get; set; }
 		public ReactParam<global::Android.Widget.CursorAdapter>? SuggestionsAdapter { get; set; }
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.Widget.SearchView.CloseEventArgs> Close { get; set; }
 		public System.EventHandler<global::Android.Views.View.FocusChangeEventArgs> QueryTextFocusChange { get; set; }
 		public System.EventHandler<global::Android.Widget.SearchView.QueryTextChangeEventArgs> QueryTextChange { get; set; }

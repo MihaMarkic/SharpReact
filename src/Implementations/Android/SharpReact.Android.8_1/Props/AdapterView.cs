@@ -10,7 +10,6 @@ namespace SharpReact.Android.Props
 		public ReactParam<global::Android.Widget.AdapterView.IOnItemClickListener>? OnItemClickListener { get; set; }
 		public ReactParam<global::Android.Widget.AdapterView.IOnItemLongClickListener>? OnItemLongClickListener { get; set; }
 		public ReactParam<global::Android.Widget.AdapterView.IOnItemSelectedListener>? OnItemSelectedListener { get; set; }
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.Widget.AdapterView.ItemClickEventArgs> ItemClick { get; set; }
 		public System.EventHandler<global::Android.Widget.AdapterView.ItemLongClickEventArgs> ItemLongClick { get; set; }
 		public System.EventHandler<global::Android.Widget.AdapterView.ItemSelectedEventArgs> ItemSelected { get; set; }

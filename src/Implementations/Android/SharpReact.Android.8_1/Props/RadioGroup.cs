@@ -6,7 +6,6 @@ namespace SharpReact.Android.Props
 {
 	public class RadioGroup: LinearLayout
 	{
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		public System.EventHandler<global::Android.Widget.RadioGroup.CheckedChangeEventArgs> CheckedChange { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
 		{

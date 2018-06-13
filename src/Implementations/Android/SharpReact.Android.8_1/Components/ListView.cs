@@ -41,10 +41,6 @@ namespace SharpReact.Android.Components
 			{
 				Element.OverscrollHeader = nextProps.OverscrollHeader.Value.Value;
 			}
-			{
-				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.ListView.Views), nameof(SharpReact.Android.Props.ListView));
-				ElementSynchronizer.SyncElements(Element, elements);
-			}
 		}
 	}
 }

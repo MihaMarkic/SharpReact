@@ -65,10 +65,6 @@ namespace SharpReact.Android.Components
 			{
 				Element.UncertainGestureColor = nextProps.UncertainGestureColor.Value.Value;
 			}
-			{
-				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.GestureOverlayView.Views), nameof(SharpReact.Android.Props.GestureOverlayView));
-				ElementSynchronizer.SyncElements(Element, elements);
-			}
 			if (!ReferenceEquals(previous?.GestureEvent, null) && ReferenceEquals(nextProps.GestureEvent, null))
 			{
 				Element.GestureEvent -= nextProps.GestureEvent;

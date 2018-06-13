@@ -8,7 +8,6 @@ namespace SharpReact.Android.Props
 	{
 		public ReactParam<global::System.Boolean>? ShrinkAllColumns { get; set; }
 		public ReactParam<global::System.Boolean>? StretchAllColumns { get; set; }
-		public List<ISharpProp> Views { get; set; } = new List<ISharpProp>();
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.TableLayout<TableLayout, global::Android.Widget.TableLayout>();
