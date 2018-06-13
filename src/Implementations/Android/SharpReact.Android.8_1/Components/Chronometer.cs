@@ -2,10 +2,14 @@ using SharpReact.Core;
 
 namespace SharpReact.Android.Components
 {
-	public abstract class Chronometer<TProps, TElement>: TextView<TProps, TElement>
+	public  class Chronometer<TProps, TElement>: TextView<TProps, TElement>
 		where TProps : Props.Chronometer
 		where TElement : global::Android.Widget.Chronometer
 	{
+		public override void CreateElement(global::Android.Content.Context context)
+		{
+			Element = (TElement)new global::Android.Widget.Chronometer(context);
+		}
 		public override void AssignProperties(ISharpCreator<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);

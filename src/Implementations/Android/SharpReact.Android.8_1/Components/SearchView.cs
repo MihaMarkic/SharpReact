@@ -2,10 +2,14 @@ using SharpReact.Core;
 
 namespace SharpReact.Android.Components
 {
-	public abstract class SearchView<TProps, TElement>: LinearLayout<TProps, TElement>
+	public  class SearchView<TProps, TElement>: LinearLayout<TProps, TElement>
 		where TProps : Props.SearchView
 		where TElement : global::Android.Widget.SearchView
 	{
+		public override void CreateElement(global::Android.Content.Context context)
+		{
+			Element = (TElement)new global::Android.Widget.SearchView(context);
+		}
 		public override void AssignProperties(ISharpCreator<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);

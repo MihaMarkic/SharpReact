@@ -80,7 +80,6 @@
     <Compile Include="Components\ImageButton.cs" />
     <Compile Include="Components\ImageSwitcher.cs" />
     <Compile Include="Components\ImageView.cs" />
-    <Compile Include="Components\KeyboardView.cs" />
     <Compile Include="Components\LinearLayout.cs" />
     <Compile Include="Components\ListView.cs" />
     <Compile Include="Components\MediaController.cs" />
@@ -99,7 +98,6 @@
     <Compile Include="Components\SearchView.cs" />
     <Compile Include="Components\SeekBar.cs" />
     <Compile Include="Components\SharpAndroidComponent.cs" />
-    <Compile Include="Components\SlidingDrawer.cs" />
     <Compile Include="Components\Space.cs" />
     <Compile Include="Components\Spinner.cs" />
     <Compile Include="Components\StackView.cs" />
@@ -164,7 +162,6 @@
     <Compile Include="Props\ImageButton.cs" />
     <Compile Include="Props\ImageSwitcher.cs" />
     <Compile Include="Props\ImageView.cs" />
-    <Compile Include="Props\KeyboardView.cs" />
     <Compile Include="Props\LinearLayout.cs" />
     <Compile Include="Props\ListView.cs" />
     <Compile Include="Props\MediaController.cs" />
@@ -182,7 +179,6 @@
     <Compile Include="Props\ScrollView.cs" />
     <Compile Include="Props\SearchView.cs" />
     <Compile Include="Props\SeekBar.cs" />
-    <Compile Include="Props\SlidingDrawer.cs" />
     <Compile Include="Props\Space.cs" />
     <Compile Include="Props\Spinner.cs" />
     <Compile Include="Props\StackView.cs" />
@@ -211,6 +207,7 @@
     <Compile Include="Props\WebView.cs" />
     <Compile Include="Props\ZoomButton.cs" />
     <Compile Include="Props\ZoomControls.cs" />
+    <Compile Include="AndroidTreeRenderer`1.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2" />

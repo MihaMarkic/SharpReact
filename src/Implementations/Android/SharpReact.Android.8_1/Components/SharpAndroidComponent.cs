@@ -4,10 +4,15 @@ using SharpReact.Core.Properties;
 
 namespace SharpReact.Android.Components
 {
-    public abstract class SharpAndroidComponent<TProps, TState, TElement> : 
-        SharpNativeComponent<TProps,TState, TElement, View>
-        where TProps : SharpNativeProp
-        where TElement: View
+    internal interface IElementCreator
     {
+        void CreateElement(global::Android.Content.Context context);
+    }
+    public abstract class SharpAndroidComponent<TProps, TState, TElement> :
+        SharpNativeComponent<TProps, TState, TElement, View>, IElementCreator
+        where TProps : SharpNativeProp
+        where TElement : View
+    {
+        public abstract void CreateElement(global::Android.Content.Context context);
     }
 }

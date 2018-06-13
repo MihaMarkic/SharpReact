@@ -3,8 +3,9 @@ rootAssemblyPath:	C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise
 namespace:			SharpReact.Android
 assemblies:
     - path: Mono.Android
-#      ignoredTypes:
-#         - System.Windows.Controls.StickyNoteControl
+      ignoredTypes:
+         - Android.Widget.SlidingDrawer
+         - Android.InputMethodServices.KeyboardView
 
 #    - path: PresentationCore
 
@@ -26,6 +27,16 @@ components:
     fixedFiles:
         - SharpAndroidComponent.cs
     rootElement: SharpAndroidComponent
+    elementCreation:
+        - "public override void CreateElement(global::Android.Content.Context context)"
+        - "{"
+        - "\tElement = (TElement)new [TElement](context);"
+        - "}"
+    sealedElementCreation:
+        - "public override void CreateElement(global::Android.Content.Context context)"
+        - "{"
+        - "\tElement = new [TElement](context);"
+        - "}"
 properties:
     namespaces:
         - SharpReact.Core

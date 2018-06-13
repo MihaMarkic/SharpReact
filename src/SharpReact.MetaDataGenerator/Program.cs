@@ -389,6 +389,7 @@ namespace SharpReact.MetaDataGenerator
             var events = GetTypeEvents(type);
             var genericTypeParameters = type.GetTypeInfo().GenericTypeParameters;
             bool hasConstructor = type.GetConstructor(Type.EmptyTypes) != null;
+            bool isAbstract = type.IsAbstract || settings.Components.ElementsRequiresConstructor && !hasConstructor;
             string additionalGenericParameters = $"{string.Join(", ", genericTypeParameters.Select(p => p.Name))}{(genericTypeParameters.Length > 0 ? ", " : "")}";
             var sb = new StringBuilder();
             if (settings.Components.Namespaces != null)
@@ -401,7 +402,7 @@ namespace SharpReact.MetaDataGenerator
             sb.AppendLine();
             sb.AppendLine($"namespace {settings.Namespace}.Components");
             sb.AppendLine("{");
-            sb.AppendLine($"\tpublic {(hasConstructor ? "": "abstract")} class {GetPureName(type.Name)}<{additionalGenericParameters}TProps{(type.IsSealed ? "": ", TElement")}>: {superClass}");
+            sb.AppendLine($"\tpublic {(isAbstract ? "abstract": "")} class {GetPureName(type.Name)}<{additionalGenericParameters}TProps{(type.IsSealed ? "": ", TElement")}>: {superClass}");
             sb.AppendLine($"\t\twhere TProps : Props.{GetTypeName(type)}");
             if (!type.IsSealed)
             {
@@ -417,6 +418,18 @@ namespace SharpReact.MetaDataGenerator
                 }
             }
             sb.AppendLine("\t{");
+            if (!isAbstract)
+            {
+                var source = type.IsSealed ? settings.Components.SealedElementCreation : settings.Components.ElementCreation;
+                if (source?.Length > 0)
+                {
+                    string elementType = $"global::{GetTypeFullName(type)}";
+                    foreach (string line in source)
+                    {
+                        sb.AppendLine("\t\t" + line.Replace("[TElement]", elementType));
+                    }
+                }
+            }
             sb.AppendLine($"\t\tpublic override void AssignProperties(ISharpCreator<global::{settings.RootType.Name}> renderer, int level, NewState newState, TProps previous, TProps nextProps)");
             sb.AppendLine("\t\t{");
             sb.AppendLine($"\t\t\tbase.AssignProperties(renderer, level, newState, previous, nextProps);");

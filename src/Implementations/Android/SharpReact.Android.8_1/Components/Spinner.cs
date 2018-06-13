@@ -2,10 +2,14 @@ using SharpReact.Core;
 
 namespace SharpReact.Android.Components
 {
-	public abstract class Spinner<TProps, TElement>: AbsSpinner<TProps, TElement>
+	public  class Spinner<TProps, TElement>: AbsSpinner<TProps, TElement>
 		where TProps : Props.Spinner
 		where TElement : global::Android.Widget.Spinner
 	{
+		public override void CreateElement(global::Android.Content.Context context)
+		{
+			Element = (TElement)new global::Android.Widget.Spinner(context);
+		}
 		public override void AssignProperties(ISharpCreator<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);

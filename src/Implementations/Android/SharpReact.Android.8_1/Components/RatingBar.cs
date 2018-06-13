@@ -2,10 +2,14 @@ using SharpReact.Core;
 
 namespace SharpReact.Android.Components
 {
-	public abstract class RatingBar<TProps, TElement>: AbsSeekBar<TProps, TElement>
+	public  class RatingBar<TProps, TElement>: AbsSeekBar<TProps, TElement>
 		where TProps : Props.RatingBar
 		where TElement : global::Android.Widget.RatingBar
 	{
+		public override void CreateElement(global::Android.Content.Context context)
+		{
+			Element = (TElement)new global::Android.Widget.RatingBar(context);
+		}
 		public override void AssignProperties(ISharpCreator<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);

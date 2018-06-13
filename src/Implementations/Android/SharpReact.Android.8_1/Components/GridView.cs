@@ -2,10 +2,14 @@ using SharpReact.Core;
 
 namespace SharpReact.Android.Components
 {
-	public abstract class GridView<TProps, TElement>: AbsListView<TProps, TElement>
+	public  class GridView<TProps, TElement>: AbsListView<TProps, TElement>
 		where TProps : Props.GridView
 		where TElement : global::Android.Widget.GridView
 	{
+		public override void CreateElement(global::Android.Content.Context context)
+		{
+			Element = (TElement)new global::Android.Widget.GridView(context);
+		}
 		public override void AssignProperties(ISharpCreator<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
