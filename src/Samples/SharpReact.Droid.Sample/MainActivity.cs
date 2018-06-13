@@ -1,15 +1,13 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
+using Android.Views;
+using Android.Widget;
 using SharpReact.Android;
-using Props = SharpReact.Android.Props;
 using SharpReact.Core;
 using SharpReact.Core.Properties;
 using System.Threading.Tasks;
-using Android.Views;
-using Android.Widget;
-using Android.Graphics.Drawables;
-using Android.Graphics;
+using Props = SharpReact.Android.Props;
 
 namespace SharpReact.Droid.Sample
 {
@@ -80,14 +78,6 @@ namespace SharpReact.Droid.Sample
                     }
                 }
             };
-            //return new Props.TextView
-            //{
-            //    LayoutParameters = new LinearLayout.LayoutParams(
-            //        ViewGroup.LayoutParams.MatchParent, 
-            //        ViewGroup.LayoutParams.MatchParent),
-            //    TextAlignment = TextAlignment.Center,
-            //    Text = "Sharp React!"
-            //};
         }
     }
 }
