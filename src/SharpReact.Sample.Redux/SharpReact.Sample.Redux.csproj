@@ -126,6 +126,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Implementations\Wpf\SharpReact.Wpf\SharpReact.Wpf.csproj">
+      <Project>{2dcf5856-1c1d-4009-84b7-9a62ce1c9968}</Project>
+      <Name>SharpReact.Wpf</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharpReact.Core\SharpReact.Core.csproj">
       <Project>{d9454705-427f-494c-94c3-dc0225b14d2c}</Project>
       <Name>SharpReact.Core</Name>
@@ -133,10 +137,6 @@
     <ProjectReference Include="..\SharpReact.Routing\SharpReact.Routing.csproj">
       <Project>{a660dca4-7d7b-47ac-b3b7-2f41a7007d7b}</Project>
       <Name>SharpReact.Routing</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SharpReact.Wpf\SharpReact.Wpf.csproj">
-      <Project>{2dcf5856-1c1d-4009-84b7-9a62ce1c9968}</Project>
-      <Name>SharpReact.Wpf</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

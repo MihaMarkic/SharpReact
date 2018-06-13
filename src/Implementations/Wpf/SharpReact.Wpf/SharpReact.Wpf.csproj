@@ -344,11 +344,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharpReact.Core\SharpReact.Core.csproj">
+    <ProjectReference Include="..\..\..\SharpReact.Core\SharpReact.Core.csproj">
       <Project>{d9454705-427f-494c-94c3-dc0225b14d2c}</Project>
       <Name>SharpReact.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SharpReact.Routing\SharpReact.Routing.csproj">
+    <ProjectReference Include="..\..\..\SharpReact.Routing\SharpReact.Routing.csproj">
       <Project>{a660dca4-7d7b-47ac-b3b7-2f41a7007d7b}</Project>
       <Name>SharpReact.Routing</Name>
     </ProjectReference>

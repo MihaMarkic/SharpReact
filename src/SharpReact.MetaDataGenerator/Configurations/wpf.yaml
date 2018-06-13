@@ -1,4 +1,4 @@
-﻿outputDirectory:	..\..\..\SharpReact.Wpf
+﻿outputDirectory:	..\..\..\Implementations\Wpf\SharpReact.Wpf
 rootAssemblyPath:	C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.1
 namespace:			SharpReact.Wpf
 assemblies:
