@@ -13,5 +13,9 @@ namespace SharpReact.Terminal.Gui
             TaskScheduler uiScheduler) :
             base(createTree, parent, attachChildToRoot, detachChildFromRoot, uiScheduler)
         { }
+        protected override void CreateElement(ISharpNativeComponent nativeComponent)
+        {
+            ((Components.IElementCreator)nativeComponent).CreateElement();
+        }
     }
 }

@@ -4,13 +4,17 @@ using System.Collections.Generic;
 
 namespace SharpReact.Core.MockUI.Test.Components
 {
+    internal interface IElementCreator
+    {
+        void CreateElement();
+    }
     public static class SharpTestComponentTestCounter
     {
         [ThreadStatic]
         public static int EventCounter;
         public static void ResetCounter() => EventCounter = 0;
     }
-    public class SharpTestComponent<TProps, TState, TElement> : SharpNativeComponent<TProps, TState, TElement, Elements.UIElement>, ISharpWpfTestComponent
+    public class SharpTestComponent<TProps, TState, TElement> : SharpNativeComponent<TProps, TState, TElement, Elements.UIElement>, ISharpWpfTestComponent, IElementCreator
             where TProps : SharpNativeProp
             where TElement : Elements.UIElement, new()
     {
@@ -22,9 +26,12 @@ namespace SharpReact.Core.MockUI.Test.Components
         public List<int> DidMountCounter { get; private set; } = new List<int>();
         public List<int> WillUnmountCounter { get; private set; } = new List<int>();
         public List<int> WillReceivePropsCounter { get; private set; } = new List<int>();
-        public override void WillMount()
+        public void CreateElement()
         {
             Element = new TElement();
+        }
+        public override void WillMount()
+        {
             base.WillMount();
             WillMountCounter.Add(SharpTestComponentTestCounter.EventCounter++);
         }

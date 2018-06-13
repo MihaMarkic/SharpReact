@@ -4,10 +4,9 @@ namespace SharpReact.Terminal.Gui.Components
 {
     public class Window : TopLevel<Props.Window, global::Terminal.Gui.Window>
     {
-        public override void WillMount()
+        public override void CreateElement()
         {
             Element = new global::Terminal.Gui.Window(null);
-            base.WillMount();
         }
         public override void AssignProperties(ISharpCreator<global::Terminal.Gui.View> renderer, int level, NewState newState, Props.Window previous, Props.Window nextProps)
         {

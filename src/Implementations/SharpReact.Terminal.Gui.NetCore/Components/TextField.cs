@@ -4,10 +4,9 @@ namespace SharpReact.Terminal.Gui.Components
 {
     public class TextField : View<Props.TextField, global::Terminal.Gui.TextField>
     {
-        public override void WillMount()
+        public override void CreateElement()
         {
             Element = new global::Terminal.Gui.TextField("");
-            base.WillMount();
         }
         public override void AssignProperties(ISharpCreator<global::Terminal.Gui.View> renderer, int level, NewState newState, Props.TextField previous, Props.TextField nextProps)
         {

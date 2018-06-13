@@ -4,10 +4,9 @@ namespace SharpReact.Terminal.Gui.Components
 {
     public class Button: View<Props.Button, global::Terminal.Gui.Button>
     {
-        public override void WillMount()
+        public override void CreateElement()
         {
             Element = new global::Terminal.Gui.Button("");
-            base.WillMount();
         }
         public override void AssignProperties(ISharpCreator<global::Terminal.Gui.View> renderer, int level, NewState newState, Props.Button previous, Props.Button nextProps)
         {

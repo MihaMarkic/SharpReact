@@ -5,9 +5,9 @@ using Props = SharpReact.Core.MockUI.Test.Props;
 using RoutingProps = SharpReact.Core.MockUI.Routing.Test.Props;
 using Components = SharpReact.Core.MockUI.Test.Components;
 using NUnit.Framework;
-using SharpReact.Core.Test;
 using SharpReact.Core.Properties;
 using SharpReact.Core.MockUI.Routing.Test.Navigation;
+using SharpReact.Core.MockUI.Test;
 
 namespace SharpReact.Routing.Test
 {

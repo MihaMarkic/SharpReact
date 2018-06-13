@@ -12,5 +12,9 @@ namespace SharpReact.Wpf
         public WpfTreeRenderer(Func<SharpProp> createTree, TRootElement parent, Action<TRootElement, UIElement> attachChildToRoot, Action<TRootElement, UIElement> detachChildFromRoot, TaskScheduler uiScheduler) : 
             base(createTree, parent, attachChildToRoot, detachChildFromRoot, uiScheduler)
         {}
+        protected override void CreateElement(ISharpNativeComponent nativeComponent)
+        {
+            ((Components.IElementCreator)nativeComponent).CreateElement();
+        }
     }
 }

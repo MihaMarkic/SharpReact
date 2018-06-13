@@ -1,9 +1,8 @@
 ﻿using SharpReact.Core.Properties;
 using System;
 using System.Threading.Tasks;
-using Elements = SharpReact.Core.MockUI.Test.Elements;
 
-namespace SharpReact.Core.Test
+namespace SharpReact.Core.MockUI.Test
 {
     public class MockUIRenderer : SharpRenderer<Elements.ContentControl, Elements.UIElement>
     {
@@ -12,5 +11,9 @@ namespace SharpReact.Core.Test
             detachChildFromRoot: (r, c) => r.Content = null,
             TaskScheduler.Current)
         { }
+        protected override void CreateElement(ISharpNativeComponent nativeComponent)
+        {
+            ((Components.IElementCreator)nativeComponent).CreateElement();
+        }
     }
 }

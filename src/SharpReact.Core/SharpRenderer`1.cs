@@ -75,11 +75,16 @@ namespace SharpReact.Core
             next.Init();
             var statefulComponent = next.Component;
             statefulComponent.Renderer = this;
-            statefulComponent.WillMount();
             var nativeCurrent = statefulComponent as ISharpNativeComponent;
+            if (nativeCurrent != null)
+            {
+                CreateElement(nativeCurrent);
+            }
+            statefulComponent.WillMount();
             statefulComponent.DidMount();
             return (statefulComponent, nativeCurrent);
         }
+        protected abstract void CreateElement(ISharpNativeComponent nativeComponent);
         public void UpdateComponent(int level, NewState newState, ISharpProp previous, ISharpProp next, ISharpStatefulComponent statefulComponent, object newComponentState)
         {
             statefulComponent.WillReceiveProps(next);
