@@ -2,13 +2,14 @@
 
 namespace SharpReact.Core
 {
-    public struct ReactParam<T>: IEquatable<ReactParam<T>>, IEquatable<T>
+    public readonly struct ReactParam<T>: IEquatable<ReactParam<T>>, IEquatable<T>
     {
-        public T Value { get; set; }
+        public ReactParam(T value) => Value = value;
+        public T Value { get; }
 
         public static implicit operator ReactParam<T>(T value)
         {
-            return new ReactParam<T> { Value = value };
+            return new ReactParam<T>(value);
         }
 
         public static implicit operator T(ReactParam<T> param)

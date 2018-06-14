@@ -34,16 +34,16 @@ namespace SharpReact.Core.Test
             [Test]
             public void WhenValuesAreEqual_ReturnsTrue()
             {
-                ReactParam<int> a = new ReactParam<int> { Value = 1 };
-                ReactParam<int> b = new ReactParam<int> { Value = 1 };
+                ReactParam<int> a = new ReactParam<int>(1);
+                ReactParam<int> b = new ReactParam<int>(1);
 
                 Assert.That(a.Equals(b), Is.True);
             }
             [Test]
             public void WhenValuesAreNotEqual_ReturnsFalse()
             {
-                ReactParam<int> a = new ReactParam<int> { Value = 1 };
-                ReactParam<int> b = new ReactParam<int> { Value = 2 };
+                ReactParam<int> a = new ReactParam<int> (1);
+                ReactParam<int> b = new ReactParam<int> (2);
 
                 Assert.That(a.Equals(b), Is.False);
             }
