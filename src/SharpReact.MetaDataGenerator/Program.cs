@@ -86,7 +86,7 @@ namespace SharpReact.MetaDataGenerator
             foreach (string file in Directory.GetFiles(path))
             {
                 string fileName = Path.GetFileName(file);
-                if (settings.FixedFiles == null || Array.IndexOf(settings.FixedFiles, fileName) < 0)
+                if (!file.EndsWith(".Extension.cs") && (settings.FixedFiles == null || Array.IndexOf(settings.FixedFiles, fileName) < 0))
                 {
                     File.Delete(file);
                 }

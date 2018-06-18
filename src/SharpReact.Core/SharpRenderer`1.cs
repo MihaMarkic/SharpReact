@@ -1,12 +1,13 @@
 ﻿using SharpReact.Core.Properties;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace SharpReact.Core
 {
-    public abstract class SharpRenderer<TRootElement, TElement>: ISharpRenderer, ISharpCreator<TElement>
+    public abstract class SharpRenderer<TRootElement, TElement>: ISharpRenderer<TElement>
     {
         SharpProp currentProps;
         TElement currentElement;
@@ -74,11 +75,11 @@ namespace SharpReact.Core
             var statefulComponent = next.Component;
             statefulComponent.Renderer = this;
             var nativeCurrent = statefulComponent as ISharpNativeComponent;
+            statefulComponent.WillMount();
             if (nativeCurrent != null)
             {
                 CreateElement(nativeCurrent);
             }
-            statefulComponent.WillMount();
             statefulComponent.DidMount();
             return (statefulComponent, nativeCurrent);
         }
@@ -100,6 +101,41 @@ namespace SharpReact.Core
                 throw new NotImplementedException("Unknown component type or null");
             }
             statefulComponent.DidUpdate(next, newComponentState);
+        }
+        public void UpdateExistingElement(object element, ISharpProp prop)
+        {
+            UpdateExistingElement((TElement)element, prop);
+        }
+        /// <summary>
+        /// Updates existing element properties.
+        /// </summary>
+        /// <remarks>Used with template based rendering.</remarks>
+        /// <param name="element"></param>
+        /// <param name="prop"></param>
+        public void UpdateExistingElement(TElement element, ISharpProp prop)
+        {
+            prop.Init();
+            prop.Component.WillMount();
+            // UpdateElement expects all sub-elements to be created and be in proper position in list.
+            prop.Component.UpdateElement(this, element, prop);
+            prop.Component.DidMount();
+        }
+        /// <summary>
+        /// Removes element from components.
+        /// </summary>
+        /// <remarks>Used with template based rendering.</remarks>
+        /// <param name="prop"></param>
+        public void RemoveElement(TElement element, ISharpProp prop)
+        {
+            var query = from p in prop.AllChildren.Union(new ISharpProp[] { prop })
+                        where !ReferenceEquals(p, null) && ReferenceEquals(p.Component?.Element, element)
+                        let n = p.Component as ISharpNativeComponent
+                        where n != null
+                        select n;
+            foreach (var p in query)
+            {
+                p.RemoveElement();
+            }
         }
 
         public TElement ProcessPair(int level, NewState newState, ISharpProp previous, ISharpProp next)
@@ -230,6 +266,56 @@ namespace SharpReact.Core
         public void StateChanged(NewState newState)
         {
             taskFactory.StartNew(() => Invalidate(newState), CancellationToken.None);
+        }
+        public bool CompareProperties<T>(T left, T right)
+            where T: ISharpProp
+        {
+            if (ReferenceEquals(left, null))
+            {
+                return ReferenceEquals(right, null);
+            }
+            if (ReferenceEquals(right, null))
+            {
+                return false;
+            }
+            var rightProps = right.AllProperties.GetEnumerator();
+            foreach (var leftProp in left.AllProperties)
+            {
+                rightProps.MoveNext();
+                if (ReferenceEquals(leftProp, null))
+                {
+                    if (!ReferenceEquals(rightProps.Current, null))
+                    {
+                        return false;
+                    }
+                }
+                else if (!leftProp.Equals(rightProps.Current))
+                {
+                    return false;
+                }
+            }
+            if (left.AllChildren.Count() != right.AllChildren.Count())
+            {
+                return false;
+            }
+            var rightChildren = right.AllChildren.GetEnumerator();
+            foreach (var leftChild in left.AllChildren)
+            {
+                if (!rightChildren.MoveNext())
+                {
+                    return false;
+                }
+                if (!CompareProperties(leftChild, rightChildren.Current))
+                {
+                    return false;
+                }
+            }
+            if (rightChildren.MoveNext())
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

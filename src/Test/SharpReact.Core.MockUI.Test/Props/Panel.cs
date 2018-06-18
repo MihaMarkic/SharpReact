@@ -1,5 +1,4 @@
 ﻿using SharpReact.Core.Properties;
-using System;
 using System.Collections.Generic;
 
 namespace SharpReact.Core.MockUI.Test.Props
@@ -11,6 +10,20 @@ namespace SharpReact.Core.MockUI.Test.Props
         {
             UnmountComponents(Children);
             base.UnmountComponent();
+        }
+        public override IEnumerable<ISharpProp> AllChildren
+        {
+            get
+            {
+                foreach (var c in Children)
+                {
+                    yield return c;
+                }
+                foreach (var c in base.AllChildren)
+                {
+                    yield return c;
+                }
+            }
         }
     }
 }

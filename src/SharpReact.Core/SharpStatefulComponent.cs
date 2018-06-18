@@ -3,15 +3,16 @@ using System;
 
 namespace SharpReact.Core
 {
-    public abstract class SharpStatefulComponent<TProps, TState>: ISharpStatefulComponent
-        where TProps: SharpProp
+    public abstract class SharpStatefulComponent<TProps, TState, TElement> : ISharpStatefulComponent<TElement>
+        where TProps : SharpProp
     {
         public ISharpRenderer Renderer { get; set; }
-        public object Element { get; protected set; }
+        public TElement Element { get; protected set; }
+        object ISharpStatefulComponent.Element => Element;
         public TState State { get; private set; }
         public TProps Props { get; private set; }
         public SharpStatefulComponent()
-        {}
+        { }
         public virtual void WillMount()
         { }
         public virtual void DidMount()
@@ -61,9 +62,23 @@ namespace SharpReact.Core
 
         void ISharpStatefulComponent.DidUpdate(object nextProps, object nextState)
         {
-            DidUpdate((TProps)nextProps, ReferenceEquals(nextState, null) ? default: (TState)nextState);
+            DidUpdate((TProps)nextProps, ReferenceEquals(nextState, null) ? default : (TState)nextState);
         }
         object ISharpStatefulComponent.State => State;
         object ISharpStatefulComponent.Props => Props;
+        /// <summary>
+        /// Run time update of the existing element
+        /// </summary>
+        /// <param name="element"></param>
+        void ISharpStatefulComponent<TElement>.UpdateElement(ISharpRenderer<TElement> renderer, TElement element, ISharpProp props)
+        {
+            UpdateElement(renderer, element, (TProps)props);
+        }
+        void ISharpStatefulComponent.UpdateElement(ISharpRenderer renderer, object element, ISharpProp props)
+        {
+            UpdateElement(renderer, (TElement)element, (TProps)props);
+        }
+        protected virtual void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+        { }
     }
 }

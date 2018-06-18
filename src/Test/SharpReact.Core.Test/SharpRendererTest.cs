@@ -27,6 +27,131 @@ namespace SharpReact.Core.Test
         {
             return new MockUIRenderer(createTree, root);
         }
+        public class CompareProperties: SharpRendererTest
+        {
+            [SetUp]
+            public new void SetUp()
+            {
+                renderer = CreateRenderer(null);
+            }
+            [TestFixture]
+            public class ComparingUIElement: CompareProperties
+            {
+                [Test]
+                public void WhenBothAreNull_ReturnsTrue()
+                {
+                    var actual = renderer.CompareProperties<Props.UIElement>(null, null);
+
+                    Assert.That(actual, Is.True);
+                }
+                [Test]
+                public void WhenFirstHasValueAndOtherIsNull_ReturnsFalse()
+                {
+                    var actual = renderer.CompareProperties(new Props.UIElement(), null);
+
+                    Assert.That(actual, Is.False);
+                }
+                [Test]
+                public void WhenSecondHasValueAndOtherIsNull_ReturnsFalse()
+                {
+                    var actual = renderer.CompareProperties(null, new Props.UIElement());
+
+                    Assert.That(actual, Is.False);
+                }
+                [Test]
+                public void WhenBothAreCleanInstances_ReturnsTrue()
+                {
+                    var actual = renderer.CompareProperties(new Props.UIElement(), new Props.UIElement());
+
+                    Assert.That(actual, Is.True);
+                }
+                [Test]
+                public void WhenFirstHasPropertySetAndOtherDoesNot_ReturnsFalse()
+                {
+                    var actual = renderer.CompareProperties(new Props.UIElement { IsEnabled = true }, new Props.UIElement());
+
+                    Assert.That(actual, Is.False);
+                }
+                [Test]
+                public void WhenSecondHasPropertySetAndOtherDoesNot_ReturnsFalse()
+                {
+                    var actual = renderer.CompareProperties(new Props.UIElement(), new Props.UIElement { IsEnabled = true });
+
+                    Assert.That(actual, Is.False);
+                }
+            }
+            [TestFixture]
+            public class ComparingButton : CompareProperties
+            {
+                [Test]
+                public void WhenBothAreNull_ReturnsTrue()
+                {
+                    var actual = renderer.CompareProperties<Props.Button>(null, null);
+
+                    Assert.That(actual, Is.True);
+                }
+                [Test]
+                public void WhenFirstHasValueAndOtherIsNull_ReturnsFalse()
+                {
+                    var actual = renderer.CompareProperties(new Props.Button(), null);
+
+                    Assert.That(actual, Is.False);
+                }
+                [Test]
+                public void WhenSecondHasValueAndOtherIsNull_ReturnsFalse()
+                {
+                    var actual = renderer.CompareProperties(null, new Props.Button());
+
+                    Assert.That(actual, Is.False);
+                }
+                [Test]
+                public void WhenBothAreCleanInstances_ReturnsTrue()
+                {
+                    var actual = renderer.CompareProperties(new Props.Button(), new Props.Button());
+
+                    Assert.That(actual, Is.True);
+                }
+                [Test]
+                public void WhenFirstHasInheritedPropertySetAndOtherDoesNot_ReturnsFalse()
+                {
+                    var actual = renderer.CompareProperties(new Props.Button { IsEnabled = true }, new Props.Button());
+
+                    Assert.That(actual, Is.False);
+                }
+                [Test]
+                public void WhenSecondHasInheritedPropertySetAndOtherDoesNot_ReturnsFalse()
+                {
+                    var actual = renderer.CompareProperties(new Props.Button(), new Props.Button { IsEnabled = true });
+
+                    Assert.That(actual, Is.False);
+                }
+            }
+            [TestFixture]
+            public class ComparingContentControl: CompareProperties
+            {
+                [Test]
+                public void WhenBothHaveNoChildren_ReturnsTrue()
+                {
+                    var actual = renderer.CompareProperties(new Props.ContentControl(), new Props.ContentControl());
+
+                    Assert.That(actual, Is.True);
+                }
+                [Test]
+                public void WhenFirstHasChildrenAndOtherDoesNot_ReturnsFalse()
+                {
+                    var actual = renderer.CompareProperties(new Props.ContentControl {  Content = new Props.UIElement() }, new Props.ContentControl());
+
+                    Assert.That(actual, Is.False);
+                }
+                [Test]
+                public void WhenSecondHasChildrenAndOtherDoesNot_ReturnsFalse()
+                {
+                    var actual = renderer.CompareProperties(new Props.ContentControl(), new Props.ContentControl { Content = new Props.UIElement() });
+
+                    Assert.That(actual, Is.False);
+                }
+            }
+        }
         public class Render : SharpRendererTest
         {
             [TestFixture]
@@ -584,6 +709,88 @@ namespace SharpReact.Core.Test
                     "sourceProperty", "sourceType");
 
                 Assert.That(actual.Length, Is.EqualTo(1));
+            }
+        }
+        [TestFixture]
+        public class UpdateExistingElement: SharpRendererTest
+        {
+            [SetUp]
+            public new void SetUp()
+            {
+                renderer = CreateRenderer(() => null);
+
+            }
+            [Test]
+            public void WhenTextBlock_CreatesComponents()
+            {
+                var element = new Elements.TextBlock();
+                var props = new Props.TextBlock();
+
+                renderer.UpdateExistingElement(element, props);
+
+                Assert.That(props.Component, Is.Not.Null);
+            }
+            [Test]
+            public void WhenTextBlock_UpdatesProperties()
+            {
+                var element = new Elements.TextBlock();
+                var props = new Props.TextBlock { Text = "test", IsEnabled = true, Focusable = true };
+
+                renderer.UpdateExistingElement(element, props);
+
+                Assert.That(element.Text, Is.EqualTo(props.Text));
+                Assert.That(element.IsEnabled, Is.True);
+                Assert.That(element.Focusable, Is.True);
+            }
+            [Test]
+            public void WhenTextBlock_PreviousElementIsRemoved()
+            {
+                var element = new Elements.TextBlock();
+                var props = new Props.TextBlock();
+                renderer.UpdateExistingElement(element, props);
+
+                renderer.UpdateExistingElement(new Elements.TextBlock(), props);
+
+                Assert.That(props.Component.Element, Is.Not.SameAs(element));
+            }
+            [Test]
+            public void WhenContentControl_CreatesComponents()
+            {
+                var element = new Elements.ContentControl { Content = new Elements.TextBlock() };
+                var props = new Props.ContentControl { Content = new Props.TextBlock() };
+
+                renderer.UpdateExistingElement(element, props);
+
+                Assert.That(props.Component, Is.Not.Null);
+                Assert.That(props.Content.Component, Is.Not.Null);
+            }
+            [Test]
+            public void WhenContentControl_UpdatesProperties()
+            {
+                var element = new Elements.ContentControl { Content = new Elements.TextBlock() };
+                var content = new Props.TextBlock { Text = "test", IsEnabled = true, Focusable = true };
+                var props = new Props.ContentControl { Content = content };
+
+                renderer.UpdateExistingElement(element, props);
+
+                var actual = (Elements.TextBlock)element.Content;
+                Assert.That(actual.Text, Is.EqualTo(content.Text));
+                Assert.That(actual.IsEnabled, Is.True);
+                Assert.That(actual.Focusable, Is.True);
+            }
+            [Test]
+            public void WhenContentControl_PreviousElementsAreRemoved()
+            {
+                var element = new Elements.ContentControl { Content = new Elements.TextBlock() };
+                var content = new Props.TextBlock { Text = "test", IsEnabled = true, Focusable = true };
+                var props = new Props.ContentControl { Content = content };
+
+                renderer.UpdateExistingElement(element, props);
+                renderer.UpdateExistingElement(new Elements.ContentControl { Content = new Elements.TextBlock() }, props);
+
+                var actual = (Elements.TextBlock)element.Content;
+                Assert.That(props.Component.Element, Is.Not.SameAs(element));
+                Assert.That(content.Component.Element, Is.Not.SameAs(element.Content));
             }
         }
     }

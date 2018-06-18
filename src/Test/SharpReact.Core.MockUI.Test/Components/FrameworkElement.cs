@@ -2,23 +2,24 @@
 {
     public class FrameworkElement<TProps, TElement> : UIElement<TProps, TElement>
         where TProps : Props.FrameworkElement
-        where TElement : Core.MockUI.Test.Elements.FrameworkElement, new()
+        where TElement : Elements.FrameworkElement, new()
     {
-        public override void AssignProperties(ISharpCreator<Core.MockUI.Test.Elements.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+        public override void AssignProperties(ISharpRenderer<Elements.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
             base.AssignProperties(renderer, level, newState, previous, nextProps);
-            //if (nextProps.HorizontalAlignment.HasValue)
-            //{
-            //    Element.HorizontalAlignment = nextProps.HorizontalAlignment.Value;
-            //}
-            //if (nextProps.VerticalAlignment.HasValue)
-            //{
-            //    Element.VerticalAlignment = nextProps.VerticalAlignment.Value;
-            //}
-            //if (nextProps.Margin.HasValue)
-            //{
-            //    Element.Margin = nextProps.Margin.Value;
-            //}
+            UpdateFrameworkElementWithInstanceProperties(Element, previous, nextProps);
+        }
+        protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+        {
+            base.UpdateElement(renderer, element, props);
+            UpdateFrameworkElementWithInstanceProperties(element, null, props);
+        }
+        static void UpdateFrameworkElementWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+        {
+            if (nextProps.Focusable.HasValue)
+            {
+                element.Focusable = nextProps.Focusable.Value;
+            }
         }
     }
 }

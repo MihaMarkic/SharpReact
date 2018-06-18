@@ -20,5 +20,6 @@ namespace SharpReact.Core
         /// </summary>
         /// <returns></returns>
         ISharpProp Render();
+        void UpdateElement(ISharpRenderer renderer, object element, ISharpProp props);
     }
 }

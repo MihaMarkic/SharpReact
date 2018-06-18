@@ -2,13 +2,9 @@
 
 namespace SharpReact.Core
 {
-    public abstract class SharpComponent<TProps, TState> : SharpStatefulComponent<TProps, TState>, ISharpComponent
+    public abstract class SharpComponent<TProps, TState> : SharpStatefulComponent<TProps, TState, object>, ISharpComponent
         where TProps : SharpProp
     {
-        public void AssignElement(object element)
-        {
-            Element = element;
-        }
         void ISharpComponent.AssignProperties(object nextProps)
         {
             AssignProperties((TProps)nextProps);

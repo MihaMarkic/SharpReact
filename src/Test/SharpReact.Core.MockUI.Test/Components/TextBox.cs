@@ -1,52 +1,33 @@
-﻿using SharpReact.Core;
-
-namespace SharpReact.Core.MockUI.Test.Components
+﻿namespace SharpReact.Core.MockUI.Test.Components
 {
     public class TextBox<TProps, TElement> : TextBoxBase<TProps, TElement>
         where TProps : Props.TextBox
         where TElement : Elements.TextBox, new()
     {
-        //bool isUpdating;
-        //int lastCaretIndex;
-        //string oldText = "";
-
-        public override void AssignProperties(ISharpCreator<Elements.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+        public override void AssignProperties(ISharpRenderer<Elements.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
             base.AssignProperties(renderer, level, newState, previous, nextProps);
-            //if (!ReferenceEquals(Props?.TextChanged, null) && ReferenceEquals(nextProps.TextChanged, null))
-            //{
-            //    Element.TextChanged -= Element_TextChanged;
-            //}
-            //if (ReferenceEquals(Props?.TextChanged, null) && !ReferenceEquals(nextProps.TextChanged, null))
-            //{
-            //    Element.TextChanged += Element_TextChanged;
-            //}
-            //UpdateValue(nextProps.Text);
+            UpdateTextBoxWithInstanceProperties(Element, previous, nextProps);
         }
-
-        //private void Element_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    if (!isUpdating)
-        //    {
-        //        isUpdating = true;
-        //        //string text = Element.Text;
-        //        var newLastCaretIndex = Element.CaretIndex;
-        //        //Element.Text = "";
-        //        Props.TextChanged.Invoke(sender, e);
-        //        Element.Text = oldText;
-        //        Element.CaretIndex = lastCaretIndex;
-        //        lastCaretIndex = newLastCaretIndex;
-        //        isUpdating = false;
-        //    }
-        //}
-
-        //public void UpdateValue(string value)
-        //{
-        //    isUpdating = true;
-        //    Element.Text = value;
-        //    Element.CaretIndex = lastCaretIndex;
-        //    oldText = value;
-        //    isUpdating = false;
-        //}
+        protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+        {
+            base.UpdateElement(renderer, element, props);
+            UpdateTextBoxWithInstanceProperties(element, null, props);
+        }
+        static void UpdateTextBoxWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+        {
+            if (nextProps.Text.HasValue)
+            {
+                element.Text = nextProps.Text.Value;
+            }
+            if (!ReferenceEquals(previous?.TextChanged, null) && ReferenceEquals(nextProps.TextChanged, null))
+            {
+                element.TextChanged -= previous.TextChanged;
+            }
+            if (ReferenceEquals(previous?.TextChanged, null) && !ReferenceEquals(nextProps.TextChanged, null))
+            {
+                element.TextChanged += nextProps.TextChanged;
+            }
+        }
     }
 }

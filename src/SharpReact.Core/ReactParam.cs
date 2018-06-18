@@ -2,7 +2,7 @@
 
 namespace SharpReact.Core
 {
-    public readonly struct ReactParam<T>: IEquatable<ReactParam<T>>, IEquatable<T>
+    public readonly struct ReactParam<T>: IReactParam, IEquatable<ReactParam<T>>, IEquatable<T>
     {
         public ReactParam(T value) => Value = value;
         public T Value { get; }
@@ -34,6 +34,14 @@ namespace SharpReact.Core
             return false;
         }
 
+        public bool Equals(IReactParam other)
+        {
+            if (other is ReactParam<T> otherParam)
+            {
+                return Equals(otherParam);
+            }
+            return false;
+        }
         public bool Equals(ReactParam<T> other)
         {
             if (ReferenceEquals(other, null))
