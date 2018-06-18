@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Components
 		where TProps : Props.HwndHost
 		where TElement : global::System.Windows.Interop.HwndHost, new()
 	{
-		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpRenderer<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (!ReferenceEquals(previous?.MessageHook, null) && ReferenceEquals(nextProps.MessageHook, null))

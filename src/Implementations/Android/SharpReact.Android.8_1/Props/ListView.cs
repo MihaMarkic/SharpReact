@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class ListView: AbsListView
+	public partial class ListView: AbsListView
 	{
 		public ReactParam<global::Android.Widget.IListAdapter>? Adapter { get; set; }
 		public ReactParam<global::Android.Widget.ChoiceMode>? ChoiceMode { get; set; }

@@ -5,7 +5,7 @@ namespace SharpReact.Wpf.Components
 	public  class Glyphs<TProps>: FrameworkElement<TProps, global::System.Windows.Documents.Glyphs>
 		where TProps : Props.Glyphs
 	{
-		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpRenderer<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.Fill.HasValue)

@@ -8,7 +8,7 @@ namespace SharpReact.Terminal.Gui.Components
         {
             Element = new global::Terminal.Gui.Button("");
         }
-        public override void AssignProperties(ISharpCreator<global::Terminal.Gui.View> renderer, int level, NewState newState, Props.Button previous, Props.Button nextProps)
+        public override void AssignProperties(ISharpRenderer<global::Terminal.Gui.View> renderer, int level, NewState newState, Props.Button previous, Props.Button nextProps)
         {
             base.AssignProperties(renderer, level, newState, previous, nextProps);
             if (nextProps.IsDefault.HasValue)

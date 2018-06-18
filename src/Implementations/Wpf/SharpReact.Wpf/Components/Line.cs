@@ -5,7 +5,7 @@ namespace SharpReact.Wpf.Components
 	public  class Line<TProps>: Shape<TProps, global::System.Windows.Shapes.Line>
 		where TProps : Props.Line
 	{
-		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpRenderer<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.X1.HasValue)

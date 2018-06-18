@@ -10,7 +10,7 @@ namespace SharpReact.Android.Components
 		{
 			Element = (TElement)new global::Android.Widget.ActionMenuView(context);
 		}
-		public override void AssignProperties(ISharpCreator<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.OverflowIcon.HasValue)

@@ -7,7 +7,7 @@ namespace SharpReact.Terminal.Gui.Components
         where TProps : Props.View
         where TElement : View
     {
-        public override void AssignProperties(ISharpCreator<View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+        public override void AssignProperties(ISharpRenderer<View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
             base.AssignProperties(renderer, level, newState, previous, nextProps);
             if (nextProps.Id.HasValue)

@@ -9,7 +9,7 @@ namespace SharpReact.Android.Components
 		{
 			Element = new global::Android.Views.ViewStub(context);
 		}
-		public override void AssignProperties(ISharpCreator<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (nextProps.InflatedId.HasValue)

@@ -165,6 +165,7 @@
     <Compile Include="Props\ImageView.cs" />
     <Compile Include="Props\LinearLayout.cs" />
     <Compile Include="Props\ListView.cs" />
+    <Compile Include="Props\ListView.Extension.cs" />
     <Compile Include="Props\MediaController.cs" />
     <Compile Include="Props\MediaRouteButton.cs" />
     <Compile Include="Props\MultiAutoCompleteTextView.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Props\ZoomButton.cs" />
     <Compile Include="Props\ZoomControls.cs" />
     <Compile Include="AndroidTreeRenderer`1.cs" />
+    <Compile Include="ReactAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2" />

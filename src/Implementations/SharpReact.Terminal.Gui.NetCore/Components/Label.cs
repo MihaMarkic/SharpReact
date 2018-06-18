@@ -8,7 +8,7 @@ namespace SharpReact.Terminal.Gui.Components
         {
             Element = new global::Terminal.Gui.Label("");
         }
-        public override void AssignProperties(ISharpCreator<global::Terminal.Gui.View> renderer, int level, NewState newState, Props.Label previous, Props.Label nextProps)
+        public override void AssignProperties(ISharpRenderer<global::Terminal.Gui.View> renderer, int level, NewState newState, Props.Label previous, Props.Label nextProps)
         {
             if (nextProps.Text.HasValue)
             {

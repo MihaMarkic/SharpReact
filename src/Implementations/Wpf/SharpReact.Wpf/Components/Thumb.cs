@@ -6,7 +6,7 @@ namespace SharpReact.Wpf.Components
 		where TProps : Props.Thumb
 		where TElement : global::System.Windows.Controls.Primitives.Thumb, new()
 	{
-		public override void AssignProperties(ISharpCreator<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+		public override void AssignProperties(ISharpRenderer<global::System.Windows.UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			if (!ReferenceEquals(previous?.DragStarted, null) && ReferenceEquals(nextProps.DragStarted, null))
