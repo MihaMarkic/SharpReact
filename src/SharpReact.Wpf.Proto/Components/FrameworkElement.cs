@@ -7,7 +7,7 @@ namespace SharpReact.Wpf.Components
         where TProps : Props.FrameworkElement
         where TElement : System.Windows.FrameworkElement, new()
     {
-        public override void AssignProperties(ISharpCreator<UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+        public override void AssignProperties(ISharpRenderer<UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
             base.AssignProperties(renderer, level, newState, previous, nextProps);
             if (nextProps.HorizontalAlignment.HasValue)

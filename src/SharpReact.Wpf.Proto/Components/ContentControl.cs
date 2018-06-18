@@ -8,7 +8,7 @@ namespace SharpReact.Wpf.Components
         where TProps : Props.ContentControl
         where TElement : System.Windows.Controls.ContentControl, new()
     {
-        public override void AssignProperties(ISharpCreator<UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+        public override void AssignProperties(ISharpRenderer<UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
             base.AssignProperties(renderer, level, newState, previous, nextProps);
             if (nextProps.Content != null)

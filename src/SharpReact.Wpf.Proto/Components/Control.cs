@@ -8,7 +8,7 @@ namespace SharpReact.Wpf.Components
         where TProps : Props.Control
         where TElement : System.Windows.Controls.Control, new()
     {
-        public override void AssignProperties(ISharpCreator<UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
+        public override void AssignProperties(ISharpRenderer<UIElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {
             base.AssignProperties(renderer, level, newState, previous, nextProps);
             if (nextProps.FontSize.HasValue)
