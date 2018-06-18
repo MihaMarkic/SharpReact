@@ -10,9 +10,5 @@ namespace SharpReact.Android.Components
 		{
 			Element = (TElement)new global::Android.Widget.RadioButton(context);
 		}
-		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
-		{
-			base.AssignProperties(renderer, level, newState, previous, nextProps);
-		}
 	}
 }

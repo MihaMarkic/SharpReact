@@ -13,21 +13,30 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateToggleButtonWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateToggleButtonWithInstanceProperties(element, null, props);
+		}
+		static void UpdateToggleButtonWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.TextOffFormatted.HasValue)
 			{
-				Element.TextOffFormatted = nextProps.TextOffFormatted.Value.Value;
+				element.TextOffFormatted = nextProps.TextOffFormatted.Value.Value;
 			}
 			if (nextProps.TextOff.HasValue)
 			{
-				Element.TextOff = nextProps.TextOff.Value.Value;
+				element.TextOff = nextProps.TextOff.Value.Value;
 			}
 			if (nextProps.TextOnFormatted.HasValue)
 			{
-				Element.TextOnFormatted = nextProps.TextOnFormatted.Value.Value;
+				element.TextOnFormatted = nextProps.TextOnFormatted.Value.Value;
 			}
 			if (nextProps.TextOn.HasValue)
 			{
-				Element.TextOn = nextProps.TextOn.Value.Value;
+				element.TextOn = nextProps.TextOn.Value.Value;
 			}
 		}
 	}

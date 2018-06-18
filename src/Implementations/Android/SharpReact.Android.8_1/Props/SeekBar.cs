@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class SeekBar: AbsSeekBar
+	public partial class SeekBar: AbsSeekBar
 	{
 		public System.EventHandler<global::Android.Widget.SeekBar.ProgressChangedEventArgs> ProgressChanged { get; set; }
 		public System.EventHandler<global::Android.Widget.SeekBar.StartTrackingTouchEventArgs> StartTrackingTouch { get; set; }

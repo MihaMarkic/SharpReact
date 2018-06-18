@@ -13,69 +13,78 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateProgressBarWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateProgressBarWithInstanceProperties(element, null, props);
+		}
+		static void UpdateProgressBarWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.Indeterminate.HasValue)
 			{
-				Element.Indeterminate = nextProps.Indeterminate.Value.Value;
+				element.Indeterminate = nextProps.Indeterminate.Value.Value;
 			}
 			if (nextProps.IndeterminateDrawable.HasValue)
 			{
-				Element.IndeterminateDrawable = nextProps.IndeterminateDrawable.Value.Value;
+				element.IndeterminateDrawable = nextProps.IndeterminateDrawable.Value.Value;
 			}
 			if (nextProps.IndeterminateTintList.HasValue)
 			{
-				Element.IndeterminateTintList = nextProps.IndeterminateTintList.Value.Value;
+				element.IndeterminateTintList = nextProps.IndeterminateTintList.Value.Value;
 			}
 			if (nextProps.IndeterminateTintMode.HasValue)
 			{
-				Element.IndeterminateTintMode = nextProps.IndeterminateTintMode.Value.Value;
+				element.IndeterminateTintMode = nextProps.IndeterminateTintMode.Value.Value;
 			}
 			if (nextProps.Interpolator.HasValue)
 			{
-				Element.Interpolator = nextProps.Interpolator.Value.Value;
+				element.Interpolator = nextProps.Interpolator.Value.Value;
 			}
 			if (nextProps.Max.HasValue)
 			{
-				Element.Max = nextProps.Max.Value.Value;
+				element.Max = nextProps.Max.Value.Value;
 			}
 			if (nextProps.Min.HasValue)
 			{
-				Element.Min = nextProps.Min.Value.Value;
+				element.Min = nextProps.Min.Value.Value;
 			}
 			if (nextProps.Progress.HasValue)
 			{
-				Element.Progress = nextProps.Progress.Value.Value;
+				element.Progress = nextProps.Progress.Value.Value;
 			}
 			if (nextProps.ProgressBackgroundTintList.HasValue)
 			{
-				Element.ProgressBackgroundTintList = nextProps.ProgressBackgroundTintList.Value.Value;
+				element.ProgressBackgroundTintList = nextProps.ProgressBackgroundTintList.Value.Value;
 			}
 			if (nextProps.ProgressBackgroundTintMode.HasValue)
 			{
-				Element.ProgressBackgroundTintMode = nextProps.ProgressBackgroundTintMode.Value.Value;
+				element.ProgressBackgroundTintMode = nextProps.ProgressBackgroundTintMode.Value.Value;
 			}
 			if (nextProps.ProgressDrawable.HasValue)
 			{
-				Element.ProgressDrawable = nextProps.ProgressDrawable.Value.Value;
+				element.ProgressDrawable = nextProps.ProgressDrawable.Value.Value;
 			}
 			if (nextProps.ProgressTintList.HasValue)
 			{
-				Element.ProgressTintList = nextProps.ProgressTintList.Value.Value;
+				element.ProgressTintList = nextProps.ProgressTintList.Value.Value;
 			}
 			if (nextProps.ProgressTintMode.HasValue)
 			{
-				Element.ProgressTintMode = nextProps.ProgressTintMode.Value.Value;
+				element.ProgressTintMode = nextProps.ProgressTintMode.Value.Value;
 			}
 			if (nextProps.SecondaryProgress.HasValue)
 			{
-				Element.SecondaryProgress = nextProps.SecondaryProgress.Value.Value;
+				element.SecondaryProgress = nextProps.SecondaryProgress.Value.Value;
 			}
 			if (nextProps.SecondaryProgressTintList.HasValue)
 			{
-				Element.SecondaryProgressTintList = nextProps.SecondaryProgressTintList.Value.Value;
+				element.SecondaryProgressTintList = nextProps.SecondaryProgressTintList.Value.Value;
 			}
 			if (nextProps.SecondaryProgressTintMode.HasValue)
 			{
-				Element.SecondaryProgressTintMode = nextProps.SecondaryProgressTintMode.Value.Value;
+				element.SecondaryProgressTintMode = nextProps.SecondaryProgressTintMode.Value.Value;
 			}
 		}
 	}

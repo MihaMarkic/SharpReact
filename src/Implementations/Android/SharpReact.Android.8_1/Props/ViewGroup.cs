@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class ViewGroup: View
+	public abstract partial class ViewGroup: View
 	{
 		public ReactParam<global::Android.Views.DescendantFocusability>? DescendantFocusability { get; set; }
 		public ReactParam<global::Android.Views.Animations.LayoutAnimationController>? LayoutAnimation { get; set; }
@@ -21,5 +21,38 @@ namespace SharpReact.Android.Props
 		public System.EventHandler<global::Android.Views.Animations.Animation.AnimationEndEventArgs> AnimationEnd { get; set; }
 		public System.EventHandler<global::Android.Views.Animations.Animation.AnimationRepeatEventArgs> AnimationRepeat { get; set; }
 		public System.EventHandler<global::Android.Views.Animations.Animation.AnimationStartEventArgs> AnimationStart { get; set; }
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return DescendantFocusability;
+				yield return LayoutAnimation;
+				yield return LayoutAnimationListener;
+				yield return LayoutMode;
+				yield return LayoutTransition;
+				yield return MotionEventSplittingEnabled;
+				yield return PersistentDrawingCache;
+				yield return TouchscreenBlocksFocus;
+				yield return TransitionGroup;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
+		}
+		public override IEnumerable<ISharpProp> AllChildren
+		{
+			get
+			{
+				foreach (var c in Views)
+				{
+					yield return c;
+				}
+				foreach (var c in base.AllChildren)
+				{
+					yield return c;
+				}
+			}
+		}
 	}
 }

@@ -13,81 +13,90 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateAutoCompleteTextViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateAutoCompleteTextViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateAutoCompleteTextViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.Adapter.HasValue)
 			{
-				Element.Adapter = nextProps.Adapter.Value.Value;
+				element.Adapter = nextProps.Adapter.Value.Value;
 			}
 			if (nextProps.DropDownAnchor.HasValue)
 			{
-				Element.DropDownAnchor = nextProps.DropDownAnchor.Value.Value;
+				element.DropDownAnchor = nextProps.DropDownAnchor.Value.Value;
 			}
 			if (nextProps.DropDownHeight.HasValue)
 			{
-				Element.DropDownHeight = nextProps.DropDownHeight.Value.Value;
+				element.DropDownHeight = nextProps.DropDownHeight.Value.Value;
 			}
 			if (nextProps.DropDownHorizontalOffset.HasValue)
 			{
-				Element.DropDownHorizontalOffset = nextProps.DropDownHorizontalOffset.Value.Value;
+				element.DropDownHorizontalOffset = nextProps.DropDownHorizontalOffset.Value.Value;
 			}
 			if (nextProps.DropDownVerticalOffset.HasValue)
 			{
-				Element.DropDownVerticalOffset = nextProps.DropDownVerticalOffset.Value.Value;
+				element.DropDownVerticalOffset = nextProps.DropDownVerticalOffset.Value.Value;
 			}
 			if (nextProps.DropDownWidth.HasValue)
 			{
-				Element.DropDownWidth = nextProps.DropDownWidth.Value.Value;
+				element.DropDownWidth = nextProps.DropDownWidth.Value.Value;
 			}
 			if (nextProps.ListSelection.HasValue)
 			{
-				Element.ListSelection = nextProps.ListSelection.Value.Value;
+				element.ListSelection = nextProps.ListSelection.Value.Value;
 			}
 			if (nextProps.OnItemClickListener.HasValue)
 			{
-				Element.OnItemClickListener = nextProps.OnItemClickListener.Value.Value;
+				element.OnItemClickListener = nextProps.OnItemClickListener.Value.Value;
 			}
 			if (nextProps.OnItemSelectedListener.HasValue)
 			{
-				Element.OnItemSelectedListener = nextProps.OnItemSelectedListener.Value.Value;
+				element.OnItemSelectedListener = nextProps.OnItemSelectedListener.Value.Value;
 			}
 			if (nextProps.Threshold.HasValue)
 			{
-				Element.Threshold = nextProps.Threshold.Value.Value;
+				element.Threshold = nextProps.Threshold.Value.Value;
 			}
 			if (nextProps.Validator.HasValue)
 			{
-				Element.Validator = nextProps.Validator.Value.Value;
+				element.Validator = nextProps.Validator.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.Dismiss, null) && ReferenceEquals(nextProps.Dismiss, null))
+			if (!(previous?.Dismiss is null) && nextProps.Dismiss is null)
 			{
-				Element.Dismiss -= nextProps.Dismiss;
+				element.Dismiss -= nextProps.Dismiss;
 			}
-			if (ReferenceEquals(previous?.Dismiss, null) && !ReferenceEquals(nextProps.Dismiss, null))
+			if (previous?.Dismiss is null && !(nextProps.Dismiss is null))
 			{
-				Element.Dismiss += nextProps.Dismiss;
+				element.Dismiss += nextProps.Dismiss;
 			}
-			if (!ReferenceEquals(previous?.ItemClick, null) && ReferenceEquals(nextProps.ItemClick, null))
+			if (!(previous?.ItemClick is null) && nextProps.ItemClick is null)
 			{
-				Element.ItemClick -= nextProps.ItemClick;
+				element.ItemClick -= nextProps.ItemClick;
 			}
-			if (ReferenceEquals(previous?.ItemClick, null) && !ReferenceEquals(nextProps.ItemClick, null))
+			if (previous?.ItemClick is null && !(nextProps.ItemClick is null))
 			{
-				Element.ItemClick += nextProps.ItemClick;
+				element.ItemClick += nextProps.ItemClick;
 			}
-			if (!ReferenceEquals(previous?.ItemSelected, null) && ReferenceEquals(nextProps.ItemSelected, null))
+			if (!(previous?.ItemSelected is null) && nextProps.ItemSelected is null)
 			{
-				Element.ItemSelected -= nextProps.ItemSelected;
+				element.ItemSelected -= nextProps.ItemSelected;
 			}
-			if (ReferenceEquals(previous?.ItemSelected, null) && !ReferenceEquals(nextProps.ItemSelected, null))
+			if (previous?.ItemSelected is null && !(nextProps.ItemSelected is null))
 			{
-				Element.ItemSelected += nextProps.ItemSelected;
+				element.ItemSelected += nextProps.ItemSelected;
 			}
-			if (!ReferenceEquals(previous?.NothingSelected, null) && ReferenceEquals(nextProps.NothingSelected, null))
+			if (!(previous?.NothingSelected is null) && nextProps.NothingSelected is null)
 			{
-				Element.NothingSelected -= nextProps.NothingSelected;
+				element.NothingSelected -= nextProps.NothingSelected;
 			}
-			if (ReferenceEquals(previous?.NothingSelected, null) && !ReferenceEquals(nextProps.NothingSelected, null))
+			if (previous?.NothingSelected is null && !(nextProps.NothingSelected is null))
 			{
-				Element.NothingSelected += nextProps.NothingSelected;
+				element.NothingSelected += nextProps.NothingSelected;
 			}
 		}
 	}

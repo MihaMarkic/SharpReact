@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class ZoomControls: LinearLayout
+	public partial class ZoomControls: LinearLayout
 	{
 		public System.EventHandler ZoomInClick { get; set; }
 		public System.EventHandler ZoomOutClick { get; set; }

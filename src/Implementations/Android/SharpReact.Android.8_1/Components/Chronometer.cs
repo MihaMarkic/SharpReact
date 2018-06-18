@@ -13,29 +13,38 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateChronometerWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateChronometerWithInstanceProperties(element, null, props);
+		}
+		static void UpdateChronometerWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.Base.HasValue)
 			{
-				Element.Base = nextProps.Base.Value.Value;
+				element.Base = nextProps.Base.Value.Value;
 			}
 			if (nextProps.CountDown.HasValue)
 			{
-				Element.CountDown = nextProps.CountDown.Value.Value;
+				element.CountDown = nextProps.CountDown.Value.Value;
 			}
 			if (nextProps.Format.HasValue)
 			{
-				Element.Format = nextProps.Format.Value.Value;
+				element.Format = nextProps.Format.Value.Value;
 			}
 			if (nextProps.OnChronometerTickListener.HasValue)
 			{
-				Element.OnChronometerTickListener = nextProps.OnChronometerTickListener.Value.Value;
+				element.OnChronometerTickListener = nextProps.OnChronometerTickListener.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.ChronometerTick, null) && ReferenceEquals(nextProps.ChronometerTick, null))
+			if (!(previous?.ChronometerTick is null) && nextProps.ChronometerTick is null)
 			{
-				Element.ChronometerTick -= nextProps.ChronometerTick;
+				element.ChronometerTick -= nextProps.ChronometerTick;
 			}
-			if (ReferenceEquals(previous?.ChronometerTick, null) && !ReferenceEquals(nextProps.ChronometerTick, null))
+			if (previous?.ChronometerTick is null && !(nextProps.ChronometerTick is null))
 			{
-				Element.ChronometerTick += nextProps.ChronometerTick;
+				element.ChronometerTick += nextProps.ChronometerTick;
 			}
 		}
 	}

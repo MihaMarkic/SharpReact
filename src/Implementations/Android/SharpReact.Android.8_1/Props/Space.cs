@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class Space: View
+	public partial class Space: View
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class GestureOverlayView: FrameLayout
+	public partial class GestureOverlayView: FrameLayout
 	{
 		public ReactParam<global::System.Boolean>? EventsInterceptionEnabled { get; set; }
 		public ReactParam<global::System.Boolean>? FadeEnabled { get; set; }
@@ -29,6 +29,29 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.GestureOverlayView<GestureOverlayView, global::Android.Gestures.GestureOverlayView>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return EventsInterceptionEnabled;
+				yield return FadeEnabled;
+				yield return FadeOffset;
+				yield return Gesture;
+				yield return GestureColor;
+				yield return GestureStrokeAngleThreshold;
+				yield return GestureStrokeLengthThreshold;
+				yield return GestureStrokeSquarenessTreshold;
+				yield return GestureStrokeType;
+				yield return GestureStrokeWidth;
+				yield return GestureVisible;
+				yield return Orientation;
+				yield return UncertainGestureColor;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

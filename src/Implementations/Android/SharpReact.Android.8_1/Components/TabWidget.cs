@@ -13,9 +13,18 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateTabWidgetWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateTabWidgetWithInstanceProperties(element, null, props);
+		}
+		static void UpdateTabWidgetWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.StripEnabled.HasValue)
 			{
-				Element.StripEnabled = nextProps.StripEnabled.Value.Value;
+				element.StripEnabled = nextProps.StripEnabled.Value.Value;
 			}
 		}
 	}

@@ -13,33 +13,42 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateListViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateListViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateListViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.Adapter.HasValue)
 			{
-				Element.Adapter = nextProps.Adapter.Value.Value;
+				element.Adapter = nextProps.Adapter.Value.Value;
 			}
 			if (nextProps.ChoiceMode.HasValue)
 			{
-				Element.ChoiceMode = nextProps.ChoiceMode.Value.Value;
+				element.ChoiceMode = nextProps.ChoiceMode.Value.Value;
 			}
 			if (nextProps.Divider.HasValue)
 			{
-				Element.Divider = nextProps.Divider.Value.Value;
+				element.Divider = nextProps.Divider.Value.Value;
 			}
 			if (nextProps.DividerHeight.HasValue)
 			{
-				Element.DividerHeight = nextProps.DividerHeight.Value.Value;
+				element.DividerHeight = nextProps.DividerHeight.Value.Value;
 			}
 			if (nextProps.ItemsCanFocus.HasValue)
 			{
-				Element.ItemsCanFocus = nextProps.ItemsCanFocus.Value.Value;
+				element.ItemsCanFocus = nextProps.ItemsCanFocus.Value.Value;
 			}
 			if (nextProps.OverscrollFooter.HasValue)
 			{
-				Element.OverscrollFooter = nextProps.OverscrollFooter.Value.Value;
+				element.OverscrollFooter = nextProps.OverscrollFooter.Value.Value;
 			}
 			if (nextProps.OverscrollHeader.HasValue)
 			{
-				Element.OverscrollHeader = nextProps.OverscrollHeader.Value.Value;
+				element.OverscrollHeader = nextProps.OverscrollHeader.Value.Value;
 			}
 		}
 	}

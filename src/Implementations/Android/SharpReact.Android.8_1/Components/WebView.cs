@@ -13,37 +13,46 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateWebViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateWebViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateWebViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.Certificate.HasValue)
 			{
-				Element.Certificate = nextProps.Certificate.Value.Value;
+				element.Certificate = nextProps.Certificate.Value.Value;
 			}
 			if (nextProps.TextClassifier.HasValue)
 			{
-				Element.TextClassifier = nextProps.TextClassifier.Value.Value;
+				element.TextClassifier = nextProps.TextClassifier.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.Download, null) && ReferenceEquals(nextProps.Download, null))
+			if (!(previous?.Download is null) && nextProps.Download is null)
 			{
-				Element.Download -= nextProps.Download;
+				element.Download -= nextProps.Download;
 			}
-			if (ReferenceEquals(previous?.Download, null) && !ReferenceEquals(nextProps.Download, null))
+			if (previous?.Download is null && !(nextProps.Download is null))
 			{
-				Element.Download += nextProps.Download;
+				element.Download += nextProps.Download;
 			}
-			if (!ReferenceEquals(previous?.Find, null) && ReferenceEquals(nextProps.Find, null))
+			if (!(previous?.Find is null) && nextProps.Find is null)
 			{
-				Element.Find -= nextProps.Find;
+				element.Find -= nextProps.Find;
 			}
-			if (ReferenceEquals(previous?.Find, null) && !ReferenceEquals(nextProps.Find, null))
+			if (previous?.Find is null && !(nextProps.Find is null))
 			{
-				Element.Find += nextProps.Find;
+				element.Find += nextProps.Find;
 			}
-			if (!ReferenceEquals(previous?.Picture, null) && ReferenceEquals(nextProps.Picture, null))
+			if (!(previous?.Picture is null) && nextProps.Picture is null)
 			{
-				Element.Picture -= nextProps.Picture;
+				element.Picture -= nextProps.Picture;
 			}
-			if (ReferenceEquals(previous?.Picture, null) && !ReferenceEquals(nextProps.Picture, null))
+			if (previous?.Picture is null && !(nextProps.Picture is null))
 			{
-				Element.Picture += nextProps.Picture;
+				element.Picture += nextProps.Picture;
 			}
 		}
 	}

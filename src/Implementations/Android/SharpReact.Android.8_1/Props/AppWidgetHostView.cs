@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class AppWidgetHostView: FrameLayout
+	public partial class AppWidgetHostView: FrameLayout
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

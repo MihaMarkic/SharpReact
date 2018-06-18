@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class RatingBar: AbsSeekBar
+	public partial class RatingBar: AbsSeekBar
 	{
 		public ReactParam<global::System.Boolean>? IsIndicator { get; set; }
 		public ReactParam<global::System.Int32>? NumStars { get; set; }
@@ -15,6 +15,21 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.RatingBar<RatingBar, global::Android.Widget.RatingBar>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return IsIndicator;
+				yield return NumStars;
+				yield return OnRatingBarChangeListener;
+				yield return Rating;
+				yield return StepSize;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

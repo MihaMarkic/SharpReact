@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class DatePicker: FrameLayout
+	public partial class DatePicker: FrameLayout
 	{
 		public ReactParam<global::System.DateTime>? DateTime { get; set; }
 		public ReactParam<global::System.Int32>? FirstDayOfWeek { get; set; }
@@ -14,6 +14,20 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.DatePicker<DatePicker, global::Android.Widget.DatePicker>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return DateTime;
+				yield return FirstDayOfWeek;
+				yield return MaxDate;
+				yield return MinDate;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

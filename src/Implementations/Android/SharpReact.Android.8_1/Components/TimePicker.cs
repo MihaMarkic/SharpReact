@@ -13,21 +13,30 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateTimePickerWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateTimePickerWithInstanceProperties(element, null, props);
+		}
+		static void UpdateTimePickerWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.Hour.HasValue)
 			{
-				Element.Hour = nextProps.Hour.Value.Value;
+				element.Hour = nextProps.Hour.Value.Value;
 			}
 			if (nextProps.Minute.HasValue)
 			{
-				Element.Minute = nextProps.Minute.Value.Value;
+				element.Minute = nextProps.Minute.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.TimeChanged, null) && ReferenceEquals(nextProps.TimeChanged, null))
+			if (!(previous?.TimeChanged is null) && nextProps.TimeChanged is null)
 			{
-				Element.TimeChanged -= nextProps.TimeChanged;
+				element.TimeChanged -= nextProps.TimeChanged;
 			}
-			if (ReferenceEquals(previous?.TimeChanged, null) && !ReferenceEquals(nextProps.TimeChanged, null))
+			if (previous?.TimeChanged is null && !(nextProps.TimeChanged is null))
 			{
-				Element.TimeChanged += nextProps.TimeChanged;
+				element.TimeChanged += nextProps.TimeChanged;
 			}
 		}
 	}

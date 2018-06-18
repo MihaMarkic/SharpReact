@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class ImageButton: ImageView
+	public partial class ImageButton: ImageView
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

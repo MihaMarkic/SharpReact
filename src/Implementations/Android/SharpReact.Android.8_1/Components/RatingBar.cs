@@ -13,33 +13,42 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateRatingBarWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateRatingBarWithInstanceProperties(element, null, props);
+		}
+		static void UpdateRatingBarWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.IsIndicator.HasValue)
 			{
-				Element.IsIndicator = nextProps.IsIndicator.Value.Value;
+				element.IsIndicator = nextProps.IsIndicator.Value.Value;
 			}
 			if (nextProps.NumStars.HasValue)
 			{
-				Element.NumStars = nextProps.NumStars.Value.Value;
+				element.NumStars = nextProps.NumStars.Value.Value;
 			}
 			if (nextProps.OnRatingBarChangeListener.HasValue)
 			{
-				Element.OnRatingBarChangeListener = nextProps.OnRatingBarChangeListener.Value.Value;
+				element.OnRatingBarChangeListener = nextProps.OnRatingBarChangeListener.Value.Value;
 			}
 			if (nextProps.Rating.HasValue)
 			{
-				Element.Rating = nextProps.Rating.Value.Value;
+				element.Rating = nextProps.Rating.Value.Value;
 			}
 			if (nextProps.StepSize.HasValue)
 			{
-				Element.StepSize = nextProps.StepSize.Value.Value;
+				element.StepSize = nextProps.StepSize.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.RatingBarChange, null) && ReferenceEquals(nextProps.RatingBarChange, null))
+			if (!(previous?.RatingBarChange is null) && nextProps.RatingBarChange is null)
 			{
-				Element.RatingBarChange -= nextProps.RatingBarChange;
+				element.RatingBarChange -= nextProps.RatingBarChange;
 			}
-			if (ReferenceEquals(previous?.RatingBarChange, null) && !ReferenceEquals(nextProps.RatingBarChange, null))
+			if (previous?.RatingBarChange is null && !(nextProps.RatingBarChange is null))
 			{
-				Element.RatingBarChange += nextProps.RatingBarChange;
+				element.RatingBarChange += nextProps.RatingBarChange;
 			}
 		}
 	}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class VideoView: SurfaceView
+	public partial class VideoView: SurfaceView
 	{
 		public System.EventHandler Completion { get; set; }
 		public System.EventHandler<global::Android.Media.MediaPlayer.ErrorEventArgs> Error { get; set; }

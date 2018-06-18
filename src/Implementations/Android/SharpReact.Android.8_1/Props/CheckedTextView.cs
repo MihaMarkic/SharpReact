@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class CheckedTextView: TextView
+	public partial class CheckedTextView: TextView
 	{
 		public ReactParam<global::Android.Content.Res.ColorStateList>? CheckMarkTintList { get; set; }
 		public ReactParam<global::Android.Graphics.PorterDuff.Mode>? CheckMarkTintMode { get; set; }
@@ -12,6 +12,19 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.CheckedTextView<CheckedTextView, global::Android.Widget.CheckedTextView>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return CheckMarkTintList;
+				yield return CheckMarkTintMode;
+				yield return Checked;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

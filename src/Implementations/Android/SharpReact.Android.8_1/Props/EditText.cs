@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class EditText: TextView
+	public partial class EditText: TextView
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

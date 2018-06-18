@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class RelativeLayout: ViewGroup
+	public partial class RelativeLayout: ViewGroup
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

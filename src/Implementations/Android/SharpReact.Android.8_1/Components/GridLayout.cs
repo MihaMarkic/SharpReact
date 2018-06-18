@@ -13,33 +13,42 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateGridLayoutWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateGridLayoutWithInstanceProperties(element, null, props);
+		}
+		static void UpdateGridLayoutWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.AlignmentMode.HasValue)
 			{
-				Element.AlignmentMode = nextProps.AlignmentMode.Value.Value;
+				element.AlignmentMode = nextProps.AlignmentMode.Value.Value;
 			}
 			if (nextProps.ColumnCount.HasValue)
 			{
-				Element.ColumnCount = nextProps.ColumnCount.Value.Value;
+				element.ColumnCount = nextProps.ColumnCount.Value.Value;
 			}
 			if (nextProps.ColumnOrderPreserved.HasValue)
 			{
-				Element.ColumnOrderPreserved = nextProps.ColumnOrderPreserved.Value.Value;
+				element.ColumnOrderPreserved = nextProps.ColumnOrderPreserved.Value.Value;
 			}
 			if (nextProps.Orientation.HasValue)
 			{
-				Element.Orientation = nextProps.Orientation.Value.Value;
+				element.Orientation = nextProps.Orientation.Value.Value;
 			}
 			if (nextProps.RowCount.HasValue)
 			{
-				Element.RowCount = nextProps.RowCount.Value.Value;
+				element.RowCount = nextProps.RowCount.Value.Value;
 			}
 			if (nextProps.RowOrderPreserved.HasValue)
 			{
-				Element.RowOrderPreserved = nextProps.RowOrderPreserved.Value.Value;
+				element.RowOrderPreserved = nextProps.RowOrderPreserved.Value.Value;
 			}
 			if (nextProps.UseDefaultMargins.HasValue)
 			{
-				Element.UseDefaultMargins = nextProps.UseDefaultMargins.Value.Value;
+				element.UseDefaultMargins = nextProps.UseDefaultMargins.Value.Value;
 			}
 		}
 	}

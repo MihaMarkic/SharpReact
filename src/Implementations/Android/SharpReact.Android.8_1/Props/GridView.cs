@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class GridView: AbsListView
+	public partial class GridView: AbsListView
 	{
 		public ReactParam<global::Android.Widget.IListAdapter>? Adapter { get; set; }
 		public ReactParam<global::System.Int32>? NumColumns { get; set; }
@@ -12,6 +12,19 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.GridView<GridView, global::Android.Widget.GridView>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return Adapter;
+				yield return NumColumns;
+				yield return StretchMode;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

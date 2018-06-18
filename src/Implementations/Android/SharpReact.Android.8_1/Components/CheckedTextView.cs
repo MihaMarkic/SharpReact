@@ -13,17 +13,26 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateCheckedTextViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateCheckedTextViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateCheckedTextViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.CheckMarkTintList.HasValue)
 			{
-				Element.CheckMarkTintList = nextProps.CheckMarkTintList.Value.Value;
+				element.CheckMarkTintList = nextProps.CheckMarkTintList.Value.Value;
 			}
 			if (nextProps.CheckMarkTintMode.HasValue)
 			{
-				Element.CheckMarkTintMode = nextProps.CheckMarkTintMode.Value.Value;
+				element.CheckMarkTintMode = nextProps.CheckMarkTintMode.Value.Value;
 			}
 			if (nextProps.Checked.HasValue)
 			{
-				Element.Checked = nextProps.Checked.Value.Value;
+				element.Checked = nextProps.Checked.Value.Value;
 			}
 		}
 	}

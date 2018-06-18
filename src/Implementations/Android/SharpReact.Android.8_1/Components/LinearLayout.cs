@@ -13,33 +13,42 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateLinearLayoutWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateLinearLayoutWithInstanceProperties(element, null, props);
+		}
+		static void UpdateLinearLayoutWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.BaselineAligned.HasValue)
 			{
-				Element.BaselineAligned = nextProps.BaselineAligned.Value.Value;
+				element.BaselineAligned = nextProps.BaselineAligned.Value.Value;
 			}
 			if (nextProps.BaselineAlignedChildIndex.HasValue)
 			{
-				Element.BaselineAlignedChildIndex = nextProps.BaselineAlignedChildIndex.Value.Value;
+				element.BaselineAlignedChildIndex = nextProps.BaselineAlignedChildIndex.Value.Value;
 			}
 			if (nextProps.DividerPadding.HasValue)
 			{
-				Element.DividerPadding = nextProps.DividerPadding.Value.Value;
+				element.DividerPadding = nextProps.DividerPadding.Value.Value;
 			}
 			if (nextProps.MeasureWithLargestChildEnabled.HasValue)
 			{
-				Element.MeasureWithLargestChildEnabled = nextProps.MeasureWithLargestChildEnabled.Value.Value;
+				element.MeasureWithLargestChildEnabled = nextProps.MeasureWithLargestChildEnabled.Value.Value;
 			}
 			if (nextProps.Orientation.HasValue)
 			{
-				Element.Orientation = nextProps.Orientation.Value.Value;
+				element.Orientation = nextProps.Orientation.Value.Value;
 			}
 			if (nextProps.ShowDividers.HasValue)
 			{
-				Element.ShowDividers = nextProps.ShowDividers.Value.Value;
+				element.ShowDividers = nextProps.ShowDividers.Value.Value;
 			}
 			if (nextProps.WeightSum.HasValue)
 			{
-				Element.WeightSum = nextProps.WeightSum.Value.Value;
+				element.WeightSum = nextProps.WeightSum.Value.Value;
 			}
 		}
 	}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class View: Core.Properties.SharpNativeProp
+	public partial class View: Core.Properties.SharpNativeProp
 	{
 		public ReactParam<global::Android.Views.AccessibilityLiveRegion>? AccessibilityLiveRegion { get; set; }
 		public ReactParam<global::System.Int32>? AccessibilityTraversalAfter { get; set; }
@@ -120,6 +120,111 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.View<View, global::Android.Views.View>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return AccessibilityLiveRegion;
+				yield return AccessibilityTraversalAfter;
+				yield return AccessibilityTraversalBefore;
+				yield return Activated;
+				yield return Alpha;
+				yield return Animation;
+				yield return Background;
+				yield return BackgroundTintList;
+				yield return BackgroundTintMode;
+				yield return Bottom;
+				yield return Clickable;
+				yield return ClipBounds;
+				yield return ClipToOutline;
+				yield return ContentDescriptionFormatted;
+				yield return ContentDescription;
+				yield return ContextClickable;
+				yield return DefaultFocusHighlightEnabled;
+				yield return DrawingCacheBackgroundColor;
+				yield return DrawingCacheEnabled;
+				yield return DrawingCacheQuality;
+				yield return DuplicateParentStateEnabled;
+				yield return Elevation;
+				yield return Enabled;
+				yield return FilterTouchesWhenObscured;
+				yield return Focusable;
+				yield return FocusableInTouchMode;
+				yield return FocusedByDefault;
+				yield return Foreground;
+				yield return ForegroundTintList;
+				yield return ForegroundTintMode;
+				yield return HapticFeedbackEnabled;
+				yield return HasTransientState;
+				yield return HorizontalFadingEdgeEnabled;
+				yield return HorizontalScrollBarEnabled;
+				yield return Hovered;
+				yield return Id;
+				yield return ImportantForAccessibility;
+				yield return ImportantForAutofill;
+				yield return KeepScreenOn;
+				yield return KeyboardNavigationCluster;
+				yield return LabelFor;
+				yield return LayoutDirection;
+				yield return LayoutParameters;
+				yield return Left;
+				yield return LongClickable;
+				yield return NestedScrollingEnabled;
+				yield return NextClusterForwardId;
+				yield return NextFocusDownId;
+				yield return NextFocusForwardId;
+				yield return NextFocusLeftId;
+				yield return NextFocusRightId;
+				yield return NextFocusUpId;
+				yield return OnFocusChangeListener;
+				yield return OutlineProvider;
+				yield return OverScrollMode;
+				yield return PivotX;
+				yield return PivotY;
+				yield return PointerIcon;
+				yield return Pressed;
+				yield return RevealOnFocusHint;
+				yield return Right;
+				yield return Rotation;
+				yield return RotationX;
+				yield return RotationY;
+				yield return SaveEnabled;
+				yield return SaveFromParentEnabled;
+				yield return ScaleX;
+				yield return ScaleY;
+				yield return ScrollBarDefaultDelayBeforeFade;
+				yield return ScrollBarFadeDuration;
+				yield return ScrollBarSize;
+				yield return ScrollBarStyle;
+				yield return ScrollX;
+				yield return ScrollY;
+				yield return ScrollbarFadingEnabled;
+				yield return Selected;
+				yield return SoundEffectsEnabled;
+				yield return StateListAnimator;
+				yield return SystemUiVisibility;
+				yield return Tag;
+				yield return TextAlignment;
+				yield return TextDirection;
+				yield return TooltipTextFormatted;
+				yield return TooltipText;
+				yield return Top;
+				yield return TouchDelegate;
+				yield return TransitionName;
+				yield return TranslationX;
+				yield return TranslationY;
+				yield return TranslationZ;
+				yield return VerticalFadingEdgeEnabled;
+				yield return VerticalScrollBarEnabled;
+				yield return VerticalScrollbarPosition;
+				yield return Visibility;
+				yield return ApplyWindowInsets;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

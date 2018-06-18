@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class RSTextureView: TextureView
+	public partial class RSTextureView: TextureView
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

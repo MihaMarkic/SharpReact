@@ -13,21 +13,30 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateActionMenuViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateActionMenuViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateActionMenuViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.OverflowIcon.HasValue)
 			{
-				Element.OverflowIcon = nextProps.OverflowIcon.Value.Value;
+				element.OverflowIcon = nextProps.OverflowIcon.Value.Value;
 			}
 			if (nextProps.PopupTheme.HasValue)
 			{
-				Element.PopupTheme = nextProps.PopupTheme.Value.Value;
+				element.PopupTheme = nextProps.PopupTheme.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.MenuItemClick, null) && ReferenceEquals(nextProps.MenuItemClick, null))
+			if (!(previous?.MenuItemClick is null) && nextProps.MenuItemClick is null)
 			{
-				Element.MenuItemClick -= nextProps.MenuItemClick;
+				element.MenuItemClick -= nextProps.MenuItemClick;
 			}
-			if (ReferenceEquals(previous?.MenuItemClick, null) && !ReferenceEquals(nextProps.MenuItemClick, null))
+			if (previous?.MenuItemClick is null && !(nextProps.MenuItemClick is null))
 			{
-				Element.MenuItemClick += nextProps.MenuItemClick;
+				element.MenuItemClick += nextProps.MenuItemClick;
 			}
 		}
 	}

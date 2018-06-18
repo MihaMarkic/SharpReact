@@ -13,65 +13,74 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateSwitchWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateSwitchWithInstanceProperties(element, null, props);
+		}
+		static void UpdateSwitchWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.ShowText.HasValue)
 			{
-				Element.ShowText = nextProps.ShowText.Value.Value;
+				element.ShowText = nextProps.ShowText.Value.Value;
 			}
 			if (nextProps.SplitTrack.HasValue)
 			{
-				Element.SplitTrack = nextProps.SplitTrack.Value.Value;
+				element.SplitTrack = nextProps.SplitTrack.Value.Value;
 			}
 			if (nextProps.SwitchMinWidth.HasValue)
 			{
-				Element.SwitchMinWidth = nextProps.SwitchMinWidth.Value.Value;
+				element.SwitchMinWidth = nextProps.SwitchMinWidth.Value.Value;
 			}
 			if (nextProps.SwitchPadding.HasValue)
 			{
-				Element.SwitchPadding = nextProps.SwitchPadding.Value.Value;
+				element.SwitchPadding = nextProps.SwitchPadding.Value.Value;
 			}
 			if (nextProps.TextOffFormatted.HasValue)
 			{
-				Element.TextOffFormatted = nextProps.TextOffFormatted.Value.Value;
+				element.TextOffFormatted = nextProps.TextOffFormatted.Value.Value;
 			}
 			if (nextProps.TextOff.HasValue)
 			{
-				Element.TextOff = nextProps.TextOff.Value.Value;
+				element.TextOff = nextProps.TextOff.Value.Value;
 			}
 			if (nextProps.TextOnFormatted.HasValue)
 			{
-				Element.TextOnFormatted = nextProps.TextOnFormatted.Value.Value;
+				element.TextOnFormatted = nextProps.TextOnFormatted.Value.Value;
 			}
 			if (nextProps.TextOn.HasValue)
 			{
-				Element.TextOn = nextProps.TextOn.Value.Value;
+				element.TextOn = nextProps.TextOn.Value.Value;
 			}
 			if (nextProps.ThumbDrawable.HasValue)
 			{
-				Element.ThumbDrawable = nextProps.ThumbDrawable.Value.Value;
+				element.ThumbDrawable = nextProps.ThumbDrawable.Value.Value;
 			}
 			if (nextProps.ThumbTextPadding.HasValue)
 			{
-				Element.ThumbTextPadding = nextProps.ThumbTextPadding.Value.Value;
+				element.ThumbTextPadding = nextProps.ThumbTextPadding.Value.Value;
 			}
 			if (nextProps.ThumbTintList.HasValue)
 			{
-				Element.ThumbTintList = nextProps.ThumbTintList.Value.Value;
+				element.ThumbTintList = nextProps.ThumbTintList.Value.Value;
 			}
 			if (nextProps.ThumbTintMode.HasValue)
 			{
-				Element.ThumbTintMode = nextProps.ThumbTintMode.Value.Value;
+				element.ThumbTintMode = nextProps.ThumbTintMode.Value.Value;
 			}
 			if (nextProps.TrackDrawable.HasValue)
 			{
-				Element.TrackDrawable = nextProps.TrackDrawable.Value.Value;
+				element.TrackDrawable = nextProps.TrackDrawable.Value.Value;
 			}
 			if (nextProps.TrackTintList.HasValue)
 			{
-				Element.TrackTintList = nextProps.TrackTintList.Value.Value;
+				element.TrackTintList = nextProps.TrackTintList.Value.Value;
 			}
 			if (nextProps.TrackTintMode.HasValue)
 			{
-				Element.TrackTintMode = nextProps.TrackTintMode.Value.Value;
+				element.TrackTintMode = nextProps.TrackTintMode.Value.Value;
 			}
 		}
 	}

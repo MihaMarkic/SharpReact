@@ -9,9 +9,5 @@ namespace SharpReact.Android.Components
 		{
 			Element = new global::Android.Widget.Space(context);
 		}
-		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
-		{
-			base.AssignProperties(renderer, level, newState, previous, nextProps);
-		}
 	}
 }

@@ -10,25 +10,5 @@ namespace SharpReact.Android.Components
 		{
 			Element = (TElement)new global::Android.Widget.ZoomControls(context);
 		}
-		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
-		{
-			base.AssignProperties(renderer, level, newState, previous, nextProps);
-			if (!ReferenceEquals(previous?.ZoomInClick, null) && ReferenceEquals(nextProps.ZoomInClick, null))
-			{
-				Element.ZoomInClick -= nextProps.ZoomInClick;
-			}
-			if (ReferenceEquals(previous?.ZoomInClick, null) && !ReferenceEquals(nextProps.ZoomInClick, null))
-			{
-				Element.ZoomInClick += nextProps.ZoomInClick;
-			}
-			if (!ReferenceEquals(previous?.ZoomOutClick, null) && ReferenceEquals(nextProps.ZoomOutClick, null))
-			{
-				Element.ZoomOutClick -= nextProps.ZoomOutClick;
-			}
-			if (ReferenceEquals(previous?.ZoomOutClick, null) && !ReferenceEquals(nextProps.ZoomOutClick, null))
-			{
-				Element.ZoomOutClick += nextProps.ZoomOutClick;
-			}
-		}
 	}
 }

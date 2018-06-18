@@ -13,45 +13,54 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateTextureViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateTextureViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateTextureViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.SurfaceTexture.HasValue)
 			{
-				Element.SurfaceTexture = nextProps.SurfaceTexture.Value.Value;
+				element.SurfaceTexture = nextProps.SurfaceTexture.Value.Value;
 			}
 			if (nextProps.SurfaceTextureListener.HasValue)
 			{
-				Element.SurfaceTextureListener = nextProps.SurfaceTextureListener.Value.Value;
+				element.SurfaceTextureListener = nextProps.SurfaceTextureListener.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.SurfaceTextureAvailable, null) && ReferenceEquals(nextProps.SurfaceTextureAvailable, null))
+			if (!(previous?.SurfaceTextureAvailable is null) && nextProps.SurfaceTextureAvailable is null)
 			{
-				Element.SurfaceTextureAvailable -= nextProps.SurfaceTextureAvailable;
+				element.SurfaceTextureAvailable -= nextProps.SurfaceTextureAvailable;
 			}
-			if (ReferenceEquals(previous?.SurfaceTextureAvailable, null) && !ReferenceEquals(nextProps.SurfaceTextureAvailable, null))
+			if (previous?.SurfaceTextureAvailable is null && !(nextProps.SurfaceTextureAvailable is null))
 			{
-				Element.SurfaceTextureAvailable += nextProps.SurfaceTextureAvailable;
+				element.SurfaceTextureAvailable += nextProps.SurfaceTextureAvailable;
 			}
-			if (!ReferenceEquals(previous?.SurfaceTextureDestroyed, null) && ReferenceEquals(nextProps.SurfaceTextureDestroyed, null))
+			if (!(previous?.SurfaceTextureDestroyed is null) && nextProps.SurfaceTextureDestroyed is null)
 			{
-				Element.SurfaceTextureDestroyed -= nextProps.SurfaceTextureDestroyed;
+				element.SurfaceTextureDestroyed -= nextProps.SurfaceTextureDestroyed;
 			}
-			if (ReferenceEquals(previous?.SurfaceTextureDestroyed, null) && !ReferenceEquals(nextProps.SurfaceTextureDestroyed, null))
+			if (previous?.SurfaceTextureDestroyed is null && !(nextProps.SurfaceTextureDestroyed is null))
 			{
-				Element.SurfaceTextureDestroyed += nextProps.SurfaceTextureDestroyed;
+				element.SurfaceTextureDestroyed += nextProps.SurfaceTextureDestroyed;
 			}
-			if (!ReferenceEquals(previous?.SurfaceTextureSizeChanged, null) && ReferenceEquals(nextProps.SurfaceTextureSizeChanged, null))
+			if (!(previous?.SurfaceTextureSizeChanged is null) && nextProps.SurfaceTextureSizeChanged is null)
 			{
-				Element.SurfaceTextureSizeChanged -= nextProps.SurfaceTextureSizeChanged;
+				element.SurfaceTextureSizeChanged -= nextProps.SurfaceTextureSizeChanged;
 			}
-			if (ReferenceEquals(previous?.SurfaceTextureSizeChanged, null) && !ReferenceEquals(nextProps.SurfaceTextureSizeChanged, null))
+			if (previous?.SurfaceTextureSizeChanged is null && !(nextProps.SurfaceTextureSizeChanged is null))
 			{
-				Element.SurfaceTextureSizeChanged += nextProps.SurfaceTextureSizeChanged;
+				element.SurfaceTextureSizeChanged += nextProps.SurfaceTextureSizeChanged;
 			}
-			if (!ReferenceEquals(previous?.SurfaceTextureUpdated, null) && ReferenceEquals(nextProps.SurfaceTextureUpdated, null))
+			if (!(previous?.SurfaceTextureUpdated is null) && nextProps.SurfaceTextureUpdated is null)
 			{
-				Element.SurfaceTextureUpdated -= nextProps.SurfaceTextureUpdated;
+				element.SurfaceTextureUpdated -= nextProps.SurfaceTextureUpdated;
 			}
-			if (ReferenceEquals(previous?.SurfaceTextureUpdated, null) && !ReferenceEquals(nextProps.SurfaceTextureUpdated, null))
+			if (previous?.SurfaceTextureUpdated is null && !(nextProps.SurfaceTextureUpdated is null))
 			{
-				Element.SurfaceTextureUpdated += nextProps.SurfaceTextureUpdated;
+				element.SurfaceTextureUpdated += nextProps.SurfaceTextureUpdated;
 			}
 		}
 	}

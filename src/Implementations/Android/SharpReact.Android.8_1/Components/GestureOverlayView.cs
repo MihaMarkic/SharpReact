@@ -13,113 +13,122 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateGestureOverlayViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateGestureOverlayViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateGestureOverlayViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.EventsInterceptionEnabled.HasValue)
 			{
-				Element.EventsInterceptionEnabled = nextProps.EventsInterceptionEnabled.Value.Value;
+				element.EventsInterceptionEnabled = nextProps.EventsInterceptionEnabled.Value.Value;
 			}
 			if (nextProps.FadeEnabled.HasValue)
 			{
-				Element.FadeEnabled = nextProps.FadeEnabled.Value.Value;
+				element.FadeEnabled = nextProps.FadeEnabled.Value.Value;
 			}
 			if (nextProps.FadeOffset.HasValue)
 			{
-				Element.FadeOffset = nextProps.FadeOffset.Value.Value;
+				element.FadeOffset = nextProps.FadeOffset.Value.Value;
 			}
 			if (nextProps.Gesture.HasValue)
 			{
-				Element.Gesture = nextProps.Gesture.Value.Value;
+				element.Gesture = nextProps.Gesture.Value.Value;
 			}
 			if (nextProps.GestureColor.HasValue)
 			{
-				Element.GestureColor = nextProps.GestureColor.Value.Value;
+				element.GestureColor = nextProps.GestureColor.Value.Value;
 			}
 			if (nextProps.GestureStrokeAngleThreshold.HasValue)
 			{
-				Element.GestureStrokeAngleThreshold = nextProps.GestureStrokeAngleThreshold.Value.Value;
+				element.GestureStrokeAngleThreshold = nextProps.GestureStrokeAngleThreshold.Value.Value;
 			}
 			if (nextProps.GestureStrokeLengthThreshold.HasValue)
 			{
-				Element.GestureStrokeLengthThreshold = nextProps.GestureStrokeLengthThreshold.Value.Value;
+				element.GestureStrokeLengthThreshold = nextProps.GestureStrokeLengthThreshold.Value.Value;
 			}
 			if (nextProps.GestureStrokeSquarenessTreshold.HasValue)
 			{
-				Element.GestureStrokeSquarenessTreshold = nextProps.GestureStrokeSquarenessTreshold.Value.Value;
+				element.GestureStrokeSquarenessTreshold = nextProps.GestureStrokeSquarenessTreshold.Value.Value;
 			}
 			if (nextProps.GestureStrokeType.HasValue)
 			{
-				Element.GestureStrokeType = nextProps.GestureStrokeType.Value.Value;
+				element.GestureStrokeType = nextProps.GestureStrokeType.Value.Value;
 			}
 			if (nextProps.GestureStrokeWidth.HasValue)
 			{
-				Element.GestureStrokeWidth = nextProps.GestureStrokeWidth.Value.Value;
+				element.GestureStrokeWidth = nextProps.GestureStrokeWidth.Value.Value;
 			}
 			if (nextProps.GestureVisible.HasValue)
 			{
-				Element.GestureVisible = nextProps.GestureVisible.Value.Value;
+				element.GestureVisible = nextProps.GestureVisible.Value.Value;
 			}
 			if (nextProps.Orientation.HasValue)
 			{
-				Element.Orientation = nextProps.Orientation.Value.Value;
+				element.Orientation = nextProps.Orientation.Value.Value;
 			}
 			if (nextProps.UncertainGestureColor.HasValue)
 			{
-				Element.UncertainGestureColor = nextProps.UncertainGestureColor.Value.Value;
+				element.UncertainGestureColor = nextProps.UncertainGestureColor.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.GestureEvent, null) && ReferenceEquals(nextProps.GestureEvent, null))
+			if (!(previous?.GestureEvent is null) && nextProps.GestureEvent is null)
 			{
-				Element.GestureEvent -= nextProps.GestureEvent;
+				element.GestureEvent -= nextProps.GestureEvent;
 			}
-			if (ReferenceEquals(previous?.GestureEvent, null) && !ReferenceEquals(nextProps.GestureEvent, null))
+			if (previous?.GestureEvent is null && !(nextProps.GestureEvent is null))
 			{
-				Element.GestureEvent += nextProps.GestureEvent;
+				element.GestureEvent += nextProps.GestureEvent;
 			}
-			if (!ReferenceEquals(previous?.GestureCancelled, null) && ReferenceEquals(nextProps.GestureCancelled, null))
+			if (!(previous?.GestureCancelled is null) && nextProps.GestureCancelled is null)
 			{
-				Element.GestureCancelled -= nextProps.GestureCancelled;
+				element.GestureCancelled -= nextProps.GestureCancelled;
 			}
-			if (ReferenceEquals(previous?.GestureCancelled, null) && !ReferenceEquals(nextProps.GestureCancelled, null))
+			if (previous?.GestureCancelled is null && !(nextProps.GestureCancelled is null))
 			{
-				Element.GestureCancelled += nextProps.GestureCancelled;
+				element.GestureCancelled += nextProps.GestureCancelled;
 			}
-			if (!ReferenceEquals(previous?.GestureEnded, null) && ReferenceEquals(nextProps.GestureEnded, null))
+			if (!(previous?.GestureEnded is null) && nextProps.GestureEnded is null)
 			{
-				Element.GestureEnded -= nextProps.GestureEnded;
+				element.GestureEnded -= nextProps.GestureEnded;
 			}
-			if (ReferenceEquals(previous?.GestureEnded, null) && !ReferenceEquals(nextProps.GestureEnded, null))
+			if (previous?.GestureEnded is null && !(nextProps.GestureEnded is null))
 			{
-				Element.GestureEnded += nextProps.GestureEnded;
+				element.GestureEnded += nextProps.GestureEnded;
 			}
-			if (!ReferenceEquals(previous?.GestureStarted, null) && ReferenceEquals(nextProps.GestureStarted, null))
+			if (!(previous?.GestureStarted is null) && nextProps.GestureStarted is null)
 			{
-				Element.GestureStarted -= nextProps.GestureStarted;
+				element.GestureStarted -= nextProps.GestureStarted;
 			}
-			if (ReferenceEquals(previous?.GestureStarted, null) && !ReferenceEquals(nextProps.GestureStarted, null))
+			if (previous?.GestureStarted is null && !(nextProps.GestureStarted is null))
 			{
-				Element.GestureStarted += nextProps.GestureStarted;
+				element.GestureStarted += nextProps.GestureStarted;
 			}
-			if (!ReferenceEquals(previous?.GesturePerformed, null) && ReferenceEquals(nextProps.GesturePerformed, null))
+			if (!(previous?.GesturePerformed is null) && nextProps.GesturePerformed is null)
 			{
-				Element.GesturePerformed -= nextProps.GesturePerformed;
+				element.GesturePerformed -= nextProps.GesturePerformed;
 			}
-			if (ReferenceEquals(previous?.GesturePerformed, null) && !ReferenceEquals(nextProps.GesturePerformed, null))
+			if (previous?.GesturePerformed is null && !(nextProps.GesturePerformed is null))
 			{
-				Element.GesturePerformed += nextProps.GesturePerformed;
+				element.GesturePerformed += nextProps.GesturePerformed;
 			}
-			if (!ReferenceEquals(previous?.GesturingEnded, null) && ReferenceEquals(nextProps.GesturingEnded, null))
+			if (!(previous?.GesturingEnded is null) && nextProps.GesturingEnded is null)
 			{
-				Element.GesturingEnded -= nextProps.GesturingEnded;
+				element.GesturingEnded -= nextProps.GesturingEnded;
 			}
-			if (ReferenceEquals(previous?.GesturingEnded, null) && !ReferenceEquals(nextProps.GesturingEnded, null))
+			if (previous?.GesturingEnded is null && !(nextProps.GesturingEnded is null))
 			{
-				Element.GesturingEnded += nextProps.GesturingEnded;
+				element.GesturingEnded += nextProps.GesturingEnded;
 			}
-			if (!ReferenceEquals(previous?.GesturingStarted, null) && ReferenceEquals(nextProps.GesturingStarted, null))
+			if (!(previous?.GesturingStarted is null) && nextProps.GesturingStarted is null)
 			{
-				Element.GesturingStarted -= nextProps.GesturingStarted;
+				element.GesturingStarted -= nextProps.GesturingStarted;
 			}
-			if (ReferenceEquals(previous?.GesturingStarted, null) && !ReferenceEquals(nextProps.GesturingStarted, null))
+			if (previous?.GesturingStarted is null && !(nextProps.GesturingStarted is null))
 			{
-				Element.GesturingStarted += nextProps.GesturingStarted;
+				element.GesturingStarted += nextProps.GesturingStarted;
 			}
 		}
 	}

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class ImageSwitcher: ViewSwitcher
+	public partial class ImageSwitcher: ViewSwitcher
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

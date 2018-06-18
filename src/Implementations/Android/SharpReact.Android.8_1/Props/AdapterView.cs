@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class AdapterView: ViewGroup
+	public abstract partial class AdapterView: ViewGroup
 	{
 		public ReactParam<global::Android.Views.View>? EmptyView { get; set; }
 		public ReactParam<global::Android.Widget.AdapterView.IOnItemClickListener>? OnItemClickListener { get; set; }
@@ -14,5 +14,19 @@ namespace SharpReact.Android.Props
 		public System.EventHandler<global::Android.Widget.AdapterView.ItemLongClickEventArgs> ItemLongClick { get; set; }
 		public System.EventHandler<global::Android.Widget.AdapterView.ItemSelectedEventArgs> ItemSelected { get; set; }
 		public System.EventHandler<global::Android.Widget.AdapterView.NothingSelectedEventArgs> NothingSelected { get; set; }
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return EmptyView;
+				yield return OnItemClickListener;
+				yield return OnItemLongClickListener;
+				yield return OnItemSelectedListener;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
+		}
 	}
 }

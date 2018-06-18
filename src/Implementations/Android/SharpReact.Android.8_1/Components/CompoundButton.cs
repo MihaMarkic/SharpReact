@@ -9,25 +9,34 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateCompoundButtonWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateCompoundButtonWithInstanceProperties(element, null, props);
+		}
+		static void UpdateCompoundButtonWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.ButtonTintList.HasValue)
 			{
-				Element.ButtonTintList = nextProps.ButtonTintList.Value.Value;
+				element.ButtonTintList = nextProps.ButtonTintList.Value.Value;
 			}
 			if (nextProps.ButtonTintMode.HasValue)
 			{
-				Element.ButtonTintMode = nextProps.ButtonTintMode.Value.Value;
+				element.ButtonTintMode = nextProps.ButtonTintMode.Value.Value;
 			}
 			if (nextProps.Checked.HasValue)
 			{
-				Element.Checked = nextProps.Checked.Value.Value;
+				element.Checked = nextProps.Checked.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.CheckedChange, null) && ReferenceEquals(nextProps.CheckedChange, null))
+			if (!(previous?.CheckedChange is null) && nextProps.CheckedChange is null)
 			{
-				Element.CheckedChange -= nextProps.CheckedChange;
+				element.CheckedChange -= nextProps.CheckedChange;
 			}
-			if (ReferenceEquals(previous?.CheckedChange, null) && !ReferenceEquals(nextProps.CheckedChange, null))
+			if (previous?.CheckedChange is null && !(nextProps.CheckedChange is null))
 			{
-				Element.CheckedChange += nextProps.CheckedChange;
+				element.CheckedChange += nextProps.CheckedChange;
 			}
 		}
 	}

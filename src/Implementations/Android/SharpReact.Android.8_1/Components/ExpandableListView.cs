@@ -10,41 +10,5 @@ namespace SharpReact.Android.Components
 		{
 			Element = (TElement)new global::Android.Widget.ExpandableListView(context);
 		}
-		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
-		{
-			base.AssignProperties(renderer, level, newState, previous, nextProps);
-			if (!ReferenceEquals(previous?.ChildClick, null) && ReferenceEquals(nextProps.ChildClick, null))
-			{
-				Element.ChildClick -= nextProps.ChildClick;
-			}
-			if (ReferenceEquals(previous?.ChildClick, null) && !ReferenceEquals(nextProps.ChildClick, null))
-			{
-				Element.ChildClick += nextProps.ChildClick;
-			}
-			if (!ReferenceEquals(previous?.GroupClick, null) && ReferenceEquals(nextProps.GroupClick, null))
-			{
-				Element.GroupClick -= nextProps.GroupClick;
-			}
-			if (ReferenceEquals(previous?.GroupClick, null) && !ReferenceEquals(nextProps.GroupClick, null))
-			{
-				Element.GroupClick += nextProps.GroupClick;
-			}
-			if (!ReferenceEquals(previous?.GroupCollapse, null) && ReferenceEquals(nextProps.GroupCollapse, null))
-			{
-				Element.GroupCollapse -= nextProps.GroupCollapse;
-			}
-			if (ReferenceEquals(previous?.GroupCollapse, null) && !ReferenceEquals(nextProps.GroupCollapse, null))
-			{
-				Element.GroupCollapse += nextProps.GroupCollapse;
-			}
-			if (!ReferenceEquals(previous?.GroupExpand, null) && ReferenceEquals(nextProps.GroupExpand, null))
-			{
-				Element.GroupExpand -= nextProps.GroupExpand;
-			}
-			if (ReferenceEquals(previous?.GroupExpand, null) && !ReferenceEquals(nextProps.GroupExpand, null))
-			{
-				Element.GroupExpand += nextProps.GroupExpand;
-			}
-		}
 	}
 }

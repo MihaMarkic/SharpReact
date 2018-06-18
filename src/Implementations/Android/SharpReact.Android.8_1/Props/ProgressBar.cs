@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class ProgressBar: View
+	public partial class ProgressBar: View
 	{
 		public ReactParam<global::System.Boolean>? Indeterminate { get; set; }
 		public ReactParam<global::Android.Graphics.Drawables.Drawable>? IndeterminateDrawable { get; set; }
@@ -25,6 +25,32 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.ProgressBar<ProgressBar, global::Android.Widget.ProgressBar>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return Indeterminate;
+				yield return IndeterminateDrawable;
+				yield return IndeterminateTintList;
+				yield return IndeterminateTintMode;
+				yield return Interpolator;
+				yield return Max;
+				yield return Min;
+				yield return Progress;
+				yield return ProgressBackgroundTintList;
+				yield return ProgressBackgroundTintMode;
+				yield return ProgressDrawable;
+				yield return ProgressTintList;
+				yield return ProgressTintMode;
+				yield return SecondaryProgress;
+				yield return SecondaryProgressTintList;
+				yield return SecondaryProgressTintMode;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

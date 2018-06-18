@@ -13,37 +13,46 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateCalendarViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateCalendarViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateCalendarViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.Date.HasValue)
 			{
-				Element.Date = nextProps.Date.Value.Value;
+				element.Date = nextProps.Date.Value.Value;
 			}
 			if (nextProps.DateTextAppearance.HasValue)
 			{
-				Element.DateTextAppearance = nextProps.DateTextAppearance.Value.Value;
+				element.DateTextAppearance = nextProps.DateTextAppearance.Value.Value;
 			}
 			if (nextProps.FirstDayOfWeek.HasValue)
 			{
-				Element.FirstDayOfWeek = nextProps.FirstDayOfWeek.Value.Value;
+				element.FirstDayOfWeek = nextProps.FirstDayOfWeek.Value.Value;
 			}
 			if (nextProps.MaxDate.HasValue)
 			{
-				Element.MaxDate = nextProps.MaxDate.Value.Value;
+				element.MaxDate = nextProps.MaxDate.Value.Value;
 			}
 			if (nextProps.MinDate.HasValue)
 			{
-				Element.MinDate = nextProps.MinDate.Value.Value;
+				element.MinDate = nextProps.MinDate.Value.Value;
 			}
 			if (nextProps.WeekDayTextAppearance.HasValue)
 			{
-				Element.WeekDayTextAppearance = nextProps.WeekDayTextAppearance.Value.Value;
+				element.WeekDayTextAppearance = nextProps.WeekDayTextAppearance.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.DateChange, null) && ReferenceEquals(nextProps.DateChange, null))
+			if (!(previous?.DateChange is null) && nextProps.DateChange is null)
 			{
-				Element.DateChange -= nextProps.DateChange;
+				element.DateChange -= nextProps.DateChange;
 			}
-			if (ReferenceEquals(previous?.DateChange, null) && !ReferenceEquals(nextProps.DateChange, null))
+			if (previous?.DateChange is null && !(nextProps.DateChange is null))
 			{
-				Element.DateChange += nextProps.DateChange;
+				element.DateChange += nextProps.DateChange;
 			}
 		}
 	}

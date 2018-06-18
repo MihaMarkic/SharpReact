@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class MediaController: FrameLayout
+	public partial class MediaController: FrameLayout
 	{
 		public System.EventHandler NextClick { get; set; }
 		public System.EventHandler PreviousClick { get; set; }

@@ -13,25 +13,34 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateSpinnerWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateSpinnerWithInstanceProperties(element, null, props);
+		}
+		static void UpdateSpinnerWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.DropDownHorizontalOffset.HasValue)
 			{
-				Element.DropDownHorizontalOffset = nextProps.DropDownHorizontalOffset.Value.Value;
+				element.DropDownHorizontalOffset = nextProps.DropDownHorizontalOffset.Value.Value;
 			}
 			if (nextProps.DropDownVerticalOffset.HasValue)
 			{
-				Element.DropDownVerticalOffset = nextProps.DropDownVerticalOffset.Value.Value;
+				element.DropDownVerticalOffset = nextProps.DropDownVerticalOffset.Value.Value;
 			}
 			if (nextProps.DropDownWidth.HasValue)
 			{
-				Element.DropDownWidth = nextProps.DropDownWidth.Value.Value;
+				element.DropDownWidth = nextProps.DropDownWidth.Value.Value;
 			}
 			if (nextProps.PromptFormatted.HasValue)
 			{
-				Element.PromptFormatted = nextProps.PromptFormatted.Value.Value;
+				element.PromptFormatted = nextProps.PromptFormatted.Value.Value;
 			}
 			if (nextProps.Prompt.HasValue)
 			{
-				Element.Prompt = nextProps.Prompt.Value.Value;
+				element.Prompt = nextProps.Prompt.Value.Value;
 			}
 		}
 	}

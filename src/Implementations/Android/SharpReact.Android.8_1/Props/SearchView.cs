@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class SearchView: LinearLayout
+	public partial class SearchView: LinearLayout
 	{
 		public ReactParam<global::System.Boolean>? Iconified { get; set; }
 		public ReactParam<global::System.Boolean>? QueryRefinementEnabled { get; set; }
@@ -20,6 +20,20 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.SearchView<SearchView, global::Android.Widget.SearchView>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return Iconified;
+				yield return QueryRefinementEnabled;
+				yield return SubmitButtonEnabled;
+				yield return SuggestionsAdapter;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

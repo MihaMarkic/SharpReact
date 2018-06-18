@@ -10,17 +10,5 @@ namespace SharpReact.Android.Components
 		{
 			Element = (TElement)new global::Android.Widget.RadioGroup(context);
 		}
-		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
-		{
-			base.AssignProperties(renderer, level, newState, previous, nextProps);
-			if (!ReferenceEquals(previous?.CheckedChange, null) && ReferenceEquals(nextProps.CheckedChange, null))
-			{
-				Element.CheckedChange -= nextProps.CheckedChange;
-			}
-			if (ReferenceEquals(previous?.CheckedChange, null) && !ReferenceEquals(nextProps.CheckedChange, null))
-			{
-				Element.CheckedChange += nextProps.CheckedChange;
-			}
-		}
 	}
 }

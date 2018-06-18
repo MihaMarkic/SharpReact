@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class RadioButton: CompoundButton
+	public partial class RadioButton: CompoundButton
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

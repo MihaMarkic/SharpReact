@@ -17,5 +17,22 @@ namespace SharpReact.Android.Props
 		{
 			return new Components.ListView<ListView, global::Android.Widget.ListView>();
 		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return Adapter;
+				yield return ChoiceMode;
+				yield return Divider;
+				yield return DividerHeight;
+				yield return ItemsCanFocus;
+				yield return OverscrollFooter;
+				yield return OverscrollHeader;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
+		}
 	}
 }

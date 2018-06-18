@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class CheckBox: CompoundButton
+	public partial class CheckBox: CompoundButton
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

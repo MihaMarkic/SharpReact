@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class Switch: CompoundButton
+	public partial class Switch: CompoundButton
 	{
 		public ReactParam<global::System.Boolean>? ShowText { get; set; }
 		public ReactParam<global::System.Boolean>? SplitTrack { get; set; }
@@ -24,6 +24,31 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.Switch<Switch, global::Android.Widget.Switch>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return ShowText;
+				yield return SplitTrack;
+				yield return SwitchMinWidth;
+				yield return SwitchPadding;
+				yield return TextOffFormatted;
+				yield return TextOff;
+				yield return TextOnFormatted;
+				yield return TextOn;
+				yield return ThumbDrawable;
+				yield return ThumbTextPadding;
+				yield return ThumbTintList;
+				yield return ThumbTintMode;
+				yield return TrackDrawable;
+				yield return TrackTintList;
+				yield return TrackTintMode;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

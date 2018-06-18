@@ -13,29 +13,38 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateImageViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateImageViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateImageViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.BaselineAlignBottom.HasValue)
 			{
-				Element.BaselineAlignBottom = nextProps.BaselineAlignBottom.Value.Value;
+				element.BaselineAlignBottom = nextProps.BaselineAlignBottom.Value.Value;
 			}
 			if (nextProps.CropToPadding.HasValue)
 			{
-				Element.CropToPadding = nextProps.CropToPadding.Value.Value;
+				element.CropToPadding = nextProps.CropToPadding.Value.Value;
 			}
 			if (nextProps.ImageAlpha.HasValue)
 			{
-				Element.ImageAlpha = nextProps.ImageAlpha.Value.Value;
+				element.ImageAlpha = nextProps.ImageAlpha.Value.Value;
 			}
 			if (nextProps.ImageMatrix.HasValue)
 			{
-				Element.ImageMatrix = nextProps.ImageMatrix.Value.Value;
+				element.ImageMatrix = nextProps.ImageMatrix.Value.Value;
 			}
 			if (nextProps.ImageTintList.HasValue)
 			{
-				Element.ImageTintList = nextProps.ImageTintList.Value.Value;
+				element.ImageTintList = nextProps.ImageTintList.Value.Value;
 			}
 			if (nextProps.ImageTintMode.HasValue)
 			{
-				Element.ImageTintMode = nextProps.ImageTintMode.Value.Value;
+				element.ImageTintMode = nextProps.ImageTintMode.Value.Value;
 			}
 		}
 	}

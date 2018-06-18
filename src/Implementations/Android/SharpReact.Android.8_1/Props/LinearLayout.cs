@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class LinearLayout: ViewGroup
+	public partial class LinearLayout: ViewGroup
 	{
 		public ReactParam<global::System.Boolean>? BaselineAligned { get; set; }
 		public ReactParam<global::System.Int32>? BaselineAlignedChildIndex { get; set; }
@@ -16,6 +16,23 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.LinearLayout<LinearLayout, global::Android.Widget.LinearLayout>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return BaselineAligned;
+				yield return BaselineAlignedChildIndex;
+				yield return DividerPadding;
+				yield return MeasureWithLargestChildEnabled;
+				yield return Orientation;
+				yield return ShowDividers;
+				yield return WeightSum;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

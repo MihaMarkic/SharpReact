@@ -12,25 +12,34 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateViewStubWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, global::Android.Views.ViewStub element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateViewStubWithInstanceProperties(element, null, props);
+		}
+		static void UpdateViewStubWithInstanceProperties(global::Android.Views.ViewStub element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.InflatedId.HasValue)
 			{
-				Element.InflatedId = nextProps.InflatedId.Value.Value;
+				element.InflatedId = nextProps.InflatedId.Value.Value;
 			}
 			if (nextProps.LayoutInflater.HasValue)
 			{
-				Element.LayoutInflater = nextProps.LayoutInflater.Value.Value;
+				element.LayoutInflater = nextProps.LayoutInflater.Value.Value;
 			}
 			if (nextProps.LayoutResource.HasValue)
 			{
-				Element.LayoutResource = nextProps.LayoutResource.Value.Value;
+				element.LayoutResource = nextProps.LayoutResource.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.InflateEvent, null) && ReferenceEquals(nextProps.InflateEvent, null))
+			if (!(previous?.InflateEvent is null) && nextProps.InflateEvent is null)
 			{
-				Element.InflateEvent -= nextProps.InflateEvent;
+				element.InflateEvent -= nextProps.InflateEvent;
 			}
-			if (ReferenceEquals(previous?.InflateEvent, null) && !ReferenceEquals(nextProps.InflateEvent, null))
+			if (previous?.InflateEvent is null && !(nextProps.InflateEvent is null))
 			{
-				Element.InflateEvent += nextProps.InflateEvent;
+				element.InflateEvent += nextProps.InflateEvent;
 			}
 		}
 	}

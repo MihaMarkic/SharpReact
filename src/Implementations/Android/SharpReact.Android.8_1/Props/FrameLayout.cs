@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class FrameLayout: ViewGroup
+	public partial class FrameLayout: ViewGroup
 	{
 		public ReactParam<global::Android.Graphics.Drawables.Drawable>? Foreground { get; set; }
 		public ReactParam<global::Android.Content.Res.ColorStateList>? ForegroundTintList { get; set; }
@@ -13,6 +13,20 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.FrameLayout<FrameLayout, global::Android.Widget.FrameLayout>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return Foreground;
+				yield return ForegroundTintList;
+				yield return ForegroundTintMode;
+				yield return MeasureAllChildren;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

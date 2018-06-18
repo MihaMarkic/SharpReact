@@ -9,53 +9,62 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateAdapterViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateAdapterViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateAdapterViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.EmptyView.HasValue)
 			{
-				Element.EmptyView = nextProps.EmptyView.Value.Value;
+				element.EmptyView = nextProps.EmptyView.Value.Value;
 			}
 			if (nextProps.OnItemClickListener.HasValue)
 			{
-				Element.OnItemClickListener = nextProps.OnItemClickListener.Value.Value;
+				element.OnItemClickListener = nextProps.OnItemClickListener.Value.Value;
 			}
 			if (nextProps.OnItemLongClickListener.HasValue)
 			{
-				Element.OnItemLongClickListener = nextProps.OnItemLongClickListener.Value.Value;
+				element.OnItemLongClickListener = nextProps.OnItemLongClickListener.Value.Value;
 			}
 			if (nextProps.OnItemSelectedListener.HasValue)
 			{
-				Element.OnItemSelectedListener = nextProps.OnItemSelectedListener.Value.Value;
+				element.OnItemSelectedListener = nextProps.OnItemSelectedListener.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.ItemClick, null) && ReferenceEquals(nextProps.ItemClick, null))
+			if (!(previous?.ItemClick is null) && nextProps.ItemClick is null)
 			{
-				Element.ItemClick -= nextProps.ItemClick;
+				element.ItemClick -= nextProps.ItemClick;
 			}
-			if (ReferenceEquals(previous?.ItemClick, null) && !ReferenceEquals(nextProps.ItemClick, null))
+			if (previous?.ItemClick is null && !(nextProps.ItemClick is null))
 			{
-				Element.ItemClick += nextProps.ItemClick;
+				element.ItemClick += nextProps.ItemClick;
 			}
-			if (!ReferenceEquals(previous?.ItemLongClick, null) && ReferenceEquals(nextProps.ItemLongClick, null))
+			if (!(previous?.ItemLongClick is null) && nextProps.ItemLongClick is null)
 			{
-				Element.ItemLongClick -= nextProps.ItemLongClick;
+				element.ItemLongClick -= nextProps.ItemLongClick;
 			}
-			if (ReferenceEquals(previous?.ItemLongClick, null) && !ReferenceEquals(nextProps.ItemLongClick, null))
+			if (previous?.ItemLongClick is null && !(nextProps.ItemLongClick is null))
 			{
-				Element.ItemLongClick += nextProps.ItemLongClick;
+				element.ItemLongClick += nextProps.ItemLongClick;
 			}
-			if (!ReferenceEquals(previous?.ItemSelected, null) && ReferenceEquals(nextProps.ItemSelected, null))
+			if (!(previous?.ItemSelected is null) && nextProps.ItemSelected is null)
 			{
-				Element.ItemSelected -= nextProps.ItemSelected;
+				element.ItemSelected -= nextProps.ItemSelected;
 			}
-			if (ReferenceEquals(previous?.ItemSelected, null) && !ReferenceEquals(nextProps.ItemSelected, null))
+			if (previous?.ItemSelected is null && !(nextProps.ItemSelected is null))
 			{
-				Element.ItemSelected += nextProps.ItemSelected;
+				element.ItemSelected += nextProps.ItemSelected;
 			}
-			if (!ReferenceEquals(previous?.NothingSelected, null) && ReferenceEquals(nextProps.NothingSelected, null))
+			if (!(previous?.NothingSelected is null) && nextProps.NothingSelected is null)
 			{
-				Element.NothingSelected -= nextProps.NothingSelected;
+				element.NothingSelected -= nextProps.NothingSelected;
 			}
-			if (ReferenceEquals(previous?.NothingSelected, null) && !ReferenceEquals(nextProps.NothingSelected, null))
+			if (previous?.NothingSelected is null && !(nextProps.NothingSelected is null))
 			{
-				Element.NothingSelected += nextProps.NothingSelected;
+				element.NothingSelected += nextProps.NothingSelected;
 			}
 		}
 	}

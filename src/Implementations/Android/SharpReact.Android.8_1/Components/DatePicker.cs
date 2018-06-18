@@ -13,29 +13,38 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateDatePickerWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateDatePickerWithInstanceProperties(element, null, props);
+		}
+		static void UpdateDatePickerWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.DateTime.HasValue)
 			{
-				Element.DateTime = nextProps.DateTime.Value.Value;
+				element.DateTime = nextProps.DateTime.Value.Value;
 			}
 			if (nextProps.FirstDayOfWeek.HasValue)
 			{
-				Element.FirstDayOfWeek = nextProps.FirstDayOfWeek.Value.Value;
+				element.FirstDayOfWeek = nextProps.FirstDayOfWeek.Value.Value;
 			}
 			if (nextProps.MaxDate.HasValue)
 			{
-				Element.MaxDate = nextProps.MaxDate.Value.Value;
+				element.MaxDate = nextProps.MaxDate.Value.Value;
 			}
 			if (nextProps.MinDate.HasValue)
 			{
-				Element.MinDate = nextProps.MinDate.Value.Value;
+				element.MinDate = nextProps.MinDate.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.DateChanged, null) && ReferenceEquals(nextProps.DateChanged, null))
+			if (!(previous?.DateChanged is null) && nextProps.DateChanged is null)
 			{
-				Element.DateChanged -= nextProps.DateChanged;
+				element.DateChanged -= nextProps.DateChanged;
 			}
-			if (ReferenceEquals(previous?.DateChanged, null) && !ReferenceEquals(nextProps.DateChanged, null))
+			if (previous?.DateChanged is null && !(nextProps.DateChanged is null))
 			{
-				Element.DateChanged += nextProps.DateChanged;
+				element.DateChanged += nextProps.DateChanged;
 			}
 		}
 	}

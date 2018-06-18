@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class Toolbar: ViewGroup
+	public partial class Toolbar: ViewGroup
 	{
 		public ReactParam<global::System.Int32>? ContentInsetEndWithActions { get; set; }
 		public ReactParam<global::System.Int32>? ContentInsetStartWithNavigation { get; set; }
@@ -29,6 +29,34 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.Toolbar<Toolbar, global::Android.Widget.Toolbar>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return ContentInsetEndWithActions;
+				yield return ContentInsetStartWithNavigation;
+				yield return Logo;
+				yield return LogoDescriptionFormatted;
+				yield return LogoDescription;
+				yield return NavigationContentDescriptionFormatted;
+				yield return NavigationContentDescription;
+				yield return NavigationIcon;
+				yield return OverflowIcon;
+				yield return PopupTheme;
+				yield return SubtitleFormatted;
+				yield return Subtitle;
+				yield return TitleFormatted;
+				yield return Title;
+				yield return TitleMarginBottom;
+				yield return TitleMarginEnd;
+				yield return TitleMarginStart;
+				yield return TitleMarginTop;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

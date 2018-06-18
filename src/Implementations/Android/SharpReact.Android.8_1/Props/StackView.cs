@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class StackView: AdapterViewAnimator
+	public partial class StackView: AdapterViewAnimator
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

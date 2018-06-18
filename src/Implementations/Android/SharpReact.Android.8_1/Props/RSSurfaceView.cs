@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class RSSurfaceView: SurfaceView
+	public partial class RSSurfaceView: SurfaceView
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

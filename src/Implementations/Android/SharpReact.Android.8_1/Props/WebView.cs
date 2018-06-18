@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class WebView: AbsoluteLayout
+	public partial class WebView: AbsoluteLayout
 	{
 		public ReactParam<global::Android.Net.Http.SslCertificate>? Certificate { get; set; }
 		public ReactParam<global::Android.Views.TextClassifiers.ITextClassifier>? TextClassifier { get; set; }
@@ -14,6 +14,18 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.WebView<WebView, global::Android.Webkit.WebView>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return Certificate;
+				yield return TextClassifier;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

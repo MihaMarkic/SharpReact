@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class TextView: View
+	public partial class TextView: View
 	{
 		public ReactParam<global::Android.Text.Util.MatchOptions>? AutoLinkMask { get; set; }
 		public ReactParam<global::Android.Text.BreakStrategy>? BreakStrategy { get; set; }
@@ -49,6 +49,52 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.TextView<TextView, global::Android.Widget.TextView>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return AutoLinkMask;
+				yield return BreakStrategy;
+				yield return CompoundDrawablePadding;
+				yield return CompoundDrawableTintList;
+				yield return CompoundDrawableTintMode;
+				yield return CustomInsertionActionModeCallback;
+				yield return CustomSelectionActionModeCallback;
+				yield return Ellipsize;
+				yield return ErrorFormatted;
+				yield return Error;
+				yield return FontFeatureSettings;
+				yield return FreezesText;
+				yield return Gravity;
+				yield return HintFormatted;
+				yield return Hint;
+				yield return HyphenationFrequency;
+				yield return ImeHintLocales;
+				yield return ImeOptions;
+				yield return InputType;
+				yield return JustificationMode;
+				yield return KeyListener;
+				yield return LetterSpacing;
+				yield return LinksClickable;
+				yield return MovementMethod;
+				yield return PaintFlags;
+				yield return PrivateImeOptions;
+				yield return ShowSoftInputOnFocus;
+				yield return TextFormatted;
+				yield return Text;
+				yield return TextClassifier;
+				yield return TextLocale;
+				yield return TextLocales;
+				yield return TextScaleX;
+				yield return TextSize;
+				yield return TransformationMethod;
+				yield return Typeface;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

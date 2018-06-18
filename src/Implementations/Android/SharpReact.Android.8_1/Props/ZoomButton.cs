@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class ZoomButton: ImageButton
+	public partial class ZoomButton: ImageButton
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

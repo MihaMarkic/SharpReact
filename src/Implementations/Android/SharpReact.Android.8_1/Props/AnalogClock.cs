@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class AnalogClock: View
+	public partial class AnalogClock: View
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

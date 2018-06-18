@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class Gallery: AbsSpinner
+	public partial class Gallery: AbsSpinner
 	{
 		protected override ISharpStatefulComponent CreateComponent()
 		{

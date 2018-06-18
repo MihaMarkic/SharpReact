@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class NumberPicker: LinearLayout
+	public partial class NumberPicker: LinearLayout
 	{
 		public ReactParam<global::System.Int32>? MaxValue { get; set; }
 		public ReactParam<global::System.Int32>? MinValue { get; set; }
@@ -15,6 +15,20 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.NumberPicker<NumberPicker, global::Android.Widget.NumberPicker>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return MaxValue;
+				yield return MinValue;
+				yield return Value;
+				yield return WrapSelectorWheel;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

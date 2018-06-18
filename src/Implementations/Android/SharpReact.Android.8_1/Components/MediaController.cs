@@ -10,25 +10,5 @@ namespace SharpReact.Android.Components
 		{
 			Element = (TElement)new global::Android.Widget.MediaController(context);
 		}
-		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
-		{
-			base.AssignProperties(renderer, level, newState, previous, nextProps);
-			if (!ReferenceEquals(previous?.NextClick, null) && ReferenceEquals(nextProps.NextClick, null))
-			{
-				Element.NextClick -= nextProps.NextClick;
-			}
-			if (ReferenceEquals(previous?.NextClick, null) && !ReferenceEquals(nextProps.NextClick, null))
-			{
-				Element.NextClick += nextProps.NextClick;
-			}
-			if (!ReferenceEquals(previous?.PreviousClick, null) && ReferenceEquals(nextProps.PreviousClick, null))
-			{
-				Element.PreviousClick -= nextProps.PreviousClick;
-			}
-			if (ReferenceEquals(previous?.PreviousClick, null) && !ReferenceEquals(nextProps.PreviousClick, null))
-			{
-				Element.PreviousClick += nextProps.PreviousClick;
-			}
-		}
 	}
 }

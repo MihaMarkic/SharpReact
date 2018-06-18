@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public class Spinner: AbsSpinner
+	public partial class Spinner: AbsSpinner
 	{
 		public ReactParam<global::System.Int32>? DropDownHorizontalOffset { get; set; }
 		public ReactParam<global::System.Int32>? DropDownVerticalOffset { get; set; }
@@ -14,6 +14,21 @@ namespace SharpReact.Android.Props
 		protected override ISharpStatefulComponent CreateComponent()
 		{
 			return new Components.Spinner<Spinner, global::Android.Widget.Spinner>();
+		}
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return DropDownHorizontalOffset;
+				yield return DropDownVerticalOffset;
+				yield return DropDownWidth;
+				yield return PromptFormatted;
+				yield return Prompt;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
 		}
 	}
 }

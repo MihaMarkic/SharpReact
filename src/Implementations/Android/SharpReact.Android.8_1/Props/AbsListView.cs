@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace SharpReact.Android.Props
 {
-	public abstract class AbsListView: AdapterView<global::Android.Widget.IListAdapter>
+	public abstract partial class AbsListView: AdapterView<global::Android.Widget.IListAdapter>
 	{
 		public ReactParam<global::Android.Widget.IListAdapter>? Adapter { get; set; }
 		public ReactParam<global::Android.Graphics.Color>? CacheColorHint { get; set; }
@@ -20,5 +20,26 @@ namespace SharpReact.Android.Props
 		public System.EventHandler<global::Android.Widget.AbsListView.ScrollEventArgs> Scroll { get; set; }
 		public System.EventHandler<global::Android.Widget.AbsListView.ScrollStateChangedEventArgs> ScrollStateChanged { get; set; }
 		public System.EventHandler<global::Android.Widget.AbsListView.RecyclerEventArgs> Recycler { get; set; }
+		public override IEnumerable<IReactParam> AllProperties
+		{
+			get
+			{
+				yield return Adapter;
+				yield return CacheColorHint;
+				yield return ChoiceMode;
+				yield return FastScrollAlwaysVisible;
+				yield return FastScrollEnabled;
+				yield return ScrollingCacheEnabled;
+				yield return Selector;
+				yield return SmoothScrollbarEnabled;
+				yield return StackFromBottom;
+				yield return TextFilterEnabled;
+				yield return TranscriptMode;
+				foreach (var p in base.AllProperties)
+				{
+					yield return p;
+				}
+			}
+		}
 	}
 }

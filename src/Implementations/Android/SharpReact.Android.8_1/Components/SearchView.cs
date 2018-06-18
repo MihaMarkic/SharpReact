@@ -13,77 +13,86 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateSearchViewWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateSearchViewWithInstanceProperties(element, null, props);
+		}
+		static void UpdateSearchViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.Iconified.HasValue)
 			{
-				Element.Iconified = nextProps.Iconified.Value.Value;
+				element.Iconified = nextProps.Iconified.Value.Value;
 			}
 			if (nextProps.QueryRefinementEnabled.HasValue)
 			{
-				Element.QueryRefinementEnabled = nextProps.QueryRefinementEnabled.Value.Value;
+				element.QueryRefinementEnabled = nextProps.QueryRefinementEnabled.Value.Value;
 			}
 			if (nextProps.SubmitButtonEnabled.HasValue)
 			{
-				Element.SubmitButtonEnabled = nextProps.SubmitButtonEnabled.Value.Value;
+				element.SubmitButtonEnabled = nextProps.SubmitButtonEnabled.Value.Value;
 			}
 			if (nextProps.SuggestionsAdapter.HasValue)
 			{
-				Element.SuggestionsAdapter = nextProps.SuggestionsAdapter.Value.Value;
+				element.SuggestionsAdapter = nextProps.SuggestionsAdapter.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.Close, null) && ReferenceEquals(nextProps.Close, null))
+			if (!(previous?.Close is null) && nextProps.Close is null)
 			{
-				Element.Close -= nextProps.Close;
+				element.Close -= nextProps.Close;
 			}
-			if (ReferenceEquals(previous?.Close, null) && !ReferenceEquals(nextProps.Close, null))
+			if (previous?.Close is null && !(nextProps.Close is null))
 			{
-				Element.Close += nextProps.Close;
+				element.Close += nextProps.Close;
 			}
-			if (!ReferenceEquals(previous?.QueryTextFocusChange, null) && ReferenceEquals(nextProps.QueryTextFocusChange, null))
+			if (!(previous?.QueryTextFocusChange is null) && nextProps.QueryTextFocusChange is null)
 			{
-				Element.QueryTextFocusChange -= nextProps.QueryTextFocusChange;
+				element.QueryTextFocusChange -= nextProps.QueryTextFocusChange;
 			}
-			if (ReferenceEquals(previous?.QueryTextFocusChange, null) && !ReferenceEquals(nextProps.QueryTextFocusChange, null))
+			if (previous?.QueryTextFocusChange is null && !(nextProps.QueryTextFocusChange is null))
 			{
-				Element.QueryTextFocusChange += nextProps.QueryTextFocusChange;
+				element.QueryTextFocusChange += nextProps.QueryTextFocusChange;
 			}
-			if (!ReferenceEquals(previous?.QueryTextChange, null) && ReferenceEquals(nextProps.QueryTextChange, null))
+			if (!(previous?.QueryTextChange is null) && nextProps.QueryTextChange is null)
 			{
-				Element.QueryTextChange -= nextProps.QueryTextChange;
+				element.QueryTextChange -= nextProps.QueryTextChange;
 			}
-			if (ReferenceEquals(previous?.QueryTextChange, null) && !ReferenceEquals(nextProps.QueryTextChange, null))
+			if (previous?.QueryTextChange is null && !(nextProps.QueryTextChange is null))
 			{
-				Element.QueryTextChange += nextProps.QueryTextChange;
+				element.QueryTextChange += nextProps.QueryTextChange;
 			}
-			if (!ReferenceEquals(previous?.QueryTextSubmit, null) && ReferenceEquals(nextProps.QueryTextSubmit, null))
+			if (!(previous?.QueryTextSubmit is null) && nextProps.QueryTextSubmit is null)
 			{
-				Element.QueryTextSubmit -= nextProps.QueryTextSubmit;
+				element.QueryTextSubmit -= nextProps.QueryTextSubmit;
 			}
-			if (ReferenceEquals(previous?.QueryTextSubmit, null) && !ReferenceEquals(nextProps.QueryTextSubmit, null))
+			if (previous?.QueryTextSubmit is null && !(nextProps.QueryTextSubmit is null))
 			{
-				Element.QueryTextSubmit += nextProps.QueryTextSubmit;
+				element.QueryTextSubmit += nextProps.QueryTextSubmit;
 			}
-			if (!ReferenceEquals(previous?.SearchClick, null) && ReferenceEquals(nextProps.SearchClick, null))
+			if (!(previous?.SearchClick is null) && nextProps.SearchClick is null)
 			{
-				Element.SearchClick -= nextProps.SearchClick;
+				element.SearchClick -= nextProps.SearchClick;
 			}
-			if (ReferenceEquals(previous?.SearchClick, null) && !ReferenceEquals(nextProps.SearchClick, null))
+			if (previous?.SearchClick is null && !(nextProps.SearchClick is null))
 			{
-				Element.SearchClick += nextProps.SearchClick;
+				element.SearchClick += nextProps.SearchClick;
 			}
-			if (!ReferenceEquals(previous?.SuggestionClick, null) && ReferenceEquals(nextProps.SuggestionClick, null))
+			if (!(previous?.SuggestionClick is null) && nextProps.SuggestionClick is null)
 			{
-				Element.SuggestionClick -= nextProps.SuggestionClick;
+				element.SuggestionClick -= nextProps.SuggestionClick;
 			}
-			if (ReferenceEquals(previous?.SuggestionClick, null) && !ReferenceEquals(nextProps.SuggestionClick, null))
+			if (previous?.SuggestionClick is null && !(nextProps.SuggestionClick is null))
 			{
-				Element.SuggestionClick += nextProps.SuggestionClick;
+				element.SuggestionClick += nextProps.SuggestionClick;
 			}
-			if (!ReferenceEquals(previous?.SuggestionSelect, null) && ReferenceEquals(nextProps.SuggestionSelect, null))
+			if (!(previous?.SuggestionSelect is null) && nextProps.SuggestionSelect is null)
 			{
-				Element.SuggestionSelect -= nextProps.SuggestionSelect;
+				element.SuggestionSelect -= nextProps.SuggestionSelect;
 			}
-			if (ReferenceEquals(previous?.SuggestionSelect, null) && !ReferenceEquals(nextProps.SuggestionSelect, null))
+			if (previous?.SuggestionSelect is null && !(nextProps.SuggestionSelect is null))
 			{
-				Element.SuggestionSelect += nextProps.SuggestionSelect;
+				element.SuggestionSelect += nextProps.SuggestionSelect;
 			}
 		}
 	}

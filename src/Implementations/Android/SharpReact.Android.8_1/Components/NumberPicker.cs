@@ -13,37 +13,46 @@ namespace SharpReact.Android.Components
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
+			UpdateNumberPickerWithInstanceProperties(Element, previous, nextProps);
+		}
+		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
+		{
+			base.UpdateElement(renderer, element, props);
+			UpdateNumberPickerWithInstanceProperties(element, null, props);
+		}
+		static void UpdateNumberPickerWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
+		{
 			if (nextProps.MaxValue.HasValue)
 			{
-				Element.MaxValue = nextProps.MaxValue.Value.Value;
+				element.MaxValue = nextProps.MaxValue.Value.Value;
 			}
 			if (nextProps.MinValue.HasValue)
 			{
-				Element.MinValue = nextProps.MinValue.Value.Value;
+				element.MinValue = nextProps.MinValue.Value.Value;
 			}
 			if (nextProps.Value.HasValue)
 			{
-				Element.Value = nextProps.Value.Value.Value;
+				element.Value = nextProps.Value.Value.Value;
 			}
 			if (nextProps.WrapSelectorWheel.HasValue)
 			{
-				Element.WrapSelectorWheel = nextProps.WrapSelectorWheel.Value.Value;
+				element.WrapSelectorWheel = nextProps.WrapSelectorWheel.Value.Value;
 			}
-			if (!ReferenceEquals(previous?.Scroll, null) && ReferenceEquals(nextProps.Scroll, null))
+			if (!(previous?.Scroll is null) && nextProps.Scroll is null)
 			{
-				Element.Scroll -= nextProps.Scroll;
+				element.Scroll -= nextProps.Scroll;
 			}
-			if (ReferenceEquals(previous?.Scroll, null) && !ReferenceEquals(nextProps.Scroll, null))
+			if (previous?.Scroll is null && !(nextProps.Scroll is null))
 			{
-				Element.Scroll += nextProps.Scroll;
+				element.Scroll += nextProps.Scroll;
 			}
-			if (!ReferenceEquals(previous?.ValueChanged, null) && ReferenceEquals(nextProps.ValueChanged, null))
+			if (!(previous?.ValueChanged is null) && nextProps.ValueChanged is null)
 			{
-				Element.ValueChanged -= nextProps.ValueChanged;
+				element.ValueChanged -= nextProps.ValueChanged;
 			}
-			if (ReferenceEquals(previous?.ValueChanged, null) && !ReferenceEquals(nextProps.ValueChanged, null))
+			if (previous?.ValueChanged is null && !(nextProps.ValueChanged is null))
 			{
-				Element.ValueChanged += nextProps.ValueChanged;
+				element.ValueChanged += nextProps.ValueChanged;
 			}
 		}
 	}
