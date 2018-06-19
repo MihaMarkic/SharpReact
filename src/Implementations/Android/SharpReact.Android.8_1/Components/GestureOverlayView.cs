@@ -1,20 +1,26 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public  class GestureOverlayView<TProps, TElement>: FrameLayout<TProps, TElement>
+	public  partial class GestureOverlayView<TProps, TElement>: FrameLayout<TProps, TElement>
 		where TProps : Props.GestureOverlayView
 		where TElement : global::Android.Gestures.GestureOverlayView
 	{
 		public override void CreateElement(global::Android.Content.Context context)
 		{
 			Element = (TElement)new global::Android.Gestures.GestureOverlayView(context);
+			InitElement(Element);
 		}
+		partial void InitElement(TElement element);
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateGestureOverlayViewWithInstanceProperties(Element, previous, nextProps);
+			PostAssignGestureOverlayViewProperties(renderer, level, newState, previous, nextProps);
 		}
+		partial void PostAssignGestureOverlayViewProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);

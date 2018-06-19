@@ -5,20 +5,25 @@ using SharpReact.Core.Properties;
 
 namespace SharpReact.Android
 {
-    public class ReactAdapter : BaseAdapter<SharpProp>
+    public class ReactAdapter : BaseAdapter<ISharpProp>
     {
         readonly ISharpRenderer<View> renderer;
-        SharpProp[] items;
+        ISharpProp[] items;
         public ReactAdapter(ISharpRenderer<View> renderer)
         {
             this.renderer = renderer;
         }
-        public void AssignItems(SharpProp[] items)
+        public void AssignItems(ISharpProp[] items)
         {
+            bool different = renderer.ComparePropertyLists(this.items, items);
             this.items = items;
+            if (different)
+            {
+                NotifyDataSetChanged();
+            }
         }
-        public override SharpProp this[int position] => items[position];
-        public override int Count => items.Length;
+        public override ISharpProp this[int position] => items[position];
+        public override int Count => items?.Length ?? 0;
         public override long GetItemId(int position) => position;
         public override View GetView(int position, View convertView, ViewGroup parent)
         {

@@ -1,20 +1,26 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public  class ActionMenuView<TProps, TElement>: LinearLayout<TProps, TElement>
+	public  partial class ActionMenuView<TProps, TElement>: LinearLayout<TProps, TElement>
 		where TProps : Props.ActionMenuView
 		where TElement : global::Android.Widget.ActionMenuView
 	{
 		public override void CreateElement(global::Android.Content.Context context)
 		{
 			Element = (TElement)new global::Android.Widget.ActionMenuView(context);
+			InitElement(Element);
 		}
+		partial void InitElement(TElement element);
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateActionMenuViewWithInstanceProperties(Element, previous, nextProps);
+			PostAssignActionMenuViewProperties(renderer, level, newState, previous, nextProps);
 		}
+		partial void PostAssignActionMenuViewProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);

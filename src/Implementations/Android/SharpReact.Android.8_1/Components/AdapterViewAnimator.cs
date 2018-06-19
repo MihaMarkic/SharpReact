@@ -1,8 +1,10 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public abstract class AdapterViewAnimator<TProps, TElement>: AdapterView<TProps, TElement>
+	public abstract partial class AdapterViewAnimator<TProps, TElement>: AdapterView<TProps, TElement>
 		where TProps : Props.AdapterViewAnimator
 		where TElement : global::Android.Widget.AdapterViewAnimator
 	{
@@ -10,7 +12,9 @@ namespace SharpReact.Android.Components
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateAdapterViewAnimatorWithInstanceProperties(Element, previous, nextProps);
+			PostAssignAdapterViewAnimatorProperties(renderer, level, newState, previous, nextProps);
 		}
+		partial void PostAssignAdapterViewAnimatorProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);

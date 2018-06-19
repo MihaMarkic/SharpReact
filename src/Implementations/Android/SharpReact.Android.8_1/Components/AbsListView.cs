@@ -1,8 +1,10 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public abstract class AbsListView<TProps, TElement>: AdapterView<global::Android.Widget.IListAdapter, TProps, TElement>
+	public abstract partial class AbsListView<TProps, TElement>: AdapterView<global::Android.Widget.IListAdapter, TProps, TElement>
 		where TProps : Props.AbsListView
 		where TElement : global::Android.Widget.AbsListView
 	{
@@ -10,7 +12,9 @@ namespace SharpReact.Android.Components
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateAbsListViewWithInstanceProperties(Element, previous, nextProps);
+			PostAssignAbsListViewProperties(renderer, level, newState, previous, nextProps);
 		}
+		partial void PostAssignAbsListViewProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);

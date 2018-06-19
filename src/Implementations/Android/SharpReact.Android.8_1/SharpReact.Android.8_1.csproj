@@ -82,6 +82,7 @@
     <Compile Include="Components\ImageView.cs" />
     <Compile Include="Components\LinearLayout.cs" />
     <Compile Include="Components\ListView.cs" />
+    <Compile Include="Components\ListView.Extension.cs" />
     <Compile Include="Components\MediaController.cs" />
     <Compile Include="Components\MediaRouteButton.cs" />
     <Compile Include="Components\MultiAutoCompleteTextView.cs" />

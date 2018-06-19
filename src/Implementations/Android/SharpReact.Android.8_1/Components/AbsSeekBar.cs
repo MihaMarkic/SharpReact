@@ -1,8 +1,10 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public abstract class AbsSeekBar<TProps, TElement>: ProgressBar<TProps, TElement>
+	public abstract partial class AbsSeekBar<TProps, TElement>: ProgressBar<TProps, TElement>
 		where TProps : Props.AbsSeekBar
 		where TElement : global::Android.Widget.AbsSeekBar
 	{
@@ -10,7 +12,9 @@ namespace SharpReact.Android.Components
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateAbsSeekBarWithInstanceProperties(Element, previous, nextProps);
+			PostAssignAbsSeekBarProperties(renderer, level, newState, previous, nextProps);
 		}
+		partial void PostAssignAbsSeekBarProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);

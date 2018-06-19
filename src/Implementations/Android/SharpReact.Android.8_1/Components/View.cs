@@ -1,20 +1,26 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public  class View<TProps, TElement>: SharpAndroidComponent<TProps, object, TElement>
+	public  partial class View<TProps, TElement>: SharpAndroidComponent<TProps, object, TElement>
 		where TProps : Props.View
 		where TElement : global::Android.Views.View
 	{
 		public override void CreateElement(global::Android.Content.Context context)
 		{
 			Element = (TElement)new global::Android.Views.View(context);
+			InitElement(Element);
 		}
+		partial void InitElement(TElement element);
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateViewWithInstanceProperties(Element, previous, nextProps);
+			PostAssignViewProperties(renderer, level, newState, previous, nextProps);
 		}
+		partial void PostAssignViewProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);

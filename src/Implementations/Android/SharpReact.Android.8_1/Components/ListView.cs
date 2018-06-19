@@ -1,20 +1,26 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public  class ListView<TProps, TElement>: AbsListView<TProps, TElement>
+	public  partial class ListView<TProps, TElement>: AbsListView<TProps, TElement>
 		where TProps : Props.ListView
 		where TElement : global::Android.Widget.ListView
 	{
 		public override void CreateElement(global::Android.Content.Context context)
 		{
 			Element = (TElement)new global::Android.Widget.ListView(context);
+			InitElement(Element);
 		}
+		partial void InitElement(TElement element);
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateListViewWithInstanceProperties(Element, previous, nextProps);
+			PostAssignListViewProperties(renderer, level, newState, previous, nextProps);
 		}
+		partial void PostAssignListViewProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);

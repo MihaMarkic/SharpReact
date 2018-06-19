@@ -1,20 +1,26 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public  class Switch<TProps, TElement>: CompoundButton<TProps, TElement>
+	public  partial class Switch<TProps, TElement>: CompoundButton<TProps, TElement>
 		where TProps : Props.Switch
 		where TElement : global::Android.Widget.Switch
 	{
 		public override void CreateElement(global::Android.Content.Context context)
 		{
 			Element = (TElement)new global::Android.Widget.Switch(context);
+			InitElement(Element);
 		}
+		partial void InitElement(TElement element);
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateSwitchWithInstanceProperties(Element, previous, nextProps);
+			PostAssignSwitchProperties(renderer, level, newState, previous, nextProps);
 		}
+		partial void PostAssignSwitchProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);

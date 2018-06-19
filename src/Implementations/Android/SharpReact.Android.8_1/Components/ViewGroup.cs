@@ -1,8 +1,10 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public abstract class ViewGroup<TProps, TElement>: View<TProps, TElement>
+	public abstract partial class ViewGroup<TProps, TElement>: View<TProps, TElement>
 		where TProps : Props.ViewGroup
 		where TElement : global::Android.Views.ViewGroup
 	{
@@ -10,11 +12,15 @@ namespace SharpReact.Android.Components
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateViewGroupWithInstanceProperties(Element, previous, nextProps);
-			{
-				var elements = renderer.VisitAllCollection(level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.ViewGroup.Views), nameof(SharpReact.Android.Props.ViewGroup));
-				ElementSynchronizer.SyncElements(Element, elements);
-			}
+			AssignContainerProperties(renderer, level, newState, previous?.Views, nextProps.Views, nameof(SharpReact.Android.Props.ViewGroup.Views), nameof(SharpReact.Android.Props.ViewGroup));
+			PostAssignViewGroupProperties(renderer, level, newState, previous, nextProps);
 		}
+		public override void AssignContainerProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, List<ISharpProp> previous, List<ISharpProp> nextProps, string propertyName, string containerName)
+		{
+			var elements = renderer.VisitAllCollection(level, newState, previous, nextProps, propertyName, containerName);
+			ElementSynchronizer.SyncElements(Element, elements);
+		}
+		partial void PostAssignViewGroupProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);

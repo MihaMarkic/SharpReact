@@ -1,20 +1,26 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public  class AutoCompleteTextView<TProps, TElement>: EditText<TProps, TElement>
+	public  partial class AutoCompleteTextView<TProps, TElement>: EditText<TProps, TElement>
 		where TProps : Props.AutoCompleteTextView
 		where TElement : global::Android.Widget.AutoCompleteTextView
 	{
 		public override void CreateElement(global::Android.Content.Context context)
 		{
 			Element = (TElement)new global::Android.Widget.AutoCompleteTextView(context);
+			InitElement(Element);
 		}
+		partial void InitElement(TElement element);
 		public override void AssignProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps)
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateAutoCompleteTextViewWithInstanceProperties(Element, previous, nextProps);
+			PostAssignAutoCompleteTextViewProperties(renderer, level, newState, previous, nextProps);
 		}
+		partial void PostAssignAutoCompleteTextViewProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);

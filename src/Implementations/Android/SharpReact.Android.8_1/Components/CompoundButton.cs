@@ -1,8 +1,10 @@
 using SharpReact.Core;
+using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Android.Components
 {
-	public abstract class CompoundButton<TProps, TElement>: Button<TProps, TElement>
+	public abstract partial class CompoundButton<TProps, TElement>: Button<TProps, TElement>
 		where TProps : Props.CompoundButton
 		where TElement : global::Android.Widget.CompoundButton
 	{
@@ -10,7 +12,9 @@ namespace SharpReact.Android.Components
 		{
 			base.AssignProperties(renderer, level, newState, previous, nextProps);
 			UpdateCompoundButtonWithInstanceProperties(Element, previous, nextProps);
+			PostAssignCompoundButtonProperties(renderer, level, newState, previous, nextProps);
 		}
+		partial void PostAssignCompoundButtonProperties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);
 		protected override void UpdateElement(ISharpRenderer renderer, TElement element, TProps props)
 		{
 			base.UpdateElement(renderer, element, props);
