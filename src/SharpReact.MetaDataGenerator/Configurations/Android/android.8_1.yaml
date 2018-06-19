@@ -24,6 +24,8 @@ components:
     elementsSynchronization: "ElementSynchronizer.SyncElements(Element, elements);"
     namespaces:
         - SharpReact.Core
+        - SharpReact.Core.Properties
+        - System.Collections.Generic
     fixedFiles:
         - SharpAndroidComponent.cs
     rootElement: SharpAndroidComponent
@@ -31,12 +33,15 @@ components:
         - "public override void CreateElement(global::Android.Content.Context context)"
         - "{"
         - "\tElement = (TElement)new [TElement](context);"
+        - "\tInitElement(Element);"
         - "}"
     sealedElementCreation:
         - "public override void CreateElement(global::Android.Content.Context context)"
         - "{"
         - "\tElement = new [TElement](context);"
         - "}"
+    initElementPartial: true
+    postAssignPropertiesPartial: true
 properties:
     namespaces:
         - SharpReact.Core

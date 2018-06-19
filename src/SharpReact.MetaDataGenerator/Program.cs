@@ -44,7 +44,7 @@ namespace SharpReact.MetaDataGenerator
 
         private static Assembly CurrentDomain_ReflectionOnlyAssemblyResolve(object sender, ResolveEventArgs args)
         {
-            string[] paths = 
+            string[] paths =
             {
                 "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\ReferenceAssemblies\\Microsoft\\Framework\\MonoAndroid\\v1.0",
                 "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\ReferenceAssemblies\\Microsoft\\Framework\\MonoAndroid\\v1.0\\Facades"
@@ -136,7 +136,7 @@ namespace SharpReact.MetaDataGenerator
             }
         }
         static string ToCamelCase(string text) => char.ToLower(text[0]) + text.Substring(1);
-        static bool IsListProperty (Type type) => type.FullName == "System.Windows.Controls.UIElementCollection";
+        static bool IsListProperty(Type type) => type.FullName == "System.Windows.Controls.UIElementCollection";
         static PropertyInfo[] GetTypeProperties(Type type)
         {
             var properties = from p in type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
@@ -208,15 +208,15 @@ namespace SharpReact.MetaDataGenerator
             {
                 File.Delete(path);
             }
-            string superClass = GetBaseClassForProperties(isRoot , type.BaseType);
+            string superClass = GetBaseClassForProperties(isRoot, type.BaseType);
             var properties = GetTypeProperties(type);
             var events = GetTypeEvents(type);
             var lastProperty = properties.LastOrDefault();
-            var sb = new StringBuilder();
+            var sb = new LevelStringBuilder(new StringBuilder());
             bool isAbstract = IsTypeAbstract(type, appSettings.Components.ElementsRequiresConstructor);
-            string abstractType = isAbstract ? " abstract": "";
+            string abstractType = isAbstract ? " abstract" : "";
             string implementedInterfaces = "";
-            
+
             if (settings.Namespaces != null)
             {
                 foreach (string ns in settings.Namespaces)
@@ -225,81 +225,133 @@ namespace SharpReact.MetaDataGenerator
                 }
             }
             sb.AppendLine();
-            sb.AppendLine($"namespace {rootNamespace}.Props");
-            sb.AppendLine("{");
-            sb.AppendLine($"\tpublic{abstractType} class {GetTypeName(type)}: {superClass}{implementedInterfaces}");
-            foreach (var genericParameter in type.GetTypeInfo().GenericTypeParameters)
+            using (sb.AddMethod($"namespace {rootNamespace}.Props"))
             {
-                var constraints = genericParameter.GetGenericParameterConstraints();
-                if (constraints.Length > 0)
+                sb.AppendLine($"public{abstractType} partial class {GetTypeName(type)}: {superClass}{implementedInterfaces}");
+                foreach (var genericParameter in type.GetTypeInfo().GenericTypeParameters)
                 {
-                    sb.AppendLine($"\t\twhere {genericParameter.Name}: {string.Join(", ", constraints.Select(c => $"global::{c.FullName}"))} ");
+                    var constraints = genericParameter.GetGenericParameterConstraints();
+                    {
+                        if (constraints.Length > 0)
+                        {
+                            using (sb.AddLevel())
+                            {
+                                sb.AppendLine($"where {genericParameter.Name}: {string.Join(", ", constraints.Select(c => $"global::{c.FullName}"))} ");
+                            }
+                        }
+                    }
                 }
+                sb.Open();
+                using (sb.AddLevel())
+                {
+                    var contentProperties = new List<PropertyInfo>();
+                    var containerProperties = new List<PropertyInfo>();
+                    string typeName = type.Name;
+                    foreach (var p in properties)
+                    {
+                        if (IsContentProperty(p, settings))
+                        {
+                            contentProperties.Add(p);
+                            sb.AppendLine($"public ISharpProp {p.Name} {{ get; set; }}");
+                        }
+                        else if (IsContainerProperty(p, settings) || IsListProperty(p.PropertyType))
+                        {
+                            containerProperties.Add(p);
+                            sb.AppendLine($"public List<ISharpProp> {p.Name} {{ get; set; }} = new List<ISharpProp>();");
+                        }
+                        else
+                        {
+                            sb.AppendLine($"public ReactParam<{GetPropertyType(p.PropertyType)}>? {p.Name} {{ get; set; }}");
+                        }
+                    }
+                    bool hasContainerByProperty = IsContainerByInterface(type, appSettings.ContainerInterfaces);
+                    if (hasContainerByProperty)
+                    {
+                        sb.AppendLine($"public List<ISharpProp> {appSettings.CustomContainerProperty} {{ get; set; }} = new List<ISharpProp>();");
+                    }
+                    foreach (var e in events)
+                    {
+                        sb.AppendLine($"public {GetEventTypeFullName(e.EventHandlerType)} {e.Name} {{ get; set; }}");
+                    }
+                    if (!isAbstract)
+                    {
+                        using (sb.AddMethod("protected override ISharpStatefulComponent CreateComponent()"))
+                        {
+
+                            string tElement = type.IsSealed ? "" : $", global::{GetTypeFullName(type)}";
+                            string additionalTypeParameters = type.IsGenericType ? string.Join(",", type.GetTypeInfo().GenericTypeParameters.Select(a => a.Name)) + ", " : "";
+                            sb.AppendLine($"return new Components.{GetPureName(type.Name)}<{additionalTypeParameters}{GetTypeName(type)}{tElement}>();");
+                        }
+                    }
+                    if (contentProperties.Count + containerProperties.Count > 0)
+                    {
+                        using (sb.AddMethod("protected override void UnmountComponent()"))
+                        {
+                            foreach (var p in contentProperties)
+                            {
+                                sb.AppendLine($"UnmountComponent({p.Name});");
+                            }
+                            foreach (var p in containerProperties)
+                            {
+                                sb.AppendLine($"UnmountComponents({p.Name});");
+                            }
+                            if (hasContainerByProperty)
+                            {
+                                sb.AppendLine($"UnmountComponents({appSettings.CustomContainerProperty});");
+                            }
+                            sb.AppendLine("base.UnmountComponent();");
+                        }
+                    }
+                    if (properties.Length > 0)
+                    {
+                        using (sb.AddMethod($"public override IEnumerable<IReactParam> AllProperties"))
+                        {
+                            using (sb.AddMethod("get"))
+                            {
+                                foreach (var p in properties)
+                                {
+                                    sb.AppendLine($"yield return {p.Name};");
+                                }
+                                using (sb.AddMethod("foreach (var p in base.AllProperties)"))
+                                {
+                                    sb.AppendLine("yield return p;");
+                                }
+                            }
+                        }
+                    }
+                    if (contentProperties.Count + containerProperties.Count > 0 || hasContainerByProperty)
+                    {
+                        using (sb.AddMethod("public override IEnumerable<ISharpProp> AllChildren"))
+                        {
+                            using (sb.AddMethod("get"))
+                            {
+                                List<string> containerPropertiesNames = new List<string>(containerProperties.Select(p => p.Name));
+                                if (hasContainerByProperty)
+                                {
+                                    containerPropertiesNames.Add(appSettings.CustomContainerProperty);
+                                }
+
+                                foreach (var c in containerPropertiesNames)
+                                {
+                                    using (sb.AddMethod($"foreach (var c in {c})"))
+                                    {
+                                        sb.AppendLine("yield return c;");
+                                    }
+                                }
+                                foreach (var c in contentProperties)
+                                {
+                                    sb.AppendLine($"yield return {c.Name};");
+                                }
+                                using (sb.AddMethod("foreach (var c in base.AllChildren)"))
+                                {
+                                    sb.AppendLine("yield return c;");
+                                }
+                            }
+                        }
+                    }
+                }
+                sb.Close();
             }
-            sb.AppendLine("\t{");
-            var contentProperties = new List<PropertyInfo>();
-            var containerProperties = new List<PropertyInfo>();
-            string typeName = type.Name;
-            foreach (var p in properties)
-            {
-                if (IsContentProperty(p, settings))
-                {
-                    contentProperties.Add(p);
-                    sb.AppendLine($"\t\tpublic ISharpProp {p.Name} {{ get; set; }}");
-                }
-                else if (IsContainerProperty(p, settings) || IsListProperty(p.PropertyType))
-                {
-                    containerProperties.Add(p);
-                    sb.AppendLine($"\t\tpublic List<ISharpProp> {p.Name} {{ get; set; }} = new List<ISharpProp>();");
-                }
-                else
-                {
-                    sb.AppendLine($"\t\tpublic ReactParam<{GetPropertyType(p.PropertyType)}>? {p.Name} {{ get; set; }}");
-                }
-            }
-            bool hasContainerByProperty = IsContainerByInterface(type, appSettings.ContainerInterfaces);
-            if (hasContainerByProperty)
-            {
-                sb.AppendLine($"\t\tpublic List<ISharpProp> {appSettings.CustomContainerProperty} {{ get; set; }} = new List<ISharpProp>();");
-            }
-            foreach (var e in events)
-            {
-                sb.AppendLine($"\t\tpublic {GetEventTypeFullName(e.EventHandlerType)} {e.Name} {{ get; set; }}");
-            }
-            if (!isAbstract)
-            {
-                sb.AppendLine("\t\tprotected override ISharpStatefulComponent CreateComponent()");
-                sb.AppendLine("\t\t{");
-                string tElement = type.IsSealed ? "" : $", global::{GetTypeFullName(type)}";
-                string additionalTypeParameters = type.IsGenericType ? string.Join(",", type.GetTypeInfo().GenericTypeParameters.Select(a => a.Name)) + ", " : "";
-                sb.AppendLine($"\t\t\treturn new Components.{GetPureName(type.Name)}<{additionalTypeParameters}{GetTypeName(type)}{tElement}>();");
-                //else
-                //{
-                //    sb.AppendLine("\t\t\tthrow new System.NotImplementedException();");
-                //}
-                sb.AppendLine("\t\t}");
-            }
-            if (contentProperties.Count + containerProperties.Count > 0)
-            {
-                sb.AppendLine("\t\tprotected override void UnmountComponent()");
-                sb.AppendLine("\t\t{");
-                foreach (var p in contentProperties)
-                {
-                    sb.AppendLine($"\t\t\tUnmountComponent({p.Name});");
-                }
-                foreach (var p in containerProperties)
-                {
-                    sb.AppendLine($"\t\t\tUnmountComponents({p.Name});");
-                }
-                if (hasContainerByProperty)
-                {
-                    sb.AppendLine($"\t\t\tUnmountComponents({appSettings.CustomContainerProperty});");
-                }
-                sb.AppendLine("\t\t\tbase.UnmountComponent();");
-                sb.AppendLine("\t\t}");
-            }
-            sb.AppendLine("\t}");
-            sb.AppendLine("}");
             File.WriteAllText(path, sb.ToString());
         }
         static bool IsTypeCreatable(Type type)
@@ -406,7 +458,7 @@ namespace SharpReact.MetaDataGenerator
             var genericTypeParameters = type.GetTypeInfo().GenericTypeParameters;
             bool isAbstract = IsTypeAbstract(type, settings.Components.ElementsRequiresConstructor);
             string additionalGenericParameters = $"{string.Join(", ", genericTypeParameters.Select(p => p.Name))}{(genericTypeParameters.Length > 0 ? ", " : "")}";
-            var sb = new StringBuilder();
+            var sb = new LevelStringBuilder(new StringBuilder());
             if (settings.Components.Namespaces != null)
             {
                 foreach (string ns in settings.Components.Namespaces)
@@ -415,88 +467,154 @@ namespace SharpReact.MetaDataGenerator
                 }
             }
             sb.AppendLine();
-            sb.AppendLine($"namespace {settings.Namespace}.Components");
-            sb.AppendLine("{");
-            sb.AppendLine($"\tpublic {(isAbstract ? "abstract": "")} class {GetPureName(type.Name)}<{additionalGenericParameters}TProps{(type.IsSealed ? "": ", TElement")}>: {superClass}");
-            sb.AppendLine($"\t\twhere TProps : Props.{GetTypeName(type)}");
-            if (!type.IsSealed)
+            string classPureName = GetPureName(type.Name);
+            var containerProperties = properties.Where(p => IsContainerProperty(p, settings.Properties)).ToArray();
+            var contentProperties = properties.Where(p => IsContentProperty(p, settings.Properties)).ToArray();
+            var nonContentOrContainerProperties = properties.Except(containerProperties).Except(contentProperties).ToArray();
+            bool isContainerByInterface = IsContainerByInterface(type, settings.ContainerInterfaces);
+            using (sb.AddMethod($"namespace {settings.Namespace}.Components"))
             {
-                string newConstraint = settings.Components.ElementsRequiresConstructor ? ", new()" : "";
-                sb.AppendLine($"\t\twhere TElement : global::{GetTypeFullName(type)}{newConstraint}");
-            }
-            foreach (var genericParameter in type.GetTypeInfo().GenericTypeParameters)
-            {
-                var constraints = genericParameter.GetGenericParameterConstraints();
-                if (constraints.Length > 0)
+                sb.AppendLine($"public {(isAbstract ? "abstract" : "")} partial class {classPureName}<{additionalGenericParameters}TProps{(type.IsSealed ? "" : ", TElement")}>: {superClass}");
+                using (sb.AddLevel())
                 {
-                    sb.AppendLine($"\t\twhere {genericParameter.Name}: {string.Join(", ", constraints.Select(c => $"global::{c.FullName}"))} ");
-                }
-            }
-            sb.AppendLine("\t{");
-            if (!isAbstract)
-            {
-                var source = type.IsSealed ? settings.Components.SealedElementCreation : settings.Components.ElementCreation;
-                if (source?.Length > 0)
-                {
-                    string elementType = $"global::{GetTypeFullName(type)}";
-                    foreach (string line in source)
+                    sb.AppendLine($"where TProps : Props.{GetTypeName(type)}");
+                    if (!type.IsSealed)
                     {
-                        sb.AppendLine("\t\t" + line.Replace("[TElement]", elementType));
+                        string newConstraint = settings.Components.ElementsRequiresConstructor ? ", new()" : "";
+                        sb.AppendLine($"where TElement : global::{GetTypeFullName(type)}{newConstraint}");
+                    }
+                    foreach (var genericParameter in type.GetTypeInfo().GenericTypeParameters)
+                    {
+                        var constraints = genericParameter.GetGenericParameterConstraints();
+                        if (constraints.Length > 0)
+                        {
+                            sb.AppendLine($"where {genericParameter.Name}: {string.Join(", ", constraints.Select(c => $"global::{c.FullName}"))} ");
+                        }
                     }
                 }
-            }
-            sb.AppendLine($"\t\tpublic override void AssignProperties(ISharpCreator<global::{settings.RootType.Name}> renderer, int level, NewState newState, TProps previous, TProps nextProps)");
-            sb.AppendLine("\t\t{");
-            sb.AppendLine($"\t\t\tbase.AssignProperties(renderer, level, newState, previous, nextProps);");
-            foreach (var p in properties)
-            {
-                if (IsContentProperty(p, settings.Properties))
+                sb.Open();
+                using (sb.AddLevel())
                 {
-                    sb.AppendLine($"\t\t\tif (nextProps.{p.Name} != null)");
-                    sb.AppendLine("\t\t\t{");
-                    sb.AppendLine($"\t\t\t\tElement.{p.Name} = renderer.ProcessPair(level + 1, newState, previous?.{p.Name}, nextProps.{p.Name});");
-                    sb.AppendLine("\t\t\t}");
+                    // CreateElement
+                    if (!isAbstract)
+                    {
+                        var source = type.IsSealed ? settings.Components.SealedElementCreation : settings.Components.ElementCreation;
+                        if (source?.Length > 0)
+                        {
+                            string elementType = $"global::{GetTypeFullName(type)}";
+                            foreach (string line in source)
+                            {
+                                sb.AppendLine(line.Replace("[TElement]", elementType));
+                            }
+                        }
+                        if (settings.Components.InitElementPartial)
+                        {
+                            sb.AppendLine($"partial void InitElement({tElement} element);");
+                        }
+                    }
+                    if (properties.Length > 0 || isContainerByInterface)
+                    {
+                        using (sb.AddMethod($"public override void AssignProperties(ISharpRenderer<global::{settings.RootType.Name}> renderer, int level, NewState newState, TProps previous, TProps nextProps)"))
+                        {
+                            sb.AppendLine($"base.AssignProperties(renderer, level, newState, previous, nextProps);");
+                            if (nonContentOrContainerProperties.Length > 0)
+                            {
+                                sb.AppendLine($"Update{classPureName}WithInstanceProperties(Element, previous, nextProps);");
+                            }
+                            foreach (var p in contentProperties)
+                            {
+                                using (sb.AddMethod($"if (nextProps.{p.Name} != null)"))
+                                {
+                                    sb.AppendLine($"Element.{p.Name} = renderer.ProcessPair(level + 1, newState, previous?.{p.Name}, nextProps.{p.Name});");
+                                }
+                            }
+                            if (containerProperties.Length > 0 || isContainerByInterface)
+                            {
+                                string propertyName;
+                                if (containerProperties.Length > 0)
+                                {
+                                    propertyName = containerProperties[0].Name;
+                                }
+                                else
+                                {
+                                    propertyName = settings.CustomContainerProperty;
+                                }
+                                sb.AppendLine($"AssignContainerProperties(renderer, level, newState, previous?.{propertyName}, nextProps.{propertyName}, nameof({settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}.{propertyName}), nameof({settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}));");
+                            }
+                            //if (isContainerByInterface)
+                            //{
+                            //    string propName = settings.CustomContainerProperty;
+                            //    string sourceTypeName = $"{settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}";
+                            //    sb.Open();
+                            //    using (sb.AddLevel())
+                            //    {
+                            //        sb.AppendLine("var elements = renderer.VisitAllCollection(level, newState, previous, nextProps, propertyName, containerName);");
+                            //        sb.AppendLine($"{settings.Components.ElementsSynchronization}");
+                            //    }
+                            //    sb.Close();
+                            //}
+                            if (settings.Components.PostAssignPropertiesPartial)
+                            {
+                                sb.AppendLine($"PostAssign{classPureName}Properties(renderer, level, newState, previous, nextProps);");
+                            }
+                        }
+                        if (containerProperties.Length > 0 || isContainerByInterface)
+                        {
+                            using (sb.AddMethod($"public override void AssignContainerProperties(ISharpRenderer<global::{settings.RootType.Name}> renderer, int level, NewState newState, List<ISharpProp> previous, List<ISharpProp> nextProps, string propertyName, string containerName)"))
+                            {
+                                //foreach (var p in containerProperties)
+                                //{
+                                    //sb.Open();
+                                    //using (sb.AddLevel())
+                                    //{
+                                        sb.AppendLine($"var elements = renderer.VisitAllCollection(level, newState, previous, nextProps, propertyName, containerName);");
+                                        sb.AppendLine($"{settings.Components.ElementsSynchronization}");
+                                    //}
+                                    //sb.Close();
+                                //}
+                            }
+                        }
+                    }
+                    if (settings.Components.PostAssignPropertiesPartial)
+                    {
+                        sb.AppendLine($"partial void PostAssign{classPureName}Properties(ISharpRenderer<global::Android.Views.View> renderer, int level, NewState newState, TProps previous, TProps nextProps);");
+                    }
+                    if (nonContentOrContainerProperties.Length > 0)
+                    {
+                        using (sb.AddMethod($"protected override void UpdateElement(ISharpRenderer renderer, {tElement} element, TProps props)"))
+                        {
+                            sb.AppendLine("base.UpdateElement(renderer, element, props);");
+                            sb.AppendLine($"Update{classPureName}WithInstanceProperties(element, null, props);");
+                        }
+                        using (sb.AddMethod($"static void Update{classPureName}WithInstanceProperties({tElement} element, TProps previous, TProps nextProps)"))
+                        {
+                            foreach (var p in nonContentOrContainerProperties)
+                            {
+                                if (!IsContentProperty(p, settings.Properties) && !IsContainerProperty(p, settings.Properties))
+                                {
+                                    using (sb.AddMethod($"if (nextProps.{p.Name}.HasValue)"))
+                                    {
+                                        sb.AppendLine($"element.{p.Name} = nextProps.{p.Name}.Value.Value;");
+                                    }
+                                }
+                            }
+                            foreach (var e in events)
+                            {
+                                using (sb.AddMethod($"if (!(previous?.{e.Name} is null) && nextProps.{e.Name} is null)"))
+                                {
+                                    sb.AppendLine($"element.{e.Name} -= nextProps.{e.Name};");
+                                }
+                                using (sb.AddMethod($"if (previous?.{e.Name} is null && !(nextProps.{e.Name} is null))"))
+                                {
+                                    sb.AppendLine($"element.{e.Name} += nextProps.{e.Name};");
+                                }
+                            }
+                        }
+                    }
                 }
-                else if (IsContainerProperty(p, settings.Properties))
-                {
-                    sb.AppendLine("\t\t\t{");
-                    sb.AppendLine($"\t\t\t\tvar elements = renderer.VisitAllCollection(level, newState, previous?.{p.Name}, nextProps.{p.Name}, nameof(Element.{p.Name}), nameof({settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}));");
-                    sb.AppendLine($"\t\t\t\t{settings.Components.ElementsSynchronization}");
-                    sb.AppendLine("\t\t\t}");
-                }
-                else
-                {
-                    sb.AppendLine($"\t\t\tif (nextProps.{p.Name}.HasValue)");
-                    sb.AppendLine("\t\t\t{");
-                    sb.AppendLine($"\t\t\t\tElement.{p.Name} = nextProps.{p.Name}.Value.Value;");
-                    sb.AppendLine("\t\t\t}");
-                }
+                sb.Close();
             }
-            if (IsContainerByInterface(type, settings.ContainerInterfaces))
-            {
-                string propName = settings.CustomContainerProperty;
-                string sourceTypeName = $"{settings.Namespace}.{settings.Properties.Path}.{GetPureName(type.Name)}";
-                sb.AppendLine("\t\t\t{");
-                sb.AppendLine($"\t\t\t\tvar elements = renderer.VisitAllCollection(level, newState, previous?.{propName}, nextProps.{propName}, nameof({sourceTypeName}.{propName}), nameof({sourceTypeName}));");
-                sb.AppendLine($"\t\t\t\t{settings.Components.ElementsSynchronization}");
-                sb.AppendLine("\t\t\t}");
-            }
-            foreach (var e in events)
-            {
-                sb.AppendLine($"\t\t\tif (!ReferenceEquals(previous?.{e.Name}, null) && ReferenceEquals(nextProps.{e.Name}, null))");
-                sb.AppendLine("\t\t\t{");
-                sb.AppendLine($"\t\t\t\tElement.{e.Name} -= nextProps.{e.Name};");
-                sb.AppendLine("\t\t\t}");
-                sb.AppendLine($"\t\t\tif (ReferenceEquals(previous?.{e.Name}, null) && !ReferenceEquals(nextProps.{e.Name}, null))");
-                sb.AppendLine("\t\t\t{");
-                sb.AppendLine($"\t\t\t\tElement.{e.Name} += nextProps.{e.Name};");
-                sb.AppendLine("\t\t\t}");
-            }
-            sb.AppendLine("\t\t}");
-            sb.AppendLine("\t}");
-            sb.AppendLine("}");
             File.WriteAllText(path, sb.ToString());
-
         }
 
         static Type GetRootType(AppSettings config)

@@ -718,7 +718,6 @@ namespace SharpReact.Core.Test
             public new void SetUp()
             {
                 renderer = CreateRenderer(() => null);
-
             }
             [Test]
             public void WhenTextBlock_CreatesComponents()
@@ -791,6 +790,43 @@ namespace SharpReact.Core.Test
                 var actual = (Elements.TextBlock)element.Content;
                 Assert.That(props.Component.Element, Is.Not.SameAs(element));
                 Assert.That(content.Component.Element, Is.Not.SameAs(element.Content));
+            }
+        }
+        [TestFixture]
+        public class ComparePropertyLists: SharpRendererTest
+        {
+            [SetUp]
+            public new void SetUp()
+            {
+                renderer = CreateRenderer(() => null);
+            }
+            [Test]
+            public void WhenBothListNull_ReturnsTrue()
+            {
+                var actual = renderer.ComparePropertyLists(null, null);
+
+                Assert.That(actual, Is.True);
+            }
+            [Test]
+            public void WhenFirstIsNullAndOtherIsNot_ReturnsFalse()
+            {
+                var actual = renderer.ComparePropertyLists(null, new ISharpProp[0]);
+
+                Assert.That(actual, Is.False);
+            }
+            [Test]
+            public void WhenSecondIsNullAndOtherIsNot_ReturnsFalse()
+            {
+                var actual = renderer.ComparePropertyLists(new ISharpProp[0], null);
+
+                Assert.That(actual, Is.False);
+            }
+            [Test]
+            public void WhenBothAreEmpty_ReturnsTrue()
+            {
+                var actual = renderer.ComparePropertyLists(new ISharpProp[0], new ISharpProp[0]);
+
+                Assert.That(actual, Is.True);
             }
         }
     }

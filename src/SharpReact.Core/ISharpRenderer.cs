@@ -9,6 +9,7 @@ namespace SharpReact.Core
         void Redraw();
         bool CompareProperties<T>(T left, T right)
             where T : ISharpProp;
+        bool ComparePropertyLists(ISharpProp[] left, ISharpProp[] right);
         void UpdateExistingElement(object element, ISharpProp prop);
     }
 }

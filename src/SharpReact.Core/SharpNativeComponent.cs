@@ -1,4 +1,5 @@
 ﻿using SharpReact.Core.Properties;
+using System.Collections.Generic;
 
 namespace SharpReact.Core
 {
@@ -20,5 +21,7 @@ namespace SharpReact.Core
         }
         public virtual void AssignProperties(ISharpRenderer<TRootElement> renderer, int level, NewState newState, TProps previous, TProps nextProps)
         {}
+        public virtual void AssignContainerProperties(ISharpRenderer<TRootElement> renderer, int level, NewState newState, List<ISharpProp> previous, List<ISharpProp> nextProps, string propertyName, string containerName)
+        { }
     }
 }

@@ -16,6 +16,11 @@
         /// </summary>
         public string[] ElementCreation { get; set; }
         public string[] SealedElementCreation { get; set; }
+        /// <summary>
+        /// Flag for generating partial method InitElement
+        /// </summary>
+        public bool InitElementPartial { get; set; }
+        public bool PostAssignPropertiesPartial { get; set; }
         public ComponentSettings()
         {
             Path = "Components";

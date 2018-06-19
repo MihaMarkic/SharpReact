@@ -267,6 +267,25 @@ namespace SharpReact.Core
         {
             taskFactory.StartNew(() => Invalidate(newState), CancellationToken.None);
         }
+        public bool ComparePropertyLists(ISharpProp[] left, ISharpProp[] right)
+        {
+            if (left is null && right is null)
+            {
+                return true;
+            }
+            if (left?.Length != right?.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < left.Length; i++)
+            {
+                if (!CompareProperties(left[i], right[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public bool CompareProperties<T>(T left, T right)
             where T: ISharpProp
         {
