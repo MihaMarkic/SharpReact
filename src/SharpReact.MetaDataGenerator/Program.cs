@@ -137,11 +137,18 @@ namespace SharpReact.MetaDataGenerator
         }
         static string ToCamelCase(string text) => char.ToLower(text[0]) + text.Substring(1);
         static bool IsListProperty(Type type) => type.FullName == "System.Windows.Controls.UIElementCollection";
+        static bool IsOverride(PropertyInfo p)
+        {
+            var getMethod = p.GetGetMethod(false);
+            return getMethod != getMethod.GetBaseDefinition();
+        }
         static PropertyInfo[] GetTypeProperties(Type type)
         {
             var properties = from p in type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly)
-                             where IsListProperty(p.PropertyType)
-                                || p.SetMethod != null && p.SetMethod.IsPublic && p.GetMethod != null
+                             where !IsOverride(p) &&
+                                (IsListProperty(p.PropertyType)
+                                || 
+                                p.SetMethod != null && p.SetMethod.IsPublic && p.GetMethod != null)
                              where !p.GetCustomAttributesData().Any(a => a.AttributeType == typeof(ObsoleteAttribute))
                              select p;
             return properties.ToArray();
