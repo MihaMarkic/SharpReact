@@ -1,0 +1,65 @@
+﻿namespace:  SharpReact.Support.v7.AppCompat
+templateBasedAssemblies:
+    version: "27.0.2.1"
+    template: '[NAME]\[VERSION]\lib\MonoAndroid81\[NAME]'
+    names:
+       - Xamarin.Android.Support.v7.AppCompat
+       - Xamarin.Android.Support.Compat
+       - Xamarin.Android.Support.Animated.Vector.Drawable
+       - Xamarin.Android.Support.Fragment
+       - Xamarin.Android.Support.Vector.Drawable
+       - Xamarin.Android.Support.Core.UI
+       - Xamarin.Android.Support.Core.Utils
+    ignoredTypes:
+       - Android.Support.V7.Widget.ButtonBarLayout
+       - Android.Support.V7.Widget.DropDownListView
+       - Android.Support.V7.View.Menu.ExpandedMenuView
+       - Android.Support.V7.View.Menu.ListMenuItemView
+       - Android.Support.V7.Widget.ViewStubCompat
+assemblies:
+    - path: xamarin.android.arch.lifecycle.common\1.0.3.1\lib\MonoAndroid80\Xamarin.Android.Arch.Lifecycle.Common
+
+rootAssemblyPath:	C:\Users\miha\.nuget\packages
+rootType:
+    assemblyPath:	C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1\Mono.Android.dll
+    name:			Android.Views.View
+    isOutput:       false
+containerInterfaces:
+    - IViewManager
+customContainerProperty: Views
+useCustomAssemblyResolver: true
+customAssemblyPaths:
+    - C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v1.0
+    - C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v1.0\Facades
+    - C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1
+components:
+    elementsRequiresConstructor: false
+    elementsSynchronization: "ElementSynchronizer.SyncElements(Element, elements);"
+    namespaces:
+        - SharpReact.Core
+        - SharpReact.Core.Properties
+        - System.Collections.Generic
+        - SharpReact.Android.Components
+    fixedFiles:
+        - SharpAndroidComponent.cs
+    rootElement: SharpAndroidComponent
+    elementCreation:
+        - "public override void CreateElement(global::Android.Content.Context context)"
+        - "{"
+        - "\tElement = (TElement)new [TElement](context);"
+        - "\tInitElement(Element);"
+        - "}"
+    sealedElementCreation:
+        - "public override void CreateElement(global::Android.Content.Context context)"
+        - "{"
+        - "\tElement = new [TElement](context);"
+        - "}"
+    initElementPartial: true
+    postAssignPropertiesPartial: true
+properties:
+    namespaces:
+        - SharpReact.Core
+        - SharpReact.Core.Properties
+        - System.Collections.Generic
+        - SharpReact.Android.Props
+    path: Props

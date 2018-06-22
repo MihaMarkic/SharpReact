@@ -45,11 +45,93 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Components\AbsActionBarView.cs" />
+    <Compile Include="Components\ActionBarContainer.cs" />
+    <Compile Include="Components\ActionBarContextView.cs" />
+    <Compile Include="Components\ActionBarOverlayLayout.cs" />
+    <Compile Include="Components\ActionMenuItemView.cs" />
+    <Compile Include="Components\ActionMenuView.cs" />
+    <Compile Include="Components\ActivityChooserView.cs" />
+    <Compile Include="Components\AlertDialogLayout.cs" />
+    <Compile Include="Components\AppCompatAutoCompleteTextView.cs" />
+    <Compile Include="Components\AppCompatButton.cs" />
+    <Compile Include="Components\AppCompatCheckBox.cs" />
+    <Compile Include="Components\AppCompatCheckedTextView.cs" />
+    <Compile Include="Components\AppCompatEditText.cs" />
+    <Compile Include="Components\AppCompatImageButton.cs" />
+    <Compile Include="Components\AppCompatImageView.cs" />
+    <Compile Include="Components\AppCompatMultiAutoCompleteTextView.cs" />
+    <Compile Include="Components\AppCompatRadioButton.cs" />
+    <Compile Include="Components\AppCompatRatingBar.cs" />
+    <Compile Include="Components\AppCompatSeekBar.cs" />
+    <Compile Include="Components\AppCompatSpinner.cs" />
+    <Compile Include="Components\AppCompatTextView.cs" />
+    <Compile Include="Components\ContentFrameLayout.cs" />
+    <Compile Include="Components\ContentLoadingProgressBar.cs" />
+    <Compile Include="Components\DialogTitle.cs" />
+    <Compile Include="Components\DrawerLayout.cs" />
+    <Compile Include="Components\FitWindowsFrameLayout.cs" />
+    <Compile Include="Components\FitWindowsLinearLayout.cs" />
+    <Compile Include="Components\FragmentTabHost.cs" />
+    <Compile Include="Components\LinearLayoutCompat.cs" />
+    <Compile Include="Components\ListViewCompat.cs" />
+    <Compile Include="Components\NestedScrollView.cs" />
+    <Compile Include="Components\PagerTabStrip.cs" />
+    <Compile Include="Components\PagerTitleStrip.cs" />
+    <Compile Include="Components\ScrollingTabContainerView.cs" />
+    <Compile Include="Components\SearchView.cs" />
+    <Compile Include="Components\SlidingPaneLayout.cs" />
+    <Compile Include="Components\Space.cs" />
+    <Compile Include="Components\SwipeRefreshLayout.cs" />
+    <Compile Include="Components\SwitchCompat.cs" />
+    <Compile Include="Components\Toolbar.cs" />
+    <Compile Include="Components\ViewPager.cs" />
+    <Compile Include="Props\AbsActionBarView.cs" />
+    <Compile Include="Props\ActionBarContainer.cs" />
+    <Compile Include="Props\ActionBarContextView.cs" />
+    <Compile Include="Props\ActionBarOverlayLayout.cs" />
+    <Compile Include="Props\ActionMenuItemView.cs" />
+    <Compile Include="Props\ActionMenuView.cs" />
+    <Compile Include="Props\ActivityChooserView.cs" />
+    <Compile Include="Props\AlertDialogLayout.cs" />
+    <Compile Include="Props\AppCompatAutoCompleteTextView.cs" />
+    <Compile Include="Props\AppCompatButton.cs" />
+    <Compile Include="Props\AppCompatCheckBox.cs" />
+    <Compile Include="Props\AppCompatCheckedTextView.cs" />
+    <Compile Include="Props\AppCompatEditText.cs" />
+    <Compile Include="Props\AppCompatImageButton.cs" />
+    <Compile Include="Props\AppCompatImageView.cs" />
+    <Compile Include="Props\AppCompatMultiAutoCompleteTextView.cs" />
+    <Compile Include="Props\AppCompatRadioButton.cs" />
+    <Compile Include="Props\AppCompatRatingBar.cs" />
+    <Compile Include="Props\AppCompatSeekBar.cs" />
+    <Compile Include="Props\AppCompatSpinner.cs" />
+    <Compile Include="Props\AppCompatTextView.cs" />
+    <Compile Include="Props\ContentFrameLayout.cs" />
+    <Compile Include="Props\ContentLoadingProgressBar.cs" />
+    <Compile Include="Props\DialogTitle.cs" />
+    <Compile Include="Props\DrawerLayout.cs" />
+    <Compile Include="Props\FitWindowsFrameLayout.cs" />
+    <Compile Include="Props\FitWindowsLinearLayout.cs" />
+    <Compile Include="Props\FragmentTabHost.cs" />
+    <Compile Include="Props\LinearLayoutCompat.cs" />
+    <Compile Include="Props\ListViewCompat.cs" />
+    <Compile Include="Props\NestedScrollView.cs" />
+    <Compile Include="Props\PagerTabStrip.cs" />
+    <Compile Include="Props\PagerTitleStrip.cs" />
+    <Compile Include="Props\ScrollingTabContainerView.cs" />
+    <Compile Include="Props\SearchView.cs" />
+    <Compile Include="Props\SlidingPaneLayout.cs" />
+    <Compile Include="Props\Space.cs" />
+    <Compile Include="Props\SwipeRefreshLayout.cs" />
+    <Compile Include="Props\SwitchCompat.cs" />
+    <Compile Include="Props\Toolbar.cs" />
+    <Compile Include="Props\ViewPager.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="build.yaml" />
     <None Include="Resources\AboutResources.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +142,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SharpReact.Core\SharpReact.Core.csproj">
+      <Project>{d9454705-427f-494c-94c3-dc0225b14d2c}</Project>
+      <Name>SharpReact.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpReact.Android.8_1\SharpReact.Android.8_1.csproj">
+      <Project>{aea7f642-4686-4e7c-bc6a-fa66e5b6ec53}</Project>
+      <Name>SharpReact.Android.8_1</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
