@@ -13,15 +13,17 @@ namespace SharpReact.MetaDataGenerator
 {
     class Program
     {
+        static string outputDirectory;
         static int Main(string[] args)
         {
-            string configFile = args.Length > 0 ? args[0] : "config.yaml";
+            string configFile = args.Length > 0 ? args[0] : "build.yaml";
             if (!File.Exists(configFile))
             {
                 WriteLine($"Can't find config file {configFile}");
                 return -1;
             }
             var config = ReadSettings(configFile);
+            outputDirectory = config.OutputDirectory ?? Path.GetDirectoryName(configFile);
             if (config.UseCustomAssemblyResolver)
             {
                 AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += CurrentDomain_ReflectionOnlyAssemblyResolve;
@@ -69,10 +71,10 @@ namespace SharpReact.MetaDataGenerator
             {
                 throw new Exception($"Failed to find root type {config.RootType.Name} in assembly {config.RootType.AssemblyPath}");
             }
-            DeleteFiles(config.Properties, config.OutputDirectory);
-            DeleteFiles(config.Components, config.OutputDirectory);
-            CreateProperties(rootType, isRoot: true, config.OutputDirectory, config.Namespace, config);
-            CreateComponents(rootType, isRoot: true, config.OutputDirectory, config);
+            DeleteFiles(config.Properties, outputDirectory);
+            DeleteFiles(config.Components, outputDirectory);
+            CreateProperties(rootType, isRoot: true, outputDirectory, config.Namespace, config);
+            CreateComponents(rootType, isRoot: true, outputDirectory, config);
             foreach (var assemblySettings in config.Assemblies)
             {
                 WriteLine($"{assemblySettings.Path}");
@@ -80,9 +82,9 @@ namespace SharpReact.MetaDataGenerator
             }
         }
 
-        static void DeleteFiles(SectionSettings settings, string outputDirectory)
+        static void DeleteFiles(SectionSettings settings, string rootOutputDirectory)
         {
-            string path = Path.Combine(outputDirectory, settings.Path);
+            string path = Path.Combine(rootOutputDirectory, settings.Path);
             foreach (string file in Directory.GetFiles(path))
             {
                 string fileName = Path.GetFileName(file);
@@ -110,8 +112,8 @@ namespace SharpReact.MetaDataGenerator
         static void ProcessType(AppSettings config, Type type)
         {
             WriteLine($"\t{type.Name}");
-            CreateProperties(type, isRoot: false, config.OutputDirectory, config.Namespace, config);
-            CreateComponents(type, isRoot: false, config.OutputDirectory, config);
+            CreateProperties(type, isRoot: false, outputDirectory, config.Namespace, config);
+            CreateComponents(type, isRoot: false, outputDirectory, config);
         }
         static string GetTypeName(Type type)
         {
@@ -207,10 +209,10 @@ namespace SharpReact.MetaDataGenerator
             string superClass = $"{GetPureName(baseType.Name)}{definition}";
             return superClass;
         }
-        static void CreateProperties(Type type, bool isRoot, string outputDirectory, string rootNamespace, AppSettings appSettings)
+        static void CreateProperties(Type type, bool isRoot, string rootOutputDirectory, string rootNamespace, AppSettings appSettings)
         {
             var settings = appSettings.Properties;
-            string path = Path.Combine(outputDirectory, settings.Path, $"{type.Name}.cs");
+            string path = Path.Combine(rootOutputDirectory, settings.Path, $"{type.Name}.cs");
             if (File.Exists(path))
             {
                 File.Delete(path);
@@ -460,10 +462,10 @@ namespace SharpReact.MetaDataGenerator
             bool isAbstract = type.IsAbstract || elementsRequiresConstructor && !hasConstructor;
             return isAbstract;
         }
-        static void CreateComponents(Type type, bool isRoot, string outputDirectory, AppSettings settings)
+        static void CreateComponents(Type type, bool isRoot, string rootOutputDirectory, AppSettings settings)
         {
             string typeName = type.Name;
-            string path = Path.Combine(outputDirectory, settings.Components.Path, $"{type.Name}.cs");
+            string path = Path.Combine(rootOutputDirectory, settings.Components.Path, $"{type.Name}.cs");
             if (File.Exists(path))
             {
                 File.Delete(path);

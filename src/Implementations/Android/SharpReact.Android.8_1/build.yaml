@@ -1,5 +1,4 @@
-﻿outputDirectory:	..\..\..\Implementations\Android\SharpReact.Android.8_1
-rootAssemblyPath:	C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1
+﻿rootAssemblyPath:	C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v8.1
 namespace:			SharpReact.Android
 assemblies:
     - path: Mono.Android

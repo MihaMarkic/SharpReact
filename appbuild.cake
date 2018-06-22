@@ -1,7 +1,14 @@
 #addin "Cake.FileHelpers"
 
+enum Implementation
+{
+	Android81,
+	Wpf
+}
+
 var configuration = Argument("BuildConfiguration", "Release");
 var newBuildVersion = Argument<string>("BuildVersion", null);
+var implementation = Argument<Implementation?>("Implementation", null);
 
 var Src = Directory("./src");
 var Core = Src + Directory("./SharpReact.Core/");
@@ -16,6 +23,13 @@ var Test = Src + Directory("./test/");
 var CoreTest = Test + File("SharpReact.Core.Test/SharpReact.Core.Test.csproj");
 var RouterTest = Test + File("SharpReact.Routing.Test/SharpReact.Routing.Test.csproj");
 
+var MetadataGenerator = Src + File("SharpReact.MetaDataGenerator/bin/Debug/ReactGenerator.exe");
+var Implementations = Src + Directory("Implementations");
+var AndroidImplementation = Implementations + Directory("Android");
+var Android81Implementation = AndroidImplementation + Directory("SharpReact.Android.8_1");
+var WpfImplementations = Implementations + Directory("Wpf");
+var WpfImplemenation = WpfImplementations + Directory("SharpReact.Wpf");
+
 var solution = Src + File("SharpReact.sln");
 var version = File("./version.xml");
 string buildVersion;
@@ -23,6 +37,23 @@ string buildVersion;
 var nupkg = Directory("./nupkg");
 
 var target = Argument("target", "Default");
+
+ConvertableDirectoryPath GetImplementationDirectoy()
+{
+	if (!implementation.HasValue)
+	{
+		throw new ArgumentNullException(nameof(Implementation));
+	}
+	switch (implementation)
+	{
+		case Implementation.Wpf:
+			return WpfImplemenation;
+		case Implementation.Android81:
+			return Android81Implementation;
+		default:
+			throw new ArgumentOutOfRangeException(nameof(Implementation));
+	}
+}
 
 Task("Restore")
 	.Does(() => {
@@ -93,10 +124,24 @@ Task("Pack")
 	});	
 });
 
+Task("CreateImplementation")
+.Does(() =>
+{
+	var directory = GetImplementationDirectoy();
+	var buildFile = directory + File("build.yaml");
+	string absolutePath = MakeAbsolute(buildFile).ToString();
+	Information($"Building implementation for {absolutePath}");
+	var exitCode = StartProcess(MetadataGenerator, new ProcessSettings { Arguments = absolutePath });
+	Information($"Exit code is {exitCode}");
+});
+
 Task("Default")
 	.Does(() => {
-		Information("Targets: ReadVersion, SetVersion, Restore, Build, UnitTest, Pack");
-		Information("Arguments: BuildConfiguration (default is Release), BuildVersion (required when using SetVersion)");
+		Information("Targets: ReadVersion, SetVersion, Restore, Build, UnitTest, Pack, CreateImplementation");
+		Information("Arguments: BuildConfiguration (default is Release), BuildVersion (required when using SetVersion), Implementation (required when CreateImplementation)");
+		Information("");
+		Information("Samples");
+		Information("\tCreateImplementation -Implementation Android81");
 	});
 
 RunTarget (target);

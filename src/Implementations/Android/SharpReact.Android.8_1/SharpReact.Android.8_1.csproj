@@ -220,9 +220,11 @@
     <Compile Include="ReactAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="build.yaml" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\SharpReact.Core\SharpReact.Core.csproj">
       <Project>{d9454705-427f-494c-94c3-dc0225b14d2c}</Project>

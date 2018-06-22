@@ -42,7 +42,7 @@ https://cakebuild.net
 [CmdletBinding()]
 Param(
     [string]$Script = "appbuild.cake",
-    [ValidateSet("ReadVersion", "SetVersion", "Restore", "Build", "UnitTest", "Pack")]
+    [ValidateSet("ReadVersion", "SetVersion", "Restore", "Build", "UnitTest", "Pack", "CreateImplementation")]
     [string]$Target,
     [string]$Configuration,
     [ValidateSet("Quiet", "Minimal", "Normal", "Verbose", "Diagnostic")]
@@ -56,7 +56,9 @@ Param(
     [Parameter(Position=0,Mandatory=$false,ValueFromRemainingArguments=$true)]
     [string[]]$ScriptArgs,
     [string]$BuildVersion,
-    [string]$BuildConfiguration
+    [string]$BuildConfiguration,
+	[ValidateSet("Android81", "Wpf")]
+	[string]$Implementation
 )
 
 [Reflection.Assembly]::LoadWithPartialName("System.Security") | Out-Null
@@ -232,6 +234,7 @@ if ($Experimental) { $cakeArguments += "-experimental" }
 if ($Mono) { $cakeArguments += "-mono" }
 if ($BuildVersion) { $cakeArguments += "-buildVersion=$BuildVersion"}
 if ($BuildConfiguration) { $cakeArguments += "-buildConfiguration=$BuildConfiguration"}
+if ($Implementation) { $cakeArguments += "-implementation=$Implementation"}
 $cakeArguments += $ScriptArgs
 
 # Start Cake

@@ -50,6 +50,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpReact.Terminal.Gui.Sam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpReact.Droid.Sample", "Samples\SharpReact.Droid.Sample\SharpReact.Droid.Sample.csproj", "{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpReact.Support.v7.AppCompat", "Implementations\Android\SharpReact.Support.v7.AppCompat\SharpReact.Support.v7.AppCompat.csproj", "{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Support", "Support", "{2E6EDABE-F280-4119-9676-5934D05AE534}"
+	ProjectSection(SolutionItems) = preProject
+		..\.gitignore = ..\.gitignore
+		..\appbuild.cake = ..\appbuild.cake
+		..\build.ps1 = ..\build.ps1
+		..\README.md = ..\README.md
+		..\version.xml = ..\version.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Android = Debug|Android
@@ -285,6 +296,22 @@ Global
 		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|x86.ActiveCfg = Release|Any CPU
 		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|x86.Build.0 = Release|Any CPU
 		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23}.Release|x86.Deploy.0 = Release|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Debug|Android.ActiveCfg = Debug|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Debug|Android.Build.0 = Debug|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Debug|x64.Build.0 = Debug|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Debug|x86.Build.0 = Debug|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|Android.ActiveCfg = Release|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|Android.Build.0 = Release|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|x64.ActiveCfg = Release|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|x64.Build.0 = Release|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|x86.ActiveCfg = Release|Any CPU
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -303,6 +330,7 @@ Global
 		{956D71D0-6206-4E5E-BE32-90938F03289F} = {9A8F3868-0677-420B-8052-00DB9DB011B0}
 		{4C01047E-9B1B-420E-A9CB-8B174E1C9F0C} = {9A8F3868-0677-420B-8052-00DB9DB011B0}
 		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23} = {9A8F3868-0677-420B-8052-00DB9DB011B0}
+		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27} = {DFE52D05-67F6-4B01-A236-84E8DF4140E1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86319227-AE60-4DDB-9D15-20689B06C3B7}
