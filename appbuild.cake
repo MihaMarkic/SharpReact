@@ -3,7 +3,8 @@
 enum Implementation
 {
 	Android81,
-	Wpf
+	Wpf,
+	AndroidAppCompatV7
 }
 
 var configuration = Argument("BuildConfiguration", "Release");
@@ -27,6 +28,7 @@ var MetadataGenerator = Src + File("SharpReact.MetaDataGenerator/bin/Debug/React
 var Implementations = Src + Directory("Implementations");
 var AndroidImplementation = Implementations + Directory("Android");
 var Android81Implementation = AndroidImplementation + Directory("SharpReact.Android.8_1");
+var AndroidAppCompatv7Implementation = AndroidImplementation + Directory("SharpReact.Support.v7.AppCompat");
 var WpfImplementations = Implementations + Directory("Wpf");
 var WpfImplemenation = WpfImplementations + Directory("SharpReact.Wpf");
 
@@ -50,6 +52,8 @@ ConvertableDirectoryPath GetImplementationDirectoy()
 			return WpfImplemenation;
 		case Implementation.Android81:
 			return Android81Implementation;
+		case Implementation.AndroidAppCompatV7:
+			return AndroidAppCompatv7Implementation;
 		default:
 			throw new ArgumentOutOfRangeException(nameof(Implementation));
 	}
@@ -137,11 +141,16 @@ Task("CreateImplementation")
 
 Task("Default")
 	.Does(() => {
-		Information("Targets: ReadVersion, SetVersion, Restore, Build, UnitTest, Pack, CreateImplementation");
-		Information("Arguments: BuildConfiguration (default is Release), BuildVersion (required when using SetVersion), Implementation (required when CreateImplementation)");
-		Information("");
-		Information("Samples");
-		Information("\tCreateImplementation -Implementation Android81");
+		Information(
+$@"Targets: ReadVersion, SetVersion, Restore, Build, UnitTest, Pack, CreateImplementation
+Arguments:
+	BuildConfiguration (default is Release)
+	BuildVersion (required when using SetVersion)
+	Implementation (required when CreateImplementation)
+		{string.Join(", ", Enum.GetNames(typeof(Implementation)))}
+
+Samples:
+	CreateImplementation -Implementation Android81");
 	});
 
 RunTarget (target);

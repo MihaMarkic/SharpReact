@@ -21,5 +21,6 @@ namespace SharpReact.MetaDataGenerator.Settings
         /// When container is derived from interface, then it needs a custom property for collection
         /// </summary>
         public string CustomContainerProperty { get; set; }
+        public AssembliesTemplateSource TemplateBasedAssemblies { get; set; }
     }
 }

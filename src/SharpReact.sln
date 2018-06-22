@@ -61,6 +61,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Support", "Support", "{2E6E
 		..\version.xml = ..\version.xml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpReact.Droid.AppCompat.Sample", "Samples\SharpReact.Droid.AppCompat.Sample\SharpReact.Droid.AppCompat.Sample.csproj", "{B51D070E-A775-4B0E-934D-402C1DDA49B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Android = Debug|Android
@@ -312,6 +314,30 @@ Global
 		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|x64.Build.0 = Release|Any CPU
 		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|x86.ActiveCfg = Release|Any CPU
 		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27}.Release|x86.Build.0 = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|Android.ActiveCfg = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|Android.Build.0 = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|Android.Deploy.0 = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|x64.Build.0 = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|x86.Build.0 = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|Android.ActiveCfg = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|Android.Build.0 = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|Android.Deploy.0 = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|x64.ActiveCfg = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|x64.Build.0 = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|x64.Deploy.0 = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|x86.ActiveCfg = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|x86.Build.0 = Release|Any CPU
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -331,6 +357,7 @@ Global
 		{4C01047E-9B1B-420E-A9CB-8B174E1C9F0C} = {9A8F3868-0677-420B-8052-00DB9DB011B0}
 		{F5BBD03E-CAC7-4734-9F33-9EE1030F4B23} = {9A8F3868-0677-420B-8052-00DB9DB011B0}
 		{7E30CD24-35F0-469A-B4E4-1C7AAF084B27} = {DFE52D05-67F6-4B01-A236-84E8DF4140E1}
+		{B51D070E-A775-4B0E-934D-402C1DDA49B7} = {9A8F3868-0677-420B-8052-00DB9DB011B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86319227-AE60-4DDB-9D15-20689B06C3B7}

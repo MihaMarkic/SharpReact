@@ -14,6 +14,7 @@ namespace SharpReact.MetaDataGenerator
     class Program
     {
         static string outputDirectory;
+        static AppSettings config;
         static int Main(string[] args)
         {
             string configFile = args.Length > 0 ? args[0] : "build.yaml";
@@ -22,7 +23,7 @@ namespace SharpReact.MetaDataGenerator
                 WriteLine($"Can't find config file {configFile}");
                 return -1;
             }
-            var config = ReadSettings(configFile);
+            config = ReadSettings(configFile);
             outputDirectory = config.OutputDirectory ?? Path.GetDirectoryName(configFile);
             if (config.UseCustomAssemblyResolver)
             {
@@ -46,19 +47,33 @@ namespace SharpReact.MetaDataGenerator
 
         private static Assembly CurrentDomain_ReflectionOnlyAssemblyResolve(object sender, ResolveEventArgs args)
         {
-            string[] paths =
-            {
-                "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\ReferenceAssemblies\\Microsoft\\Framework\\MonoAndroid\\v1.0",
-                "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\ReferenceAssemblies\\Microsoft\\Framework\\MonoAndroid\\v1.0\\Facades"
-            };
+            string[] paths = config.CustomAssemblyPaths;
             string name = args.Name.Split(',')[0].Trim();
             string assemblyFileName = $"{name}.dll";
-            foreach (string path in paths)
+
+            List<string> fullPaths = new List<string>();
+            if (paths?.Length > 0)
             {
-                string assemblyPath = Path.Combine(path, assemblyFileName);
-                if (File.Exists(assemblyPath))
+                fullPaths.AddRange(paths.Select(p => Path.Combine(p, assemblyFileName)));
+            }
+            if (config.TemplateBasedAssemblies.Names.Length > 0)
+            {
+                fullPaths.AddRange(
+                    config.TemplateBasedAssemblies.Names
+                    .Where(n => string.Equals(n, name, StringComparison.OrdinalIgnoreCase))
+                    .Select(n => config.TemplateBasedAssemblies.GetFullPath(config.RootAssemblyPath, n))
+                    .Select(p => $"{p}.dll"));
+            }
+            if (config.Assemblies?.Count > 0)
+            {
+                fullPaths.AddRange(config.Assemblies.Select(p => $"{Path.Combine(config.RootAssemblyPath, p.Path)}.dll"));
+            }
+
+            foreach (string path in fullPaths)
+            {
+                if (File.Exists(path))
                 {
-                    return Assembly.ReflectionOnlyLoadFrom(assemblyPath);
+                    return Assembly.ReflectionOnlyLoadFrom(path);
                 }
             }
             throw new Exception($"Can't find assembly {args.Name}");
@@ -73,8 +88,24 @@ namespace SharpReact.MetaDataGenerator
             }
             DeleteFiles(config.Properties, outputDirectory);
             DeleteFiles(config.Components, outputDirectory);
-            CreateProperties(rootType, isRoot: true, outputDirectory, config.Namespace, config);
-            CreateComponents(rootType, isRoot: true, outputDirectory, config);
+            if (config.RootType.IsOutput)
+            {
+                CreateProperties(rootType, isRoot: true, outputDirectory, config.Namespace, config);
+                CreateComponents(rootType, isRoot: true, outputDirectory, config);
+            }
+            if (config.TemplateBasedAssemblies?.Names.Length > 0)
+            {
+                var templateSettings = config.TemplateBasedAssemblies;
+                foreach (var name in templateSettings.Names)
+                {
+                    var assemblySettings = new AssemblySettings
+                    {
+                        Path = templateSettings.Template.Replace("[NAME]", name).Replace("[VERSION]", templateSettings.Version)
+                    };
+                    WriteLine($"Expanded template {name} to {assemblySettings.Path}");
+                    ProcessAssembly(config, rootType, assemblySettings);
+                }
+            }
             foreach (var assemblySettings in config.Assemblies)
             {
                 WriteLine($"{assemblySettings.Path}");
@@ -98,10 +129,17 @@ namespace SharpReact.MetaDataGenerator
         static void ProcessAssembly(AppSettings config, Type rootType, AssemblySettings settings)
         {
             var ignoredTypes = new HashSet<string>(settings.IgnoredTypes ?? new string[0]);
+            if (config.TemplateBasedAssemblies?.IgnoredTypes?.Length > 0)
+            {
+                foreach (string it in config.TemplateBasedAssemblies.IgnoredTypes)
+                {
+                    ignoredTypes.Add(it);
+                }
+            }
             string assemblyPath = GetAssemblyPath(config.RootAssemblyPath, settings.Path);
             var assembly = LoadAssembly(assemblyPath, !config.UseCustomAssemblyResolver);
             var types = from t in assembly.GetTypes()
-                        where t.IsPublic && t.IsSubclassOf(rootType) && !ignoredTypes.Contains(t.FullName)
+                        where t.IsPublic && t.IsSubclassOf(rootType) && !ignoredTypes.Contains(t.FullName) 
                         select t;
             foreach (var type in types)
             {
@@ -639,7 +677,16 @@ namespace SharpReact.MetaDataGenerator
         static Type GetRootType(AppSettings config)
         {
             RootTypeSettings rootTypeSettings = config.RootType;
-            string assemblyPath = GetAssemblyPath(config.RootAssemblyPath, rootTypeSettings.AssemblyPath);
+            string assemblyPath;
+            // when we output root type, it is assumed that it's assembly is in root path
+            if (rootTypeSettings.IsOutput)
+            {
+                assemblyPath = GetAssemblyPath(config.RootAssemblyPath, rootTypeSettings.AssemblyPath);
+            }
+            else
+            {
+                assemblyPath = rootTypeSettings.AssemblyPath;
+            }
             var assembly = LoadAssembly(assemblyPath, !config.UseCustomAssemblyResolver);
             return assembly.GetType(rootTypeSettings.Name);
         }

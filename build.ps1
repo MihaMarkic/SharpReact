@@ -57,7 +57,7 @@ Param(
     [string[]]$ScriptArgs,
     [string]$BuildVersion,
     [string]$BuildConfiguration,
-	[ValidateSet("Android81", "Wpf")]
+	[ValidateSet("Android81", "Wpf", "AndroidAppCompatV7")]
 	[string]$Implementation
 )
 

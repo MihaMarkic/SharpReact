@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Extensions.cs" />
     <Compile Include="LevelStringBuilder.cs" />
+    <Compile Include="Settings\AssembliesTemplateSource.cs" />
     <Compile Include="Settings\ComponentSettings.cs" />
     <Compile Include="Settings\PropsSettings.cs" />
     <Compile Include="Settings\RootTypeSettings.cs" />
