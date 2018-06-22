@@ -42,7 +42,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wpf", "Wpf", "{2F04E8B3-D62
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpReact.Wpf", "Implementations\Wpf\SharpReact.Wpf\SharpReact.Wpf.csproj", "{2DCF5856-1C1D-4009-84B7-9A62CE1C9968}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpReact.Sample", "Samples\SharpReact.Sample\SharpReact.Sample.csproj", "{F2B408A8-7EDF-4AAD-BD79-CF951068B175}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpReact.Sample.Wpf", "Samples\SharpReact.Sample.Wpf\SharpReact.Sample.Wpf.csproj", "{F2B408A8-7EDF-4AAD-BD79-CF951068B175}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpReact.Sample.Redux", "Samples\SharpReact.Sample.Redux\SharpReact.Sample.Redux.csproj", "{956D71D0-6206-4E5E-BE32-90938F03289F}"
 EndProject
