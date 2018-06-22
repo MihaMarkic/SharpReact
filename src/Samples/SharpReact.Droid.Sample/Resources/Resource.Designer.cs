@@ -3228,6 +3228,9 @@ namespace SharpReact.Droid.Sample
 			// aapt resource value: 0x7f090020
 			public const int character_counter_pattern = 2131296288;
 			
+			// aapt resource value: 0x7f09002a
+			public const int list = 2131296298;
+			
 			// aapt resource value: 0x7f090021
 			public const int password_toggle_content_description = 2131296289;
 			
@@ -3245,6 +3248,9 @@ namespace SharpReact.Droid.Sample
 			
 			// aapt resource value: 0x7f090011
 			public const int search_menu_title = 2131296273;
+			
+			// aapt resource value: 0x7f090029
+			public const int simple = 2131296297;
 			
 			// aapt resource value: 0x7f090026
 			public const int status_bar_notification_info_overflow = 2131296294;

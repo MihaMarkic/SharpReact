@@ -246,6 +246,7 @@ namespace SharpReact.MetaDataGenerator
                 {
                     var contentProperties = new List<PropertyInfo>();
                     var containerProperties = new List<PropertyInfo>();
+                    var containerPropertyNames = new List<string>();
                     string typeName = type.Name;
                     foreach (var p in properties)
                     {
@@ -257,6 +258,7 @@ namespace SharpReact.MetaDataGenerator
                         else if (IsContainerProperty(p, settings) || IsListProperty(p.PropertyType))
                         {
                             containerProperties.Add(p);
+                            containerPropertyNames.Add(p.Name);
                             sb.AppendLine($"public List<ISharpProp> {p.Name} {{ get; set; }} = new List<ISharpProp>();");
                         }
                         else
@@ -267,6 +269,7 @@ namespace SharpReact.MetaDataGenerator
                     bool hasContainerByProperty = IsContainerByInterface(type, appSettings.ContainerInterfaces);
                     if (hasContainerByProperty)
                     {
+                        containerPropertyNames.Add(appSettings.CustomContainerProperty);
                         sb.AppendLine($"public List<ISharpProp> {appSettings.CustomContainerProperty} {{ get; set; }} = new List<ISharpProp>();");
                     }
                     foreach (var e in events)
@@ -347,6 +350,13 @@ namespace SharpReact.MetaDataGenerator
                                     sb.AppendLine("yield return c;");
                                 }
                             }
+                        }
+                    }
+                    if (containerPropertyNames.Count > 0)
+                    {
+                        foreach (var name in containerPropertyNames)
+                        {
+                            sb.AppendLine($"public IEnumerable<ISharpProp> Add{name} {{ set => {name}.AddRange(value); }}");
                         }
                     }
                 }

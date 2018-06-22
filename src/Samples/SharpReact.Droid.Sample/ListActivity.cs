@@ -1,6 +1,7 @@
 ﻿
 using Android.App;
 using Android.OS;
+using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
 using SharpReact.Android;
@@ -13,8 +14,8 @@ using Props = SharpReact.Android.Props;
 
 namespace SharpReact.Droid.Sample
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
-    public class ListActivity : Activity
+    [Activity(Label = "@string/list")]
+    public class ListActivity : AppCompatActivity
     {
         AndroidTreeRenderer<ListActivity> renderer;
         int counter = 0;
@@ -38,9 +39,7 @@ namespace SharpReact.Droid.Sample
             return Enumerable.Range(0, 100).Select(
                 i => (ISharpProp)new Props.TextView
                 {
-                    LayoutParameters = new LinearLayout.LayoutParams(
-                                        ViewGroup.LayoutParams.MatchParent,
-                                        ViewGroup.LayoutParams.WrapContent),
+                    LayoutParameters = Props.LinearLayout.MatchX.WrapY(),
                     Text = $"Tubo {counter * 100 + i}"
                 })
                 .ToList();
@@ -50,35 +49,24 @@ namespace SharpReact.Droid.Sample
         {
             return new Props.LinearLayout
             {
-                LayoutParameters = new LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MatchParent,
-                            ViewGroup.LayoutParams.MatchParent),
+                LayoutParameters = Props.LinearLayout.MatchX.MatchY(),
                 Orientation = Orientation.Vertical,
                 Views =
                 {
                     new Props.ListView
                     {
-                        LayoutParameters = new LinearLayout.LayoutParams(
-                                    ViewGroup.LayoutParams.MatchParent,
-                                    ViewGroup.LayoutParams.MatchParent)
-                        {
-                            Weight = 1
-                        },
+                        LayoutParameters = Props.LinearLayout.MatchX.MatchY().Weight(1),
                         Items = CreateListItem()
                     },
                     new Props.LinearLayout
                     {
-                         LayoutParameters = new LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MatchParent,
-                            ViewGroup.LayoutParams.WrapContent),
+                         LayoutParameters = Props.LinearLayout.MatchX.WrapY(),
                         Orientation = Orientation.Horizontal,
                         Views =
                         {
                             new Props.Button
                             {
-                                LayoutParameters = new LinearLayout.LayoutParams(
-                                    ViewGroup.LayoutParams.WrapContent,
-                                    ViewGroup.LayoutParams.WrapContent),
+                                LayoutParameters = Props.LinearLayout.WrapX.WrapY(),
                                 Text = "Increase",
                                 Click = (s, e) =>
                                 {

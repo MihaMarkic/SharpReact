@@ -54,5 +54,6 @@ namespace SharpReact.Android.Props
 				}
 			}
 		}
+		public IEnumerable<ISharpProp> AddViews { set => Views.AddRange(value); }
 	}
 }

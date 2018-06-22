@@ -6,7 +6,7 @@ namespace SharpReact.Android.Props
 {
 	public partial class LinearLayout: ViewGroup
 	{
-		public ReactParam<global::System.Boolean>? BaselineAligned { get; set; }
+        public ReactParam<global::System.Boolean>? BaselineAligned { get; set; }
 		public ReactParam<global::System.Int32>? BaselineAlignedChildIndex { get; set; }
 		public ReactParam<global::System.Int32>? DividerPadding { get; set; }
 		public ReactParam<global::System.Boolean>? MeasureWithLargestChildEnabled { get; set; }

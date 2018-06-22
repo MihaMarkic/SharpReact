@@ -155,6 +155,7 @@
     <Compile Include="Props\ExtractEditText.cs" />
     <Compile Include="Props\FragmentBreadCrumbs.cs" />
     <Compile Include="Props\FrameLayout.cs" />
+    <Compile Include="Props\FrameLayout.Extension.cs" />
     <Compile Include="Props\Gallery.cs" />
     <Compile Include="Props\GestureOverlayView.cs" />
     <Compile Include="Props\GLSurfaceView.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="Props\ImageButton.cs" />
     <Compile Include="Props\ImageSwitcher.cs" />
     <Compile Include="Props\ImageView.cs" />
+    <Compile Include="Props\LinearLayout.Extension.cs" />
     <Compile Include="Props\LinearLayout.cs" />
     <Compile Include="Props\ListView.cs" />
     <Compile Include="Props\ListView.Extension.cs" />
@@ -172,11 +174,13 @@
     <Compile Include="Props\MultiAutoCompleteTextView.cs" />
     <Compile Include="Props\NumberPicker.cs" />
     <Compile Include="Props\ProgressBar.cs" />
+    <Compile Include="PropsExtensions.cs" />
     <Compile Include="Props\QuickContactBadge.cs" />
     <Compile Include="Props\RadioButton.cs" />
     <Compile Include="Props\RadioGroup.cs" />
     <Compile Include="Props\RatingBar.cs" />
     <Compile Include="Props\RelativeLayout.cs" />
+    <Compile Include="Props\RelativeLayout.Extension.cs" />
     <Compile Include="Props\RSSurfaceView.cs" />
     <Compile Include="Props\RSTextureView.cs" />
     <Compile Include="Props\ScrollView.cs" />
@@ -189,6 +193,7 @@
     <Compile Include="Props\Switch.cs" />
     <Compile Include="Props\TabHost.cs" />
     <Compile Include="Props\TableLayout.cs" />
+    <Compile Include="Props\TableLayout.Extension.cs" />
     <Compile Include="Props\TableRow.cs" />
     <Compile Include="Props\TabWidget.cs" />
     <Compile Include="Props\TextClock.cs" />
@@ -204,6 +209,7 @@
     <Compile Include="Props\View.cs" />
     <Compile Include="Props\ViewAnimator.cs" />
     <Compile Include="Props\ViewFlipper.cs" />
+    <Compile Include="Props\ViewGroup.Extension.cs" />
     <Compile Include="Props\ViewGroup.cs" />
     <Compile Include="Props\ViewStub.cs" />
     <Compile Include="Props\ViewSwitcher.cs" />
