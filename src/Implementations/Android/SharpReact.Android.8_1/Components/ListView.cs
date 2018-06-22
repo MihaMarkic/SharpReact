@@ -28,14 +28,6 @@ namespace SharpReact.Android.Components
 		}
 		static void UpdateListViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
 		{
-			if (nextProps.Adapter.HasValue)
-			{
-				element.Adapter = nextProps.Adapter.Value.Value;
-			}
-			if (nextProps.ChoiceMode.HasValue)
-			{
-				element.ChoiceMode = nextProps.ChoiceMode.Value.Value;
-			}
 			if (nextProps.Divider.HasValue)
 			{
 				element.Divider = nextProps.Divider.Value.Value;

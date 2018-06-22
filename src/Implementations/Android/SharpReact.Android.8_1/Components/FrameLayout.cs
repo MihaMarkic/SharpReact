@@ -28,18 +28,6 @@ namespace SharpReact.Android.Components
 		}
 		static void UpdateFrameLayoutWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
 		{
-			if (nextProps.Foreground.HasValue)
-			{
-				element.Foreground = nextProps.Foreground.Value.Value;
-			}
-			if (nextProps.ForegroundTintList.HasValue)
-			{
-				element.ForegroundTintList = nextProps.ForegroundTintList.Value.Value;
-			}
-			if (nextProps.ForegroundTintMode.HasValue)
-			{
-				element.ForegroundTintMode = nextProps.ForegroundTintMode.Value.Value;
-			}
 			if (nextProps.MeasureAllChildren.HasValue)
 			{
 				element.MeasureAllChildren = nextProps.MeasureAllChildren.Value.Value;

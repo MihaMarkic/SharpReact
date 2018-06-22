@@ -6,7 +6,6 @@ namespace SharpReact.Android.Props
 {
 	public partial class GridView: AbsListView
 	{
-		public ReactParam<global::Android.Widget.IListAdapter>? Adapter { get; set; }
 		public ReactParam<global::System.Int32>? NumColumns { get; set; }
 		public ReactParam<global::Android.Widget.StretchMode>? StretchMode { get; set; }
 		protected override ISharpStatefulComponent CreateComponent()
@@ -17,7 +16,6 @@ namespace SharpReact.Android.Props
 		{
 			get
 			{
-				yield return Adapter;
 				yield return NumColumns;
 				yield return StretchMode;
 				foreach (var p in base.AllProperties)

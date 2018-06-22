@@ -6,7 +6,6 @@ namespace SharpReact.Android.Props
 {
 	public abstract partial class AbsListView: AdapterView<global::Android.Widget.IListAdapter>
 	{
-		public ReactParam<global::Android.Widget.IListAdapter>? Adapter { get; set; }
 		public ReactParam<global::Android.Graphics.Color>? CacheColorHint { get; set; }
 		public ReactParam<global::Android.Widget.ChoiceMode>? ChoiceMode { get; set; }
 		public ReactParam<global::System.Boolean>? FastScrollAlwaysVisible { get; set; }
@@ -24,7 +23,6 @@ namespace SharpReact.Android.Props
 		{
 			get
 			{
-				yield return Adapter;
 				yield return CacheColorHint;
 				yield return ChoiceMode;
 				yield return FastScrollAlwaysVisible;

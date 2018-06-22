@@ -22,10 +22,6 @@ namespace SharpReact.Android.Components
 		}
 		static void UpdateAbsListViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
 		{
-			if (nextProps.Adapter.HasValue)
-			{
-				element.Adapter = nextProps.Adapter.Value.Value;
-			}
 			if (nextProps.CacheColorHint.HasValue)
 			{
 				element.CacheColorHint = nextProps.CacheColorHint.Value.Value;

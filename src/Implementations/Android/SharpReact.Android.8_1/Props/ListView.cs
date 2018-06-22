@@ -6,8 +6,6 @@ namespace SharpReact.Android.Props
 {
 	public partial class ListView: AbsListView
 	{
-		public ReactParam<global::Android.Widget.IListAdapter>? Adapter { get; set; }
-		public ReactParam<global::Android.Widget.ChoiceMode>? ChoiceMode { get; set; }
 		public ReactParam<global::Android.Graphics.Drawables.Drawable>? Divider { get; set; }
 		public ReactParam<global::System.Int32>? DividerHeight { get; set; }
 		public ReactParam<global::System.Boolean>? ItemsCanFocus { get; set; }
@@ -21,8 +19,6 @@ namespace SharpReact.Android.Props
 		{
 			get
 			{
-				yield return Adapter;
-				yield return ChoiceMode;
 				yield return Divider;
 				yield return DividerHeight;
 				yield return ItemsCanFocus;

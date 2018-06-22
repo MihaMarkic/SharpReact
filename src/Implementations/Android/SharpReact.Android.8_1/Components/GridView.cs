@@ -28,10 +28,6 @@ namespace SharpReact.Android.Components
 		}
 		static void UpdateGridViewWithInstanceProperties(TElement element, TProps previous, TProps nextProps)
 		{
-			if (nextProps.Adapter.HasValue)
-			{
-				element.Adapter = nextProps.Adapter.Value.Value;
-			}
 			if (nextProps.NumColumns.HasValue)
 			{
 				element.NumColumns = nextProps.NumColumns.Value.Value;
