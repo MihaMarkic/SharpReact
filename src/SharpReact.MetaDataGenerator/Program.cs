@@ -712,7 +712,7 @@ namespace SharpReact.MetaDataGenerator
         static AppSettings ReadSettings(string configFile)
         {
             var deserializer = new DeserializerBuilder()
-                .WithNamingConvention(new CamelCaseNamingConvention())
+                .WithNamingConvention(CamelCaseNamingConvention.Instance)
                 .Build();
 
             string configContent = File.ReadAllText(configFile);
